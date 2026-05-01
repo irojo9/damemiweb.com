@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://damemiweb.com/sitemap.xml
+
+# Block admin/private paths if added later
+Disallow: /admin/
+Disallow: /api/

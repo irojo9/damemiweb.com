@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Dame mi web — Diseño Web Profesional para Negocios por 100€ + IVA</title>
+<meta name="description" content="Página web profesional para autónomos y pequeños negocios por 100€ + IVA. Responsive, SEO incluido, dominio .com el primer año. Online en 72 horas. +32 negocios en España."/>
+<link rel="canonical" href="https://damemiweb.com/"/>
+<meta property="og:title" content="Dame mi web — Web Profesional por 100€ + IVA"/>
+<meta property="og:description" content="Web profesional para tu negocio en 72 horas. Sin mensualidades. +32 proyectos en España."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://damemiweb.com/"/>
+<meta property="og:image" content="https://files.manuscdn.com/user_upload_by_module/session_file/310519663218556288/EtwSVdRvPINJdPyY.webp"/>
+<meta name="robots" content="index, follow"/>
+<meta name="geo.region" content="ES"/>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B27EE57BLZ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B27EE57BLZ');</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"LocalBusiness",
+  "name":"Dame mi web",
+  "url":"https://damemiweb.com",
+  "telephone":"+34662549694",
+  "description":"Diseño web profesional para autónomos y pequeños negocios por 100€ + IVA. Online en 72 horas.",
+  "areaServed":{"@type":"Country","name":"España"},
+  "priceRange":"€",
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"32"},
+  "sameAs":["https://www.instagram.com/damemiweb","https://www.tiktok.com/@damemiweb"]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════
+   RESET & TOKENS
+══════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#080808;
+  --white:#F5F3EE;
+  --gray:#A0A0A0;
+  --border:#1E1E1E;
+  --border-lt:#E8E5DF;
+  --blue:#2563EB;
+  --blue-lt:#EEF3FF;
+  --cream:#F5F3EE;
+  --display:'Bebas Neue',sans-serif;
+  --body:'Outfit',sans-serif;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--body);background:var(--black);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+button{font-family:var(--body);cursor:pointer;border:none;background:none}
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:60px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;
+  border-bottom:1px solid transparent;
+  transition:background .3s,border-color .3s;
+}
+nav.s{background:rgba(8,8,8,.92);backdrop-filter:blur(20px);border-color:var(--border)}
+.nl{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nl-mark{width:32px;height:32px;background:var(--white);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nl-mark svg rect{transition:opacity .2s}
+.nl-name{font-family:var(--display);font-size:20px;letter-spacing:.06em;color:var(--white)}
+.n-links{display:flex;align-items:center;gap:2px}
+.n-links a,.n-links button{font-size:13px;font-weight:400;color:rgba(255,255,255,.45);padding:6px 14px;border-radius:6px;transition:color .15s,background .15s}
+.n-links a:hover,.n-links button:hover{color:var(--white);background:rgba(255,255,255,.06)}
+.n-cta{
+  background:var(--white)!important;color:var(--black)!important;
+  font-weight:600!important;border-radius:7px!important;
+  padding:8px 20px!important;transition:opacity .15s!important;
+}
+.n-cta:hover{opacity:.85!important}
+.ham{display:none;flex-direction:column;gap:5px;padding:5px}
+.ham span{display:block;width:20px;height:1.5px;background:var(--white);transition:all .25s}
+.ham.o span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.o span:nth-child(2){opacity:0}
+.ham.o span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mob-menu{
+  display:none;position:fixed;inset:60px 0 0 0;z-index:199;
+  background:var(--black);border-top:1px solid var(--border);
+  padding:28px 32px;opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.mob-menu.o{display:block;opacity:1;pointer-events:all}
+.mob-menu a,.mob-menu button{
+  display:block;width:100%;text-align:left;font-size:20px;font-weight:400;
+  color:rgba(255,255,255,.6);padding:16px 0;
+  border-bottom:1px solid var(--border);background:none;
+  transition:color .15s;
+}
+.mob-menu a:hover,.mob-menu button:hover{color:var(--white)}
+.mob-cta{margin-top:24px;display:block;text-align:center!important;background:var(--white);color:var(--black)!important;border-radius:8px;padding:16px!important;font-weight:600!important;border:none!important}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+#hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 40px 80px;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:var(--black);
+}
+.hero-bg img{
+  width:100%;height:100%;object-fit:cover;
+  opacity:.35;mix-blend-mode:luminosity;
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(8,8,8,1) 0%, rgba(8,8,8,.6) 50%, rgba(8,8,8,.2) 100%);
+}
+.hero-content{position:relative;z-index:1;max-width:1100px;margin:0 auto;width:100%}
+.hero-label{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);margin-bottom:24px;
+}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pd 2.5s ease-in-out infinite}
+@keyframes pd{0%,100%{opacity:1}50%{opacity:.2}}
+h1{
+  font-family:var(--display);
+  font-size:clamp(72px,10vw,160px);
+  line-height:.92;
+  letter-spacing:.01em;
+  color:var(--white);
+  margin-bottom:32px;
+}
+h1 .dim{color:rgba(255,255,255,.2)}
+.hero-bottom{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:32px;flex-wrap:wrap;
+}
+.hero-desc{
+  font-size:17px;font-weight:300;
+  color:rgba(255,255,255,.5);line-height:1.7;
+  max-width:420px;
+}
+.hero-desc strong{font-weight:500;color:var(--white)}
+.hero-actions{display:flex;flex-direction:column;align-items:flex-end;gap:16px;flex-shrink:0}
+.hero-price{
+  display:flex;align-items:baseline;gap:8px;
+  font-family:var(--display);font-size:48px;letter-spacing:.02em;color:var(--white);
+}
+.hero-price .sub{font-family:var(--body);font-size:13px;font-weight:300;color:rgba(255,255,255,.35);letter-spacing:0}
+.btn-hero{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--white);color:var(--black);
+  font-size:14px;font-weight:600;padding:14px 28px;
+  border-radius:8px;transition:all .2s;white-space:nowrap;
+}
+.btn-hero:hover{background:#e8e5df;transform:translateY(-2px);box-shadow:0 10px 40px rgba(255,255,255,.1)}
+.hero-stats{
+  display:flex;gap:0;border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;overflow:hidden;margin-top:16px;
+  align-self:flex-start;
+}
+.hs{padding:16px 24px;border-right:1px solid rgba(255,255,255,.1);text-align:center}
+.hs:last-child{border-right:none}
+.hs-n{font-family:var(--display);font-size:28px;color:var(--white);letter-spacing:.02em}
+.hs-l{font-size:10px;font-weight:300;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+
+/* ══════════════════════════════════════
+   TICKER
+══════════════════════════════════════ */
+.ticker{
+  background:var(--white);overflow:hidden;
+  white-space:nowrap;padding:14px 0;
+}
+.ticker-track{display:inline-flex;animation:tick 30s linear infinite}
+.ti{
+  font-family:var(--display);font-size:18px;
+  letter-spacing:.08em;color:var(--black);
+  padding:0 40px;display:inline-flex;align-items:center;gap:40px;
+}
+.ti::after{content:'✦';color:rgba(0,0,0,.2);font-size:10px}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ══════════════════════════════════════
+   SECTIONS LAYOUT
+══════════════════════════════════════ */
+.sec{padding:100px 40px}
+.w{max-width:1100px;margin:0 auto}
+.sec-dark{background:var(--black)}
+.sec-cream{background:var(--cream)}
+.sec-gray{background:#0F0F0F}
+
+.eyebrow{
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;margin-bottom:16px;
+}
+.eyebrow::before{content:'';width:20px;height:1px;background:currentColor}
+h2.display{
+  font-family:var(--display);
+  font-size:clamp(44px,6vw,80px);
+  letter-spacing:.02em;line-height:.95;
+  margin-bottom:48px;
+}
+h2.display .dim{color:rgba(255,255,255,.2)}
+h2.display.light{color:var(--black)}
+h2.display.light .dim{color:rgba(0,0,0,.2)}
+
+/* ══════════════════════════════════════
+   SERVICIOS
+══════════════════════════════════════ */
+.svc-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:16px;overflow:hidden;
+}
+.svc-cell{
+  background:var(--black);padding:48px 40px;
+  transition:background .2s;
+}
+.svc-cell:hover{background:#0d0d0d}
+.svc-num{
+  font-family:var(--display);font-size:13px;letter-spacing:.1em;
+  color:var(--blue);margin-bottom:24px;display:block;
+}
+.svc-cell h3{
+  font-family:var(--display);font-size:32px;letter-spacing:.03em;
+  color:var(--white);margin-bottom:12px;line-height:1;
+}
+.svc-cell p{font-size:14px;font-weight:300;color:var(--gray);line-height:1.65}
+.svc-cell.featured{background:#0A0A0A;border:1px solid var(--blue)}
+.svc-cell.featured h3{color:var(--white)}
+
+/* ══════════════════════════════════════
+   PROCESO
+══════════════════════════════════════ */
+.steps-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;border:1px solid var(--border-lt);
+  border-radius:16px;overflow:hidden;
+}
+.step{
+  padding:48px 36px;border-right:1px solid var(--border-lt);
+  background:var(--cream);
+  transition:background .2s;
+}
+.step:last-child{border-right:none}
+.step:hover{background:#EDEBE5}
+.step-line{width:32px;height:2px;margin-bottom:32px}
+.step-n{
+  font-family:var(--display);font-size:64px;color:rgba(0,0,0,.08);
+  line-height:1;letter-spacing:.02em;margin-bottom:16px;
+}
+.step h3{
+  font-size:20px;font-weight:600;color:var(--black);
+  margin-bottom:10px;
+}
+.step p{font-size:14px;font-weight:300;color:rgba(0,0,0,.5);line-height:1.65}
+.step-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:20px;font-size:11px;font-weight:500;
+  background:rgba(0,0,0,.06);color:rgba(0,0,0,.5);
+  padding:5px 12px;border-radius:100px;
+}
+
+/* ══════════════════════════════════════
+   PORTFOLIO
+══════════════════════════════════════ */
+.port-head{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:32px;gap:16px;flex-wrap:wrap;
+}
+.filters{display:flex;flex-wrap:wrap;gap:6px}
+.ftab{
+  font-size:12px;font-weight:400;color:var(--gray);
+  border:1px solid var(--border);border-radius:100px;
+  padding:6px 16px;transition:all .15s;background:none;
+}
+.ftab.on,.ftab:hover{background:var(--white);border-color:var(--white);color:var(--black)}
+.port-count{font-size:12px;color:var(--gray);margin-bottom:20px}
+.port-count span{color:var(--white);font-weight:600}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.pc{
+  display:block;border-radius:10px;overflow:hidden;
+  border:1px solid var(--border);background:#0d0d0d;
+  text-decoration:none;transition:all .22s;
+}
+.pc:hover{border-color:rgba(255,255,255,.2);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.5)}
+.pc-img{height:148px;overflow:hidden;background:#111;position:relative}
+.pc-img img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s}
+.pc:hover .pc-img img{transform:scale(1.06)}
+.pc-ov{
+  position:absolute;inset:0;background:rgba(37,99,235,.85);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .2s;font-size:12px;font-weight:500;color:#fff;
+  letter-spacing:.04em;
+}
+.pc:hover .pc-ov{opacity:1}
+.pc-emoji{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px}
+.pc-body{padding:12px 14px 16px}
+.pc-cat{font-size:9px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:3px}
+.pc h3{font-size:13px;font-weight:500;color:var(--white);margin-bottom:2px;line-height:1.3}
+.pc-dom{font-size:11px;font-weight:300;color:var(--gray)}
+
+/* ══════════════════════════════════════
+   TESTIMONIOS
+══════════════════════════════════════ */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tc{
+  background:#0d0d0d;border:1px solid var(--border);
+  border-radius:14px;padding:32px;display:flex;flex-direction:column;
+  transition:all .2s;
+}
+.tc:hover{border-color:rgba(255,255,255,.15);transform:translateY(-3px)}
+.tc-stars{font-size:14px;letter-spacing:-1px;margin-bottom:20px;color:var(--white)}
+.tc blockquote{
+  font-size:15px;font-weight:300;color:rgba(255,255,255,.6);
+  line-height:1.75;flex:1;margin-bottom:24px;
+  border-left:2px solid var(--blue);padding-left:16px;
+}
+.tc-foot{
+  border-top:1px solid var(--border);padding-top:16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.tc-name{font-size:14px;font-weight:500;color:var(--white)}
+.tc-biz{font-size:11px;font-weight:300;color:var(--gray);margin-top:2px}
+.tc-link{font-size:11px;font-weight:500;color:var(--blue)}
+
+/* ══════════════════════════════════════
+   AUDITORÍAS
+══════════════════════════════════════ */
+.audit-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:860px;margin:0 auto}
+.ac{
+  border-radius:16px;overflow:hidden;
+  border:1px solid var(--border-lt);background:var(--cream);
+  transition:all .22s;
+}
+.ac:hover{box-shadow:0 10px 40px rgba(0,0,0,.1);transform:translateY(-3px)}
+.ac.feat{border-color:var(--black);border-width:2px}
+.ac-top{padding:6px 16px;text-align:center;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
+.ac.feat .ac-top{background:var(--black);color:var(--white)}
+.ac.sec .ac-top{background:rgba(0,0,0,.06);color:rgba(0,0,0,.4)}
+.ac-body{padding:28px}
+.ac-body h3{font-family:var(--display);font-size:26px;letter-spacing:.03em;color:var(--black);margin-bottom:10px}
+.ac-price{display:flex;align-items:baseline;gap:8px;margin-bottom:14px}
+.ac-price .big{font-family:var(--display);font-size:48px;color:var(--black);letter-spacing:.02em;line-height:1}
+.ac-price .sub{font-size:13px;font-weight:300;color:rgba(0,0,0,.4)}
+.ac-desc{font-size:14px;font-weight:300;color:rgba(0,0,0,.55);line-height:1.65;margin-bottom:18px}
+.ac-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.ac-list li{display:flex;align-items:flex-start;gap:8px;font-size:13px;font-weight:300;color:rgba(0,0,0,.6)}
+.ac-list li::before{content:'✓';font-weight:700;color:var(--blue);flex-shrink:0;font-size:12px;margin-top:1px}
+.ac-btn{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;padding:13px;border-radius:9px;
+  font-family:var(--body);font-size:14px;font-weight:500;
+  cursor:pointer;text-decoration:none;transition:all .15s;border:none;
+}
+.ac.feat .ac-btn{background:var(--black);color:var(--white)}
+.ac.feat .ac-btn:hover{background:#1a1a1a}
+.ac.sec .ac-btn{background:rgba(0,0,0,.08);color:var(--black)}
+.ac.sec .ac-btn:hover{background:rgba(0,0,0,.14)}
+
+/* ══════════════════════════════════════
+   ECOSISTEMA SEO
+══════════════════════════════════════ */
+.eco-sats{
+  display:grid;grid-template-columns:1fr 1fr 1.2fr 1fr 1fr;
+  gap:10px;margin-bottom:48px;
+}
+.eco-sat{
+  background:#0d0d0d;border:1px solid var(--border);
+  border-radius:12px;padding:20px 14px;text-align:center;
+  transition:all .2s;
+}
+.eco-sat:hover{border-color:var(--blue);transform:translateY(-2px)}
+.eco-sat-ico{font-size:26px;margin-bottom:10px}
+.eco-sat-name{font-size:13px;font-weight:500;color:var(--white);margin-bottom:4px;line-height:1.3}
+.eco-sat-sub{font-size:10px;color:var(--blue);background:rgba(37,99,235,.12);padding:3px 10px;border-radius:100px;display:inline-block}
+.eco-hub{
+  background:var(--blue);border-radius:12px;
+  padding:24px 16px;text-align:center;
+}
+.eco-hub-l{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:8px}
+.eco-hub-t{font-family:var(--display);font-size:20px;letter-spacing:.04em;color:#fff;margin-bottom:4px}
+.eco-hub-s{font-size:10px;font-weight:300;color:rgba(255,255,255,.4)}
+.eco-bottom{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.eco-feats{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.eco-f{display:flex;align-items:flex-start;gap:10px;font-size:14px;font-weight:300;color:rgba(255,255,255,.6);line-height:1.55}
+.eco-f strong{font-weight:500;color:var(--white)}
+.eco-f-dot{width:20px;height:20px;border-radius:50%;background:rgba(37,99,235,.2);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center}
+.eco-price-card{
+  background:#0d0d0d;border:1px solid var(--border);
+  border-radius:16px;padding:32px;
+}
+.eco-price-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--gray);margin-bottom:12px}
+.eco-price-num{font-family:var(--display);font-size:56px;letter-spacing:.02em;color:var(--white);line-height:1;margin-bottom:6px}
+.eco-price-sub{font-size:13px;font-weight:300;color:var(--gray);margin-bottom:20px}
+.eco-divider{height:1px;background:var(--border);margin-bottom:20px}
+.eco-pf{font-size:13px;font-weight:300;color:rgba(255,255,255,.45);margin-bottom:9px}
+.eco-cta{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;padding:14px;border-radius:9px;
+  background:var(--white);color:var(--black);
+  font-family:var(--body);font-size:14px;font-weight:600;
+  text-decoration:none;transition:opacity .15s;margin:20px 0 10px;
+}
+.eco-cta:hover{opacity:.88}
+.eco-note{font-size:11px;font-weight:300;color:rgba(255,255,255,.2);text-align:center}
+
+/* ══════════════════════════════════════
+   FAQ
+══════════════════════════════════════ */
+.faq-wrap{margin-top:48px;max-width:700px;margin-left:auto;margin-right:auto}
+.fi{border-bottom:1px solid var(--border)}
+.fi:first-child{border-top:1px solid var(--border)}
+.fbtn{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:22px 0;background:none;border:none;text-align:left;gap:20px;cursor:pointer;
+}
+.fbq{font-size:16px;font-weight:400;color:rgba(255,255,255,.55);transition:color .15s;line-height:1.4}
+.fbtn:hover .fbq{color:var(--white)}
+.fbi{
+  width:28px;height:28px;border-radius:50%;
+  border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
+  font-size:17px;color:var(--gray);flex-shrink:0;transition:all .25s;line-height:1;
+}
+.fi.open .fbi{background:var(--white);border-color:var(--white);color:var(--black);transform:rotate(45deg)}
+.fi.open .fbq{color:var(--white)}
+.fbody{height:0;overflow:hidden;transition:height .3s ease}
+.fbin{padding:0 0 22px;font-size:15px;font-weight:300;color:var(--gray);line-height:1.75;max-width:560px}
+
+/* ══════════════════════════════════════
+   BLOG
+══════════════════════════════════════ */
+.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.bc{
+  background:#0d0d0d;border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;display:flex;
+  flex-direction:column;text-decoration:none;transition:all .2s;
+}
+.bc:hover{border-color:rgba(255,255,255,.15);transform:translateY(-4px)}
+.bc-body{padding:22px;flex:1;display:flex;flex-direction:column}
+.bc-tag{display:inline-block;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:#fff;padding:3px 10px;border-radius:100px;margin-bottom:14px;width:fit-content}
+.bc h3{font-family:var(--display);font-size:20px;letter-spacing:.03em;color:var(--white);line-height:1.15;margin-bottom:10px;flex:1}
+.bc p{font-size:13px;font-weight:300;color:var(--gray);line-height:1.6;margin-bottom:14px}
+.bc-meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:12px;font-size:11px;color:var(--gray);font-weight:300}
+.bc-read{font-weight:500;color:var(--blue)}
+
+/* ══════════════════════════════════════
+   SECTORES
+══════════════════════════════════════ */
+.sectors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sc{
+  display:flex;align-items:center;gap:12px;
+  padding:20px;background:#0d0d0d;border:1px solid var(--border);
+  border-radius:12px;text-decoration:none;transition:all .2s;
+}
+.sc:hover{border-color:var(--blue);transform:translateX(4px)}
+.sc-ico{font-size:26px;flex-shrink:0}
+.sc-name{font-size:15px;font-weight:500;color:var(--white)}
+.sc-link{font-size:11px;font-weight:400;color:var(--blue);margin-top:2px}
+
+/* ══════════════════════════════════════
+   CONTACTO
+══════════════════════════════════════ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.cways{display:flex;flex-direction:column;gap:8px;margin-bottom:32px}
+.cway{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 18px;border-radius:10px;
+  border:1px solid var(--border-lt);background:rgba(0,0,0,.03);
+  text-decoration:none;transition:all .15s;
+}
+.cway:hover{border-color:rgba(0,0,0,.3);transform:translateX(4px)}
+.cway-ico{width:40px;height:40px;border-radius:9px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.cway-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:rgba(0,0,0,.4)}
+.cway-val{font-size:14px;font-weight:500;color:var(--black);margin-top:1px}
+.cway-arr{margin-left:auto;color:rgba(0,0,0,.2);font-size:16px;transition:color .15s}
+.cway:hover .cway-arr{color:rgba(0,0,0,.5)}
+.cf{background:var(--cream);border:1px solid var(--border-lt);border-radius:16px;padding:36px}
+.cf h3{font-family:var(--display);font-size:28px;letter-spacing:.03em;color:var(--black);margin-bottom:5px}
+.cf .sub{font-size:14px;font-weight:300;color:rgba(0,0,0,.45);margin-bottom:26px}
+.fld{margin-bottom:14px}
+.fld label{display:block;font-size:12px;font-weight:500;color:var(--black);letter-spacing:.02em;margin-bottom:6px}
+.fld input,.fld select,.fld textarea{
+  width:100%;padding:12px 14px;
+  border:1.5px solid var(--border-lt);border-radius:9px;
+  font-family:var(--body);font-size:14px;font-weight:300;
+  color:var(--black);background:var(--white);outline:none;transition:border-color .15s;
+}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--black)}
+.fld textarea{resize:none;line-height:1.6}
+.fsend{
+  width:100%;padding:14px;border-radius:9px;
+  background:var(--black);color:var(--white);
+  font-family:var(--body);font-size:14px;font-weight:500;
+  border:none;cursor:pointer;transition:all .15s;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+}
+.fsend:hover:not(:disabled){opacity:.83;transform:translateY(-1px)}
+.fsend:disabled{opacity:.4;cursor:not-allowed}
+.flegal{font-size:11px;color:rgba(0,0,0,.35);text-align:center;margin-top:9px}
+.flegal a{color:var(--blue)}
+.fok{text-align:center;padding:40px 0}
+.fok-ico{font-size:44px;margin-bottom:14px}
+.fok h4{font-family:var(--display);font-size:28px;letter-spacing:.03em;color:var(--black);margin-bottom:8px}
+.fok p{font-size:14px;font-weight:300;color:rgba(0,0,0,.45)}
+
+/* ══════════════════════════════════════
+   CTA FINAL
+══════════════════════════════════════ */
+#cta-final{
+  background:var(--white);padding:120px 40px;
+  text-align:center;position:relative;overflow:hidden;
+}
+#cta-final::before{
+  content:'WEB';position:absolute;
+  font-family:var(--display);font-size:clamp(160px,25vw,360px);
+  color:rgba(0,0,0,.04);left:50%;transform:translateX(-50%);
+  top:50%;transform:translate(-50%,-50%);
+  white-space:nowrap;pointer-events:none;letter-spacing:.02em;
+  line-height:1;
+}
+.cta-inner{position:relative;z-index:1}
+.cta-inner .eyebrow{justify-content:center;color:rgba(0,0,0,.3)}
+.cta-inner .eyebrow::before{background:rgba(0,0,0,.25)}
+.cta-inner h2{
+  font-family:var(--display);font-size:clamp(48px,8vw,100px);
+  letter-spacing:.02em;line-height:.95;color:var(--black);
+  margin-bottom:24px;
+}
+.cta-inner h2 span{color:rgba(0,0,0,.2)}
+.cta-inner p{font-size:17px;font-weight:300;color:rgba(0,0,0,.45);max-width:400px;margin:0 auto 48px;line-height:1.75}
+.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-black{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--black);color:var(--white);
+  font-size:14px;font-weight:600;padding:16px 36px;
+  border-radius:8px;text-decoration:none;transition:all .15s;
+}
+.btn-black:hover{background:#1a1a1a;transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:rgba(0,0,0,.5);
+  font-size:14px;font-weight:400;padding:16px 28px;
+  border-radius:8px;border:1.5px solid rgba(0,0,0,.15);
+  text-decoration:none;transition:all .15s;
+}
+.btn-outline:hover{border-color:rgba(0,0,0,.35);color:var(--black);transform:translateY(-2px)}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer{background:#050505;padding:64px 40px 28px;border-top:1px solid var(--border)}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
+.fb-name{font-family:var(--display);font-size:22px;letter-spacing:.06em;color:var(--white);margin-bottom:10px}
+.fb-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,.25);line-height:1.7;max-width:220px}
+.fc h4{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:16px}
+.fc ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.fc li a,.fc li button{font-size:13px;font-weight:300;color:rgba(255,255,255,.35);transition:color .15s;text-decoration:none;background:none;border:none;font-family:var(--body);padding:0;cursor:pointer}
+.fc li a:hover,.fc li button:hover{color:rgba(255,255,255,.75)}
+.fbot{border-top:1px solid var(--border);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.fbot p{font-size:12px;font-weight:300;color:rgba(255,255,255,.18)}
+.fsocs{display:flex;gap:6px}
+.fsoc{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .15s;text-decoration:none}
+.fsoc:hover{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.05)}
+
+/* ══════════════════════════════════════
+   FLOAT WA
+══════════════════════════════════════ */
+#waf{
+  position:fixed;bottom:28px;right:28px;z-index:50;
+  width:54px;height:54px;border-radius:50%;
+  background:#25D366;display:flex;align-items:center;justify-content:center;
+  font-size:22px;box-shadow:0 4px 20px rgba(37,211,102,.38);
+  text-decoration:none;transition:transform .2s;
+}
+#waf:hover{transform:scale(1.1)}
+.wring{position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(37,211,102,.35);animation:wr 2.2s ease-out infinite}
+@keyframes wr{0%{transform:scale(.82);opacity:1}100%{transform:scale(1.52);opacity:0}}
+
+/* ══════════════════════════════════════
+   REVEAL
+══════════════════════════════════════ */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.rv.on{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media(max-width:1060px){.pgrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:960px){
+  #autoridadgeo .w>div{grid-template-columns:1fr!important;gap:40px!important}
+
+  nav{padding:0 20px}
+  .n-links{display:none}.ham{display:flex}
+  #hero{padding:0 20px 64px}
+  h1{font-size:clamp(56px,12vw,100px)}
+  .hero-bottom{flex-direction:column;align-items:flex-start}
+  .hero-actions{align-items:flex-start}
+  .svc-grid{grid-template-columns:1fr}
+  .steps-row{grid-template-columns:1fr}
+  .step{border-right:none;border-bottom:1px solid var(--border-lt)}
+  .step:last-child{border-bottom:none}
+  .pgrid{grid-template-columns:repeat(2,1fr)}
+  .tgrid{grid-template-columns:1fr}
+  .audit-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr;gap:40px}
+  .bgrid{grid-template-columns:1fr 1fr}
+  .sectors-grid{grid-template-columns:1fr 1fr}
+  .fg{grid-template-columns:1fr 1fr;gap:32px}
+  .eco-sats{grid-template-columns:1fr 1fr}
+  .eco-hub{grid-column:1/-1}
+  .eco-bottom{grid-template-columns:1fr;gap:32px}
+  .sec{padding:72px 20px}
+}
+@media(max-width:600px){
+  .pgrid,.bgrid,.fg,.sectors-grid{grid-template-columns:1fr}
+  .fbot{flex-direction:column;text-align:center}
+  .cta-btns{flex-direction:column;align-items:stretch}
+  .cta-btns .btn-black,.cta-btns .btn-outline{justify-content:center}
+  .hero-stats{flex-wrap:wrap}
+  #cta-final{padding:80px 20px}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://damemiweb.com/#organization",
+  "name": "Dame mi web",
+  "url": "https://damemiweb.com",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://damemiweb.com/logo.png",
+    "width": 200,
+    "height": 133
+  },
+  "description": "Diseño web profesional para autónomos y pequeños negocios en España por 100€ + IVA. Online en 72 horas. Sin mensualidades.",
+  "telephone": "+34662549694",
+  "email": "hola@damemiweb.com",
+  "foundingDate": "2023",
+  "numberOfEmployees": {"@type": "QuantitativeValue", "value": 1},
+  "areaServed": {"@type": "Country", "name": "España"},
+  "priceRange": "€",
+  "sameAs": [
+    "https://www.instagram.com/damemiweb",
+    "https://www.tiktok.com/@damemiweb",
+    "https://www.autoridadgeo.com"
+  ],
+  "knowsAbout": ["Diseño web", "SEO", "Marketing digital", "GEO", "Páginas web para autónomos"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios de diseño web",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Página web profesional",
+        "price": "100",
+        "priceCurrency": "EUR",
+        "description": "Diseño web completo con dominio .com incluido el primer año. Online en 72 horas."
+      },
+      {
+        "@type": "Offer",
+        "name": "Auditoría SEO",
+        "price": "29",
+        "priceCurrency": "EUR",
+        "description": "Análisis completo de rendimiento, SEO técnico y plan de acción."
+      },
+      {
+        "@type": "Offer",
+        "name": "Auditoría Redes Sociales",
+        "price": "15",
+        "priceCurrency": "EUR",
+        "description": "Análisis de Instagram y TikTok con estrategia de crecimiento personalizada."
+      }
+    ]
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="/" class="nl">
+    <div class="nl-mark">
+      <svg width="18" height="18" viewBox="0 0 22 22" fill="none">
+        <rect x="3" y="3" width="7" height="7" rx="1.5" fill="#080808"/>
+        <rect x="12" y="3" width="7" height="7" rx="1.5" fill="#080808" opacity=".45"/>
+        <rect x="3" y="12" width="7" height="7" rx="1.5" fill="#080808" opacity=".45"/>
+        <rect x="12" y="12" width="7" height="7" rx="1.5" fill="none" stroke="#080808" stroke-width="1.2" opacity=".3"/>
+      </svg>
+    </div>
+    <span class="nl-name">DAME MI WEB</span>
+  </a>
+  <div class="n-links">
+    <button onclick="go('servicios')">Servicios</button>
+    <button onclick="go('proceso')">Proceso</button>
+    <button onclick="go('portfolio')">Portfolio</button>
+    <button onclick="go('auditorias')">Auditorías</button>
+    <a href="/blog">Blog</a>
+    <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20100%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="n-cta">Pedir mi web</a>
+  </div>
+  <button class="ham" id="ham" aria-label="Menú"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mob-menu" id="mob">
+  <button onclick="go('servicios');cm()">Servicios</button>
+  <button onclick="go('proceso');cm()">Proceso</button>
+  <button onclick="go('portfolio');cm()">Portfolio</button>
+  <button onclick="go('auditorias');cm()">Auditorías</button>
+  <a href="/blog" onclick="cm()">Blog</a>
+  <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20100%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="mob-cta">Pedir mi web — 100€ + IVA</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663218556288/EtwSVdRvPINJdPyY.webp" alt="Diseño web profesional" loading="eager"/>
+  </div>
+  <div class="hero-content">
+    <div class="hero-label"><span class="hero-dot"></span>Diseño web · España · 2026</div>
+    <h1>TU NEGOCIO<br>MERECE<br><span class="dim">UNA WEB</span><br>DE VERDAD</h1>
+    <div class="hero-bottom">
+      <div>
+        <p class="hero-desc">Web profesional para <strong>autónomos y pequeños negocios</strong>. Responsive, SEO incluido y publicada en 72 horas. Sin mensualidades.</p>
+        <div class="hero-stats">
+          <div class="hs"><div class="hs-n">32+</div><div class="hs-l">Webs</div></div>
+          <div class="hs"><div class="hs-n">72H</div><div class="hs-l">Entrega</div></div>
+          <div class="hs"><div class="hs-n">5★</div><div class="hs-l">Rating</div></div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <div class="hero-price">100€ + IVA<span class="sub">pago único</span></div>
+        <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20100%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="btn-hero">Solicitar mi web →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ti">DISEÑO WEB PROFESIONAL</span>
+    <span class="ti">100€ + IVA PAGO ÚNICO</span>
+    <span class="ti">ONLINE EN 72 HORAS</span>
+    <span class="ti">SIN MENSUALIDADES</span>
+    <span class="ti">DOMINIO .COM INCLUIDO</span>
+    <span class="ti">SEO OPTIMIZADO</span>
+    <span class="ti">DISEÑO WEB PROFESIONAL</span>
+    <span class="ti">100€ + IVA PAGO ÚNICO</span>
+    <span class="ti">ONLINE EN 72 HORAS</span>
+    <span class="ti">SIN MENSUALIDADES</span>
+    <span class="ti">DOMINIO .COM INCLUIDO</span>
+    <span class="ti">SEO OPTIMIZADO</span>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="sec sec-dark">
+  <div class="w">
+    <div class="eyebrow rv">Qué incluye</div>
+    <h2 class="display rv">TODO LO QUE<br><span class="dim">NECESITAS</span></h2>
+    <div class="svc-grid rv">
+      <div class="svc-cell featured">
+        <span class="svc-num">01</span>
+        <h3>DISEÑO RESPONSIVE</h3>
+        <p>Perfecta en móviles, tablets y ordenadores. Más del 70% de visitas llegan desde el móvil — tu web estará optimizada para cada pantalla.</p>
+      </div>
+      <div class="svc-cell">
+        <span class="svc-num">02</span>
+        <h3>SEO OPTIMIZADO</h3>
+        <p>Configurada para aparecer en Google desde el primer día. Title, meta descriptions, velocidad, Schema.org y datos estructurados incluidos.</p>
+      </div>
+      <div class="svc-cell">
+        <span class="svc-num">03</span>
+        <h3>DOMINIO .COM INCLUIDO</h3>
+        <p>Tu dominio .com o .es el primer año sin coste adicional. Renovación de 10-15€/año a partir del segundo. La web es tuya para siempre.</p>
+      </div>
+      <div class="svc-cell">
+        <span class="svc-num">04</span>
+        <h3>ENTREGA EN 72H</h3>
+        <p>Nos das la información de tu negocio hoy y en 72 horas tu web está publicada online, captando clientes.</p>
+      </div>
+      <div class="svc-cell">
+        <span class="svc-num">05</span>
+        <h3>30 DÍAS DE SOPORTE</h3>
+        <p>Cambios de texto e imágenes sin coste el primer mes. Mantenimiento continuo desde 20€/mes a partir del segundo.</p>
+      </div>
+      <div class="svc-cell">
+        <span class="svc-num">06</span>
+        <h3>CARGA ULTRA-RÁPIDA</h3>
+        <p>Google premia la velocidad. Tu web cargará en menos de 2 segundos — mejor posicionamiento y mejor experiencia para el cliente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso" class="sec">
+  <div class="w">
+    <div class="proceso-head" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:64px">
+      <div>
+        <div class="eyebrow rv">Cómo funciona</div>
+        <h2 class="display light rv">TRES<br><span class="dim">PASOS</span></h2>
+      </div>
+      <p class="rv" style="font-size:16px;font-weight:300;color:rgba(0,0,0,.45);line-height:1.75">Sin tecnicismos. Tú nos cuentas tu negocio y nosotros nos encargamos del resto. Nada más.</p>
+    </div>
+    <div class="steps-row rv">
+      <div class="step">
+        <div class="step-line" style="background:#2563EB"></div>
+        <div class="step-n">01</div>
+        <h3>Brief</h3>
+        <p>Cuéntanos tu negocio, servicios y qué quieres transmitir. Logo e imágenes si tienes.</p>
+        <span class="step-chip">⏱ 10-15 minutos</span>
+      </div>
+      <div class="step">
+        <div class="step-line" style="background:#080808"></div>
+        <div class="step-n">02</div>
+        <h3>Diseño</h3>
+        <p>Creamos tu web personalizada. Revisión incluida antes de publicar, sin coste extra.</p>
+        <span class="step-chip">✏ Revisión incluida</span>
+      </div>
+      <div class="step">
+        <div class="step-line" style="background:#22C55E"></div>
+        <div class="step-n">03</div>
+        <h3>Online</h3>
+        <p>Tu web se publica con tu dominio. Empiezas a recibir clientes desde el primer día.</p>
+        <span class="step-chip">🚀 En 72h o menos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="sec sec-gray">
+  <div class="w">
+    <div class="port-head">
+      <div>
+        <div class="eyebrow">Proyectos reales</div>
+        <h2 class="display rv">32+<br><span class="dim">PROYECTOS</span></h2>
+      </div>
+      <div class="filters" id="filters">
+        <button class="ftab on" data-cat="Todos">Todos</button>
+        <button class="ftab" data-cat="Hogar y Servicios">Hogar</button>
+        <button class="ftab" data-cat="Transporte">Transporte</button>
+        <button class="ftab" data-cat="Reformas">Reformas</button>
+        <button class="ftab" data-cat="Comercio">Comercio</button>
+        <button class="ftab" data-cat="Formación y Tech">Formación</button>
+        <button class="ftab" data-cat="Otros">Otros</button>
+      </div>
+    </div>
+    <p class="port-count" id="port-count">Mostrando <span id="visible-count">32</span> proyectos</p>
+    <div class="pgrid" id="pgrid">
+      <a class="pc rv" href="https://ag-reparaciones.com" target="_blank" rel="noopener" data-cat="Hogar y Servicios"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">🔧</div></div><div class="pc-body"><div class="pc-cat">Reparaciones</div><h3>AG Reparaciones</h3><div class="pc-dom">ag-reparaciones.com</div></div></a>
+      <a class="pc rv d1" href="https://aulaformacion10.com" target="_blank" rel="noopener" data-cat="Formación y Tech"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">📚</div></div><div class="pc-body"><div class="pc-cat">Formación</div><h3>Aula Formación 10</h3><div class="pc-dom">aulaformacion10.com</div></div></a>
+      <a class="pc rv d2" href="https://calderasyelectricidad.com" target="_blank" rel="noopener" data-cat="Hogar y Servicios"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663218556288/m4L8ZfuxzPDpL7M8yhC4iB/ceir_ae5db299.png" alt="CEIR" loading="lazy"/></div><div class="pc-body"><div class="pc-cat">Calderas · Clima</div><h3>Calderas y Electricidad</h3><div class="pc-dom">calderasyelectricidad.com</div></div></a>
+      <a class="pc rv d3" href="https://charlespersonalizaciones.com" target="_blank" rel="noopener" data-cat="Comercio"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663218556288/m4L8ZfuxzPDpL7M8yhC4iB/charles_6c26c124.png" alt="Charles" loading="lazy"/></div><div class="pc-body"><div class="pc-cat">Tienda Online</div><h3>Charles Personalizaciones</h3><div class="pc-dom">charlespersonalizaciones.com</div></div></a>
+      <a class="pc rv" href="https://diversidadindustrial.com" target="_blank" rel="noopener" data-cat="Formación y Tech"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">🏭</div></div><div class="pc-body"><div class="pc-cat">Industrial</div><h3>Diversidad Industrial</h3><div class="pc-dom">diversidadindustrial.com</div></div></a>
+      <a class="pc rv d1" href="https://djrobles.com" target="_blank" rel="noopener" data-cat="Otros"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663218556288/m4L8ZfuxzPDpL7M8yhC4iB/djrobles_e054bdf8.png" alt="DJ Robles" loading="lazy"/></div><div class="pc-body"><div class="pc-cat">DJ · Eventos</div><h3>DJ Robles</h3><div class="pc-dom">djrobles.com</div></div></a>
+      <a class="pc rv d2" href="https://eserpsubvenciones.com" target="_blank" rel="noopener" data-cat="Formación y Tech"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">📋</div></div><div class="pc-body"><div class="pc-cat">Subvenciones</div><h3>ESERP Subvenciones</h3><div class="pc-dom">eserpsubvenciones.com</div></div></a>
+      <a class="pc rv d3" href="https://fontaneriacalderon.com" target="_blank" rel="noopener" data-cat="Hogar y Servicios"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">🚿</div></div><div class="pc-body"><div class="pc-cat">Fontanería</div><h3>Fontanería Calderón</h3><div class="pc-dom">fontaneriacalderon.com</div></div></a>
+      <a class="pc rv" href="https://fontaneroparasevilla.com" target="_blank" rel="noopener" data-cat="Hogar y Servicios"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663218556288/m4L8ZfuxzPDpL7M8yhC4iB/fontanero_fef4836d.png" alt="Fontanero" loading="lazy"/></div><div class="pc-body"><div class="pc-cat">Fontanería · 24h</div><h3>Fontanero Para Sevilla</h3><div class="pc-dom">fontaneroparasevilla.com</div></div></a>
+      <a class="pc rv d1" href="https://gotalentgo.com" target="_blank" rel="noopener" data-cat="Formación y Tech"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">🎯</div></div><div class="pc-body"><div class="pc-cat">RRHH · Talento</div><h3>Go Talent Go</h3><div class="pc-dom">gotalentgo.com</div></div></a>
+      <a class="pc rv d2" href="https://hefestocrm.com" target="_blank" rel="noopener" data-cat="Formación y Tech"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">💻</div></div><div class="pc-body"><div class="pc-cat">SaaS · CRM</div><h3>Hefesto CRM</h3><div class="pc-dom">hefestocrm.com</div></div></a>
+      <a class="pc rv d3" href="https://hefestoforgelabs.com" target="_blank" rel="noopener" data-cat="Formación y Tech"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">⚡</div></div><div class="pc-body"><div class="pc-cat">Tech · Labs</div><h3>Hefesto Forge Labs</h3><div class="pc-dom">hefestoforgelabs.com</div></div></a>
+      <a class="pc rv" href="https://henrytucerrajero.com" target="_blank" rel="noopener" data-cat="Hogar y Servicios"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">🔑</div></div><div class="pc-body"><div class="pc-cat">Cerrajería</div><h3>Henry tu Cerrajero</h3><div class="pc-dom">henrytucerrajero.com</div></div></a>
+      <a class="pc rv d1" href="https://instalacionestomas.com" target="_blank" rel="noopener" data-cat="Hogar y Servicios"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663218556288/m4L8ZfuxzPDpL7M8yhC4iB/tomas_b3fa32dd.png" alt="Tomás" loading="lazy"/></div><div class="pc-body"><div class="pc-cat">Electricidad · Fontanería</div><h3>Instalaciones Tomás</h3><div class="pc-dom">instalacionestomas.com</div></div></a>
+      <a class="pc rv d2" href="https://kmisito.com" target="_blank" rel="noopener" data-cat="Comercio"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">🛍️</div></div><div class="pc-body"><div class="pc-cat">Comercio</div><h3>Kmisito</h3><div class="pc-dom">kmisito.com</div></div></a>
+      <a class="pc rv d3" href="https://ligapatria.com" target="_blank" rel="noopener" data-cat="Otros"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">⚽</div></div><div class="pc-body"><div class="pc-cat">Deportes</div><h3>Liga Patria</h3><div class="pc-dom">ligapatria.com</div></div></a>
+      <a class="pc rv" href="https://linamarianailsalon.com" target="_blank" rel="noopener" data-cat="Comercio"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">💅</div></div><div class="pc-body"><div class="pc-cat">Nail Salon</div><h3>Lina Maria Nail Salon</h3><div class="pc-dom">linamarianailsalon.com</div></div></a>
+      <a class="pc rv d1" href="https://manoderechalogistica.com" target="_blank" rel="noopener" data-cat="Transporte"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">🚛</div></div><div class="pc-body"><div class="pc-cat">Logística</div><h3>Mano Derecha Logística</h3><div class="pc-dom">manoderechalogistica.com</div></div></a>
+      <a class="pc rv d2" href="https://montajesymudanzas.com" target="_blank" rel="noopener" data-cat="Transporte"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">📦</div></div><div class="pc-body"><div class="pc-cat">Mudanzas · Montajes</div><h3>Montajes y Mudanzas</h3><div class="pc-dom">montajesymudanzas.com</div></div></a>
+      <a class="pc rv d3" href="https://mudanzasjpm.com" target="_blank" rel="noopener" data-cat="Transporte"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663218556288/m4L8ZfuxzPDpL7M8yhC4iB/jpm_320667bd.png" alt="JPM" loading="lazy"/></div><div class="pc-body"><div class="pc-cat">Mudanzas · Portes</div><h3>Mudanzas JPM</h3><div class="pc-dom">mudanzasjpm.com</div></div></a>
+      <a class="pc rv" href="https://mudanzasyreformaslym.com" target="_blank" rel="noopener" data-cat="Transporte"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663218556288/m4L8ZfuxzPDpL7M8yhC4iB/lym_ab1df1e6.png" alt="LYM" loading="lazy"/></div><div class="pc-body"><div class="pc-cat">Mudanzas · Reformas</div><h3>Mudanzas y Reformas LYM</h3><div class="pc-dom">mudanzasyreformaslym.com</div></div></a>
+      <a class="pc rv d1" href="https://mudanzasytransportesrey.com" target="_blank" rel="noopener" data-cat="Transporte"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">🚚</div></div><div class="pc-body"><div class="pc-cat">Mudanzas · Transportes</div><h3>Mudanzas y Transportes Rey</h3><div class="pc-dom">mudanzasytransportesrey.com</div></div></a>
+      <a class="pc rv d2" href="https://nosomosrecursos.com" target="_blank" rel="noopener" data-cat="Formación y Tech"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">👥</div></div><div class="pc-body"><div class="pc-cat">RRHH · Consultoría</div><h3>No Somos Recursos</h3><div class="pc-dom">nosomosrecursos.com</div></div></a>
+      <a class="pc rv d3" href="https://optimomadrid.com" target="_blank" rel="noopener" data-cat="Hogar y Servicios"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">🏠</div></div><div class="pc-body"><div class="pc-cat">Servicios del Hogar</div><h3>Óptimo Madrid</h3><div class="pc-dom">optimomadrid.com</div></div></a>
+      <a class="pc rv" href="https://reformasintegralescantabria.com" target="_blank" rel="noopener" data-cat="Reformas"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">🏗️</div></div><div class="pc-body"><div class="pc-cat">Reformas Integrales</div><h3>Reformas Integrales Cantabria</h3><div class="pc-dom">reformasintegralescantabria.com</div></div></a>
+      <a class="pc rv d1" href="https://reformasyamadrid.com" target="_blank" rel="noopener" data-cat="Reformas"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">🔨</div></div><div class="pc-body"><div class="pc-cat">Reformas · Madrid</div><h3>Reformas y A Madrid</h3><div class="pc-dom">reformasyamadrid.com</div></div></a>
+      <a class="pc rv d2" href="https://serviciocamiongrua.com" target="_blank" rel="noopener" data-cat="Transporte"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">🏗️</div></div><div class="pc-body"><div class="pc-cat">Grúas · Transporte</div><h3>Servicio Camión Grúa</h3><div class="pc-dom">serviciocamiongrua.com</div></div></a>
+      <a class="pc rv d3" href="https://startdustrunner.com" target="_blank" rel="noopener" data-cat="Otros"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">🚀</div></div><div class="pc-body"><div class="pc-cat">Startup</div><h3>Stardust Runner</h3><div class="pc-dom">startdustrunner.com</div></div></a>
+      <a class="pc rv" href="https://tarimasremasol.com" target="_blank" rel="noopener" data-cat="Reformas"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">🪵</div></div><div class="pc-body"><div class="pc-cat">Tarimas · Suelos</div><h3>Tarimas Remasol</h3><div class="pc-dom">tarimasremasol.com</div></div></a>
+      <a class="pc rv d1" href="https://tecniseguridadanival.com" target="_blank" rel="noopener" data-cat="Hogar y Servicios"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663218556288/m4L8ZfuxzPDpL7M8yhC4iB/anival_9df5ffce.png" alt="Anival" loading="lazy"/></div><div class="pc-body"><div class="pc-cat">Cerrajería · Seguridad</div><h3>Tecni-Seguridad Anival</h3><div class="pc-dom">tecniseguridadanival.com</div></div></a>
+      <a class="pc rv d2" href="https://tropicalvapers.com" target="_blank" rel="noopener" data-cat="Comercio"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663218556288/m4L8ZfuxzPDpL7M8yhC4iB/tropicalvapers_17059228.png" alt="Tropical Vapers" loading="lazy"/></div><div class="pc-body"><div class="pc-cat">Vapeo · Tienda</div><h3>Tropical Vapers</h3><div class="pc-dom">tropicalvapers.com</div></div></a>
+      <a class="pc rv d3" href="https://vaciadosnelo.com" target="_blank" rel="noopener" data-cat="Hogar y Servicios"><div class="pc-img"><div class="pc-ov">Visitar ↗</div><div class="pc-emoji">🏗️</div></div><div class="pc-body"><div class="pc-cat">Vaciados</div><h3>Vaciados Nelo</h3><div class="pc-dom">vaciadosnelo.com</div></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios" class="sec sec-dark">
+  <div class="w">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:56px">
+      <div>
+        <div class="eyebrow rv">Lo que dicen</div>
+        <h2 class="display rv">CLIENTES<br><span class="dim">REALES</span></h2>
+      </div>
+      <div class="rv" style="text-align:right">
+        <div style="font-family:var(--display);font-size:64px;color:var(--white);line-height:1;letter-spacing:.02em">5.0</div>
+        <div style="font-size:22px;color:var(--white);letter-spacing:-1px;margin:4px 0">★★★★★</div>
+        <div style="font-size:13px;font-weight:300;color:var(--gray)">Valoración media · 32+ clientes</div>
+      </div>
+    </div>
+    <div class="tgrid">
+      <div class="tc rv">
+        <div class="tc-stars">★★★★★</div>
+        <blockquote>"En menos de 72 horas tenía mi tienda online lista con catálogo y formulario de pedido. Muy profesional y el precio es imbatible."</blockquote>
+        <div class="tc-foot"><div><div class="tc-name">Charles</div><div class="tc-biz">Charles Personalizaciones</div></div><a href="https://charlespersonalizaciones.com" target="_blank" rel="noopener" class="tc-link">Ver web →</a></div>
+      </div>
+      <div class="tc rv d1">
+        <div class="tc-stars">★★★★★</div>
+        <blockquote>"El resultado fue exactamente lo que buscábamos: profesional, clara y con nuestros servicios bien explicados. Transmite confianza."</blockquote>
+        <div class="tc-foot"><div><div class="tc-name">Equipo LYM</div><div class="tc-biz">Mudanzas y Reformas LYM</div></div><a href="https://mudanzasyreformaslym.com" target="_blank" rel="noopener" class="tc-link">Ver web →</a></div>
+      </div>
+      <div class="tc rv d2">
+        <div class="tc-stars">★★★★★</div>
+        <blockquote>"Ahora mis clientes me encuentran en Google. El precio de 100€ + IVA es imbatible para cualquier autónomo que quiera presencia online."</blockquote>
+        <div class="tc-foot"><div><div class="tc-name">Anival Garvizu</div><div class="tc-biz">Tecni-Seguridad Anival</div></div><a href="https://tecniseguridadanival.com" target="_blank" rel="noopener" class="tc-link">Ver web →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDITORÍAS -->
+<section id="auditorias" class="sec sec-cream">
+  <div class="w">
+    <div style="text-align:center;margin-bottom:52px">
+      <div class="eyebrow rv" style="justify-content:center">Más servicios</div>
+      <h2 class="display light rv">¿YA TIENES<br><span class="dim">WEB?</span></h2>
+      <p class="rv" style="font-size:16px;font-weight:300;color:rgba(0,0,0,.45);max-width:400px;margin:14px auto 0;line-height:1.75">Análisis profesional para saber exactamente dónde pierdes clientes.</p>
+    </div>
+    <div class="audit-grid">
+      <div class="ac feat rv">
+        <div class="ac-top">Más popular</div>
+        <div class="ac-body">
+          <h3>AUDITORÍA SEO</h3>
+          <div class="ac-price"><span class="big">29€</span><span class="sub">+ IVA · pago único</span></div>
+          <p class="ac-desc">Análisis completo de rendimiento, SEO técnico, velocidad y plan de acción priorizado.</p>
+          <ul class="ac-list">
+            <li>Puntuación Lighthouse completa</li>
+            <li>SEO técnico on-page y off-page</li>
+            <li>Core Web Vitals y velocidad</li>
+            <li>Informe PDF + plan de acción</li>
+          </ul>
+          <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20una%20Auditor%C3%ADa%20SEO%20por%2029%E2%82%AC." target="_blank" rel="noopener" class="ac-btn">Solicitar auditoría →</a>
+        </div>
+      </div>
+      <div class="ac sec rv d1">
+        <div class="ac-top">Nuevo servicio</div>
+        <div class="ac-body">
+          <h3>AUDITORÍA RRSS</h3>
+          <div class="ac-price"><span class="big">15€</span><span class="sub">+ IVA · pago único</span></div>
+          <p class="ac-desc">Análisis de Instagram y TikTok: marca, engagement y estrategia de crecimiento.</p>
+          <ul class="ac-list">
+            <li>Análisis de perfil y bio</li>
+            <li>Métricas de engagement</li>
+            <li>Recomendaciones personalizadas</li>
+            <li>Informe PDF profesional</li>
+          </ul>
+          <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20una%20Auditor%C3%ADa%20de%20RRSS%20por%2015%E2%82%AC." target="_blank" rel="noopener" class="ac-btn">Solicitar auditoría →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECOSISTEMA SEO -->
+<section id="ecosistema-seo" class="sec sec-dark">
+  <div class="w">
+    <div style="text-align:center;margin-bottom:52px">
+      <div class="eyebrow rv" style="justify-content:center">Servicio Premium</div>
+      <h2 class="display rv">ECOSISTEMA<br><span class="dim">DE AUTORIDAD</span></h2>
+      <p class="rv" style="font-size:16px;font-weight:300;color:var(--gray);max-width:500px;margin:14px auto 0;line-height:1.75">5 sitios satélite publicando contenido SEO que apunta a tu web principal. 20 artículos al mes. 240 al año.</p>
+    </div>
+    <div class="eco-sats rv">
+      <div class="eco-sat"><div class="eco-sat-ico">📝</div><div class="eco-sat-name">Blog temático</div><div class="eco-sat-sub">4 art./mes</div></div>
+      <div class="eco-sat"><div class="eco-sat-ico">📰</div><div class="eco-sat-name">Portal noticias</div><div class="eco-sat-sub">4 art./mes</div></div>
+      <div class="eco-hub"><div class="eco-hub-l">Todo apunta a</div><div class="eco-hub-t">TU WEB PRINCIPAL</div><div class="eco-hub-s">+Autoridad · +Ranking · +Clientes</div></div>
+      <div class="eco-sat"><div class="eco-sat-ico">📈</div><div class="eco-sat-name">Blog tendencias</div><div class="eco-sat-sub">4 art./mes</div></div>
+      <div class="eco-sat"><div class="eco-sat-ico">🔬</div><div class="eco-sat-name">Micro-sitio esp.</div><div class="eco-sat-sub">4 art./mes</div></div>
+    </div>
+    <div class="eco-bottom rv">
+      <div>
+        <div class="eyebrow" style="margin-bottom:16px">Cómo funciona</div>
+        <h3 style="font-family:var(--display);font-size:clamp(24px,3vw,36px);letter-spacing:.03em;color:var(--white);line-height:1.1;margin-bottom:16px">5 SITIOS PUBLICANDO CONTENIDO QUE APUNTA A TU WEB</h3>
+        <p style="font-size:15px;font-weight:300;color:var(--gray);line-height:1.75;margin-bottom:20px">Google mide la autoridad por cuántos sitios de calidad la referencian. Cuantos más backlinks, más sube en los resultados.</p>
+        <div class="eco-feats">
+          <div class="eco-f"><div class="eco-f-dot">✓</div><div><strong>5 dominios independientes</strong> — cada sitio con su propio dominio y contenido único</div></div>
+          <div class="eco-f"><div class="eco-f-dot">✓</div><div><strong>20 artículos/mes</strong> — escritos y publicados por nosotros, optimizados para Google</div></div>
+          <div class="eco-f"><div class="eco-f-dot">✓</div><div><strong>Backlinks naturales</strong> — cada artículo enlaza estratégicamente a tu web</div></div>
+          <div class="eco-f"><div class="eco-f-dot">✓</div><div><strong>Informe mensual</strong> — posiciones, tráfico y evolución del ranking</div></div>
+          <div class="eco-f"><div class="eco-f-dot">✓</div><div><strong>Sin trabajo para ti</strong> — nos encargamos de todo</div></div>
+        </div>
+      </div>
+      <div class="eco-price-card">
+        <div class="eco-price-label">Ecosistema de Autoridad SEO</div>
+        <div class="eco-price-num">1.500€</div>
+        <div class="eco-price-sub">+ IVA / año · 125€/mes</div>
+        <div class="eco-divider"></div>
+        <div class="eco-pf">✓ 5 dominios y hosting incluidos</div>
+        <div class="eco-pf">✓ 240 artículos al año</div>
+        <div class="eco-pf">✓ Informe mensual de posiciones</div>
+        <div class="eco-pf">✓ Gestión completa, sin trabajo para ti</div>
+        <div class="eco-pf">✓ Resultados visibles en 3-6 meses</div>
+        <a href="https://wa.me/662549694?text=Hola%2C%20me%20interesa%20el%20Ecosistema%20de%20Autoridad%20SEO." target="_blank" rel="noopener" class="eco-cta">Solicitar información →</a>
+        <div class="eco-note">Plazas limitadas · Máximo 10 clientes activos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+
+<!-- ═══ AUTORIDADGEO ═══ -->
+<section id="autoridadgeo" class="sec" style="background:var(--cream)">
+  <div class="w">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center">
+
+      <!-- LEFT: copy -->
+      <div>
+        <div class="eyebrow" style="color:rgba(0,0,0,.35)">Servicio hermano</div>
+        <h2 class="display light" style="margin-bottom:16px">¿QUIERES QUE<br><span class="dim" style="color:rgba(0,0,0,.2)">LA IA TE RECOMIENDE?</span></h2>
+        <p style="font-size:17px;font-weight:300;color:rgba(0,0,0,.5);line-height:1.75;margin-bottom:20px">
+          El SEO te pone en Google. El <strong style="color:var(--black);font-weight:600">GEO te pone en la boca de la IA</strong>. Cuando alguien le pregunta a ChatGPT o Gemini <em>"¿cuál es la mejor empresa de diseño web para autónomos en España?"</em>, ¿apareces tú?
+        </p>
+        <p style="font-size:17px;font-weight:300;color:rgba(0,0,0,.5);line-height:1.75;margin-bottom:32px">
+          Con <strong style="color:var(--black);font-weight:600">AutoridadGEO</strong>, 6 propiedades digitales publican 24 artículos al mes que entrenan a la IA para que cite tu marca como referencia. Primeras citas en 30-60 días. Garantía de 60 días o no pagas.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:32px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:300;color:rgba(0,0,0,.6)"><span style="color:var(--blue);font-weight:700;font-size:16px">✓</span> 6 propiedades digitales interconectadas</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:300;color:rgba(0,0,0,.6)"><span style="color:var(--blue);font-weight:700;font-size:16px">✓</span> 24 artículos al mes — 288 al año</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:300;color:rgba(0,0,0,.6)"><span style="color:var(--blue);font-weight:700;font-size:16px">✓</span> Monitorización de citas en ChatGPT y Gemini</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:300;color:rgba(0,0,0,.6)"><span style="color:var(--blue);font-weight:700;font-size:16px">✓</span> Informe mensual de resultados</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:300;color:rgba(0,0,0,.6)"><span style="color:var(--blue);font-weight:700;font-size:16px">✓</span> <strong style="color:var(--black)">Garantía 60 días o no pagas</strong></div>
+        </div>
+        <a href="https://www.autoridadgeo.com" target="_blank" rel="noopener"
+          style="display:inline-flex;align-items:center;gap:8px;background:var(--black);color:var(--white);font-size:14px;font-weight:600;padding:14px 32px;border-radius:8px;text-decoration:none;transition:opacity .15s"
+          onmouseover="this.style.opacity='.83'" onmouseout="this.style.opacity='1'">
+          Descubrir AutoridadGEO →
+        </a>
+      </div>
+
+      <!-- RIGHT: price card -->
+      <div>
+        <!-- AI chat mockup -->
+        <div style="background:var(--black);border-radius:20px;padding:32px;margin-bottom:16px">
+          <div style="font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px;display:flex;align-items:center;gap:8px">
+            <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;display:inline-block;animation:pd 2.5s ease-in-out infinite"></span>
+            ChatGPT · Respuesta en tiempo real
+          </div>
+          <div style="background:rgba(255,255,255,.05);border-radius:12px;padding:16px 18px;margin-bottom:12px">
+            <div style="font-size:13px;font-weight:300;color:rgba(255,255,255,.4);margin-bottom:8px">Usuario pregunta:</div>
+            <div style="font-size:15px;font-weight:400;color:rgba(255,255,255,.85);line-height:1.55;font-style:italic">"¿Cuál es la mejor empresa para hacer una página web para autónomos en España?"</div>
+          </div>
+          <div style="background:rgba(37,99,235,.15);border:1px solid rgba(37,99,235,.3);border-radius:12px;padding:16px 18px">
+            <div style="font-size:13px;font-weight:300;color:rgba(255,255,255,.4);margin-bottom:8px">ChatGPT responde:</div>
+            <div style="font-size:15px;font-weight:400;color:rgba(255,255,255,.85);line-height:1.65">Una de las opciones más destacadas para autónomos y pequeños negocios es <strong style="color:#60A5FA">Dame mi web</strong>, que ofrece diseño web profesional por 100€ + IVA con dominio incluido y entrega en 72 horas...</div>
+          </div>
+        </div>
+
+        <!-- Price card -->
+        <div style="background:var(--white);border:1.5px solid var(--border-lt);border-radius:16px;padding:28px">
+          <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--gray);margin-bottom:10px">AutoridadGEO · Precio anual</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:4px">
+            <span style="font-family:var(--display);font-size:52px;color:var(--black);letter-spacing:.02em;line-height:1">4.200€</span>
+            <span style="font-size:13px;font-weight:300;color:var(--gray)">+ IVA / año</span>
+          </div>
+          <div style="font-size:13px;font-weight:300;color:var(--gray);margin-bottom:20px">350€/mes · ≈12€/día · Sin permanencia</div>
+          <a href="https://www.autoridadgeo.com" target="_blank" rel="noopener"
+            style="display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:13px;border-radius:9px;background:var(--blue);color:#fff;font-family:var(--body);font-size:14px;font-weight:600;text-decoration:none;transition:opacity .15s;margin-bottom:10px"
+            onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+            Solicitar información →
+          </a>
+          <p style="font-size:11px;font-weight:300;color:var(--gray);text-align:center">Garantía de 60 días. Si no hay resultados, no pagas.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="sec sec-gray">
+  <div class="w">
+    <div style="text-align:center">
+      <div class="eyebrow rv" style="justify-content:center">FAQ</div>
+      <h2 class="display rv">PREGUNTAS<br><span class="dim">FRECUENTES</span></h2>
+    </div>
+    <div class="faq-wrap" id="faqs">
+      <div class="fi open"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿Qué incluye el precio de 100€ + IVA?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Incluye el diseño web completo y personalizado, adaptado a móviles y tablets, el dominio .com o .es durante el primer año, optimización SEO básica, formulario de contacto y publicación en línea. Todo en un pago único, sin mensualidades ni sorpresas.</div></div></div>
+      <div class="fi"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿Cuánto tiempo tarda en estar lista mi web?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Una vez que nos facilitas la información de tu negocio —textos, logo, imágenes— tendrás tu web publicada en un máximo de 72 horas. En muchos casos la entregamos antes.</div></div></div>
+      <div class="fi"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿Puedo hacer cambios después de publicarla?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Sí. Incluimos soporte para pequeñas modificaciones durante los primeros 30 días sin coste. Para cambios mayores o mantenimiento continuo, ofrecemos planes desde 20€/mes.</div></div></div>
+      <div class="fi"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿Qué pasa con el dominio a partir del segundo año?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">El dominio está incluido el primer año. A partir del segundo, la renovación son aproximadamente 10-15€/año que puedes gestionar tú directamente o a través de nosotros.</div></div></div>
+      <div class="fi"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿Necesito conocimientos técnicos?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">No. Nosotros nos encargamos de todo. Solo necesitas contarnos qué hace tu negocio y qué quieres transmitir. El resto lo resolvemos en menos de 72 horas.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="sec sec-cream">
+  <div class="w">
+    <div class="contact-grid">
+      <div>
+        <div class="eyebrow rv">Contáctanos</div>
+        <h2 class="display light rv">¿LISTO<br><span class="dim">PARA EMPEZAR?</span></h2>
+        <p class="rv" style="font-size:16px;font-weight:300;color:rgba(0,0,0,.45);line-height:1.75;margin-bottom:32px">La forma más rápida es por WhatsApp. Te respondemos en menos de 2 horas y en 72h tienes tu web publicada.</p>
+        <div class="cways">
+          <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20100%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="cway rv"><div class="cway-ico">💬</div><div><div class="cway-label">Más rápido</div><div class="cway-val">WhatsApp · 662 549 694</div></div><span class="cway-arr">→</span></a>
+          <a href="https://www.instagram.com/damemiweb" target="_blank" rel="noopener" class="cway rv d1"><div class="cway-ico">📸</div><div><div class="cway-label">Instagram</div><div class="cway-val">@damemiweb</div></div><span class="cway-arr">→</span></a>
+          <a href="https://www.tiktok.com/@damemiweb" target="_blank" rel="noopener" class="cway rv d2"><div class="cway-ico">🎵</div><div><div class="cway-label">TikTok</div><div class="cway-val">@damemiweb</div></div><span class="cway-arr">→</span></a>
+        </div>
+      </div>
+      <div class="cf rv">
+        <h3>ESCRÍBENOS</h3>
+        <p class="sub">Te contactamos en menos de 24 horas.</p>
+        <div id="cf-form">
+          <div class="fld"><label>Nombre *</label><input type="text" id="fn" placeholder="Tu nombre" required/></div>
+          <div class="fld"><label>Email *</label><input type="email" id="fe" placeholder="tu@email.com" required/></div>
+          <div class="fld"><label>Tipo de negocio *</label><select id="fne" required><option value="">Selecciona tu sector</option><option>Fontanería</option><option>Electricidad</option><option>Peluquería</option><option>Restaurante / Bar</option><option>Tienda</option><option>Mudanzas</option><option>Reformas</option><option>Otro</option></select></div>
+          <div class="fld"><label>Mensaje</label><textarea id="fm" rows="3" placeholder="Cuéntanos brevemente..."></textarea></div>
+          <button class="fsend" id="fsb" onclick="send()">Enviar mensaje →</button>
+          <p class="flegal">Al enviar aceptas nuestra <a href="/privacidad">política de privacidad</a>.</p>
+        </div>
+        <div id="cf-ok" style="display:none"><div class="fok"><div class="fok-ico">✓</div><h4>MENSAJE RECIBIDO</h4><p>Te contactamos en menos de 24 horas.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORES -->
+<section id="sectores" class="sec sec-dark">
+  <div class="w">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="eyebrow rv" style="justify-content:center">Por sector</div>
+      <h2 class="display rv">WEB PARA<br><span class="dim">TU SECTOR</span></h2>
+    </div>
+    <div class="sectors-grid rv">
+      <a href="/web-fontaneros" class="sc"><span class="sc-ico">🔧</span><div><div class="sc-name">Fontaneros</div><div class="sc-link">Ver página →</div></div></a>
+      <a href="/web-electricistas" class="sc"><span class="sc-ico">⚡</span><div><div class="sc-name">Electricistas</div><div class="sc-link">Ver página →</div></div></a>
+      <a href="/web-peluquerias" class="sc"><span class="sc-ico">✂️</span><div><div class="sc-name">Peluquerías</div><div class="sc-link">Ver página →</div></div></a>
+      <a href="/web-restaurantes" class="sc"><span class="sc-ico">🍽️</span><div><div class="sc-name">Restaurantes</div><div class="sc-link">Ver página →</div></div></a>
+      <a href="/web-mudanzas" class="sc"><span class="sc-ico">🚛</span><div><div class="sc-name">Mudanzas</div><div class="sc-link">Ver página →</div></div></a>
+      <a href="/web-reformas" class="sc"><span class="sc-ico">🔨</span><div><div class="sc-name">Reformas</div><div class="sc-link">Ver página →</div></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="sec sec-gray">
+  <div class="w">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px">
+      <div><div class="eyebrow">Blog</div><h2 class="display rv">ÚLTIMOS<br><span class="dim">ARTÍCULOS</span></h2></div>
+      <a href="/blog" style="font-size:13px;font-weight:500;color:var(--blue);display:flex;align-items:center;gap:5px;text-decoration:none">Ver todos →</a>
+    </div>
+    <div class="bgrid">
+      <a href="/blog/instagram-para-negocios-locales.html" class="bc rv"><div class="bc-body"><span class="bc-tag" style="background:#E1306C">Redes Sociales</span><h3>CÓMO USAR INSTAGRAM PARA ATRAER CLIENTES</h3><p>16 millones de usuarios en España. Qué publicar y cómo convertir seguidores en clientes.</p><div class="bc-meta"><span>1 ago 2026 · 7 min</span><span class="bc-read">Leer →</span></div></div></a>
+      <a href="/blog/errores-seo-pequenos-negocios.html" class="bc rv d1"><div class="bc-body"><span class="bc-tag" style="background:#DC2626">SEO</span><h3>LOS 7 ERRORES SEO QUE HUNDEN TU VISIBILIDAD</h3><p>¿Tu web no aparece en Google? Probablemente cometes alguno de estos errores.</p><div class="bc-meta"><span>4 jul 2026 · 7 min</span><span class="bc-read">Leer →</span></div></div></a>
+      <a href="/blog/cuanto-cuesta-pagina-web-autonomos.html" class="bc rv d2"><div class="bc-body"><span class="bc-tag" style="background:#1347CC">Diseño Web</span><h3>¿CUÁNTO CUESTA UNA WEB PARA AUTÓNOMOS?</h3><p>De 0€ a 10.000€. Qué incluye cada opción y cuál necesita tu negocio realmente.</p><div class="bc-meta"><span>1 abr 2026 · 9 min</span><span class="bc-read">Leer →</span></div></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <div class="cta-inner">
+    <div class="eyebrow rv" style="justify-content:center">Empieza hoy</div>
+    <h2 class="rv">TU NEGOCIO<br>MERECE<br><span>UNA WEB</span></h2>
+    <p class="rv">Únete a más de 32 negocios que ya captan clientes online. Tu web lista en 72 horas por solo 100€ + IVA.</p>
+    <div class="cta-btns rv">
+      <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20100%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="btn-black">Solicitar mi web por 100€ + IVA →</a>
+      <button onclick="go('portfolio')" class="btn-outline">Ver ejemplos</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="w">
+    <div class="fg">
+      <div>
+        <div class="fb-name">DAME MI WEB</div>
+        <p class="fb-desc">Diseño web profesional para autónomos y pequeños negocios en toda España. Sin mensualidades, sin sorpresas.</p>
+      </div>
+      <div class="fc"><h4>Navegación</h4><ul>
+        <li><button onclick="go('servicios')">Servicios</button></li>
+        <li><button onclick="go('proceso')">Proceso</button></li>
+        <li><button onclick="go('portfolio')">Portfolio</button></li>
+        <li><button onclick="go('auditorias')">Auditorías</button></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+      </ul></div>
+      <div class="fc"><h4>Sectores</h4><ul>
+        <li><a href="/web-fontaneros">Fontaneros</a></li>
+        <li><a href="/web-electricistas">Electricistas</a></li>
+        <li><a href="/web-peluquerias">Peluquerías</a></li>
+        <li><a href="/web-restaurantes">Restaurantes</a></li>
+        <li><a href="/web-mudanzas">Mudanzas</a></li>
+        <li><a href="/web-reformas">Reformas</a></li>
+      </ul></div>
+      <div class="fc"><h4>Legal</h4><ul>
+        <li><a href="/privacidad">Privacidad</a></li>
+        <li><a href="/terminos">Términos</a></li>
+        <li><a href="/cookies">Cookies</a></li>
+        <li><a href="https://www.instagram.com/damemiweb" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.tiktok.com/@damemiweb" target="_blank" rel="noopener">TikTok</a></li>
+      </ul></div>
+    </div>
+    <div class="fbot">
+      <p>© 2026 Dame mi web. Todos los derechos reservados.</p>
+      <div class="fsocs">
+        <a href="https://www.instagram.com/damemiweb" target="_blank" rel="noopener" class="fsoc">📸</a>
+        <a href="https://www.tiktok.com/@damemiweb" target="_blank" rel="noopener" class="fsoc">🎵</a>
+        <a href="https://wa.me/662549694" target="_blank" rel="noopener" class="fsoc">💬</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a id="waf" href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20100%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" title="WhatsApp">
+  <div class="wring"></div>💬
+</a>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('s',scrollY>10)},{passive:true});
+
+// Hamburger
+const ham=document.getElementById('ham'),mob=document.getElementById('mob');
+ham.addEventListener('click',()=>{const o=mob.classList.toggle('o');ham.classList.toggle('o',o);document.body.style.overflow=o?'hidden':''});
+function cm(){mob.classList.remove('o');ham.classList.remove('o');document.body.style.overflow=''}
+function go(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});cm()}
+
+// Portfolio filters
+document.getElementById('filters').addEventListener('click',e=>{
+  const b=e.target.closest('.ftab');if(!b)return;
+  document.querySelectorAll('.ftab').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  const cat=b.dataset.cat;let count=0;
+  document.querySelectorAll('.pc').forEach(c=>{
+    const show=cat==='Todos'||c.dataset.cat===cat;
+    c.style.display=show?'block':'none';if(show)count++;
+  });
+  const vc=document.getElementById('visible-count');if(vc)vc.textContent=count;
+});
+
+// FAQ
+function faq(btn){
+  const item=btn.closest('.fi'),body=item.querySelector('.fbody'),inner=item.querySelector('.fbin');
+  const was=item.classList.contains('open');
+  document.querySelectorAll('.fi.open').forEach(i=>{i.classList.remove('open');i.querySelector('.fbody').style.height='0'});
+  if(!was){item.classList.add('open');body.style.height=inner.scrollHeight+'px'}
+}
+(()=>{const f=document.querySelector('.fi.open');if(f){const b=f.querySelector('.fbody'),i=f.querySelector('.fbin');b.style.height=i.scrollHeight+'px'}})();
+
+// Contact form
+async function send(){
+  const n=document.getElementById('fn').value.trim(),e=document.getElementById('fe').value.trim(),
+    ne=document.getElementById('fne').value,m=document.getElementById('fm').value.trim();
+  if(!n||!e||!ne){alert('Por favor rellena los campos obligatorios.');return}
+  const btn=document.getElementById('fsb');btn.disabled=true;btn.textContent='Enviando...';
+  try{
+    const r=await fetch('https://formspree.io/f/xpwzgvqp',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({nombre:n,email:e,negocio:ne,mensaje:m})});
+    if(r.ok){document.getElementById('cf-form').style.display='none';document.getElementById('cf-ok').style.display='block'}
+    else fb(n,ne,e,m);
+  }catch{fb(n,ne,e,m)}
+}
+function fb(n,ne,e,m){
+  window.open(`https://wa.me/662549694?text=${encodeURIComponent(`Hola, me llamo ${n}. Negocio: ${ne}. Email: ${e}. ${m}`)}`,'_blank');
+  document.getElementById('cf-form').style.display='none';document.getElementById('cf-ok').style.display='block';
+}
+
+// Reveal on scroll
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')})},{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+
+<!-- WhatsApp Proactive Chat -->
+<div id="wa-chat" style="position:fixed;bottom:96px;right:28px;z-index:49;max-width:280px;opacity:0;transform:translateY(10px);transition:all .4s ease;pointer-events:none">
+  <div style="background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 8px 40px rgba(0,0,0,.18);position:relative">
+    <div style="position:absolute;bottom:-8px;right:20px;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid #fff"></div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div style="width:36px;height:36px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">💬</div>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#0E0E0E;font-family:'Outfit',sans-serif">Dame mi web</div>
+        <div style="font-size:11px;color:#767676;font-family:'Outfit',sans-serif">Respuesta en &lt;2 horas</div>
+      </div>
+      <button onclick="document.getElementById('wa-chat').style.opacity='0';document.getElementById('wa-chat').style.pointerEvents='none'" style="margin-left:auto;background:none;border:none;cursor:pointer;color:#A0A0A0;font-size:18px;line-height:1;padding:0">×</button>
+    </div>
+    <p style="font-size:14px;font-weight:300;color:#3A3A3A;line-height:1.55;margin-bottom:14px;font-family:'Outfit',sans-serif">👋 ¡Hola! ¿Tienes alguna pregunta sobre tu web? Estamos aquí para ayudarte.</p>
+    <a href="https://wa.me/662549694?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20mi%20web." target="_blank" rel="noopener"
+      style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:10px;background:#25D366;color:#fff;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;font-family:'Outfit',sans-serif">
+      Escribir por WhatsApp →
+    </a>
+  </div>
+</div>
+<script>
+// Show proactive chat after 30 seconds if user hasn't clicked WA button
+setTimeout(function(){
+  var chat = document.getElementById('wa-chat');
+  var dismissed = sessionStorage.getItem('wa-dismissed');
+  if(!dismissed && chat){
+    chat.style.opacity='1';
+    chat.style.transform='translateY(0)';
+    chat.style.pointerEvents='all';
+  }
+}, 30000);
+// Hide on WA float click
+var waf = document.getElementById('waf');
+if(waf) waf.addEventListener('click', function(){
+  sessionStorage.setItem('wa-dismissed','1');
+  var c=document.getElementById('wa-chat');
+  if(c){c.style.opacity='0';c.style.pointerEvents='none';}
+});
+</script>
+</body>
+</html>
