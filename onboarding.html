@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Completa tu pedido</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+:root{
+  --bg:#f4f6fb;--white:#fff;--bd:#e2e6f0;--tx:#1a1c2e;--mt:#6b6e8a;--dm:#b0b4cc;
+  --acc:#5b6ef5;--acc2:#4355e8;--ok:#22c87a;--err:#f04060;--warn:#f5a020;
+  --sh:0 2px 16px rgba(0,0,0,.07);--sh2:0 6px 32px rgba(0,0,0,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* HEADER */
+.hdr{background:var(--white);border-bottom:1px solid var(--bd);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:20;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:var(--tx)}
+.logo em{font-style:normal;color:var(--acc)}
+.hdr-badge{font-size:12px;color:var(--mt);background:var(--bg);padding:5px 12px;border-radius:20px;border:1px solid var(--bd);max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* WRAP */
+.wrap{max-width:520px;margin:0 auto;padding:20px 16px 80px}
+
+/* PROGRESS */
+.prog-bar{height:4px;background:var(--bd);border-radius:2px;margin-bottom:22px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--acc),#8b9ff8);border-radius:2px;transition:width .4s ease}
+
+/* STEPS INDICATOR */
+.steps{display:flex;align-items:center;justify-content:center;margin-bottom:24px;gap:0}
+.st{display:flex;align-items:center;gap:6px}
+.st-num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;transition:all .3s}
+.st-num.done{background:var(--ok);color:#fff}
+.st-num.act{background:var(--acc);color:#fff;box-shadow:0 0 0 4px rgba(91,110,245,.2)}
+.st-num.pend{background:var(--bd);color:var(--mt)}
+.st-lbl{font-size:12px;font-weight:600;color:var(--mt);white-space:nowrap}
+.st-lbl.act{color:var(--acc)}.st-lbl.done{color:var(--ok)}
+.st-line{flex:1;height:2px;background:var(--bd);margin:0 6px;min-width:20px}
+.st-line.done{background:var(--ok)}
+
+/* CARD */
+.card{background:var(--white);border:1px solid var(--bd);border-radius:18px;padding:22px 20px;box-shadow:var(--sh);margin-bottom:14px}
+.card-icon{font-size:36px;margin-bottom:10px;display:block}
+.card-title{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.4px;margin-bottom:5px;line-height:1.2}
+.card-sub{font-size:14px;color:var(--mt);margin-bottom:22px;line-height:1.6}
+
+/* FIELDS */
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+.field label{font-size:12px;font-weight:600;color:var(--mt);text-transform:uppercase;letter-spacing:.5px}
+.field input,.field select,.field textarea{
+  border:2px solid var(--bd);border-radius:12px;padding:13px 14px;
+  font-size:16px;font-family:'DM Sans',sans-serif;color:var(--tx);
+  background:var(--white);outline:none;transition:border-color .18s,box-shadow .18s;
+  width:100%;appearance:none;-webkit-appearance:none;
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(91,110,245,.12)}
+.field textarea{resize:none;min-height:100px;line-height:1.6}
+.field .hint{font-size:12px;color:var(--dm)}
+.field input.err,.field textarea.err{border-color:var(--err);box-shadow:0 0 0 3px rgba(240,64,96,.1)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:400px){.frow{grid-template-columns:1fr}}
+
+/* SELECT WRAPPER */
+.sel-wrap{position:relative}
+.sel-wrap select{padding-right:36px}
+.sel-wrap::after{content:'▾';position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--mt);pointer-events:none;font-size:14px}
+
+/* PAGO */
+.pago-highlight{background:linear-gradient(135deg,rgba(91,110,245,.07),rgba(139,159,248,.04));border:2px solid rgba(91,110,245,.2);border-radius:16px;padding:18px;margin-bottom:16px;text-align:center}
+.pago-importe{font-family:'Syne',sans-serif;font-size:40px;font-weight:800;letter-spacing:-2px;color:var(--acc);line-height:1}
+.pago-desc{font-size:13px;color:var(--mt);margin-top:4px}
+.metodos{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.metodo{display:flex;align-items:center;gap:14px;padding:15px 16px;border:2px solid var(--bd);border-radius:14px;background:var(--white);cursor:pointer;transition:all .2s;user-select:none;-webkit-user-select:none}
+.metodo:active{transform:scale(.98)}
+.metodo.sel{border-color:var(--acc);background:rgba(91,110,245,.05)}
+.m-icon{font-size:26px;width:40px;text-align:center;flex-shrink:0}
+.m-info{flex:1}
+.m-info strong{font-size:15px;font-weight:600;display:block}
+.m-info span{font-size:13px;color:var(--mt)}
+.m-radio{width:22px;height:22px;border-radius:50%;border:2px solid var(--bd);flex-shrink:0;transition:all .2s;position:relative}
+.metodo.sel .m-radio{border-color:var(--acc);background:var(--acc)}
+.metodo.sel .m-radio::after{content:'';position:absolute;width:8px;height:8px;border-radius:50%;background:#fff;top:50%;left:50%;transform:translate(-50%,-50%)}
+.pago-instruc{background:rgba(91,110,245,.06);border:1px solid rgba(91,110,245,.15);border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.7;margin-bottom:12px}
+.pago-instruc strong{color:var(--tx)}
+.aviso{display:flex;align-items:flex-start;gap:9px;padding:12px 14px;background:rgba(245,160,32,.08);border:1px solid rgba(245,160,32,.25);border-radius:10px;font-size:13px;color:#7a5010;margin-bottom:14px;line-height:1.5}
+.aviso-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+
+/* COLORES */
+.colores-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.color-btn{display:flex;align-items:center;gap:7px;padding:8px 14px;border-radius:20px;border:2px solid var(--bd);background:var(--white);font-size:14px;cursor:pointer;transition:all .18s;font-family:'DM Sans',sans-serif;-webkit-user-select:none}
+.color-btn.sel{border-color:var(--acc);background:rgba(91,110,245,.08);color:var(--acc);font-weight:600}
+.cdot{width:12px;height:12px;border-radius:50%;border:1px solid rgba(0,0,0,.1);flex-shrink:0}
+.color-custom-row{display:flex;gap:8px}
+.color-custom-row input{flex:1}
+.color-custom-row button{padding:13px 16px;border-radius:12px;border:2px solid var(--bd);background:var(--white);font-size:14px;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif;color:var(--mt);transition:all .18s}
+.color-custom-row button:hover{border-color:var(--acc);color:var(--acc)}
+
+/* FOTOS */
+.fotos-drop{border:2px dashed var(--bd);border-radius:16px;padding:28px 20px;text-align:center;cursor:pointer;position:relative;background:rgba(91,110,245,.02);transition:all .2s}
+.fotos-drop:active{background:rgba(91,110,245,.06);border-color:var(--acc)}
+.fotos-drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.fotos-drop-ico{font-size:36px;margin-bottom:8px}
+.fotos-drop-t{font-size:15px;font-weight:600;margin-bottom:3px}
+.fotos-drop-s{font-size:13px;color:var(--mt)}
+.fotos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+@media(min-width:400px){.fotos-grid{grid-template-columns:repeat(4,1fr)}}
+.foto-th{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--bd)}
+.foto-th img{width:100%;height:100%;object-fit:cover}
+.foto-del{position:absolute;top:5px;right:5px;width:24px;height:24px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;border:none;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .16s}
+.foto-del:active{background:var(--err)}
+.foto-up{display:flex;align-items:center;justify-content:center;aspect-ratio:1;border-radius:10px;background:rgba(91,110,245,.08);border:2px dashed rgba(91,110,245,.25)}
+.foto-cnt{font-size:12px;color:var(--mt);margin-top:8px;text-align:center}
+
+/* BOTONES */
+.btn-main{
+  width:100%;padding:16px;border-radius:14px;background:var(--acc);
+  color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:16px;
+  border:none;cursor:pointer;transition:all .2s;display:flex;align-items:center;
+  justify-content:center;gap:8px;-webkit-user-select:none;margin-top:8px;
+  box-shadow:0 4px 16px rgba(91,110,245,.35);
+}
+.btn-main:active{transform:translateY(1px);box-shadow:0 2px 8px rgba(91,110,245,.25)}
+.btn-main:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-back{width:100%;padding:13px;border-radius:14px;background:transparent;color:var(--mt);font-family:'DM Sans',sans-serif;font-size:15px;border:2px solid var(--bd);cursor:pointer;margin-top:10px;transition:all .18s}
+.btn-back:active{background:var(--bg)}
+
+/* SUCCESS */
+.success{text-align:center;padding:40px 10px;animation:pop .5s ease}
+@keyframes pop{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:scale(1)}}
+.success-ico{font-size:72px;margin-bottom:18px;display:block;animation:bounce .6s ease .3s both}
+@keyframes bounce{0%{transform:scale(.5)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+.success-t{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;letter-spacing:-.5px;margin-bottom:10px}
+.success-s{font-size:15px;color:var(--mt);line-height:1.7;max-width:340px;margin:0 auto}
+
+/* LOADER / INVALID */
+.loader{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;gap:16px}
+.spin{width:36px;height:36px;border:3px solid var(--bd);border-top-color:var(--acc);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.invalid{text-align:center;padding:60px 20px}
+.invalid-ico{font-size:52px;margin-bottom:14px}
+.invalid-t{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin-bottom:8px}
+.invalid-s{font-size:14px;color:var(--mt);line-height:1.6}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="logo">Oficina <em>IA</em></div>
+  <div class="hdr-badge" id="hdr-nombre">Cargando...</div>
+</div>
+
+<div class="wrap" id="root">
+  <div class="loader"><div class="spin"></div><div style="font-size:13px;color:var(--mt)">Cargando tu formulario...</div></div>
+</div>
+
+<script>
+const API = 'https://oficina-ia-api.ivanrojobermejo.workers.dev';
+// Read token from path OR query string
+const _qs = new URLSearchParams(location.search).get('token');
+const _path = location.pathname.split('/onboarding/')[1]?.split('/')[0]?.split('?')[0];
+const token = _qs || _path || null;
+
+let tokenData = null;
+let step = 1;
+let fotos = [];
+let pagoMetodo = null;
+let coloresSel = [];
+let fd = {};
+
+const COLORES = [
+  {l:'Azul',h:'#3b82f6'},{l:'Verde',h:'#22c55e'},{l:'Rojo',h:'#ef4444'},
+  {l:'Naranja',h:'#f97316'},{l:'Morado',h:'#8b5cf6'},{l:'Rosa',h:'#ec4899'},
+  {l:'Negro',h:'#1f2937'},{l:'Blanco',h:'#f9fafb'},
+];
+
+async function init() {
+  if (!token) { renderInvalid(); return; }
+  try {
+    const res = await fetch(`${API}/api/onboarding/${token}`);
+    if (!res.ok) { renderInvalid(); return; }
+    const data = await res.json();
+    tokenData = data.token;
+    document.getElementById('hdr-nombre').textContent = tokenData.cliente_nombre || 'Tu pedido';
+    // Preload existing client data if available
+    if (data.cliente) {
+      const cl = data.cliente;
+      if (!fd.nombre && cl.nombre) fd.nombre = cl.nombre;
+      if (!fd.empresa && cl.empresa) fd.empresa = cl.empresa;
+      if (!fd.telefono && cl.telefono) fd.telefono = cl.telefono;
+      if (!fd.email && cl.email) fd.email = cl.email;
+      if (!fd.nif && cl.nif) fd.nif = cl.nif;
+      if (!fd.direccion && cl.direccion) fd.direccion = cl.direccion;
+      if (fd.quiere_factura === undefined) fd.quiere_factura = cl.quiere_factura ?? 1;
+    }
+    if (tokenData.completado && data.submission) { fd = data.submission; step = 4; }
+    render();
+  } catch(e) { renderInvalid(); }
+}
+
+function pct() { return [0,25,60,90,100][step]; }
+
+function renderSteps() {
+  const ss = [{n:1,l:'Tus datos'},{n:2,l:'Pago'},{n:3,l:'Tu web'}];
+  return `<div class="steps">${ss.map((s,i)=>`
+    <div class="st">
+      <div class="st-num ${step>s.n?'done':step===s.n?'act':'pend'}">${step>s.n?'✓':s.n}</div>
+      <div class="st-lbl ${step>s.n?'done':step===s.n?'act':''}">${s.l}</div>
+    </div>
+    ${i<ss.length-1?`<div class="st-line ${step>s.n?'done':''}"></div>`:''}`).join('')}
+  </div>`;
+}
+
+function render() {
+  const root = document.getElementById('root');
+  if (step === 4) { root.innerHTML = renderSuccess(); return; }
+  root.innerHTML = `
+    <div class="prog-bar"><div class="prog-fill" style="width:${pct()}%"></div></div>
+    ${renderSteps()}
+    ${step===1?renderDatos():step===2?renderPago():renderWeb()}
+  `;
+  bindDropzone();
+  restoreColores();
+}
+
+/* ── STEP 1: DATOS ── */
+function renderDatos() {
+  return `<div class="card">
+    <span class="card-icon">👋</span>
+    <div class="card-title">¡Hola! Cuéntanos sobre ti</div>
+    <div class="card-sub">Necesitamos tus datos para crear tu ficha y emitirte factura si la necesitas.</div>
+
+    <div class="field">
+      <label>Nombre completo *</label>
+      <input id="d-nombre" type="text" placeholder="Ana García" value="${fd.nombre||''}" autocomplete="name" inputmode="text">
+    </div>
+    <div class="frow">
+      <div class="field">
+        <label>Teléfono *</label>
+        <input id="d-tel" type="tel" placeholder="6XX XXX XXX" value="${fd.telefono||''}" autocomplete="tel" inputmode="tel">
+      </div>
+      <div class="field">
+        <label>Email *</label>
+        <input id="d-email" type="email" placeholder="ana@email.com" value="${fd.email||''}" autocomplete="email" inputmode="email">
+      </div>
+    </div>
+    <div class="field">
+      <label>Empresa / Negocio</label>
+      <input id="d-empresa" type="text" placeholder="Mi Empresa SL (opcional)" value="${fd.empresa||''}" autocomplete="organization">
+    </div>
+    <div class="frow">
+      <div class="field">
+        <label>NIF / CIF</label>
+        <input id="d-nif" type="text" placeholder="12345678A" value="${fd.nif||''}" autocomplete="off">
+      </div>
+      <div class="field">
+        <label>¿Necesitas factura?</label>
+        <div class="sel-wrap">
+          <select id="d-factura">
+            <option value="1" ${fd.quiere_factura!=0?'selected':''}>Sí, la necesito</option>
+            <option value="0" ${fd.quiere_factura==0?'selected':''}>No, gracias</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Dirección fiscal</label>
+      <input id="d-dir" type="text" placeholder="Calle Mayor 1, Madrid (si necesitas factura)" value="${fd.direccion||''}" autocomplete="street-address">
+    </div>
+
+    <button class="btn-main" onclick="submitDatos()">Continuar →</button>
+  </div>`;
+}
+
+/* ── STEP 2: PAGO ── */
+function renderPago() {
+  const metodos = (tokenData.metodos_pago||'bizum,transferencia').split(',').map(m=>m.trim());
+  const importe = tokenData.importe || 100;
+  const notas = tokenData.notas_pago || '';
+
+  const metodosHTML = metodos.map(m => {
+    const cfg = {
+      bizum:       { ico:'📱', t:'Bizum',              s:'Pago instantáneo' },
+      transferencia:{ ico:'🏦', t:'Transferencia bancaria', s:'Ingreso en cuenta' },
+    }[m] || { ico:'💳', t:m, s:'' };
+    return `<div class="metodo ${pagoMetodo===m?'sel':''}" onclick="selMetodo('${m}')">
+      <div class="m-icon">${cfg.ico}</div>
+      <div class="m-info"><strong>${cfg.t}</strong><span>${cfg.s}</span></div>
+      <div class="m-radio"></div>
+    </div>`;
+  }).join('');
+
+  const instrucHTML = pagoMetodo && notas ? `<div class="pago-instruc">
+    ${pagoMetodo==='bizum'?`<strong>📱 Bizum:</strong> ${notas}`:''}
+    ${pagoMetodo==='transferencia'?`<strong>🏦 Cuenta bancaria:</strong><br>${notas.replace(/\n/g,'<br>')}`:'' }
+  </div>` : pagoMetodo ? `<div class="pago-instruc"><strong>Contacta con nosotros</strong> para recibir los datos de pago.</div>` : '';
+
+  return `<div class="card">
+    <span class="card-icon">💰</span>
+    <div class="card-title">Datos de pago</div>
+    <div class="card-sub">Elige cómo prefieres pagar. Confirmaremos la recepción manualmente.</div>
+
+    <div class="pago-highlight">
+      <div class="pago-importe">${importe}€ <span style="font-size:16px;font-family:'DM Sans',sans-serif;font-weight:400;color:var(--mt)">+ IVA</span></div>
+      <div class="pago-desc">Diseño web completo · Hosting anual incluido · Dominio incluido</div>
+    </div>
+
+    <div class="metodos">${metodosHTML}</div>
+    ${instrucHTML}
+    <div class="aviso"><span class="aviso-icon">ℹ️</span><span>Una vez realices el pago, te confirmaremos la recepción por WhatsApp antes de empezar con tu web.</span></div>
+
+    <button class="btn-main" onclick="submitPago()" ${pagoMetodo?'':'disabled'} id="btn-pago">He visto las instrucciones → Continuar</button>
+    <button class="btn-back" onclick="step=1;render()">← Volver</button>
+  </div>`;
+}
+
+/* ── STEP 3: WEB ── */
+function renderWeb() {
+  const coloresHTML = COLORES.map(c=>`
+    <button class="color-btn ${coloresSel.includes(c.l)?'sel':''}" onclick="toggleColor('${c.l}',this)">
+      <div class="cdot" style="background:${c.h}"></div>${c.l}
+    </button>`).join('');
+
+  const fotosHTML = fotos.map((f,i)=> f.uploading
+    ? `<div class="foto-up"><div class="spin" style="width:22px;height:22px;border-width:2px"></div></div>`
+    : `<div class="foto-th"><img src="${f.url}" loading="lazy"><button class="foto-del" onclick="delFoto(${i})">✕</button></div>`
+  ).join('');
+
+  return `<div class="card">
+    <span class="card-icon">🌐</span>
+    <div class="card-title">${tokenData?.nombre_proyecto || 'La web de tu negocio'}</div>
+    <div class="card-sub">Cuanta más info nos des, mejor quedará tu web. No te preocupes si no tienes todo claro.</div>
+
+    <div class="field">
+      <label>Dominio que quieres *</label>
+      <input id="w-dom" type="text" placeholder="minegocio.com" value="${fd.dominio||''}" autocomplete="off" autocapitalize="none" inputmode="url">
+      <span class="hint">Si no lo tienes, pon una idea y lo elegimos juntos</span>
+    </div>
+
+    <div class="field">
+      <label>Cuéntanos sobre tu negocio *</label>
+      <textarea id="w-desc" placeholder="Ej: Soy fontanero en Madrid, ofrezco instalación y reparación para particulares y empresas. También hago urgencias 24h...">${fd.descripcion_servicios||''}</textarea>
+      <span class="hint">Incluye qué vendes, a quién, dónde trabajas y qué te hace diferente</span>
+    </div>
+
+    <div class="field">
+      <label>Colores para tu web</label>
+      <div class="colores-grid">${coloresHTML}</div>
+      <div class="color-custom-row">
+        <input id="w-color-custom" type="text" placeholder="Otro color personalizado...">
+        <button onclick="addColorCustom()">+ Añadir</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>¿En qué zonas quieres aparecer en Google? *</label>
+      <textarea id="w-zonas" placeholder="Ej: Madrid capital, Alcobendas, Pozuelo... o toda España si vendes online">${fd.seo_zonas||''}</textarea>
+      <span class="hint">Cuanto más concreto mejor — barrio, ciudad, provincia o región</span>
+    </div>
+
+    <div class="field">
+      <label>¿Quién es tu cliente ideal?</label>
+      <textarea id="w-cliente-ideal" placeholder="Ej: Familias con hijos de 30-50 años en Madrid con poder adquisitivo medio-alto que buscan fontanero de confianza para su hogar...">${fd.seo_cliente_ideal||''}</textarea>
+      <span class="hint">Edad aproximada, situación, qué problema tiene, dónde vive</span>
+    </div>
+
+    <div class="field">
+      <label>¿Qué palabras buscaría en Google tu cliente?</label>
+      <input id="w-keywords" type="text" placeholder="Ej: fontanero urgente madrid, reparar gotera, instalador calefacción" value="${fd.seo_keywords||''}">
+      <span class="hint">Separa con comas. No te preocupes si no sabes, te ayudamos</span>
+    </div>
+
+    <div class="field">
+      <label>Fotos para la web <span style="font-weight:400;text-transform:none;letter-spacing:0">(máx. 10)</span></label>
+      <div class="fotos-drop" id="fotos-drop">
+        <input type="file" accept="image/*" multiple id="fotos-input" onchange="handleFotos(this.files)">
+        <div class="fotos-drop-ico">📸</div>
+        <div class="fotos-drop-t">Sube fotos de tu negocio</div>
+        <div class="fotos-drop-s">Productos, local, equipo, portfolio... Toca aquí para seleccionar</div>
+      </div>
+      <div class="fotos-grid" id="fotos-grid">${fotosHTML}</div>
+      <div class="foto-cnt" id="fotos-cnt">${fotos.filter(f=>!f.uploading).length}/10 fotos subidas</div>
+    </div>
+
+    <div class="field">
+      <label>Notas adicionales</label>
+      <textarea id="w-notas" placeholder="Webs de referencia que te gustan, estilo que buscas, cosas que quieres evitar...">${fd.notas_web||''}</textarea>
+    </div>
+
+    <button class="btn-main" id="btn-web" onclick="submitWeb()">✅ Enviar toda la información</button>
+    <button class="btn-back" onclick="step=2;render()">← Volver</button>
+  </div>`;
+}
+
+/* ── SUCCESS ── */
+function renderSuccess() {
+  const hoy = new Date();
+  const fecha = hoy.toLocaleDateString('es-ES', {day:'numeric', month:'long', year:'numeric'});
+  return `<div class="success">
+    <span class="success-ico">🎉</span>
+    <div class="success-t">¡Todo recibido!</div>
+    <div class="success-s">
+      Hemos recibido toda tu información.<br>
+      Nos pondremos en contacto contigo por WhatsApp para confirmar el pago y empezar con tu web.<br><br>
+      <strong>¡Gracias por confiar en nosotros!</strong>
+    </div>
+    <div style="margin-top:24px;padding:18px;background:rgba(91,110,245,.06);border:1.5px solid rgba(91,110,245,.2);border-radius:14px;text-align:left">
+      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:6px;text-align:center">📄 Contrato de servicios</div>
+      <div style="font-size:13px;color:var(--mt);text-align:center;margin-bottom:14px">Descarga y guarda tu contrato de prestación de servicios</div>
+      <button onclick="descargarContrato('${fecha}')" style="width:100%;padding:13px;border-radius:12px;background:var(--acc);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
+        ⬇️ Descargar contrato PDF
+      </button>
+    </div>
+  </div>`;
+}
+
+function descargarContrato(fecha) {
+  const nombre = fd.nombre || tokenData?.cliente_nombre || 'El Cliente';
+  const importe = tokenData?.importe || 100;
+  const contrato = `CONTRATO DE PRESTACIÓN DE SERVICIOS DIGITALES
+
+En Madrid, a ${fecha}
+
+1. PARTES DEL CONTRATO
+
+De una parte, Iván Rojo Bermejo, con DNI 47280800E, en representación de la marca 'Dame mi Web' (en adelante, el 'Prestador'). De otra parte, ${nombre} (en adelante, el 'Cliente'). Ambas partes se reconocen mutuamente capacidad legal suficiente para obligarse mediante el presente contrato.
+
+2. OBJETO DEL SERVICIO
+
+El Prestador se compromete a proporcionar un paquete integral de presencia digital que incluye:
+- Diseño y desarrollo de un sitio web profesional.
+- Registro y gestión de un (1) nombre de dominio anual.
+- Alojamiento web (Hosting) en servidores optimizados.
+- Mantenimiento técnico y actualizaciones de seguridad y contenido básico.
+
+3. CONDICIONES ECONÓMICAS
+
+El precio del servicio es de ${importe},00 € (${importe === 100 ? 'cien' : importe} euros) anuales, más el IVA legalmente aplicable. El pago se efectuará mediante transferencia bancaria o el método acordado al inicio del servicio.
+
+4. RENOVACIÓN Y CONTINUIDAD
+
+El contrato tiene una duración de un (1) año natural. Para asegurar la vigencia del dominio y el hosting, el Cliente deberá realizar el pago de la renovación al menos quince (15) días antes de la fecha de expiración. IMPORTANTE: La falta de pago en el plazo estipulado supondrá la baja automática del servicio y la pérdida irreversible del nombre de dominio.
+
+5. EXCLUSIONES DEL SERVICIO
+
+El servicio no incluye, salvo acuerdo expreso: redacción de textos (copywriting), sesiones fotográficas, diseño de logotipos adicionales, campañas de publicidad (Ads) ni SEO avanzado. Las actualizaciones incluidas se refieren a cambios menores de texto o imágenes, no a rediseños estructurales.
+
+6. PROPIEDAD INTELECTUAL
+
+El Cliente es el único propietario de los contenidos, bases de datos e información alojada. El Prestador conserva los derechos sobre la arquitectura técnica y el código fuente propietario utilizado para el desarrollo.
+
+7. LIMITACIÓN DE RESPONSABILIDAD
+
+El Prestador no será responsable de interrupciones de servicio debidas a causas de fuerza mayor o fallos en infraestructuras de terceros (proveedores de red, centros de datos externos). En ningún caso el Prestador responderá por lucro cesante o daños indirectos derivados del uso de la web.
+
+8. CONFIDENCIALIDAD Y PROTECCIÓN DE DATOS
+
+Ambas partes se obligan a mantener estricta confidencialidad sobre cualquier información sensible intercambiada. El tratamiento de datos se realizará conforme al Reglamento General de Protección de datos (RGPD).
+
+9. RESOLUCIÓN DEL CONTRATO
+
+El contrato podrá resolverse por el mutuo acuerdo de las partes o por el incumplimiento de las obligaciones aquí establecidas, especialmente la falta de pago o la falta de entrega del material necesario para el diseño.
+
+
+_________________________________          _________________________________
+Iván Rojo Bermejo (Prestador)              ${nombre} (Cliente)
+DNI: 47280800E                             
+Dame mi Web                                
+
+Fecha: ${fecha}`;
+
+  // Open printable HTML in new tab — client saves as PDF
+  const html = `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Contrato Dame mi Web — ${nombre}</title>
+<style>
+  body { font-family: Georgia, serif; font-size: 13px; line-height: 1.8; color: #1a1a1a; max-width: 720px; margin: 40px auto; padding: 0 30px; }
+  h1 { font-size: 16px; text-align: center; letter-spacing: 1px; margin-bottom: 4px; }
+  .fecha { text-align: center; color: #555; margin-bottom: 30px; font-size: 13px; }
+  h2 { font-size: 13px; font-weight: bold; margin-top: 22px; margin-bottom: 6px; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+  p, li { margin-bottom: 6px; text-align: justify; }
+  ul { padding-left: 20px; }
+  .firmas { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; }
+  .firma { border-top: 1px solid #333; padding-top: 10px; font-size: 12px; }
+  .firma strong { display: block; margin-bottom: 4px; }
+  @media print { body { margin: 20px; } }
+</style>
+</head>
+<body>
+<h1>CONTRATO DE PRESTACIÓN DE SERVICIOS DIGITALES</h1>
+<div class="fecha">En Madrid, a ${fecha}</div>
+
+<h2>1. PARTES DEL CONTRATO</h2>
+<p>De una parte, <strong>Iván Rojo Bermejo</strong>, con DNI 47280800E, en representación de la marca <strong>'Dame mi Web'</strong> (en adelante, el 'Prestador'). De otra parte, <strong>${nombre}</strong> (en adelante, el 'Cliente'). Ambas partes se reconocen mutuamente capacidad legal suficiente para obligarse mediante el presente contrato.</p>
+
+<h2>2. OBJETO DEL SERVICIO</h2>
+<p>El Prestador se compromete a proporcionar un paquete integral de presencia digital que incluye:</p>
+<ul>
+  <li>Diseño y desarrollo de un sitio web profesional.</li>
+  <li>Registro y gestión de un (1) nombre de dominio anual.</li>
+  <li>Alojamiento web (Hosting) en servidores optimizados.</li>
+  <li>Mantenimiento técnico y actualizaciones de seguridad y contenido básico.</li>
+</ul>
+
+<h2>3. CONDICIONES ECONÓMICAS</h2>
+<p>El precio del servicio es de <strong>${importe},00 € (${importe === 100 ? 'cien euros' : importe + ' euros'})</strong> anuales, más el IVA legalmente aplicable. El pago se efectuará mediante transferencia bancaria o el método acordado al inicio del servicio.</p>
+
+<h2>4. RENOVACIÓN Y CONTINUIDAD</h2>
+<p>El contrato tiene una duración de un (1) año natural. Para asegurar la vigencia del dominio y el hosting, el Cliente deberá realizar el pago de la renovación al menos quince (15) días antes de la fecha de expiración.</p>
+<p><strong>IMPORTANTE:</strong> La falta de pago en el plazo estipulado supondrá la baja automática del servicio y la pérdida irreversible del nombre de dominio.</p>
+
+<h2>5. EXCLUSIONES DEL SERVICIO</h2>
+<p>El servicio no incluye, salvo acuerdo expreso: redacción de textos (copywriting), sesiones fotográficas, diseño de logotipos adicionales, campañas de publicidad (Ads) ni SEO avanzado. Las actualizaciones incluidas se refieren a cambios menores de texto o imágenes, no a rediseños estructurales.</p>
+
+<h2>6. PROPIEDAD INTELECTUAL</h2>
+<p>El Cliente es el único propietario de los contenidos, bases de datos e información alojada. El Prestador conserva los derechos sobre la arquitectura técnica y el código fuente propietario utilizado para el desarrollo.</p>
+
+<h2>7. LIMITACIÓN DE RESPONSABILIDAD</h2>
+<p>El Prestador no será responsable de interrupciones de servicio debidas a causas de fuerza mayor o fallos en infraestructuras de terceros (proveedores de red, centros de datos externos). En ningún caso el Prestador responderá por lucro cesante o daños indirectos derivados del uso de la web.</p>
+
+<h2>8. CONFIDENCIALIDAD Y PROTECCIÓN DE DATOS</h2>
+<p>Ambas partes se obligan a mantener estricta confidencialidad sobre cualquier información sensible intercambiada. El tratamiento de datos se realizará conforme al Reglamento General de Protección de Datos (RGPD).</p>
+
+<h2>9. RESOLUCIÓN DEL CONTRATO</h2>
+<p>El contrato podrá resolverse por el mutuo acuerdo de las partes o por el incumplimiento de las obligaciones aquí establecidas, especialmente la falta de pago o la falta de entrega del material necesario para el diseño.</p>
+
+<div class="firmas">
+  <div class="firma">
+    <strong>Iván Rojo Bermejo (Prestador)</strong>
+    DNI: 47280800E<br>
+    Dame mi Web<br><br><br>
+    Firma: ____________________
+  </div>
+  <div class="firma">
+    <strong>${nombre} (Cliente)</strong>
+    <br><br><br>
+    Firma: ____________________
+  </div>
+</div>
+<script>window.onload = () => window.print();<\/script>
+</body></html>`;
+
+  const win = window.open('', '_blank');
+  win.document.write(html);
+  win.document.close();
+}
+
+function renderInvalid() {
+  document.getElementById('root').innerHTML = `<div class="invalid">
+    <div class="invalid-ico">🔗</div>
+    <div class="invalid-t">Enlace no válido</div>
+    <div class="invalid-s">Este enlace no existe o ya ha expirado.<br>Contacta con nosotros por WhatsApp.</div>
+  </div>`;
+}
+
+/* ── EVENTS ── */
+function selMetodo(m) {
+  pagoMetodo = m;
+  document.querySelectorAll('.metodo').forEach(el => el.classList.toggle('sel', el.getAttribute('onclick').includes(`'${m}'`)));
+  document.querySelectorAll('.metodo').forEach(el => { if(el.getAttribute('onclick').includes(`'${m}'`)) el.classList.add('sel'); });
+  const btn = document.getElementById('btn-pago');
+  if (btn) btn.disabled = false;
+  // Show instructions
+  render();
+}
+
+function toggleColor(label, el) {
+  const idx = coloresSel.indexOf(label);
+  if (idx >= 0) { coloresSel.splice(idx,1); el.classList.remove('sel'); }
+  else { coloresSel.push(label); el.classList.add('sel'); }
+}
+
+function restoreColores() {
+  if (step===3 && fd.colores) {
+    try { coloresSel = JSON.parse(fd.colores); }
+    catch { coloresSel = typeof fd.colores==='string' ? fd.colores.split(',').map(c=>c.trim()) : []; }
+  }
+}
+
+function addColorCustom() {
+  const inp = document.getElementById('w-color-custom');
+  const val = inp?.value.trim();
+  if (!val || coloresSel.includes(val)) return;
+  coloresSel.push(val);
+  inp.value = '';
+  const grid = document.querySelector('.colores-grid');
+  if (!grid) return;
+  const btn = document.createElement('button');
+  btn.className = 'color-btn sel';
+  btn.textContent = val;
+  btn.onclick = () => { const i=coloresSel.indexOf(val); if(i>=0)coloresSel.splice(i,1); btn.classList.toggle('sel',false); };
+  grid.appendChild(btn);
+}
+
+function bindDropzone() {
+  const drop = document.getElementById('fotos-drop');
+  if (!drop) return;
+  drop.addEventListener('dragover', e => { e.preventDefault(); drop.style.borderColor='var(--acc)'; drop.style.background='rgba(91,110,245,.06)'; });
+  drop.addEventListener('dragleave', () => { drop.style.borderColor=''; drop.style.background=''; });
+  drop.addEventListener('drop', e => { e.preventDefault(); drop.style.borderColor=''; drop.style.background=''; handleFotos(e.dataTransfer.files); });
+}
+
+/* ── SUBMITS ── */
+function submitDatos() {
+  const nombre = g('d-nombre').trim();
+  const tel = g('d-tel').trim();
+  const email = g('d-email').trim();
+  if (!nombre) { hi('d-nombre'); return; }
+  if (!tel) { hi('d-tel'); return; }
+  if (!email || !email.includes('@')) { hi('d-email'); return; }
+  fd.nombre=nombre; fd.empresa=g('d-empresa').trim(); fd.telefono=tel; fd.email=email;
+  fd.nif=g('d-nif').trim(); fd.direccion=g('d-dir').trim();
+  fd.quiere_factura=document.getElementById('d-factura')?.value||'1';
+  fd.step='datos'; savePartial();
+  step=2; render();
+}
+
+function submitPago() {
+  if (!pagoMetodo) return;
+  fd.metodo_pago=pagoMetodo; fd.step='pago'; savePartial();
+  step=3; render();
+}
+
+async function submitWeb() {
+  const dom = g('w-dom').trim();
+  const desc = g('w-desc').trim();
+  const zonas = g('w-zonas').trim();
+  if (!dom) { hi('w-dom'); return; }
+  if (!desc) { hi('w-desc'); return; }
+  if (!zonas) { hi('w-zonas'); return; }
+  const btn = document.getElementById('btn-web');
+  if (btn) { btn.disabled=true; btn.textContent='⏳ Enviando...'; }
+  fd.dominio=dom; fd.descripcion_servicios=desc;
+  fd.colores=JSON.stringify(coloresSel);
+  fd.notas_web=g('w-notas').trim();
+  fd.seo_zonas=g('w-zonas').trim();
+  fd.seo_cliente_ideal=g('w-cliente-ideal').trim();
+  fd.seo_keywords=g('w-keywords').trim();
+  fd.step='completo';
+  try {
+    const res = await fetch(`${API}/api/onboarding/${token}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(fd)});
+    if (!res.ok) throw new Error('Error al enviar');
+    step=4; render();
+  } catch(e) {
+    if (btn) { btn.disabled=false; btn.textContent='✅ Enviar toda la información'; }
+    alert('Error al enviar. Por favor inténtalo de nuevo.');
+  }
+}
+
+/* ── FOTOS ── */
+async function handleFotos(files) {
+  const rem = 10 - fotos.filter(f=>!f.uploading).length;
+  if (!rem) return;
+  const arr = Array.from(files).slice(0, rem);
+  const startIdx = fotos.length;
+  arr.forEach(() => fotos.push({uploading:true}));
+  updateFotosGrid();
+  for (let i=0; i<arr.length; i++) {
+    const f = arr[i];
+    const idx = startIdx + i;
+    try {
+      const form = new FormData();
+      form.append('foto', f);
+      const res = await fetch(`${API}/api/onboarding/${token}/foto`,{method:'POST',body:form});
+      const data = await res.json();
+      fotos[idx] = {key:data.key, url:URL.createObjectURL(f), uploading:false};
+    } catch(e) { fotos.splice(idx,1); }
+    updateFotosGrid();
+  }
+}
+
+function delFoto(i) { fotos.splice(i,1); updateFotosGrid(); }
+
+function updateFotosGrid() {
+  const grid = document.getElementById('fotos-grid');
+  const cnt = document.getElementById('fotos-cnt');
+  if (!grid) return;
+  grid.innerHTML = fotos.map((f,i) => f.uploading
+    ? `<div class="foto-up"><div class="spin" style="width:22px;height:22px;border-width:2px"></div></div>`
+    : `<div class="foto-th"><img src="${f.url}" loading="lazy"><button class="foto-del" onclick="delFoto(${i})">✕</button></div>`
+  ).join('');
+  if (cnt) cnt.textContent = `${fotos.filter(f=>!f.uploading).length}/10 fotos subidas`;
+}
+
+async function savePartial() {
+  try { await fetch(`${API}/api/onboarding/${token}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(fd)}); } catch(e){}
+}
+
+/* ── HELPERS ── */
+function g(id){return document.getElementById(id)?.value||'';}
+function hi(id){const el=document.getElementById(id);if(!el)return;el.classList.add('err');el.focus();el.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>el.classList.remove('err'),2500);}
+
+init();
+</script>
+</body>
+</html>
