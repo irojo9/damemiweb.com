@@ -24,23 +24,23 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&family=Montserrat:wght@600;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --navy:#0A1628;
-  --navy2:#112240;
-  --navy3:#1B3A6B;
-  --blue:#1E56C8;
-  --bright:#4080FF;
-  --sky:#EEF4FF;
+  --navy:#0D1B3E;
+  --navy2:#1B2A6B;
+  --navy3:#243580;
+  --blue:#1B2A6B;
+  --bright:#00B4D8;
+  --sky:#E8F8FC;
   --white:#FFFFFF;
   --off:#F5F8FF;
-  --mist:#7A90BB;
-  --line:#1E3560;
+  --mist:#8C8C8C;
+  --line:#1B2A6B;
   --line-lt:#E2EAF8;
-  --serif:'Fraunces',Georgia,serif;
-  --sans:'Inter',system-ui,sans-serif;
+  --serif:'Poppins','Montserrat',system-ui,sans-serif;
+  --sans:'Inter','Roboto',system-ui,sans-serif;
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--navy);color:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -81,8 +81,8 @@ nav.s{background:rgba(10,22,40,.95);backdrop-filter:blur(20px);border-color:var(
 @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:.7}}
 .hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(ellipse at center,black 0%,transparent 70%)}
 .hero-content{position:relative;z-index:1;max-width:900px;margin:0 auto;width:100%}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(64,128,255,.12);border:1px solid rgba(64,128,255,.3);color:rgba(255,255,255,.75);font-size:12px;font-weight:500;padding:7px 16px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:36px}
-.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--bright);animation:blink 2s ease-in-out infinite}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,180,216,.12);border:1px solid rgba(0,180,216,.3);color:rgba(255,255,255,.75);font-size:12px;font-weight:500;padding:7px 16px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:36px}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#00B4D8;animation:blink 2s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 h1.hero-h{font-family:var(--serif);font-size:clamp(52px,8.5vw,110px);font-weight:300;line-height:.97;letter-spacing:-.03em;margin-bottom:32px;color:var(--white)}
 h1.hero-h .static{display:block}
@@ -110,10 +110,10 @@ h1.hero-h .dynamic-word.out{transform:translateX(-50%) translateY(-110%);opacity
 .hs-l{font-size:11px;font-weight:400;color:var(--mist);text-transform:uppercase;letter-spacing:.1em}
 
 /* TICKER */
-.ticker{background:var(--bright);overflow:hidden;white-space:nowrap;padding:16px 0}
+.ticker{background:#1B2A6B;overflow:hidden;white-space:nowrap;padding:16px 0}
 .ticker-track{display:inline-flex;animation:tick 28s linear infinite}
-.ti{font-family:var(--serif);font-size:20px;font-weight:400;color:#fff;padding:0 32px;letter-spacing:.02em;display:inline-flex;align-items:center;gap:32px}
-.ti::after{content:'✦';opacity:.5;font-size:12px}
+.ti{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:0 32px;letter-spacing:.02em;display:inline-flex;align-items:center;gap:32px}
+.ti::after{content:'✦';opacity:.6;font-size:10px;color:#00B4D8}
 @keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* SECTIONS */
@@ -464,14 +464,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
 <!-- NAV -->
 <nav id="nav">
   <a href="/" class="nl">
-    <div class="nl-logo">
-      <svg width="20" height="20" viewBox="0 0 22 22" fill="none">
-        <rect x="3" y="3" width="7" height="7" rx="1.5" fill="white"/>
-        <rect x="12" y="3" width="7" height="7" rx="1.5" fill="white" opacity=".55"/>
-        <rect x="3" y="12" width="7" height="7" rx="1.5" fill="white" opacity=".55"/>
-        <rect x="12" y="12" width="7" height="7" rx="1.5" fill="none" stroke="white" stroke-width="1.4" opacity=".35"/>
-      </svg>
-    </div>
+    <img src="/logo_damemiweb_icon.png" alt="Dame mi web" style="height:36px;width:auto;filter:brightness(0) invert(1)"/>
     <span class="nl-name">Dame mi <span>web</span></span>
   </a>
   <div class="n-links">
@@ -569,7 +562,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
       <div class="svc"><div class="svc-num">02</div><h3>SEO Optimizado</h3><p>Configurada para aparecer en Google desde el primer día. Title, meta descriptions, Schema.org y datos estructurados.</p></div>
       <div class="svc"><div class="svc-num">03</div><h3>Dominio .com Incluido</h3><p>Tu dominio .com el primer año sin coste adicional. Renovación de 10-15€/año a partir del segundo.</p></div>
       <div class="svc"><div class="svc-num">04</div><h3>Entrega en 72 horas</h3><p>Nos das la información hoy y en 72 horas tu web está publicada captando clientes reales.</p></div>
-      <div class="svc"><div class="svc-num">05</div><h3>30 Días de Soporte</h3><p>Cambios de texto e imágenes sin coste el primer mes. Mantenimiento desde 20€/mes a partir del segundo.</p></div>
+      <div class="svc"><div class="svc-num">05</div><h3>Soporte Todo el Año</h3><p>Soporte técnico, actualizaciones de contenido y mantenimiento incluidos durante los 12 meses. Sin coste adicional.</p></div>
       <div class="svc"><div class="svc-num">06</div><h3>Carga Ultra-Rápida</h3><p>Google premia la velocidad. Tu web carga en menos de 2 segundos — mejor posicionamiento y mejor experiencia.</p></div>
     </div>
   </div>
@@ -819,7 +812,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
     <div class="faqs">
       <div class="fi open"><button class="fbtn" onclick="faq(this)"><span>¿Qué incluye el precio de 120€ + IVA?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Diseño web completo y personalizado, adaptado a móviles y tablets, dominio .com el primer año, SEO básico configurado, formulario de contacto y publicación en línea. Todo en un pago único, sin mensualidades.</div></div></div>
       <div class="fi"><button class="fbtn" onclick="faq(this)"><span>¿Cuánto tiempo tarda en estar lista mi web?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Una vez que nos facilitas la información de tu negocio — textos, logo, imágenes — tendrás tu web publicada en un máximo de 72 horas. En muchos casos la entregamos antes.</div></div></div>
-      <div class="fi"><button class="fbtn" onclick="faq(this)"><span>¿Puedo hacer cambios después de publicarla?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Sí. Incluimos soporte para modificaciones durante los primeros 30 días sin coste. Para cambios mayores o mantenimiento continuo, ofrecemos planes desde 20€/mes.</div></div></div>
+      <div class="fi"><button class="fbtn" onclick="faq(this)"><span>¿Puedo hacer cambios después de publicarla?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Sí. Soporte técnico, mantenimiento y actualizaciones de contenido incluidos durante todo el año, sin coste adicional.</div></div></div>
       <div class="fi"><button class="fbtn" onclick="faq(this)"><span>¿Qué pasa con el dominio a partir del segundo año?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">El dominio está incluido el primer año. A partir del segundo, la renovación son aproximadamente 10-15€/año que puedes gestionar tú directamente o a través de nosotros.</div></div></div>
       <div class="fi"><button class="fbtn" onclick="faq(this)"><span>¿Necesito conocimientos técnicos para gestionar mi web?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">No. Nosotros nos encargamos de todo. Solo necesitas contarnos qué hace tu negocio y qué quieres transmitir. El resto lo resolvemos en menos de 72 horas.</div></div></div>
     </div>
@@ -911,7 +904,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
 <footer>
   <div class="w">
     <div class="fg">
-      <div><div class="fn">Dame mi <span>web</span></div><p class="fd">Diseño web profesional para autónomos y pequeños negocios en toda España. Sin mensualidades, sin sorpresas.</p></div>
+      <div><div style="margin-bottom:16px"><img src="/logo_damemiweb_horizontal.png" alt="Dame mi web" style="height:28px;width:auto;filter:brightness(0) invert(1);opacity:.8"/></div><p class="fd">Diseño web profesional para autónomos y pequeños negocios en toda España. Sin mensualidades. Soporte y mantenimiento incluidos todo el año.</p></div>
       <div class="fc"><h4>Navegación</h4><ul><li><button onclick="go('servicios')">Servicios</button></li><li><button onclick="go('proceso')">Proceso</button></li><li><button onclick="go('portfolio')">Proyectos</button></li><li><button onclick="go('auditorias')">Auditorías</button></li><li><button onclick="go('rrss')">Marketing</button></li><li><a href="/blog">Blog</a></li><li><a href="/contacto">Contacto</a></li></ul></div>
       <div class="fc"><h4>Sectores</h4><ul><li><a href="/web-fontaneros">Fontaneros</a></li><li><a href="/web-electricistas">Electricistas</a></li><li><a href="/web-peluquerias">Peluquerías</a></li><li><a href="/web-restaurantes">Restaurantes</a></li><li><a href="/web-mudanzas">Mudanzas</a></li><li><a href="/web-reformas">Reformas</a></li><li><a href="/web-abogados">Abogados</a></li><li><a href="/web-dentistas">Dentistas</a></li></ul></div>
       <div class="fc"><h4>Legal</h4><ul><li><a href="/privacidad">Privacidad</a></li><li><a href="/terminos">Términos</a></li><li><a href="/cookies">Cookies</a></li><li><a href="https://www.instagram.com/damemiweb" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.tiktok.com/@damemiweb" target="_blank" rel="noopener">TikTok</a></li><li><a href="https://www.autoridadgeo.com" target="_blank" rel="noopener">AutoridadGEO ↗</a></li></ul></div>
