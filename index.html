@@ -86,10 +86,10 @@ nav.s{background:rgba(10,22,40,.95);backdrop-filter:blur(20px);border-color:var(
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 h1.hero-h{font-family:var(--serif);font-size:clamp(52px,8.5vw,110px);font-weight:300;line-height:.97;letter-spacing:-.03em;margin-bottom:32px;color:var(--white)}
 h1.hero-h .static{display:block;color:#FFFFFF}
-h1.hero-h .dynamic-wrap{display:block;min-height:1.1em;position:relative;overflow:visible}
-h1.hero-h .dynamic-word{display:block;font-style:italic;color:#00B4D8;position:absolute;left:50%;transform:translateX(-50%) translateY(100%);opacity:0;transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .4s;white-space:nowrap;text-shadow:0 0 40px rgba(0,180,216,.4)}
-h1.hero-h .dynamic-word.in{transform:translateX(-50%) translateY(0);opacity:1}
-h1.hero-h .dynamic-word.out{transform:translateX(-50%) translateY(-110%);opacity:0}
+h1.hero-h .dynamic-wrap{display:block;overflow:hidden;line-height:1.1}
+h1.hero-h .dynamic-word{display:none;font-style:italic;color:#FFFFFF;background:linear-gradient(135deg,#00B4D8,#0090B8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+h1.hero-h .dynamic-word.active{display:block;animation:wordIn .6s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes wordIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .hero-sub{font-size:clamp(17px,2.2vw,22px);font-weight:300;color:rgba(255,255,255,.55);line-height:1.6;max-width:560px;margin:0 auto 48px}
 .hero-sub strong{color:var(--white);font-weight:500}
 .hero-actions{display:flex;flex-direction:column;align-items:center;gap:20px;margin-bottom:64px}
@@ -936,31 +936,14 @@ function go(id){const el=document.getElementById(id);if(el)el.scrollIntoView({be
 // Animated hero words
 (function(){
   const words=document.querySelectorAll('.dynamic-word');
-  const wrap=document.getElementById('dynamic-wrap');
   if(!words.length)return;
   let cur=0;
-  // set wrap height to match tallest word
-  function setHeight(){
-    let max=0;
-    words.forEach(w=>{w.style.position='relative';w.style.opacity='1';w.style.transform='none';const h=w.offsetHeight;max=Math.max(max,h);w.style.position='absolute';w.style.opacity='0';w.style.transform='translateX(-50%) translateY(100%)'});
-    wrap.style.height=max+'px';
-  }
-  setHeight();
-  window.addEventListener('resize',setHeight);
-  // show first
-  words[0].classList.add('in');
+  words[0].classList.add('active');
   setInterval(()=>{
-    const prev=cur;
+    words[cur].classList.remove('active');
     cur=(cur+1)%words.length;
-    words[prev].classList.remove('in');
-    words[prev].classList.add('out');
-    setTimeout(()=>{
-      words[prev].classList.remove('out');
-    },700);
-    setTimeout(()=>{
-      words[cur].classList.add('in');
-    },200);
-  },2800);
+    words[cur].classList.add('active');
+  },2600);
 })();
 
 // FAQ
