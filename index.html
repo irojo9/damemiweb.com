@@ -60,6 +60,16 @@ nav.s{background:rgba(10,22,40,.95);backdrop-filter:blur(20px);border-color:var(
 .n-links{display:flex;align-items:center;gap:2px}
 .n-links a,.n-links button{font-size:13px;font-weight:400;color:rgba(255,255,255,.55);padding:7px 14px;border-radius:6px;transition:all .15s}
 .n-links a:hover,.n-links button:hover{color:var(--white);background:rgba(255,255,255,.07)}
+
+.n-client{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:500;color:rgba(255,255,255,.6);
+  border:1px solid rgba(255,255,255,.2);border-radius:8px;
+  padding:7px 14px;transition:all .2s;
+}
+.n-client:hover{color:#fff;border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.06)}
+.n-client-ico{font-size:14px}
+
 .n-cta{background:var(--bright)!important;color:#fff!important;font-weight:500!important;border-radius:8px!important;padding:9px 22px!important;transition:opacity .15s!important}
 .n-cta:hover{opacity:.88!important}
 .ham{display:none;flex-direction:column;gap:5px;padding:4px}
@@ -474,6 +484,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
     <button onclick="go('rrss')">Marketing</button>
     <a href="/blog">Blog</a>
     <a href="https://www.autoridadgeo.com" target="_blank" rel="noopener" style="color:var(--bright)!important">AutoridadGEO ↗</a>
+    <a href="https://damemiwev.pages.dev/area-cliente.html" target="_blank" class="n-client"><span class="n-client-ico">👤</span> Área de cliente</a>
     <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20150%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="n-cta">Pedir mi web</a>
   </div>
   <button class="ham" id="ham"><span></span><span></span><span></span></button>
@@ -486,6 +497,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
   <button onclick="go('rrss');cm()">Marketing</button>
   <a href="/blog" onclick="cm()">Blog</a>
   <a href="https://www.autoridadgeo.com" target="_blank" rel="noopener" onclick="cm()" style="color:var(--bright)!important">AutoridadGEO ↗</a>
+  <a href="https://damemiwev.pages.dev/area-cliente.html" target="_blank" onclick="cm()" style="color:rgba(255,255,255,.5)!important;font-size:18px!important">👤 Área de cliente</a>
   <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20150%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="mob-cta" onclick="cm()">Pedir mi web — 150€ + IVA</a>
 </div>
 
