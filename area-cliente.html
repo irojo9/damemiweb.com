@@ -2,180 +2,295 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Mi área · Dame mi Web</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f6fb;color:#1a1c2e;min-height:100vh}
-.hdr{background:#fff;border-bottom:1px solid #e2e6f0;padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:20}
-.logo{font-weight:800;font-size:17px}.logo em{font-style:normal;color:#5b6ef5}
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
+:root{
+  --bg:#f4f6fb;--white:#fff;--bd:#e2e6f0;--tx:#1a1c2e;--mt:#6b6e8a;--dm:#b0b4cc;
+  --acc:#5b6ef5;--acc2:#4355e8;--ok:#22c87a;--err:#f04060;--warn:#f5a020;
+  --sh:0 2px 12px rgba(0,0,0,.06);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;min-height:100vh}
+/* HEADER */
+.hdr{background:var(--white);border-bottom:1px solid var(--bd);padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:20;box-shadow:var(--sh)}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:17px}
+.logo em{font-style:normal;color:var(--acc)}
 .hdr-right{display:flex;align-items:center;gap:10px}
-.avatar{width:34px;height:34px;border-radius:50%;background:#5b6ef5;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
-.btn-out{background:none;border:1.5px solid #e2e6f0;color:#6b6e8a;padding:5px 12px;border-radius:8px;font-size:12px;cursor:pointer}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.hdr-name{font-size:13px;font-weight:600;color:var(--tx)}
+.btn-out{background:none;border:1.5px solid var(--bd);color:var(--mt);padding:5px 12px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.btn-out:hover{border-color:var(--err);color:var(--err)}
+/* LOGIN */
 .login-wrap{max-width:400px;margin:60px auto;padding:0 20px}
-.login-card{background:#fff;border:1px solid #e2e6f0;border-radius:20px;padding:32px 28px}
-.login-logo{font-weight:800;font-size:24px;text-align:center;margin-bottom:6px}
-.login-logo em{font-style:normal;color:#5b6ef5}
-.login-sub{text-align:center;color:#6b6e8a;font-size:14px;margin-bottom:28px}
-.field{margin-bottom:14px}
-.field label{display:block;font-size:12px;font-weight:600;color:#6b6e8a;text-transform:uppercase;margin-bottom:5px}
-.field input{width:100%;border:2px solid #e2e6f0;border-radius:12px;padding:12px 14px;font-size:15px;outline:none}
-.field input:focus{border-color:#5b6ef5}
-.btn-login{width:100%;padding:14px;border-radius:12px;background:#5b6ef5;color:#fff;font-weight:700;font-size:15px;border:none;cursor:pointer;margin-top:6px}
-.err-msg{color:#f04060;font-size:13px;text-align:center;margin-top:10px;display:none}
+.login-card{background:var(--white);border:1px solid var(--bd);border-radius:20px;padding:32px 28px;box-shadow:var(--sh)}
+.login-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:24px;text-align:center;margin-bottom:6px}
+.login-logo em{font-style:normal;color:var(--acc)}
+.login-sub{text-align:center;color:var(--mt);font-size:14px;margin-bottom:28px}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.field label{font-size:12px;font-weight:600;color:var(--mt);text-transform:uppercase;letter-spacing:.5px}
+.field input{border:2px solid var(--bd);border-radius:12px;padding:12px 14px;font-size:15px;font-family:'DM Sans',sans-serif;color:var(--tx);outline:none;transition:border-color .18s}
+.field input:focus{border-color:var(--acc)}
+.btn-login{width:100%;padding:14px;border-radius:12px;background:var(--acc);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;border:none;cursor:pointer;transition:all .2s;margin-top:6px}
+.btn-login:hover{background:var(--acc2);transform:translateY(-1px)}
+.btn-login:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.err-msg{color:var(--err);font-size:13px;text-align:center;margin-top:10px;display:none}
+/* MAIN */
 .wrap{max-width:860px;margin:0 auto;padding:24px 16px 60px}
-.banner{background:linear-gradient(135deg,#5b6ef5,#8b9ff8);border-radius:16px;padding:22px 24px;color:#fff;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between}
-.banner h2{font-size:20px;margin-bottom:4px}
-.tabs{display:flex;gap:3px;background:#fff;border:1px solid #e2e6f0;border-radius:12px;padding:4px;margin-bottom:20px;overflow-x:auto}
-.tab{flex:1;min-width:80px;padding:9px 14px;border-radius:9px;border:none;background:transparent;color:#6b6e8a;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
-.tab.active{background:#5b6ef5;color:#fff}
-.card{background:#fff;border:1px solid #e2e6f0;border-radius:14px;padding:20px;margin-bottom:14px}
-.card-title{font-weight:700;font-size:16px;margin-bottom:14px}
-.dg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:500px){.dg{grid-template-columns:1fr}}
-.di{padding:10px 12px;background:#f4f6fb;border-radius:10px;border:1px solid #e2e6f0}
-.dl{font-size:11px;font-weight:600;color:#6b6e8a;text-transform:uppercase;margin-bottom:3px}
-.dv{font-size:14px;color:#1a1c2e;font-weight:500}
-.dv.em{color:#b0b4cc;font-style:italic}
-.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600}
-.b-ok{background:#dcfce7;color:#15803d}.b-w{background:#fef3c7;color:#92400e}.b-m{background:#f4f6fb;color:#6b6e8a}.b-i{background:#dbeafe;color:#1d4ed8}
-.fac{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f4f6fb}
-.fac:last-child{border:none}
-.fac-num{font-weight:700;color:#5b6ef5;font-size:14px}
-.fac-fec{font-size:12px;color:#6b6e8a}
-.rc{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:12px;text-decoration:none;margin-bottom:10px;border:1.5px solid}
-.rc-ico{font-size:30px;flex-shrink:0}
-.rc-i{flex:1}
-.rc-i strong{display:block;font-size:14px;font-weight:700;color:#1a1c2e;margin-bottom:2px}
-.rc-i span{font-size:12px;color:#6b6e8a}
-.rc-ar{font-size:18px;flex-shrink:0}
-.wa-btn{display:flex;align-items:center;gap:10px;padding:14px 18px;background:#25d366;color:#fff;border-radius:14px;font-weight:700;font-size:15px;text-decoration:none;justify-content:center;margin-bottom:12px}
+/* WELCOME BANNER */
+.welcome-banner{background:linear-gradient(135deg,var(--acc),#8b9ff8);border-radius:16px;padding:22px 24px;color:#fff;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.wb-title{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;margin-bottom:4px}
+.wb-sub{font-size:13px;opacity:.85}
+.wb-ico{font-size:48px;flex-shrink:0}
+/* TABS */
+.tabs{display:flex;gap:3px;background:var(--white);border:1px solid var(--bd);border-radius:12px;padding:4px;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab{flex:1;min-width:80px;padding:9px 14px;border-radius:9px;border:none;background:transparent;color:var(--mt);font-size:13px;font-weight:600;cursor:pointer;transition:all .18s;font-family:'DM Sans',sans-serif;white-space:nowrap;text-align:center}
+.tab.active{background:var(--acc);color:#fff;box-shadow:0 2px 8px rgba(91,110,245,.25)}
+.tab:hover:not(.active){background:var(--bg);color:var(--tx)}
+/* CARDS */
+.card{background:var(--white);border:1px solid var(--bd);border-radius:14px;padding:20px;box-shadow:var(--sh);margin-bottom:14px}
+.card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+/* DATA TABLE */
+.data-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:500px){.data-grid{grid-template-columns:1fr}}
+.data-item{padding:10px 12px;background:var(--bg);border-radius:10px;border:1px solid var(--bd)}
+.data-label{font-size:11px;font-weight:600;color:var(--mt);text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.data-val{font-size:14px;color:var(--tx);font-weight:500;word-break:break-word}
+.data-val.empty{color:var(--dm);font-style:italic}
+/* BADGE */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600}
+.badge.ok{background:rgba(34,200,122,.12);color:#15803d}
+.badge.warn{background:rgba(245,160,32,.12);color:#92400e}
+.badge.info{background:rgba(91,110,245,.12);color:var(--acc)}
+.badge.muted{background:var(--bg);color:var(--mt);border:1px solid var(--bd)}
+/* FACTURA ROW */
+.fac-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--bg)}
+.fac-row:last-child{border-bottom:none}
+.fac-num{font-weight:700;color:var(--acc);font-size:14px}
+.fac-fecha{font-size:12px;color:var(--mt)}
+.fac-total{font-weight:700;font-size:15px}
+/* RECURSOS */
+.recurso-card{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:var(--bg);border:1px solid var(--bd);border-radius:12px;margin-bottom:10px;text-decoration:none;color:var(--tx);transition:all .18s}
+.recurso-card:hover{border-color:var(--acc);background:rgba(91,110,245,.04);transform:translateY(-1px)}
+.rec-ico{font-size:28px;flex-shrink:0;width:42px;text-align:center}
+.rec-info strong{display:block;font-size:14px;font-weight:600;margin-bottom:3px}
+.rec-info span{font-size:12px;color:var(--mt);line-height:1.5}
+.rec-arrow{margin-left:auto;color:var(--dm);font-size:18px;align-self:center;flex-shrink:0}
+/* WA BUTTON */
+.wa-btn{display:flex;align-items:center;gap:10px;padding:14px 18px;background:#25d366;color:#fff;border-radius:14px;font-weight:700;font-size:15px;text-decoration:none;justify-content:center;transition:all .2s}
+.wa-btn:hover{background:#1da851;transform:translateY(-1px)}
+/* LOADING */
+.loader{text-align:center;padding:60px 20px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.spin{width:32px;height:32px;border:3px solid var(--bd);border-top-color:var(--acc);border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+/* STATE TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:0}
+.tl-item{display:flex;gap:14px;align-items:flex-start;padding:10px 0}
+.tl-dot{width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:10px}
+.tl-dot.done{background:var(--ok);color:#fff}
+.tl-dot.act{background:var(--acc);color:#fff;box-shadow:0 0 0 4px rgba(91,110,245,.2)}
+.tl-dot.pend{background:var(--bd);color:var(--mt)}
+.tl-line{width:2px;background:var(--bd);flex-shrink:0;align-self:stretch;margin:0 9px}
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <div class="hdr" id="hdr" style="display:none">
   <div class="logo">Dame mi <em>Web</em></div>
   <div class="hdr-right">
     <div class="avatar" id="hdr-avatar">?</div>
-    <span id="hdr-name" style="font-size:13px;font-weight:600"></span>
+    <div class="hdr-name" id="hdr-name"></div>
     <button class="btn-out" onclick="logout()">Salir</button>
   </div>
 </div>
 
+<!-- LOGIN -->
 <div id="login-view">
   <div class="login-wrap">
     <div class="login-card">
       <div class="login-logo">Dame mi <em>Web</em></div>
       <div class="login-sub">Accede a tu área de cliente</div>
-      <div class="field"><label>Email</label><input type="email" id="l-email" autocomplete="email" onkeydown="if(event.key==='Enter')login()"></div>
-      <div class="field"><label>Contraseña</label><input type="password" id="l-pwd" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()"></div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="l-email" placeholder="tu@email.com" autocomplete="email" onkeydown="if(event.key==='Enter')login()">
+      </div>
+      <div class="field">
+        <label>Contraseña</label>
+        <input type="password" id="l-pwd" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()">
+      </div>
       <button class="btn-login" id="btn-login" onclick="login()">Entrar</button>
       <div class="err-msg" id="l-err">Email o contraseña incorrectos</div>
     </div>
   </div>
 </div>
 
+<!-- MAIN APP -->
 <div id="app-view" style="display:none">
   <div class="wrap">
-    <div class="banner">
-      <div><h2 id="wb-name">¡Hola!</h2><div style="font-size:13px;opacity:.85">Tu web está en buenas manos 🚀</div></div>
-      <div style="font-size:48px">🌐</div>
+    <div class="welcome-banner">
+      <div>
+        <div class="wb-title" id="wb-name">¡Hola!</div>
+        <div class="wb-sub">Tu web está en buenas manos 🚀</div>
+      </div>
+      <div class="wb-ico">🌐</div>
     </div>
 
     <div class="tabs">
-      <button class="tab active" onclick="tab('datos')">👤 Mis datos</button>
-      <button class="tab" onclick="tab('web')">🌐 Mi web</button>
-      <button class="tab" onclick="tab('facturas')">🧾 Facturas</button>
-      <button class="tab" onclick="tab('recursos')">📚 Recursos</button>
-      <button class="tab" onclick="tab('contacto')">💬 Contacto</button>
+      <button class="tab active" onclick="showTab('datos')">👤 Mis datos</button>
+      <button class="tab" onclick="showTab('web')">🌐 Mi web</button>
+      <button class="tab" onclick="showTab('facturas')">🧾 Facturas</button>
+      <button class="tab" onclick="showTab('recursos')">📚 Recursos</button>
+      <button class="tab" onclick="showTab('contacto')">💬 Contacto</button>
     </div>
 
-    <div id="t-datos">
-      <div class="card"><div class="card-title">👤 Datos personales</div><div class="dg" id="datos-list"></div></div>
-      <div class="card"><div class="card-title">📅 Estado del servicio</div><div id="servicio"></div></div>
-    </div>
-
-    <div id="t-web" style="display:none"><div id="web-list"></div></div>
-
-    <div id="t-facturas" style="display:none">
-      <div class="card"><div class="card-title">🧾 Historial de facturas</div><div id="fac-list"></div></div>
-    </div>
-
-    <div id="t-recursos" style="display:none">
+    <!-- TAB: MIS DATOS -->
+    <div id="tab-datos">
       <div class="card">
-        <div class="card-title">📚 Recursos y herramientas</div>
-        <p style="font-size:13px;color:#6b6e8a;margin-bottom:16px">Recursos y ofertas exclusivas para ayudarte a crecer.</p>
+        <div class="card-title">👤 Datos personales</div>
+        <div class="data-grid" id="datos-personales"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">📅 Estado del servicio</div>
+        <div id="datos-servicio"></div>
+      </div>
+    </div>
 
-        <a href="https://manus.im/invitation/8JWC37JCNVZ1VW?utm_source=invitation&utm_medium=social&utm_campaign=copy_link" target="_blank" class="rc" style="background:#f5f3ff;border-color:#c4b5fd">
-          <span class="rc-ico">🤖</span>
-          <div class="rc-i"><strong>Manus IA — 500 créditos gratis</strong><span>El agente IA más potente. Regístrate con nuestro enlace</span></div>
-          <span class="rc-ar" style="color:#7c3aed">→</span>
+    <!-- TAB: MI WEB -->
+    <div id="tab-web" style="display:none">
+      <div id="web-container"></div>
+    </div>
+
+    <!-- TAB: FACTURAS -->
+    <div id="tab-facturas" style="display:none">
+      <div class="card">
+        <div class="card-title">🧾 Historial de facturas</div>
+        <div id="facturas-list"></div>
+      </div>
+    </div>
+
+    <!-- TAB: RECURSOS -->
+    <div id="tab-recursos" style="display:none">
+      <div class="card">
+        <div class="card-title">📚 Recursos gratuitos para tu negocio</div>
+        <p style="font-size:13px;color:var(--mt);margin-bottom:16px">Hemos preparado estos recursos para ayudarte a crecer online.</p>
+        
+        <a href="https://wa.me/34662549694?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20los%20recursos%20gratuitos" target="_blank" class="recurso-card">
+          <div class="rec-ico">📱</div>
+          <div class="rec-info">
+            <strong>Guía: Cómo conseguir clientes con WhatsApp</strong>
+            <span>Aprende a usar WhatsApp Business para atraer y fidelizar clientes locales</span>
+          </div>
+          <div class="rec-arrow">→</div>
         </a>
 
-        <a href="https://revolut.com/referral/?referral-code=irojo9!MAY2-26-AR-RPB-CRY&geo-redirect" target="_blank" class="rc" style="background:#f0fdf4;border-color:#86efac">
-          <span class="rc-ico">💳</span>
-          <div class="rc-i"><strong>Revolut — Cuenta bancaria gratuita</strong><span>Abre tu cuenta y obtén ventajas exclusivas</span></div>
-          <span class="rc-ar" style="color:#16a34a">→</span>
+        <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20Google%20My%20Business" target="_blank" class="recurso-card">
+          <div class="rec-ico">📍</div>
+          <div class="rec-info">
+            <strong>Google My Business: Guía completa</strong>
+            <span>Aparece en Google Maps y atrae clientes de tu zona de forma gratuita</span>
+          </div>
+          <div class="rec-arrow">→</div>
         </a>
 
-        <a href="https://whatsapp.com/channel/0029VbBzjl56GcGBaLZDiB0Y" target="_blank" class="rc" style="background:#f0fdf4;border-color:#86efac;margin-bottom:16px">
-          <span class="rc-ico">💬</span>
-          <div class="rc-i"><strong>Canal WhatsApp — Novedades</strong><span>Únete y recibe recursos y consejos gratis</span></div>
-          <span class="rc-ar" style="color:#16a34a">→</span>
+        <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20el%20checklist%20de%20SEO%20local" target="_blank" class="recurso-card">
+          <div class="rec-ico">🎯</div>
+          <div class="rec-info">
+            <strong>Checklist SEO local para negocios</strong>
+            <span>10 pasos para que tu web aparezca en las búsquedas de tu ciudad</span>
+          </div>
+          <div class="rec-arrow">→</div>
         </a>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <a href="https://instagram.com/damemiweb" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px;border:1.5px solid #e2e6f0;border-radius:12px;text-decoration:none;background:#fff">
-            <span style="font-size:28px">📸</span>
-            <div style="text-align:center"><div style="font-weight:700;font-size:13px;color:#1a1c2e">Instagram</div><div style="font-size:11px;color:#6b6e8a">@damemiweb</div></div>
-          </a>
-          <a href="https://www.youtube.com/@damemiweb" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px;border:1.5px solid #e2e6f0;border-radius:12px;text-decoration:none;background:#fff">
-            <span style="font-size:28px">📺</span>
-            <div style="text-align:center"><div style="font-weight:700;font-size:13px;color:#1a1c2e">YouTube</div><div style="font-size:11px;color:#6b6e8a">@damemiweb</div></div>
-          </a>
+        <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20la%20guia%20de%20fotos%20para%20web" target="_blank" class="recurso-card">
+          <div class="rec-ico">📸</div>
+          <div class="rec-info">
+            <strong>Cómo hacer fotos profesionales con el móvil</strong>
+            <span>Consejos para que las fotos de tu negocio queden perfectas sin cámara profesional</span>
+          </div>
+          <div class="rec-arrow">→</div>
+        </a>
+
+        <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20el%20pack%20de%20recursos" target="_blank" class="recurso-card">
+          <div class="rec-ico">🎁</div>
+          <div class="rec-info">
+            <strong>Pack completo de recursos digitales</strong>
+            <span>Recibe todos los recursos y plantillas en tu WhatsApp</span>
+          </div>
+          <div class="rec-arrow">→</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- TAB: CONTACTO -->
+    <div id="tab-contacto" style="display:none">
+      <div class="card">
+        <div class="card-title">💬 Contacta con nosotros</div>
+        <p style="font-size:14px;color:var(--mt);margin-bottom:18px;line-height:1.7">¿Tienes alguna duda sobre tu web, quieres hacer un cambio o necesitas ayuda? Estamos aquí para ti.</p>
+        
+        <a href="https://wa.me/34662549694" target="_blank" class="wa-btn" style="margin-bottom:12px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.541 4.05 1.487 5.742L.057 23.012a1 1 0 0 0 1.215 1.215l5.27-1.43A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          WhatsApp: 662 549 694
+        </a>
+
+        <a href="mailto:info@damemiweb.com" style="display:flex;align-items:center;gap:10px;padding:14px 18px;background:var(--bg);border:1.5px solid var(--bd);border-radius:14px;font-weight:600;font-size:14px;text-decoration:none;color:var(--tx);transition:all .2s;justify-content:center" onmouseover="this.style.borderColor='var(--acc)'" onmouseout="this.style.borderColor='var(--bd)'">
+          📧 info@damemiweb.com
+        </a>
+
+        <div style="margin-top:16px;padding:14px;background:rgba(91,110,245,.06);border-radius:12px;font-size:13px;color:var(--mt);line-height:1.7;border:1px solid rgba(91,110,245,.15)">
+          ⏰ Horario de atención: Lunes a Viernes de 9:00 a 20:00<br>
+          📍 Madrid, España
         </div>
       </div>
     </div>
 
-    <div id="t-contacto" style="display:none">
-      <div class="card">
-        <div class="card-title">💬 Contacta con nosotros</div>
-        <p style="font-size:14px;color:#6b6e8a;margin-bottom:18px;line-height:1.7">¿Tienes alguna duda sobre tu web o necesitas ayuda? Estamos aquí.</p>
-        <a href="https://wa.me/34662549694" target="_blank" class="wa-btn">📱 WhatsApp: 662 549 694</a>
-        <a href="mailto:info@damemiweb.com" style="display:flex;align-items:center;gap:10px;padding:14px 18px;background:#f4f6fb;border:1.5px solid #e2e6f0;border-radius:14px;font-weight:600;font-size:14px;text-decoration:none;color:#1a1c2e;justify-content:center">📧 info@damemiweb.com</a>
-        <div style="margin-top:16px;padding:14px;background:#eff6ff;border-radius:12px;font-size:13px;color:#6b6e8a;line-height:1.7">⏰ Lunes a Viernes 9:00 - 20:00<br>📍 Madrid, España</div>
-      </div>
-    </div>
   </div>
 </div>
 
 <script>
 const API = 'https://oficina-ia-api.ivanrojobermejo.workers.dev';
-let token = (()=>{
-  const s = sessionStorage.getItem('pt');
-  if (!s) return null;
-  try { const {t,exp} = JSON.parse(s); if(exp<Date.now()){sessionStorage.removeItem('pt');return null;} return t; } catch { return null; }
+// Use sessionStorage (cleared when browser closes) + expiry check
+let token = (() => {
+  const stored = sessionStorage.getItem('portal_token');
+  if (!stored) return null;
+  try {
+    const { t, exp } = JSON.parse(stored);
+    if (exp < Date.now()) { sessionStorage.removeItem('portal_token'); return null; }
+    return t;
+  } catch { return null; }
 })();
-let data = null;
+let loginAttempts = 0;
+let clienteData = null;
 
-async function call(path, opts={}) {
-  const h = {'Content-Type':'application/json'};
-  if (token) h.Authorization = 'Bearer ' + token;
-  const r = await fetch(API + path, {...opts, headers:h});
-  if (r.status === 401) { logout(); return null; }
-  return r.json();
+async function apiPortal(path, opts={}) {
+  const headers = {'Content-Type':'application/json'};
+  if (token) headers['Authorization'] = 'Bearer ' + token;
+  const res = await fetch(API + path, {...opts, headers});
+  if (res.status === 401) { logout(); return null; }
+  return res.json();
 }
 
 async function init() {
   if (!token) { showLogin(); return; }
-  const d = await call('/api/portal/mi-cuenta');
-  if (!d || d.error) { logout(); return; }
-  data = d; showApp();
+  const data = await apiPortal('/api/portal/mi-cuenta');
+  if (!data || data.error) { logout(); return; }
+  clienteData = data;
+  showApp();
 }
 
-function showLogin() { document.getElementById('login-view').style.display=''; document.getElementById('app-view').style.display='none'; document.getElementById('hdr').style.display='none'; }
-function showApp() { document.getElementById('login-view').style.display='none'; document.getElementById('app-view').style.display=''; document.getElementById('hdr').style.display=''; render(); }
+function showLogin() {
+  document.getElementById('login-view').style.display = '';
+  document.getElementById('app-view').style.display = 'none';
+  document.getElementById('hdr').style.display = 'none';
+}
+
+function showApp() {
+  document.getElementById('login-view').style.display = 'none';
+  document.getElementById('app-view').style.display = '';
+  document.getElementById('hdr').style.display = '';
+  renderApp();
+}
 
 async function login() {
   const email = document.getElementById('l-email').value.trim();
@@ -183,75 +298,159 @@ async function login() {
   if (!email || !pwd) return;
   const btn = document.getElementById('btn-login');
   btn.disabled = true; btn.textContent = 'Entrando...';
-  document.getElementById('l-err').style.display='none';
+  document.getElementById('l-err').style.display = 'none';
   try {
-    const res = await fetch(API + '/api/portal/login', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email,password:pwd})});
-    const d = await res.json();
-    if (d.token) {
-      token = d.token;
-      sessionStorage.setItem('pt', JSON.stringify({t:token, exp:Date.now()+7*86400000}));
-      data = d; showApp();
+    const res = await fetch(API + '/api/portal/login', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({email, password: pwd})
+    });
+    const data = await res.json();
+    loginAttempts = 0;
+    if (data.token) {
+      token = data.token;
+      // Store with 7-day expiry
+      sessionStorage.setItem('portal_token', JSON.stringify({t: token, exp: Date.now() + 7*24*60*60*1000}));
+      clienteData = data;
+      showApp();
     } else {
-      document.getElementById('l-err').textContent = d.error || 'Email o contraseña incorrectos';
-      document.getElementById('l-err').style.display='block';
+      loginAttempts++;
+      const remaining = Math.max(0, 5 - loginAttempts);
+      const msg = data.error || 'Email o contraseña incorrectos';
+      document.getElementById('l-err').textContent = msg + (remaining > 0 && remaining < 5 ? ` (${remaining} intentos restantes)` : '');
+      document.getElementById('l-err').style.display = 'block';
     }
-  } catch { document.getElementById('l-err').textContent='Error de conexión'; document.getElementById('l-err').style.display='block'; }
-  btn.disabled=false; btn.textContent='Entrar';
+  } catch(e) {
+    document.getElementById('l-err').textContent = 'Error de conexión. Intenta de nuevo.';
+    document.getElementById('l-err').style.display = 'block';
+  }
+  btn.disabled = false; btn.textContent = 'Entrar';
 }
 
-function logout() { sessionStorage.removeItem('pt'); token=null; data=null; showLogin(); }
-
-function tab(t) {
-  ['datos','web','facturas','recursos','contacto'].forEach(x => { document.getElementById('t-'+x).style.display = x===t?'':'none'; });
-  document.querySelectorAll('.tab').forEach((b,i) => b.classList.toggle('active', ['datos','web','facturas','recursos','contacto'][i]===t));
+function logout() {
+  sessionStorage.removeItem('portal_token');
+  token = null; clienteData = null;
+  showLogin();
 }
 
-function render() {
-  const cl = data?.cliente || {};
+function showTab(tab) {
+  ['datos','web','facturas','recursos','contacto'].forEach(t => {
+    document.getElementById('tab-'+t).style.display = t === tab ? '' : 'none';
+  });
+  document.querySelectorAll('.tab').forEach((b,i) => {
+    b.classList.toggle('active', ['datos','web','facturas','recursos','contacto'][i] === tab);
+  });
+}
+
+function renderApp() {
+  const cl = clienteData?.cliente || {};
   const nombre = cl.nombre || cl.empresa || 'Cliente';
+  
+  // Header
   document.getElementById('hdr-name').textContent = nombre.split(' ')[0];
-  document.getElementById('hdr-avatar').textContent = (nombre[0]||'?').toUpperCase();
+  document.getElementById('hdr-avatar').textContent = nombre[0]?.toUpperCase() || '?';
   document.getElementById('wb-name').textContent = '¡Hola, ' + nombre.split(' ')[0] + '!';
 
-  document.getElementById('datos-list').innerHTML = [
-    {l:'Nombre',v:cl.nombre},{l:'Empresa',v:cl.empresa},{l:'Email',v:cl.email},
-    {l:'Teléfono',v:cl.telefono},{l:'NIF/DNI',v:cl.nif},{l:'Dirección',v:cl.direccion}
-  ].map(({l,v})=>`<div class="di"><div class="dl">${l}</div><div class="dv ${v?'':'em'}">${v||'No especificado'}</div></div>`).join('');
+  // Datos personales
+  const dp = document.getElementById('datos-personales');
+  dp.innerHTML = [
+    {l:'Nombre', v:cl.nombre},
+    {l:'Empresa', v:cl.empresa},
+    {l:'Email', v:cl.email},
+    {l:'Teléfono', v:cl.telefono},
+    {l:'NIF/DNI', v:cl.nif},
+    {l:'Dirección', v:cl.direccion},
+  ].map(({l,v}) => `
+    <div class="data-item">
+      <div class="data-label">${l}</div>
+      <div class="data-val ${v?'':'empty'}">${v || 'No especificado'}</div>
+    </div>`).join('');
 
+  // Estado del servicio
   const fc = cl.fecha_contratacion ? new Date(cl.fecha_contratacion) : null;
   const fr = cl.fecha_renovacion ? new Date(cl.fecha_renovacion) : null;
-  const dr = fr ? Math.round((fr - new Date())/86400000) : null;
-  document.getElementById('servicio').innerHTML = `<div class="dg">
-    <div class="di"><div class="dl">Estado</div><div class="dv"><span class="badge ${cl.estado==='activo'?'b-ok':'b-m'}">${cl.estado||'activo'}</span></div></div>
-    <div class="di"><div class="dl">Contratación</div><div class="dv ${fc?'':'em'}">${fc?fc.toLocaleDateString('es-ES'):'No especificado'}</div></div>
-    <div class="di"><div class="dl">Renovación</div><div class="dv">${fr?fr.toLocaleDateString('es-ES')+' <span class="badge '+(dr>60?'b-ok':dr>0?'b-w':'b-m')+'">'+(dr>0?dr+'d':'¡Vencida!')+'</span>':'<span class="em">No especificado</span>'}</div></div>
-    <div class="di"><div class="dl">Proyectos</div><div class="dv">${(data?.proyectos||[]).length} web${(data?.proyectos||[]).length!==1?'s':''}</div></div>
-  </div>`;
-
-  const ps = data?.proyectos || [];
-  const wl = document.getElementById('web-list');
-  if (!ps.length) {
-    wl.innerHTML = '<div class="card" style="text-align:center;padding:40px"><div style="font-size:48px;margin-bottom:12px">🌐</div><div style="font-weight:600;font-size:16px;margin-bottom:6px">Tu web está en proceso</div><div style="color:#6b6e8a;font-size:14px">Nos pondremos en contacto contigo pronto.</div></div>';
-  } else {
-    const E = {pendiente:'⏳ Pendiente',en_progreso:'🔨 En progreso',entregado:'✅ Entregada'};
-    const EC = {pendiente:'b-w',en_progreso:'b-i',entregado:'b-ok'};
-    wl.innerHTML = ps.map(p => `<div class="card">
-      <div class="card-title">🌐 ${p.nombre||'Tu web'} <span class="badge ${EC[p.estado]||'b-m'}">${E[p.estado]||p.estado}</span></div>
-      <div class="dg">
-        <div class="di"><div class="dl">Dominio</div><div class="dv ${p.dominio?'':'em'}">${p.dominio?'<a href="https://'+p.dominio+'" target="_blank" style="color:#5b6ef5">'+p.dominio+'</a>':'Pendiente'}</div></div>
-        <div class="di"><div class="dl">Plataforma</div><div class="dv ${p.plataforma?'':'em'}">${p.plataforma||'En preparación'}</div></div>
-        ${p.url_publica?'<div class="di" style="grid-column:1/-1"><div class="dl">URL publicada</div><div class="dv"><a href="'+p.url_publica+'" target="_blank" style="color:#5b6ef5">'+p.url_publica+'</a></div></div>':''}
-        ${p.descripcion_servicios?'<div class="di" style="grid-column:1/-1"><div class="dl">Servicios</div><div class="dv">'+p.descripcion_servicios+'</div></div>':''}
+  const diasRenov = fr ? Math.round((fr - new Date()) / 86400000) : null;
+  const ds = document.getElementById('datos-servicio');
+  ds.innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div class="data-item">
+        <div class="data-label">Estado</div>
+        <div class="data-val"><span class="badge ${cl.estado==='activo'?'ok':'muted'}">${cl.estado||'activo'}</span></div>
       </div>
-      ${p.url_publica?'<a href="'+p.url_publica+'" target="_blank" style="display:block;text-align:center;margin-top:14px;padding:12px;background:#5b6ef5;color:#fff;border-radius:12px;font-weight:700;text-decoration:none">🌐 Ver mi web</a>':''}
-    </div>`).join('');
+      <div class="data-item">
+        <div class="data-label">Contratación</div>
+        <div class="data-val ${fc?'':'empty'}">${fc ? fc.toLocaleDateString('es-ES') : 'No especificado'}</div>
+      </div>
+      <div class="data-item">
+        <div class="data-label">Renovación</div>
+        <div class="data-val">${fr ? `${fr.toLocaleDateString('es-ES')} <span class="badge ${diasRenov > 60?'ok':diasRenov > 0?'warn':'err'}">${diasRenov > 0 ? diasRenov+'d' : '¡Vencida!'}</span>` : '<span class="empty">No especificado</span>'}</div>
+      </div>
+      <div class="data-item">
+        <div class="data-label">Proyectos</div>
+        <div class="data-val">${(clienteData?.proyectos||[]).length} web${(clienteData?.proyectos||[]).length!==1?'s':''}</div>
+      </div>
+    </div>`;
+
+  // Webs
+  const proyectos = clienteData?.proyectos || [];
+  const wc = document.getElementById('web-container');
+  if (!proyectos.length) {
+    wc.innerHTML = `<div class="card" style="text-align:center;padding:40px">
+      <div style="font-size:48px;margin-bottom:12px">🌐</div>
+      <div style="font-weight:600;font-size:16px;margin-bottom:6px">Tu web está en proceso</div>
+      <div style="color:var(--mt);font-size:14px">Nos pondremos en contacto contigo pronto para empezar.</div>
+    </div>`;
+  } else {
+    const ESTADO = {pendiente:'⏳ Pendiente', en_progreso:'🔨 En progreso', entregado:'✅ Entregada'};
+    const ESTADO_CLS = {pendiente:'warn', en_progreso:'info', entregado:'ok'};
+    wc.innerHTML = proyectos.map(p => `
+      <div class="card">
+        <div class="card-title">🌐 ${p.nombre || 'Tu web'} <span class="badge ${ESTADO_CLS[p.estado]||'muted'}" style="margin-left:6px">${ESTADO[p.estado]||p.estado}</span></div>
+        <div class="data-grid">
+          <div class="data-item"><div class="data-label">Dominio</div><div class="data-val ${p.dominio?'':'empty'}">${p.dominio ? `<a href="https://${p.dominio}" target="_blank" style="color:var(--acc)">${p.dominio}</a>` : 'Pendiente de asignar'}</div></div>
+          <div class="data-item"><div class="data-label">Plataforma</div><div class="data-val ${p.plataforma?'':'empty'}">${p.plataforma || 'En preparación'}</div></div>
+          ${p.url_publica ? `<div class="data-item" style="grid-column:1/-1"><div class="data-label">URL publicada</div><div class="data-val"><a href="${p.url_publica}" target="_blank" style="color:var(--acc)">${p.url_publica}</a></div></div>` : ''}
+          ${p.descripcion_servicios ? `<div class="data-item" style="grid-column:1/-1"><div class="data-label">Servicios</div><div class="data-val">${p.descripcion_servicios}</div></div>` : ''}
+          ${p.seo_zonas ? `<div class="data-item"><div class="data-label">Zonas SEO</div><div class="data-val">${p.seo_zonas}</div></div>` : ''}
+          ${p.colores ? `<div class="data-item"><div class="data-label">Colores</div><div class="data-val">${Array.isArray(JSON.parse(p.colores||'[]')) ? JSON.parse(p.colores||'[]').join(', ') : p.colores}</div></div>` : ''}
+        </div>
+        <!-- ESTADO TIMELINE -->
+        <div style="margin-top:16px">
+          <div style="font-size:12px;font-weight:600;color:var(--mt);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Estado del proyecto</div>
+          <div class="timeline">
+            ${['pendiente','en_progreso','entregado'].map((s,i,arr) => {
+              const labels = ['Pedido recibido','En desarrollo','Entregada y publicada'];
+              const isDone = arr.indexOf(p.estado||'pendiente') > i;
+              const isAct = p.estado === s;
+              return `<div style="display:flex;align-items:center;gap:10px;padding:6px 0">
+                <div class="tl-dot ${isDone?'done':isAct?'act':'pend'}">${isDone?'✓':i+1}</div>
+                <span style="font-size:13px;font-weight:${isAct?'700':'500'};color:${isAct?'var(--tx)':isDone?'var(--ok)':'var(--mt)'}">${labels[i]}</span>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>
+        ${p.url_publica ? `<a href="${p.url_publica}" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:12px;background:var(--acc);color:#fff;border-radius:12px;font-weight:700;font-size:14px;text-decoration:none;transition:all .2s" onmouseover="this.style.background='var(--acc2)'" onmouseout="this.style.background='var(--acc)'">🌐 Ver mi web</a>` : ''}
+      </div>`).join('');
   }
 
-  const fs = data?.facturas || [];
-  document.getElementById('fac-list').innerHTML = fs.length ? fs.map(f => `<div class="fac">
-    <div><div class="fac-num">${f.numero}</div><div class="fac-fec">${f.fecha_emision?new Date(f.fecha_emision).toLocaleDateString('es-ES'):''}</div></div>
-    <div style="text-align:right"><div style="font-weight:700;font-size:15px">${f.total}€</div><span class="badge ${f.estado==='pagada'?'b-ok':'b-w'}">${f.estado==='pagada'?'✅ Cobrada':'⏳ Pendiente'}</span></div>
-  </div>`).join('') : '<div style="text-align:center;padding:24px;color:#6b6e8a">No hay facturas todavía</div>';
+  // Facturas
+  const facturas = clienteData?.facturas || [];
+  const fl = document.getElementById('facturas-list');
+  if (!facturas.length) {
+    fl.innerHTML = '<div style="text-align:center;padding:24px;color:var(--mt)">No hay facturas todavía</div>';
+  } else {
+    fl.innerHTML = facturas.map(f => `
+      <div class="fac-row">
+        <div>
+          <div class="fac-num">${f.numero}</div>
+          <div class="fac-fecha">${f.fecha_emision ? new Date(f.fecha_emision).toLocaleDateString('es-ES') : ''}</div>
+        </div>
+        <div style="text-align:right">
+          <div class="fac-total">${f.total}€</div>
+          <span class="badge ${f.estado==='pagada'?'ok':'warn'}">${f.estado==='pagada'?'✅ Cobrada':'⏳ Pendiente'}</span>
+        </div>
+      </div>`).join('');
+  }
 }
 
 init();
