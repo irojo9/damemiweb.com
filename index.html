@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Dame mi web — Diseño Web Profesional por 150€ + IVA | Online en 72 horas</title>
-<meta name="description" content="Página web profesional para autónomos y negocios por 150€ + IVA. SEO incluido, dominio .com, entrega en 72 horas. +54 proyectos en España. Sin mensualidades."/>
+<title>Dame mi web — Diseño Web Profesional por 165€ + IVA | Online en 72 horas</title>
+<meta name="description" content="Página web profesional para autónomos y negocios por 165€ + IVA. SEO incluido, dominio .com, entrega en 72 horas. +54 proyectos en España. Sin mensualidades."/>
 <link rel="canonical" href="https://damemiweb.com/"/>
-<meta property="og:title" content="Dame mi web — Web Profesional por 150€ + IVA"/>
+<meta property="og:title" content="Dame mi web — Web Profesional por 165€ + IVA"/>
 <meta property="og:description" content="Web profesional en 72 horas. Sin mensualidades. +54 proyectos en España."/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B27EE57BLZ"></script>
@@ -14,9 +14,10 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","name":"Dame mi web","url":"https://damemiweb.com","telephone":"+34662549694","areaServed":{"@type":"Country","name":"España"},"sameAs":["https://www.instagram.com/damemiweb","https://www.tiktok.com/@damemiweb","https://www.autoridadgeo.com"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"54"}},
-{"@type":"Service","name":"Diseño Web Profesional","offers":{"@type":"Offer","price":"150","priceCurrency":"EUR"}},
+{"@type":"Service","name":"Diseño Web Profesional","description":"Diseño web profesional para autónomos y pequeños negocios. Web completa por 165€ + IVA, pago único, sin mensualidades. Online en 72 horas.","provider":{"@id":"https://damemiweb.com/#org"},"areaServed":{"@type":"Country","name":"España"},"offers":{"@type":"Offer","price":"165","priceCurrency":"EUR","availability":"https://schema.org/InStock"}},
+{"@type":"Review","itemReviewed":{"@id":"https://damemiweb.com/#org"},"author":{"@type":"Person","name":"Charles"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"En menos de 72 horas tenía mi tienda online lista. Muy profesional y el precio es imbatible."},
 {"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"¿Qué incluye el precio de 150€ + IVA?","acceptedAnswer":{"@type":"Answer","text":"Diseño web completo, dominio .com el primer año, SEO básico, formulario de contacto y publicación en 72 horas. Sin mensualidades."}},
+{"@type":"Question","name":"¿Qué incluye el precio de 165€ + IVA?","acceptedAnswer":{"@type":"Answer","text":"Diseño web completo, dominio .com el primer año, SEO básico, formulario de contacto y publicación en 72 horas. Sin mensualidades."}},
 {"@type":"Question","name":"¿Cuánto tiempo tarda?","acceptedAnswer":{"@type":"Answer","text":"Máximo 72 horas desde que nos facilitas la información."}},
 {"@type":"Question","name":"¿Necesito conocimientos técnicos?","acceptedAnswer":{"@type":"Answer","text":"No. Nos encargamos de todo."}}
 ]}
@@ -94,6 +95,7 @@ nav.s{background:rgba(10,22,40,.95);backdrop-filter:blur(20px);border-color:var(
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,180,216,.12);border:1px solid rgba(0,180,216,.3);color:rgba(255,255,255,.75);font-size:12px;font-weight:500;padding:7px 16px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:36px}
 .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#00B4D8;animation:blink 2s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
 h1.hero-h{font-family:var(--serif);font-size:clamp(52px,8.5vw,110px);font-weight:300;line-height:.97;letter-spacing:-.03em;margin-bottom:32px;color:var(--white)}
 h1.hero-h .static{display:block;color:#FFFFFF}
 h1.hero-h .dynamic-wrap{display:block;overflow:hidden;line-height:1.1}
@@ -436,6 +438,21 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
 .cb-a{background:var(--bright);color:#fff;border:none;font-weight:500}
 .cb-a:hover{background:#5590FF}
 
+
+.comp-row{display:grid;grid-template-columns:2fr 1fr 1fr;border-bottom:1px solid var(--line-lt)}
+.comp-row:last-child{border-bottom:none}
+.comp-row:nth-child(even){background:var(--off)}
+.comp-c{padding:18px 24px;font-size:14px;font-weight:500;color:var(--navy)}
+.comp-v{padding:18px 16px;font-size:13px;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px;font-weight:500}
+.comp-v.good{color:#16A34A}
+.comp-v.good::before{content:'✓';font-weight:700}
+.comp-v.bad{color:var(--mist)}
+.comp-v.bad::before{content:'✕';font-weight:700;opacity:.5}
+@media(max-width:600px){
+  .comp-c{padding:14px 12px;font-size:12px}
+  .comp-v{padding:14px 8px;font-size:11px}
+}
+
 /* REVEAL */
 .rv{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .rv.on{opacity:1;transform:translateY(0)}
@@ -491,7 +508,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
     <a href="/blog">Blog</a>
     <a href="https://www.autoridadgeo.com" target="_blank" rel="noopener" style="color:var(--bright)!important">AutoridadGEO ↗</a>
     <a href="https://damemiwev.pages.dev/area-cliente.html" target="_blank" class="n-client"><span class="n-client-ico">👤</span> Área de cliente</a>
-    <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20150%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="n-cta">Pedir mi web</a>
+    <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20165%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="n-cta">Pedir mi web</a>
   </div>
   <button class="ham" id="ham"><span></span><span></span><span></span></button>
 </nav>
@@ -505,7 +522,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
   <a href="/blog" onclick="cm()">Blog</a>
   <a href="https://www.autoridadgeo.com" target="_blank" rel="noopener" onclick="cm()" style="color:var(--bright)!important">AutoridadGEO ↗</a>
   <a href="https://damemiwev.pages.dev/area-cliente.html" target="_blank" onclick="cm()" style="color:rgba(255,255,255,.5)!important;font-size:18px!important">👤 Área de cliente</a>
-  <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20150%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="mob-cta" onclick="cm()">Pedir mi web — 150€ + IVA</a>
+  <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20165%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="mob-cta" onclick="cm()">Pedir mi web — 165€ + IVA</a>
 </div>
 
 <!-- HERO -->
@@ -530,10 +547,10 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
     <p class="hero-sub">Web profesional para <strong>autónomos y pequeños negocios</strong>. Responsive, SEO incluido y dominio .com el primer año. Online en 72 horas. Sin mensualidades.</p>
     <div class="hero-actions">
       <div class="hero-price">
-        <span class="amt">150€</span>
+        <span class="amt">165€</span>
         <span class="meta">+ IVA · pago único</span>
       </div>
-      <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20150%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="btn-hero">
+      <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20165%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="btn-hero">
         Solicitar mi web
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H4M11 3V10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -561,6 +578,10 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
       <div class="ht"><span class="ht-icon">€</span>Sin mensualidades</div>
     </div>
   </div>
+  <div style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.5;animation:bounce 2s ease-in-out infinite">
+    <span style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.6)">Descubre más</span>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
   <div class="hero-strip">
     <div class="hs"><div class="hs-n">54+</div><div class="hs-l">Webs activas</div></div>
     <div class="hs"><div class="hs-n">72h</div><div class="hs-l">Entrega</div></div>
@@ -573,13 +594,13 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
 <div class="ticker">
   <div class="ticker-track">
     <span class="ti">Diseño web profesional</span>
-    <span class="ti">150€ + IVA pago único</span>
+    <span class="ti">165€ + IVA pago único</span>
     <span class="ti">Online en 72 horas</span>
     <span class="ti">Sin mensualidades</span>
     <span class="ti">Dominio .com incluido</span>
     <span class="ti">SEO optimizado</span>
     <span class="ti">Diseño web profesional</span>
-    <span class="ti">150€ + IVA pago único</span>
+    <span class="ti">165€ + IVA pago único</span>
     <span class="ti">Online en 72 horas</span>
     <span class="ti">Sin mensualidades</span>
     <span class="ti">Dominio .com incluido</span>
@@ -618,6 +639,33 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
   </div>
 </section>
 
+
+<!-- COMPARATIVA -->
+<section id="comparativa" style="background:var(--off)">
+  <div class="w">
+    <div style="text-align:center;margin-bottom:56px">
+      <div class="s-label rv" style="color:var(--blue);justify-content:center">Por qué elegirnos</div>
+      <h2 class="s-title light rv" style="text-align:center">Dame mi web vs <span class="it">el resto</span></h2>
+    </div>
+    <div style="max-width:880px;margin:0 auto;background:var(--white);border-radius:20px;overflow:hidden;border:2px solid var(--line-lt)">
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr;background:var(--navy);color:#fff">
+        <div style="padding:20px 24px;font-weight:600;font-size:14px">Característica</div>
+        <div style="padding:20px 16px;font-weight:700;font-size:14px;text-align:center;background:var(--blue)">Dame mi web</div>
+        <div style="padding:20px 16px;font-weight:500;font-size:13px;text-align:center;color:rgba(255,255,255,.6)">Agencia / Freelance</div>
+      </div>
+      <div class="comp-rows">
+        <div class="comp-row"><div class="comp-c">Precio</div><div class="comp-v good">165€ pago único</div><div class="comp-v bad">1.500€ - 3.000€</div></div>
+        <div class="comp-row"><div class="comp-c">Tiempo de entrega</div><div class="comp-v good">72 horas</div><div class="comp-v bad">2 - 3 meses</div></div>
+        <div class="comp-row"><div class="comp-c">Mensualidades</div><div class="comp-v good">0€ · Nunca</div><div class="comp-v bad">30 - 80€/mes</div></div>
+        <div class="comp-row"><div class="comp-c">Dominio .com primer año</div><div class="comp-v good">Incluido</div><div class="comp-v bad">Aparte</div></div>
+        <div class="comp-row"><div class="comp-c">SEO básico</div><div class="comp-v good">Incluido</div><div class="comp-v bad">+300€</div></div>
+        <div class="comp-row"><div class="comp-c">Soporte todo el año</div><div class="comp-v good">Incluido</div><div class="comp-v bad">Por horas</div></div>
+        <div class="comp-row"><div class="comp-c">Trato directo</div><div class="comp-v good">WhatsApp directo</div><div class="comp-v bad">Tickets / Email</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PORTFOLIO — SECTORES -->
 <section id="portfolio">
   <div class="w">
@@ -629,7 +677,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
       <p class="sect-desc rv d1">Más de 54 negocios en toda España ya tienen su web con nosotros. Fontaneros, electricistas, peluquerías, mudanzas, reformas, academias, abogados y muchos más.</p>
     </div>
     <div class="sect-grid">
-      <div class="sector-card rv">
+      <a href="/web-fontaneros" class="sector-card rv">
         <div class="sc-top"><div class="sc-ico">🔧</div><div class="sc-count">13</div></div>
         <div><div class="sc-name">Hogar y Servicios</div><div class="sc-desc">Fontaneros, electricistas, cerrajeros, calderas, reparaciones y servicios del hogar.</div></div>
         <div class="sc-examples"><span class="sc-ex">Fontanero Para Sevilla</span><span class="sc-ex">Instalaciones Tomás</span><span class="sc-ex">Anival Cerrajero</span></div>
@@ -738,20 +786,20 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
       <div class="rc rv">
         <div class="rc-tag">Gestión mensual</div>
         <h3>Gestión de Redes Sociales</h3>
-        <div class="rc-price"><b>150€</b><span>+ IVA / mes</span></div>
+        <div class="rc-price"><b>165€</b><span>+ IVA / mes</span></div>
         <p class="rc-desc">Nos encargamos de tu Instagram y TikTok para que tú te dediques a tu negocio.</p>
         <ul class="rc-list"><li>12 publicaciones al mes (3/semana)</li><li>Diseño gráfico de cada post</li><li>Textos y hashtags optimizados</li><li>Stories semanales</li><li>Informe mensual de resultados</li></ul>
         <div class="rc-note">💡 <b>10€/mes de descuento</b> si ya tienes web con nosotros</div>
-        <a href="https://wa.me/662549694?text=Hola%2C%20me%20interesa%20la%20gesti%C3%B3n%20de%20RRSS%20por%20150%E2%82%AC%20%2B%20IVA%2Fmes." target="_blank" rel="noopener" class="rc-btn">Solicitar</a>
+        <a href="https://wa.me/662549694?text=Hola%2C%20me%20interesa%20la%20gesti%C3%B3n%20de%20RRSS%20por%20165%E2%82%AC%20%2B%20IVA%2Fmes." target="_blank" rel="noopener" class="rc-btn">Solicitar</a>
       </div>
       <div class="rc feat rv d1">
         <div class="rc-tag">★ Más popular</div>
         <h3>Campañas de Pago</h3>
-        <div class="rc-price"><b>150€</b><span>+ IVA / mes gestión</span></div>
+        <div class="rc-price"><b>165€</b><span>+ IVA / mes gestión</span></div>
         <p class="rc-desc">Google Ads y Meta Ads gestionados por nosotros. Tú pones el presupuesto, nosotros lo optimizamos.</p>
-        <ul class="rc-list"><li>Google Ads o Meta Ads</li><li>Configuración y optimización continua</li><li>Segmentación por ciudad y sector</li><li>Creación de anuncios y copys</li><li>Presupuesto mínimo 150€/mes aparte</li></ul>
+        <ul class="rc-list"><li>Google Ads o Meta Ads</li><li>Configuración y optimización continua</li><li>Segmentación por ciudad y sector</li><li>Creación de anuncios y copys</li><li>Presupuesto mínimo 165€/mes aparte</li></ul>
         <div class="rc-note">💡 Combina <b>RRSS + Campañas</b> desde <b>270€ + IVA/mes</b></div>
-        <a href="https://wa.me/662549694?text=Hola%2C%20me%20interesan%20las%20campa%C3%B1as%20de%20pago%20desde%20150%E2%82%AC%20%2B%20IVA%2Fmes." target="_blank" rel="noopener" class="rc-btn">Solicitar</a>
+        <a href="https://wa.me/662549694?text=Hola%2C%20me%20interesan%20las%20campa%C3%B1as%20de%20pago%20desde%20165%E2%82%AC%20%2B%20IVA%2Fmes." target="_blank" rel="noopener" class="rc-btn">Solicitar</a>
       </div>
     </div>
   </div>
@@ -823,7 +871,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
         <div class="geo-mockup">
           <div class="geo-mock-bar"><span class="geo-blink"></span>ChatGPT · En tiempo real</div>
           <div class="geo-q"><div class="geo-ql">Usuario pregunta</div><div class="geo-qt">"¿Cuál es la mejor empresa para hacer una web para autónomos en España?"</div></div>
-          <div class="geo-a"><div class="geo-ql">ChatGPT responde</div><div class="geo-at">Una de las opciones más destacadas es <strong>Dame mi web</strong>, que ofrece diseño web profesional por 150€ + IVA con dominio incluido y entrega en 72 horas...</div></div>
+          <div class="geo-a"><div class="geo-ql">ChatGPT responde</div><div class="geo-at">Una de las opciones más destacadas es <strong>Dame mi web</strong>, que ofrece diseño web profesional por 165€ + IVA con dominio incluido y entrega en 72 horas...</div></div>
         </div>
         <div class="geo-price-box">
           <div class="geo-price-l">AutoridadGEO · Precio anual</div>
@@ -845,7 +893,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
       <h2 class="s-title rv" style="text-align:center">Todo <span class="it">claro</span><br>antes de empezar.</h2>
     </div>
     <div class="faqs">
-      <div class="fi open"><button class="fbtn" onclick="faq(this)"><span>¿Qué incluye el precio de 150€ + IVA?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Diseño web completo y personalizado, adaptado a móviles y tablets, dominio .com el primer año, SEO básico configurado, formulario de contacto y publicación en línea. Todo en un pago único, sin mensualidades.</div></div></div>
+      <div class="fi open"><button class="fbtn" onclick="faq(this)"><span>¿Qué incluye el precio de 165€ + IVA?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Diseño web completo y personalizado, adaptado a móviles y tablets, dominio .com el primer año, SEO básico configurado, formulario de contacto y publicación en línea. Todo en un pago único, sin mensualidades.</div></div></div>
       <div class="fi"><button class="fbtn" onclick="faq(this)"><span>¿Cuánto tiempo tarda en estar lista mi web?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Una vez que nos facilitas la información de tu negocio — textos, logo, imágenes — tendrás tu web publicada en un máximo de 72 horas. En muchos casos la entregamos antes.</div></div></div>
       <div class="fi"><button class="fbtn" onclick="faq(this)"><span>¿Puedo hacer cambios después de publicarla?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Sí. Soporte técnico, mantenimiento y actualizaciones de contenido incluidos durante todo el año, sin coste adicional.</div></div></div>
       <div class="fi"><button class="fbtn" onclick="faq(this)"><span>¿Qué pasa con el dominio a partir del segundo año?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">El dominio está incluido el primer año. A partir del segundo, la renovación son aproximadamente 10-15€/año que puedes gestionar tú directamente o a través de nosotros.</div></div></div>
@@ -863,7 +911,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
         <h2 class="s-title light rv">¿Listo para <span class="it">empezar?</span></h2>
         <p class="rv">La forma más rápida es por WhatsApp. Te respondemos en menos de 2 horas.</p>
         <div class="cways">
-          <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20150%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="cway rv"><div class="cway-ico">💬</div><div><div class="cway-l">Más rápido</div><div class="cway-v">WhatsApp · 662 549 694</div></div><span class="cway-arr">→</span></a>
+          <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20165%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="cway rv"><div class="cway-ico">💬</div><div><div class="cway-l">Más rápido</div><div class="cway-v">WhatsApp · 662 549 694</div></div><span class="cway-arr">→</span></a>
           <a href="https://www.instagram.com/damemiweb" target="_blank" rel="noopener" class="cway rv d1"><div class="cway-ico">📸</div><div><div class="cway-l">Instagram</div><div class="cway-v">@damemiweb</div></div><span class="cway-arr">→</span></a>
           <a href="https://www.tiktok.com/@damemiweb" target="_blank" rel="noopener" class="cway rv d2"><div class="cway-ico">🎵</div><div><div class="cway-l">TikTok</div><div class="cway-v">@damemiweb</div></div><span class="cway-arr">→</span></a>
         </div>
@@ -915,8 +963,8 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
       <a href="/blog" class="rv" style="font-size:13px;font-weight:500;color:var(--bright);letter-spacing:.04em">Ver todos →</a>
     </div>
     <div class="bgrid">
-      <a href="/blog/instagram-para-negocios-locales.html" class="bc rv"><div class="bc-img" style="background:linear-gradient(135deg,#1B1B3A,#2D1B69)">📸</div><div class="bc-body"><div class="bc-tag">Redes Sociales</div><h3>Cómo usar Instagram para atraer clientes</h3><p>16 millones de usuarios en España. Qué publicar y cómo convertir seguidores en clientes.</p><div class="bc-meta"><span>1 ago 2026 · 7 min</span><span class="bc-read">Leer →</span></div></div></a>
-      <a href="/blog/errores-seo-pequenos-negocios.html" class="bc rv d1"><div class="bc-img" style="background:linear-gradient(135deg,#1A0A0A,#3B1515)">🔍</div><div class="bc-body"><div class="bc-tag">SEO</div><h3>Los 7 errores SEO que hunden tu visibilidad</h3><p>¿Tu web no aparece en Google? Probablemente cometes alguno de estos errores.</p><div class="bc-meta"><span>4 jul 2026 · 7 min</span><span class="bc-read">Leer →</span></div></div></a>
+      <a href="/blog/cuanto-cuesta-pagina-web-espana-2026" class="bc rv"><div class="bc-img" style="background:linear-gradient(135deg,#0D3320,#16A34A)">💰</div><div class="bc-body"><div class="bc-tag">Precios</div><h3>¿Cuánto cuesta una web en España en 2026?</h3><p>Precios reales del mercado. Por qué pagar 800-2.500€ ya no tiene sentido para un autónomo.</p><div class="bc-meta"><span>20 may 2026 · 8 min</span><span class="bc-read">Leer →</span></div></div></a>
+      <a href="/blog/kit-digital-2026-pagina-web" class="bc rv d1"><div class="bc-img" style="background:linear-gradient(135deg,#2A1A4A,#7C3AED)">📋</div><div class="bc-body"><div class="bc-tag">Subvenciones</div><h3>Kit Digital 2026 para tu web: guía clara</h3><p>Requisitos, cuánto subvenciona y cuándo compensa frente a una web de pago único.</p><div class="bc-meta"><span>18 may 2026 · 7 min</span><span class="bc-read">Leer →</span></div></div></a>
       <a href="/blog/que-es-geo-seo-inteligencia-artificial.html" class="bc rv d2"><div class="bc-img" style="background:linear-gradient(135deg,var(--navy2),var(--navy3))">🤖</div><div class="bc-body"><div class="bc-tag">GEO · IA</div><h3>Qué es GEO: cómo hacer que ChatGPT te recomiende</h3><p>El SEO ya no es suficiente. Cómo aparecer en las respuestas de la IA.</p><div class="bc-meta"><span>30 abr 2026 · 8 min</span><span class="bc-read">Leer →</span></div></div></a>
     </div>
   </div>
@@ -927,9 +975,9 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
   <div class="cta-inner">
     <div class="s-label rv" style="justify-content:center">Empieza hoy</div>
     <h2 class="rv">Tu negocio<br>merece una <span class="it">web.</span></h2>
-    <p class="rv d1">Únete a más de 54 negocios que ya captan clientes online. Tu web lista en 72 horas por 150€ + IVA.</p>
+    <p class="rv d1">Únete a más de 54 negocios que ya captan clientes online. Tu web lista en 72 horas por 165€ + IVA.</p>
     <div class="cta-btns rv d2">
-      <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20150%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="btn-main">Solicitar mi web — 150€ + IVA</a>
+      <a href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20165%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="btn-main">Solicitar mi web — 165€ + IVA</a>
       <a href="#portfolio" class="btn-ghost">Ver proyectos</a>
     </div>
   </div>
@@ -960,7 +1008,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
   </div>
 </footer>
 
-<a id="waf" href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20150%E2%82%AC%20%2B%20IVA.%20Mi%20negocio%20es%3A%20" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:60;display:flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:14px 22px 14px 16px;border-radius:100px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 8px 28px rgba(37,211,102,.45);transition:transform .2s">
+<a id="waf" href="https://wa.me/662549694?text=Hola%2C%20quiero%20mi%20web%20por%20165%E2%82%AC%20%2B%20IVA.%20Mi%20negocio%20es%3A%20" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:60;display:flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:14px 22px 14px 16px;border-radius:100px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 8px 28px rgba(37,211,102,.45);transition:transform .2s">
   <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:18px">💬</div>
   <span>Pedir presupuesto</span>
   <div class="wring" style="position:absolute;inset:-6px;border-radius:100px;border:2px solid rgba(37,211,102,.4);animation:wr 2.5s ease-out infinite;pointer-events:none"></div>
