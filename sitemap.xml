@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- HOME -->
-  <url><loc>https://damemiweb.com/</loc><lastmod>2026-05-28</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://damemiweb.com/</loc><lastmod>2026-06-04</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <!-- PRECIOS -->
+  <url><loc>https://damemiweb.com/precios</loc><lastmod>2026-06-04</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <!-- CONTACTO -->
   <url><loc>https://damemiweb.com/contacto</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <!-- SECTORES -->
@@ -94,12 +96,12 @@
   <url><loc>https://damemiweb.com/blog/errores-seo-pequenos-negocios</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://damemiweb.com/blog/whatsapp-business-negocios</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://damemiweb.com/blog/cuanto-cuesta-pagina-web-autonomos</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://damemiweb.com/blog/por-que-necesitas-web-aunque-tengas-instagram</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://damemiweb.com/blog/conseguir-clientes-online-fontanero</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://damemiweb.com/blog/google-business-profile-negocios-locales</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://damemiweb.com/blog/como-pedir-resenas-clientes</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://damemiweb.com/blog/tiktok-negocios-locales-2026</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://damemiweb.com/blog/fotos-profesionales-negocio-movil</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://damemiweb.com/blog/por-que-necesitas-web-aunque-tengas-instagram</loc><lastmod>2026-06-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://damemiweb.com/blog/conseguir-clientes-online-fontanero</loc><lastmod>2026-06-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://damemiweb.com/blog/google-business-profile-negocios-locales</loc><lastmod>2026-06-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://damemiweb.com/blog/como-pedir-resenas-clientes</loc><lastmod>2026-06-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://damemiweb.com/blog/tiktok-negocios-locales-2026</loc><lastmod>2026-06-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://damemiweb.com/blog/fotos-profesionales-negocio-movil</loc><lastmod>2026-06-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://damemiweb.com/blog/que-es-geo-seo-inteligencia-artificial</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url>
     <loc>https://damemiweb.com/blog/cuanto-cuesta-pagina-web-espana-2026</loc>
