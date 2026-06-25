@@ -1069,10 +1069,6 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
   <div class="wring"></div>
 </a>
 
-<div id="cookie-banner">
-  <p class="cb-t">Usamos cookies propias y de terceros (Google Analytics) para analizar el tráfico. <a href="/cookies">Política de cookies</a></p>
-  <div class="cb-btns"><button class="cb-r" onclick="rejectCookies()">Rechazar</button><button class="cb-a" onclick="acceptCookies()">Aceptar</button></div>
-</div>
 
 <script>
 // Nav scroll
@@ -1119,14 +1115,10 @@ async function send(){
 }
 function fb(n,ne,e,m){window.open('https://wa.me/662549694?text='+encodeURIComponent('Hola, me llamo '+n+'. Negocio: '+ne+'. Email: '+e+'. '+m),'_blank');document.getElementById('cf-form').style.display='none';document.getElementById('cf-ok').style.display='block';}
 
-// Cookies
-(function(){if(!localStorage.getItem('cookie-consent')){setTimeout(()=>document.getElementById('cookie-banner').classList.add('show'),2000)}if(localStorage.getItem('cookie-consent')==='rejected')window['ga-disable-G-B27EE57BLZ']=true;})();
-function acceptCookies(){localStorage.setItem('cookie-consent','accepted');document.getElementById('cookie-banner').classList.remove('show')}
-function rejectCookies(){localStorage.setItem('cookie-consent','rejected');window['ga-disable-G-B27EE57BLZ']=true;document.getElementById('cookie-banner').classList.remove('show')}
-
 // Reveal on scroll
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 </script>
+<script src="/dmw.js" defer></script>
 </body>
 </html>

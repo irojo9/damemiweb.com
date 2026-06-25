@@ -204,5 +204,6 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 function faq(btn){const item=btn.closest('.fi'),body=item.querySelector('.fbody'),inner=item.querySelector('.fbin');const was=item.classList.contains('open');document.querySelectorAll('.fi.open').forEach(i=>{i.classList.remove('open');i.querySelector('.fbody').style.height='0'});if(!was){item.classList.add('open');body.style.height=inner.scrollHeight+'px'}}
 (()=>{const f=document.querySelector('.fi.open');if(f){const b=f.querySelector('.fbody'),i=f.querySelector('.fbin');b.style.height=i.scrollHeight+'px'}})();
 </script>
+<script src="/dmw.js" defer></script>
 </body>
 </html>
