@@ -19,7 +19,13 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"WebPage","name":"Proyectos Reales — Dame mi web","url":"https://damemiweb.com/proyectos","description":"Portfolio de más de 83 páginas web entregadas a autónomos y pequeños negocios en España.","isPartOf":{"@type":"WebSite","url":"https://damemiweb.com","name":"Dame mi web"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://damemiweb.com"},{"@type":"ListItem","position":2,"name":"Proyectos"}]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://damemiweb.com"},{"@type":"ListItem","position":2,"name":"Proyectos"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"¿Las webs de proyectos son reales?","acceptedAnswer":{"@type":"Answer","text":"Sí, todas. Cada una de las +83 webs que ves en esta página es de un cliente real de un negocio en España. Puedes pulsar en cualquiera para visitarla."}},
+{"@type":"Question","name":"¿Cuánto cuesta una web como estas?","acceptedAnswer":{"@type":"Answer","text":"250€ + IVA en un pago único, sin mensualidades. Incluye diseño personalizado, dominio .com el primer año, SEO básico, versión móvil y botón de WhatsApp."}},
+{"@type":"Question","name":"¿En cuánto tiempo está lista mi web?","acceptedAnswer":{"@type":"Answer","text":"En un máximo de 72 horas desde que nos das la información de tu negocio. Sin esperas de semanas como en una agencia."}},
+{"@type":"Question","name":"¿Hacéis webs de mi sector?","acceptedAnswer":{"@type":"Answer","text":"Sí. Trabajamos con fontaneros, electricistas, reformas, mudanzas, peluquerías, academias, tiendas y muchos más. Si tienes un negocio, te hacemos la web."}}
+]}
 ]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -313,6 +319,35 @@ footer p{font-size:12px;color:rgba(255,255,255,.3)}
   </div>
 </section>
 
+<!-- FAQ -->
+<style>
+.pq-sec{padding:72px 0;background:var(--off)}
+.pq-sec .pq-head{text-align:center;margin-bottom:36px}
+.pq-sec .pq-eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--bright);margin-bottom:8px}
+.pq-sec h2{font-family:var(--serif);font-size:clamp(26px,3.5vw,38px);font-weight:600;color:var(--navy);letter-spacing:-.02em}
+.pq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.pq-item{background:#fff;border:1px solid var(--line-lt);border-radius:14px;overflow:hidden}
+.pq-q{width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;font-size:16px;font-weight:600;color:var(--navy);cursor:pointer;font-family:inherit;background:none;border:none}
+.pq-ico{font-size:22px;color:var(--bright);flex-shrink:0;transition:transform .25s;line-height:1}
+.pq-item.open .pq-ico{transform:rotate(45deg)}
+.pq-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.pq-body-in{padding:0 24px 22px;font-size:15px;font-weight:300;color:var(--ink);line-height:1.7}
+</style>
+<section class="pq-sec">
+  <div class="w">
+    <div class="pq-head">
+      <div class="pq-eyebrow">Preguntas frecuentes</div>
+      <h2>Lo que más nos preguntan</h2>
+    </div>
+    <div class="pq-list">
+      <div class="pq-item"><button class="pq-q" onclick="pq(this)">¿Las webs de proyectos son reales?<span class="pq-ico">+</span></button><div class="pq-body"><div class="pq-body-in">Sí, todas. Cada una de las +83 webs que ves en esta página es de un cliente real de un negocio en España. Puedes pulsar en cualquiera para visitarla.</div></div></div>
+      <div class="pq-item"><button class="pq-q" onclick="pq(this)">¿Cuánto cuesta una web como estas?<span class="pq-ico">+</span></button><div class="pq-body"><div class="pq-body-in">250€ + IVA en un pago único, sin mensualidades. Incluye diseño personalizado, dominio .com el primer año, SEO básico, versión móvil y botón de WhatsApp.</div></div></div>
+      <div class="pq-item"><button class="pq-q" onclick="pq(this)">¿En cuánto tiempo está lista mi web?<span class="pq-ico">+</span></button><div class="pq-body"><div class="pq-body-in">En un máximo de 72 horas desde que nos das la información de tu negocio. Sin esperas de semanas como en una agencia.</div></div></div>
+      <div class="pq-item"><button class="pq-q" onclick="pq(this)">¿Hacéis webs de mi sector?<span class="pq-ico">+</span></button><div class="pq-body"><div class="pq-body-in">Sí. Trabajamos con fontaneros, electricistas, reformas, mudanzas, peluquerías, academias, tiendas y muchos más. Si tienes un negocio, te hacemos la web.</div></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA FINAL -->
 <section class="cta-section">
   <div class="w">
@@ -347,6 +382,9 @@ footer p{font-size:12px;color:rgba(255,255,255,.3)}
   <div class="wring"></div>
 </a>
 
+<script>
+function pq(btn){var it=btn.closest('.pq-item'),body=it.querySelector('.pq-body'),was=it.classList.contains('open');document.querySelectorAll('.pq-item.open').forEach(function(i){i.classList.remove('open');i.querySelector('.pq-body').style.maxHeight='0'});if(!was){it.classList.add('open');body.style.maxHeight=body.querySelector('.pq-body-in').scrollHeight+30+'px'}}
+</script>
 <script src="/dmw.js" defer></script>
 </body>
 </html>
