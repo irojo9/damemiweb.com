@@ -65,12 +65,6 @@ body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;min-h
 .badge.warn{background:rgba(245,160,32,.12);color:#92400e}
 .badge.info{background:rgba(91,110,245,.12);color:var(--acc)}
 .badge.muted{background:var(--bg);color:var(--mt);border:1px solid var(--bd)}
-/* FACTURA ROW */
-.fac-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--bg)}
-.fac-row:last-child{border-bottom:none}
-.fac-num{font-weight:700;color:var(--acc);font-size:14px}
-.fac-fecha{font-size:12px;color:var(--mt)}
-.fac-total{font-weight:700;font-size:15px}
 /* RECURSOS */
 .recurso-card{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:var(--bg);border:1px solid var(--bd);border-radius:12px;margin-bottom:10px;text-decoration:none;color:var(--tx);transition:all .18s}
 .recurso-card:hover{border-color:var(--acc);background:rgba(91,110,245,.04);transform:translateY(-1px)}
@@ -141,7 +135,6 @@ body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;min-h
     <div class="tabs">
       <button class="tab active" onclick="showTab('datos')">👤 Mis datos</button>
       <button class="tab" onclick="showTab('web')">🌐 Mi web</button>
-      <button class="tab" onclick="showTab('facturas')">🧾 Facturas</button>
       <button class="tab" onclick="showTab('recursos')">📚 Recursos</button>
       <button class="tab" onclick="showTab('contacto')">💬 Contacto</button>
     </div>
@@ -161,14 +154,6 @@ body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;min-h
     <!-- TAB: MI WEB -->
     <div id="tab-web" style="display:none">
       <div id="web-container"></div>
-    </div>
-
-    <!-- TAB: FACTURAS -->
-    <div id="tab-facturas" style="display:none">
-      <div class="card">
-        <div class="card-title">🧾 Historial de facturas</div>
-        <div id="facturas-list"></div>
-      </div>
     </div>
 
     <!-- TAB: RECURSOS -->
@@ -252,15 +237,8 @@ body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;min-h
 <script>
 const API = 'https://oficina-ia-api.ivanrojobermejo.workers.dev';
 // Use sessionStorage (cleared when browser closes) + expiry check
-let token = (() => {
-  const stored = sessionStorage.getItem('portal_token');
-  if (!stored) return null;
-  try {
-    const { t, exp } = JSON.parse(stored);
-    if (exp < Date.now()) { sessionStorage.removeItem('portal_token'); return null; }
-    return t;
-  } catch { return null; }
-})();
+sessionStorage.removeItem('portal_token');
+let token = null;
 let loginAttempts = 0;
 let clienteData = null;
 
@@ -310,8 +288,6 @@ async function login() {
     loginAttempts = 0;
     if (data.token) {
       token = data.token;
-      // Store with 7-day expiry
-      sessionStorage.setItem('portal_token', JSON.stringify({t: token, exp: Date.now() + 7*24*60*60*1000}));
       clienteData = data;
       showApp();
     } else {
@@ -329,17 +305,16 @@ async function login() {
 }
 
 function logout() {
-  sessionStorage.removeItem('portal_token');
   token = null; clienteData = null;
   showLogin();
 }
 
 function showTab(tab) {
-  ['datos','web','facturas','recursos','contacto'].forEach(t => {
+  ['datos','web','recursos','contacto'].forEach(t => {
     document.getElementById('tab-'+t).style.display = t === tab ? '' : 'none';
   });
   document.querySelectorAll('.tab').forEach((b,i) => {
-    b.classList.toggle('active', ['datos','web','facturas','recursos','contacto'][i] === tab);
+    b.classList.toggle('active', ['datos','web','recursos','contacto'][i] === tab);
   });
 }
 
@@ -434,24 +409,6 @@ function renderApp() {
       </div>`).join('');
   }
 
-  // Facturas
-  const facturas = clienteData?.facturas || [];
-  const fl = document.getElementById('facturas-list');
-  if (!facturas.length) {
-    fl.innerHTML = '<div style="text-align:center;padding:24px;color:var(--mt)">No hay facturas todavía</div>';
-  } else {
-    fl.innerHTML = facturas.map(f => `
-      <div class="fac-row">
-        <div>
-          <div class="fac-num">${f.numero}</div>
-          <div class="fac-fecha">${f.fecha_emision ? new Date(f.fecha_emision).toLocaleDateString('es-ES') : ''}</div>
-        </div>
-        <div style="text-align:right">
-          <div class="fac-total">${f.total}€</div>
-          <span class="badge ${f.estado==='pagada'?'ok':'warn'}">${f.estado==='pagada'?'✅ Cobrada':'⏳ Pendiente'}</span>
-        </div>
-      </div>`).join('');
-  }
 }
 
 init();

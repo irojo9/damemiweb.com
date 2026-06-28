@@ -61,14 +61,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .b-i{background:#dbeafe;color:#1d4ed8}
 .b-e{background:var(--err-bg);color:var(--err)}
 
-/* Alerta pago */
-.pago-alert{background:linear-gradient(135deg,#fef3c7,#fde68a);border:1.5px solid #f59e0b;border-radius:16px;padding:18px;margin-bottom:14px}
-.pago-alert-title{font-weight:800;font-size:15px;color:#78350f;margin-bottom:4px}
-.pago-alert-sub{font-size:13px;color:#92400e;margin-bottom:14px}
-.iban-box{background:var(--s1);border-radius:10px;padding:12px 14px;font-size:13px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #fcd34d}
-.iban-val{font-family:monospace;font-weight:700;font-size:13px;word-break:break-all}
-.btn-copy{background:none;border:1.5px solid #f59e0b;color:#92400e;font-size:11px;font-weight:700;padding:5px 10px;border-radius:7px;cursor:pointer;flex-shrink:0}
-.btn-pay{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;background:#25d366;color:#fff;border:none;border-radius:12px;font-weight:700;font-size:14px;cursor:pointer;width:100%;text-decoration:none}
+/* Pago alert — oculto */
 
 /* Renovación countdown */
 .renov-card{border-radius:16px;padding:18px;margin-bottom:14px}
@@ -76,14 +69,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .renov-warn-card{background:#fff7ed;border:1.5px solid #fdba74}
 .renov-err-card{background:var(--err-bg);border:1.5px solid #fca5a5}
 
-/* Facturas */
-.fac{display:flex;justify-content:space-between;align-items:center;padding:12px 8px;border-bottom:1px solid var(--bg);border-radius:8px;transition:background .12s}
-.fac:last-child{border:none}
-.fac:active{background:var(--bg)}
-.fac-num{font-weight:700;color:var(--acc);font-size:14px}
-.fac-fec{font-size:12px;color:var(--mt);margin-top:2px}
-.fac-total{font-weight:700;font-size:15px;text-align:right}
-.fac-badge{margin-top:3px;text-align:right}
+/* Facturas — oculto */
 
 /* Recursos */
 .rc{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:12px;text-decoration:none;margin-bottom:10px;border:1.5px solid;transition:transform .1s}
@@ -252,7 +238,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="tabs" id="tabs">
       <button class="tab active" onclick="tab('inicio')"><span class="tico">🏠</span><span>Inicio</span></button>
       <button class="tab" onclick="tab('web')"><span class="tico">🌐</span><span>Mi web</span></button>
-      <button class="tab" onclick="tab('facturas')"><span class="tico">🧾</span><span>Facturas</span><span class="tab-badge" id="badge-facturas" style="display:none"></span></button>
       <button class="tab" onclick="tab('tickets')"><span class="tico">🎫</span><span>Tickets</span><span class="tab-badge" id="badge-tickets" style="display:none"></span></button>
       <button class="tab" onclick="tab('recursos')"><span class="tico">📚</span><span>Más</span></button>
     </div>
@@ -264,14 +249,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
     <!-- WEB -->
     <div id="t-web" style="display:none"><div id="web-list"><div class="skel" style="height:200px;border-radius:14px"></div></div></div>
-
-    <!-- FACTURAS -->
-    <div id="t-facturas" style="display:none">
-      <div class="card">
-        <div class="card-title">🧾 Historial de facturas</div>
-        <div id="fac-list"><div class="skel" style="height:80px"></div></div>
-      </div>
-    </div>
 
     <!-- TICKETS -->
     <div id="t-tickets" style="display:none">
@@ -367,15 +344,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 <script>
 const API = 'https://oficina-ia-api.ivanrojobermejo.workers.dev';
-let token = (()=>{
-  try {
-    const s = sessionStorage.getItem('pt');
-    if (!s) return null;
-    const {t,exp} = JSON.parse(s);
-    if (exp < Date.now()) { sessionStorage.removeItem('pt'); return null; }
-    return t;
-  } catch { return null; }
-})();
+sessionStorage.removeItem('pt');
+let token = null;
 let data = null;
 let _tktModal = null;
 
@@ -412,7 +382,7 @@ function showApp() {
   render();
   setTimeout(mostrarTourWelcome, 500);
 }
-function logout() { sessionStorage.removeItem('pt'); token=null; data=null; showLogin(); }
+function logout() { token=null; data=null; showLogin(); }
 
 async function init() {
   if (!token) { showLogin(); return; }
@@ -437,7 +407,6 @@ async function login() {
     const d = await res.json();
     if (d.token) {
       token = d.token;
-      sessionStorage.setItem('pt', JSON.stringify({t:token, exp:Date.now()+7*86400000}));
       const account = await call('/api/portal/mi-cuenta');
       if (!account || account.error) { errEl.textContent = 'Error al cargar los datos'; errEl.style.display='block'; token=null; return; }
       data = account; showApp();
@@ -450,12 +419,11 @@ async function login() {
 }
 
 // ── Tabs ──
-const TABS = ['inicio','web','facturas','tickets','recursos'];
+const TABS = ['inicio','web','tickets','recursos'];
 function tab(t) {
   TABS.forEach(x => { document.getElementById('t-'+x).style.display = x===t ? '' : 'none'; });
   document.querySelectorAll('.tab').forEach((b,i) => b.classList.toggle('active', TABS[i]===t));
   if (t === 'tickets') loadPortalTickets();
-  if (t === 'facturas') loadFacturasDetalle();
   if (t === 'inicio') renderHome();
 }
 
@@ -466,17 +434,6 @@ async function renderHome() {
   const el = document.getElementById('home-content');
   if (!el) return;
 
-  // Load fresh facturas for home
-  let facturas = [];
-  try {
-    const fs = await call('/api/portal/mis-facturas');
-    facturas = fs || [];
-    window._portalFacturas = facturas;
-  } catch(e) {}
-
-  const pendientes = facturas.filter(f => f.estado === 'pendiente');
-  const totalPendiente = pendientes.reduce((s,f) => s + (+f.total||0), 0);
-
   // Load tickets count
   let ticketsAbiertos = 0;
   try {
@@ -485,9 +442,7 @@ async function renderHome() {
   } catch(e) {}
 
   // Badges
-  const badgeFac = document.getElementById('badge-facturas');
   const badgeTkt = document.getElementById('badge-tickets');
-  if (badgeFac) { badgeFac.textContent = pendientes.length; badgeFac.style.display = pendientes.length ? 'flex' : 'none'; }
   if (badgeTkt) { badgeTkt.textContent = ticketsAbiertos; badgeTkt.style.display = ticketsAbiertos ? 'flex' : 'none'; }
 
   const nombre = cl.empresa || cl.nombre || 'Cliente';
@@ -516,25 +471,6 @@ async function renderHome() {
         <div style="font-size:12px;color:#166534;margin-top:2px">Renovación: ${fr.toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'})} · ${dr} días</div></div>
       </div>`;
     }
-  }
-
-  // Facturas pendientes card
-  let pagosHtml = '';
-  if (pendientes.length) {
-    const ibanFmt = em.iban ? em.iban.replace(/(.{4})/g,'$1 ').trim() : '';
-    pagosHtml = `<div class="pago-alert">
-      <div class="pago-alert-title">💸 ${pendientes.length === 1 ? '1 factura pendiente' : pendientes.length + ' facturas pendientes'} · ${totalPendiente.toFixed(2).replace('.',',')} €</div>
-      <div class="pago-alert-sub">Recuerda realizar el pago cuando puedas.</div>
-      ${ibanFmt ? `<div style="font-size:11px;font-weight:700;color:#92400e;margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px">Transferencia bancaria</div>
-      <div class="iban-box">
-        <span class="iban-val">${ibanFmt}</span>
-        <button class="btn-copy" onclick="copiar('${em.iban}','IBAN copiado')">Copiar</button>
-      </div>` : ''}
-      <a href="https://wa.me/34662549694?text=${encodeURIComponent('Hola, quiero pagar las facturas pendientes por Bizum. ¿Al 662 549 694?')}" target="_blank" class="btn-pay">
-        📱 Pagar por Bizum al 662 549 694
-      </a>
-      <button onclick="tab('facturas')" style="width:100%;margin-top:8px;padding:10px;background:none;border:1.5px solid #f59e0b;border-radius:10px;font-size:13px;font-weight:600;color:#78350f;cursor:pointer">Ver facturas →</button>
-    </div>`;
   }
 
   // Proyectos resumen
@@ -573,8 +509,8 @@ async function renderHome() {
     <a href="https://wa.me/34662549694" target="_blank" class="qa-btn" style="text-decoration:none">
       <span class="qa-btn-ico">💬</span><span>WhatsApp</span>
     </a>
-    <button class="qa-btn" onclick="tab('facturas')">
-      <span class="qa-btn-ico">🧾</span><span>Facturas</span>
+    <button class="qa-btn" onclick="tab('web')">
+      <span class="qa-btn-ico">🌐</span><span>Mi web</span>
     </button>
     <button class="qa-btn" onclick="tab('recursos')">
       <span class="qa-btn-ico">📚</span><span>Recursos</span>
@@ -586,8 +522,8 @@ async function renderHome() {
   const saludo = hora < 13 ? 'Buenos días' : hora < 21 ? 'Buenas tardes' : 'Buenas noches';
   const bannerHtml = `<div style="background:var(--acc);border-radius:16px;padding:20px 22px;color:#fff;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:12px">
     <div><div style="font-size:18px;font-weight:800">${saludo}, ${esc(first)} 👋</div>
-    <div style="font-size:13px;opacity:.85;margin-top:2px">${pendientes.length?'Tienes pagos pendientes':'Tu web está en buenas manos 🚀'}</div></div>
-    <div style="font-size:40px;flex-shrink:0">${pendientes.length?'💸':dr!==null&&dr<=30?'⏰':'🌐'}</div>
+    <div style="font-size:13px;opacity:.85;margin-top:2px">Tu web está en buenas manos 🚀</div></div>
+    <div style="font-size:40px;flex-shrink:0">${dr!==null&&dr<=30?'⏰':'🌐'}</div>
   </div>`;
 
   // Programa de referidos (oferta permanente)
@@ -630,90 +566,12 @@ async function renderHome() {
     <a class="lp-btn" href="https://www.ligapatria.com" target="_blank" rel="noopener">⚽ Reserva tu municipio</a>
   </div>`;
 
-  el.innerHTML = bannerHtml + '<div id="tour-misiones"></div>' + pagosHtml + renovHtml + proyHtml + svcHtml + prodHtml + refHtml + lpHtml + `<div class="card"><div class="card-title" style="margin-bottom:10px">Acceso rápido</div>${qaHtml}</div>`;
+  el.innerHTML = bannerHtml + '<div id="tour-misiones"></div>' + renovHtml + proyHtml + svcHtml + prodHtml + refHtml + lpHtml + `<div class="card"><div class="card-title" style="margin-bottom:10px">Acceso rápido</div>${qaHtml}</div>`;
   renderMisiones();
 }
 
 function copiar(texto, msg) {
   navigator.clipboard?.writeText(texto).then(() => toast('✅ ' + msg)).catch(() => toast('⚠️ No se pudo copiar'));
-}
-
-// ── FACTURAS ──────────────────────────────────────────────────────────────────
-async function loadFacturasDetalle() {
-  const el = document.getElementById('fac-list');
-  if (!el) return;
-  try {
-    const fs = await call('/api/portal/mis-facturas');
-    if (!fs || !fs.length) { el.innerHTML = '<div class="empty" style="padding:24px"><p>No hay facturas todavía</p></div>'; return; }
-    window._portalFacturas = fs;
-    el.innerHTML = fs.map(f => `
-      <div class="fac" onclick="verFacturaPortal('${f.id}')" style="cursor:pointer;transition:background .12s;border-radius:8px;padding:12px;margin:-2px">
-        <div>
-          <div class="fac-num">${esc(f.numero)}</div>
-          <div class="fac-fec">${f.fecha_emision ? new Date(f.fecha_emision).toLocaleDateString('es-ES') : ''}</div>
-        </div>
-        <div style="text-align:right">
-          <div class="fac-total">${(+f.total||0).toFixed(2).replace('.',',')}€</div>
-          <div class="fac-badge"><span class="badge ${f.estado==='pagada'?'b-ok':'b-w'}">${f.estado==='pagada'?'✅ Cobrada':'⏳ Pendiente'}</span></div>
-        </div>
-      </div>`).join('');
-  } catch(e) { el.innerHTML = '<div style="color:var(--err);font-size:13px;padding:8px">Error al cargar facturas</div>'; }
-}
-
-let _facModal = null;
-function verFacturaPortal(id) {
-  const f = (window._portalFacturas || []).find(x => x.id === id);
-  if (!f) return;
-  if (_facModal) { _facModal.remove(); _facModal = null; }
-  const em = data?.emisor || {};
-  const lineas = (() => { try { return typeof f.lineas === 'string' ? JSON.parse(f.lineas) : (f.lineas||[]); } catch { return []; } })();
-  const base = +f.base_imponible || 0;
-  const ivaP = +f.porcentaje_iva || 21;
-  const ivaC = +f.importe_iva || +(base * ivaP / 100).toFixed(2);
-  const total = +f.total || base + ivaC;
-  const modal = document.createElement('div');
-  _facModal = modal;
-  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:flex;align-items:flex-end;padding-bottom:env(safe-area-inset-bottom)';
-  modal.onclick = e => { if(e.target===modal){ modal.remove(); _facModal=null; } };
-  const fmt = n => (+n||0).toFixed(2).replace('.',',') + ' €';
-  const lineasHtml = lineas.length ? `
-    <table style="width:100%;border-collapse:collapse;font-size:13px;margin:12px 0">
-      <thead><tr style="background:var(--bg)"><th style="text-align:left;padding:7px 8px;font-size:11px;color:var(--mt)">Descripción</th><th style="text-align:right;padding:7px 8px;font-size:11px;color:var(--mt)">Total</th></tr></thead>
-      <tbody>${lineas.map(l=>`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px">${esc(l.desc||l.descripcion||'Servicio')}</td><td style="padding:8px;text-align:right;font-family:monospace">${fmt((+l.qty||1)*(+l.price||+l.precio||0))}</td></tr>`).join('')}</tbody>
-    </table>` : (f.concepto ? `<p style="font-size:13px;color:var(--mt);margin:10px 0">${esc(f.concepto)}</p>` : '');
-
-  const pagoHtml = f.estado === 'pendiente' && em.iban ? `
-    <div style="background:#fffbeb;border:1.5px solid #fcd34d;border-radius:12px;padding:14px;margin-top:12px">
-      <div style="font-weight:700;font-size:13px;color:#78350f;margin-bottom:8px">💸 Pendiente de pago</div>
-      <div class="iban-box" style="margin-bottom:8px">
-        <span class="iban-val" style="font-size:12px">${em.iban}</span>
-        <button class="btn-copy" onclick="copiar('${em.iban}','IBAN copiado')">Copiar</button>
-      </div>
-      <a href="https://wa.me/34662549694?text=${encodeURIComponent('Hola, quiero pagar la factura '+f.numero+' por Bizum ('+total.toFixed(2)+'€). ¿Es al 662 549 694?')}" target="_blank" class="btn-pay">📱 Pagar por Bizum</a>
-    </div>` : '';
-
-  modal.innerHTML = `
-    <div style="background:var(--s1);border-radius:20px 20px 0 0;width:100%;max-height:90dvh;overflow-y:auto;padding:22px 20px">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px">
-        <div>
-          <div style="font-size:11px;color:var(--mt)">Factura</div>
-          <div style="font-weight:800;font-size:20px;color:var(--acc);font-family:monospace">${esc(f.numero)}</div>
-          <div style="font-size:12px;color:var(--mt);margin-top:3px">${f.fecha_emision ? new Date(f.fecha_emision).toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'}) : ''}</div>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
-          <button onclick="_facModal&&(_facModal.remove(),_facModal=null)" style="background:none;border:1px solid var(--bd);border-radius:8px;padding:6px 12px;cursor:pointer">✕</button>
-          <span class="badge ${f.estado==='pagada'?'b-ok':'b-w'}">${f.estado==='pagada'?'✅ Cobrada':'⏳ Pendiente'}</span>
-        </div>
-      </div>
-      ${lineasHtml}
-      <div style="background:var(--bg);border-radius:10px;padding:12px;margin-top:6px">
-        <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span style="color:var(--mt)">Base imponible</span><span style="font-family:monospace">${fmt(base)}</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px"><span style="color:var(--mt)">IVA (${ivaP}%)</span><span style="font-family:monospace">${fmt(ivaC)}</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:800;border-top:1px solid var(--bd);padding-top:8px"><span>Total</span><span style="font-family:monospace;color:var(--acc)">${fmt(total)}</span></div>
-      </div>
-      ${pagoHtml}
-    </div>`;
-  document.body.appendChild(modal);
 }
 
 // ── RENDER ────────────────────────────────────────────────────────────────────
