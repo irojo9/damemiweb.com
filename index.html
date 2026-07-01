@@ -22,7 +22,7 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B27EE57BLZ');</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"Organization","name":"Dame mi web","url":"https://damemiweb.com","telephone":"+34662549694","areaServed":{"@type":"Country","name":"España"},"sameAs":["https://www.instagram.com/damemiweb","https://www.tiktok.com/@damemiweb","https://www.autoridadgeo.com"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"83"}},
+{"@type":"Organization","@id":"https://damemiweb.com/#org","name":"Dame mi web","url":"https://damemiweb.com","logo":"https://damemiweb.com/logo_damemiweb_icon.png","telephone":"+34662549694","areaServed":{"@type":"Country","name":"España"},"sameAs":["https://www.instagram.com/damemiweb","https://www.tiktok.com/@damemiweb","https://www.autoridadgeo.com"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"83"}},
 {"@type":"Service","name":"Diseño Web Profesional","description":"Diseño web profesional para autónomos y pequeños negocios. Web completa por 250€ + IVA, pago único, sin mensualidades. Online en 72 horas.","provider":{"@id":"https://damemiweb.com/#org"},"areaServed":{"@type":"Country","name":"España"},"offers":{"@type":"Offer","price":"250","priceCurrency":"EUR","availability":"https://schema.org/InStock"}},
 {"@type":"Review","itemReviewed":{"@id":"https://damemiweb.com/#org"},"author":{"@type":"Person","name":"Charles"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"En menos de 72 horas tenía mi tienda online lista. Muy profesional y el precio es imbatible."},
 {"@type":"FAQPage","mainEntity":[
@@ -474,8 +474,10 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
 
 /* RESPONSIVE */
+.sec-head2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:64px}
 @media(max-width:1024px){.sect-grid{grid-template-columns:repeat(2,1fr)!important}.pgrid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:900px){
+  .sec-head2{grid-template-columns:1fr;gap:20px;align-items:start;margin-bottom:40px}
   nav{padding:0 24px}
   .n-links{display:none}.ham{display:flex}
   section{padding:72px 24px}
@@ -646,7 +648,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
 <!-- PROCESO -->
 <section id="proceso">
   <div class="w">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:64px">
+    <div class="sec-head2">
       <div><div class="s-label rv" style="color:var(--blue)">Cómo funciona</div><h2 class="s-title light rv">Tres pasos.<br><span class="it">Sin tecnicismos.</span></h2></div>
       <p class="rv" style="font-size:17px;font-weight:300;color:rgba(10,22,40,.5);line-height:1.75;max-width:400px">Tú nos cuentas tu negocio. Nosotros nos encargamos del resto. Así de simple.</p>
     </div>
