@@ -71,6 +71,14 @@
     }, true);
   }
 
+  /* 3b. Fix responsive global: los grids de dos columnas definidos con estilo
+     inline no colapsan en móvil y desbordan la pantalla */
+  function initResponsiveFix() {
+    var style = document.createElement('style');
+    style.textContent = '@media(max-width:900px){[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;gap:28px!important}}';
+    document.head.appendChild(style);
+  }
+
   /* 4. Favicon: la mayoría de páginas no declaran ninguno */
   function initFavicon() {
     if (document.querySelector('link[rel~="icon"]')) return;
@@ -182,7 +190,7 @@
     });
   }
 
-  function init() { initFavicon(); initCookieBanner(); initTracking(); initMobileBar(); initExitIntent(); }
+  function init() { initResponsiveFix(); initFavicon(); initCookieBanner(); initTracking(); initMobileBar(); initExitIntent(); }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
