@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Contacto — Dame mi web | Diseño Web Profesional por 250€ + IVA</title>
 <meta name="description" content="Contacta con Dame mi web para solicitar tu página web profesional por 250€ + IVA. Respondemos en menos de 2 horas por WhatsApp. También por Instagram y TikTok."/>
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
 <link rel="canonical" href="https://damemiweb.com/contacto"/>
 <meta property="og:title" content="Contacto — Dame mi web | Diseño Web Profesional por 250€ + IVA"/>
 <meta property="og:description" content="Contacta con Dame mi web para solicitar tu página web profesional por 250€ + IVA. Respondemos en menos de 2 horas por WhatsApp. También por Instagram y TikTok."/>
@@ -32,16 +33,23 @@
       }
     },
     {
-      "@type": "Organization",
+      "@type": ["Organization","ProfessionalService"],
+      "@id": "https://damemiweb.com/#org",
       "name": "Dame mi web",
       "url": "https://damemiweb.com",
       "telephone": "+34662549694",
+      "priceRange": "250€ - 350€",
+      "address": {"@type": "PostalAddress", "addressCountry": "ES"},
+      "areaServed": {"@type": "Country", "name": "España"},
+      "sameAs": ["https://www.instagram.com/damemiweb","https://www.tiktok.com/@damemiweb","https://www.autoridadgeo.com"],
+      "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5", "bestRating": "5", "reviewCount": "83"},
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+34662549694",
         "contactType": "customer service",
         "availableLanguage": "Spanish",
-        "contactOption": "TollFree"
+        "areaServed": "ES",
+        "url": "https://damemiweb.com/contacto"
       }
     },
     {
@@ -318,7 +326,7 @@ footer p{font-size:12px;font-weight:300;color:rgba(255,255,255,.2);margin-bottom
   </a>
   <p>© 2026 Dame mi web. Diseño web profesional para autónomos en España.</p>
   <div class="flinks">
-    <a href="/">Inicio</a><a href="/blog">Blog</a><a href="/privacidad">Privacidad</a><a href="/terminos">Términos</a>
+    <a href="/">Inicio</a><a href="/blog">Blog</a><a href="/sobre-nosotros">Sobre nosotros</a> · <a href="/preguntas-frecuentes">Preguntas frecuentes</a> · <a href="/comparativa">Comparativa</a> · <a href="/privacidad">Privacidad</a><a href="/terminos">Términos</a>
   </div>
 </footer>
 

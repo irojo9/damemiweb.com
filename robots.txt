@@ -1,14 +1,153 @@
+# robots.txt — damemiweb.com
+# Política: acceso abierto a buscadores tradicionales Y a motores generativos (GEO).
+# Queremos que ChatGPT, Claude, Perplexity, Gemini y Copilot puedan leer y citar
+# nuestro contenido. Los permisos de IA se declaran de forma explícita porque
+# varios rastreadores generativos ignoran la regla genérica User-agent: *.
+
+# ---------------------------------------------------------------------------
+# Regla general
+# ---------------------------------------------------------------------------
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /area-cliente
+Disallow: /areacliente
+Disallow: /onboarding
 
+# ---------------------------------------------------------------------------
+# Buscadores tradicionales
+# ---------------------------------------------------------------------------
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+# ---------------------------------------------------------------------------
+# OpenAI — ChatGPT y ChatGPT Search
+# GPTBot: entrenamiento. OAI-SearchBot: índice de búsqueda de ChatGPT.
+# ChatGPT-User: visita en directo cuando un usuario pregunta por nosotros.
+# ---------------------------------------------------------------------------
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# ---------------------------------------------------------------------------
+# Anthropic — Claude
+# ---------------------------------------------------------------------------
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# ---------------------------------------------------------------------------
+# Perplexity
+# ---------------------------------------------------------------------------
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ---------------------------------------------------------------------------
+# Google Gemini / AI Overviews (permiso independiente de Googlebot)
+# ---------------------------------------------------------------------------
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+# ---------------------------------------------------------------------------
+# Apple Intelligence / Siri
+# ---------------------------------------------------------------------------
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# ---------------------------------------------------------------------------
+# Microsoft Copilot
+# ---------------------------------------------------------------------------
+User-agent: msnbot
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+# ---------------------------------------------------------------------------
+# Meta AI
+# ---------------------------------------------------------------------------
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# ---------------------------------------------------------------------------
+# Otros motores generativos y asistentes
+# ---------------------------------------------------------------------------
+User-agent: Amazonbot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: AI2Bot
+Allow: /
+
+User-agent: Timpibot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# ---------------------------------------------------------------------------
+# Common Crawl — dataset base de muchos modelos de lenguaje
+# ---------------------------------------------------------------------------
+User-agent: CCBot
+Allow: /
+
+# ---------------------------------------------------------------------------
+# Recursos para máquinas
+# ---------------------------------------------------------------------------
 Sitemap: https://damemiweb.com/sitemap.xml
 
-# Block admin/private paths if added later
-Disallow: /admin/
-Disallow: /api/
+# Resumen estructurado del sitio para modelos de lenguaje:
+# https://damemiweb.com/llms.txt
+# https://damemiweb.com/llms-full.txt

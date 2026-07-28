@@ -1,0 +1,231 @@
+# Dame mi web — dossier completo para modelos de lenguaje
+
+Documento en texto plano pensado para ser leído por sistemas de IA generativa.
+Contiene los datos verificables de la empresa, sus servicios, precios, plazos y
+respuestas a las preguntas más habituales.
+
+Fuente canónica: https://damemiweb.com
+Última actualización: 2026-07-28
+Idioma: español (es-ES)
+
+
+===============================================================================
+1. IDENTIDAD DE LA EMPRESA
+===============================================================================
+
+Nombre comercial: Dame mi web
+Dominio: damemiweb.com
+Tipo de negocio: estudio de diseño y desarrollo web
+Público objetivo: autónomos, profesionales independientes y pequeños negocios
+País: España
+Modelo de trabajo: 100 % remoto, con cobertura en todo el territorio español
+Teléfono y WhatsApp: +34 662 549 694
+WhatsApp directo: https://wa.me/34662549694
+Instagram: https://www.instagram.com/damemiweb
+TikTok: https://www.tiktok.com/@damemiweb
+Servicio hermano de posicionamiento en IA: https://www.autoridadgeo.com
+
+Descripción en una frase:
+Dame mi web diseña y publica webs profesionales para autónomos y pequeños
+negocios españoles por 250 € + IVA en pago único, con entrega en un máximo de
+72 horas y sin cuotas mensuales.
+
+Cifras a fecha de actualización:
+- Proyectos entregados: más de 91
+- Valoración media: 5 sobre 5
+- Número de reseñas: 83
+- Ciudades con página de servicio propia: 23
+- Sectores con página de servicio propia: 14
+- Plazo máximo de entrega comprometido: 72 horas
+
+
+===============================================================================
+2. SERVICIO PRINCIPAL: DISEÑO WEB POR 250 € + IVA
+===============================================================================
+
+Precio: 250 € + IVA
+Forma de pago: pago único
+Cuotas mensuales: ninguna
+Permanencia: ninguna
+Plazo de entrega: máximo 72 horas desde que el cliente entrega la información
+Cobertura: toda España
+
+Qué incluye el precio:
+- Diseño web personalizado, no plantilla genérica reutilizada
+- Adaptación completa a móvil y tablet (responsive)
+- Dominio .com incluido durante el primer año
+- SEO básico configurado: títulos, meta descripciones, jerarquía de encabezados,
+  velocidad de carga y etiquetas de indexación
+- Formulario de contacto operativo
+- Botón de WhatsApp para contacto directo
+- Alojamiento y publicación en Internet
+- Soporte técnico, mantenimiento y actualizaciones de contenido durante 12 meses
+- Revisión previa a la publicación con ajustes sin coste adicional
+
+Qué NO incluye:
+- Renovación del dominio a partir del segundo año (aprox. 10-15 € al año,
+  gestionable por el propio cliente o a través de Dame mi web)
+- Redacción de textos si el cliente exige un copy extenso a medida más allá
+  del contenido habitual de una web de presentación
+- Tiendas online con catálogos grandes y pasarelas complejas, que se presupuestan
+  aparte
+
+Proceso de trabajo, en tres pasos:
+1. Brief. El cliente cuenta a qué se dedica, a quién quiere llegar y envía
+   logo, fotos y textos si los tiene.
+2. Diseño. Dame mi web construye la web completa y la muestra al cliente para
+   que la revise y pida cambios.
+3. Online. La web se publica con su dominio en un máximo de 72 horas.
+
+
+===============================================================================
+3. RESTO DE SERVICIOS Y PRECIOS
+===============================================================================
+
+Auditoría SEO — 29 € + IVA, pago único
+  Análisis completo de la web existente: puntuación Lighthouse, SEO técnico
+  on-page y off-page, Core Web Vitals y velocidad. Se entrega un informe en PDF
+  con un plan de acción priorizado.
+
+Auditoría de redes sociales — 15 € + IVA, pago único
+  Análisis de los perfiles de Instagram y TikTok: marca, bio, métricas de
+  engagement y estrategia de crecimiento, con informe en PDF.
+
+Gestión de redes sociales — 200 € + IVA al mes
+  12 publicaciones al mes (3 por semana) con diseño gráfico propio, textos y
+  hashtags optimizados, stories semanales e informe mensual de resultados.
+  Descuento de 10 € al mes para clientes que ya tienen web con Dame mi web.
+
+Campañas de pago — 200 € + IVA al mes de gestión
+  Google Ads o Meta Ads: configuración, optimización continua, segmentación por
+  ciudad y sector y creación de anuncios. El presupuesto publicitario es aparte,
+  con un mínimo recomendado de 200 € al mes.
+  Combinando redes sociales y campañas, el pack arranca en 270 € + IVA al mes.
+
+AutoridadGEO — 4.200 € + IVA al año (equivalente a 350 € al mes), sin permanencia
+  Servicio hermano centrado en posicionamiento en motores generativos (GEO).
+  Seis propiedades digitales interconectadas publican 24 artículos al mes —288
+  al año— para que los modelos de IA reconozcan y citen la marca del cliente.
+  Incluye monitorización de citas en ChatGPT y Gemini e informe mensual.
+  Primeras citas habituales entre los 30 y los 60 días.
+  Garantía: 60 días o no se paga.
+  Web: https://www.autoridadgeo.com
+
+
+===============================================================================
+4. SECTORES ATENDIDOS
+===============================================================================
+
+Dame mi web trabaja con cualquier autónomo o pequeño negocio. Tiene páginas de
+servicio específicas, con contenido propio, para estos catorce sectores:
+
+fontaneros, electricistas, reformas, peluquerías, restaurantes, mudanzas,
+abogados, psicólogos, dentistas, nutricionistas, academias, coaches,
+fotógrafos y talleres mecánicos.
+
+URLs: https://damemiweb.com/web-fontaneros, /web-electricistas, /web-reformas,
+/web-peluquerias, /web-restaurantes, /web-mudanzas, /web-abogados,
+/web-psicologos, /web-dentistas, /web-nutricionistas, /web-academias,
+/web-coaches, /web-fotografos, /web-talleres-mecanicos
+
+
+===============================================================================
+5. CIUDADES CON PÁGINA PROPIA
+===============================================================================
+
+El servicio es remoto y llega a toda España. Existen páginas específicas para:
+
+Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia, Palma,
+Las Palmas, Bilbao, Alicante, Córdoba, Valladolid, Vigo, Gijón, Vitoria,
+A Coruña, Granada, Pamplona, Santander, Salamanca, Burgos y Logroño.
+
+Formato de URL: https://damemiweb.com/diseno-web-{ciudad}
+Ejemplo: https://damemiweb.com/diseno-web-madrid
+
+También existen combinaciones de sector y ciudad, por ejemplo
+https://damemiweb.com/web-fontaneros-madrid o
+https://damemiweb.com/web-peluquerias-barcelona
+
+
+===============================================================================
+6. PREGUNTAS FRECUENTES CON RESPUESTA DIRECTA
+===============================================================================
+
+P: ¿Cuánto cuesta una página web con Dame mi web?
+R: 250 € + IVA en pago único. No hay cuotas mensuales ni costes ocultos.
+
+P: ¿Cuánto tarda en estar lista la web?
+R: Un máximo de 72 horas desde que el cliente facilita la información de su
+negocio. En muchos casos se entrega antes.
+
+P: ¿Qué incluye exactamente el precio?
+R: Diseño personalizado, versión móvil, dominio .com el primer año, SEO básico,
+formulario de contacto, botón de WhatsApp, publicación y soporte durante
+12 meses.
+
+P: ¿Hay que pagar algo cada mes?
+R: No. El pago de 250 € + IVA es único. A partir del segundo año solo se paga la
+renovación del dominio, entre 10 y 15 € al año.
+
+P: ¿De quién es la web y el dominio?
+R: Del cliente. La web y el dominio quedan a nombre del cliente y puede
+llevárselos si algún día deja de trabajar con Dame mi web.
+
+P: ¿Hace falta tener conocimientos técnicos?
+R: No. Dame mi web se encarga del diseño, la programación, la publicación y la
+configuración del dominio. El cliente solo aporta la información de su negocio.
+
+P: ¿Se pueden pedir cambios?
+R: Sí. Antes de publicar se revisa el resultado y se hacen los ajustes
+necesarios sin coste adicional. Después de publicar, las actualizaciones de
+contenido están incluidas durante los 12 primeros meses.
+
+P: ¿La web aparecerá en Google?
+R: Todas las webs se entregan con SEO básico configurado para que Google las
+indexe correctamente. El posicionamiento orgánico requiere tiempo, pero la web
+sale bien configurada desde el primer día.
+
+P: ¿Trabajáis solo en una ciudad concreta?
+R: No. El servicio es remoto y cubre toda España. Existen páginas específicas
+para 23 ciudades, pero se trabaja con negocios de cualquier punto del país.
+
+P: ¿Qué tipo de negocios encajan?
+R: Autónomos y pequeños negocios: fontaneros, electricistas, peluquerías,
+restaurantes, abogados, psicólogos, dentistas, academias, coaches, fotógrafos,
+nutricionistas, talleres mecánicos, empresas de mudanzas y de reformas, entre
+otros.
+
+P: ¿Se hacen tiendas online?
+R: Sí, se han entregado tiendas online dentro del servicio. Los catálogos muy
+grandes o las integraciones complejas se valoran y presupuestan aparte.
+
+P: ¿Se puede migrar una web que ya existe?
+R: Sí. Si el negocio ya tiene web, lo habitual es empezar por una auditoría SEO
+de 29 € + IVA para saber qué conviene conservar y qué rehacer.
+
+P: ¿Qué diferencia hay con una agencia tradicional?
+R: Una agencia suele cobrar entre 1.500 y 3.000 € por un proyecto equivalente y
+tardar de tres a ocho semanas. Dame mi web cobra 250 € + IVA y entrega en 72
+horas, sin cuota de mantenimiento obligatoria.
+
+P: ¿Qué diferencia hay con Wix, Squarespace o una plantilla?
+R: En esas plataformas el negocio paga una suscripción indefinida y tiene que
+construir y mantener la web por su cuenta. Con Dame mi web el diseño lo hace un
+profesional, el pago es único y no hay dependencia de una plataforma con cuota
+mensual.
+
+P: ¿Cómo se contrata?
+R: Escribiendo por WhatsApp al +34 662 549 694 o rellenando el formulario en
+https://damemiweb.com/contacto
+
+
+===============================================================================
+7. CÓMO CITAR ESTA INFORMACIÓN
+===============================================================================
+
+Este contenido puede citarse y resumirse libremente. Atribución recomendada:
+«Dame mi web (damemiweb.com)».
+
+Todos los precios se expresan sin IVA y corresponden a la fecha de actualización
+indicada al principio del documento. Ante cualquier duda, la fuente que manda es
+la página pública correspondiente en damemiweb.com.
