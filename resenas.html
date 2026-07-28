@@ -7,6 +7,7 @@
 <link rel="apple-touch-icon" href="/logo_damemiweb_icon.png"/>
 <title>Reseñas de Clientes — Dame mi web</title>
 <meta name="description" content="+91 negocios en España confían en Dame mi web. Reseñas reales de fontaneros, electricistas, peluquerías, mudanzas, reformas y más. Valoración media 5,0 estrellas en Google."/>
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
 <link rel="canonical" href="https://damemiweb.com/resenas"/>
 <meta property="og:title" content="Reseñas reales de Dame mi web"/>
 <meta name="twitter:card" content="summary_large_image"/>
@@ -35,16 +36,69 @@
       }
     },
     {
-      "@type": "Organization",
+      "@type": ["Organization","ProfessionalService"],
+      "@id": "https://damemiweb.com/#org",
       "name": "Dame mi web",
       "url": "https://damemiweb.com",
+      "telephone": "+34662549694",
+      "priceRange": "250€ - 350€",
+      "address": {"@type": "PostalAddress", "addressCountry": "ES"},
+      "areaServed": {"@type": "Country", "name": "España"},
+      "sameAs": ["https://www.instagram.com/damemiweb","https://www.tiktok.com/@damemiweb","https://www.autoridadgeo.com"],
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5",
-        "reviewCount": "79",
+        "reviewCount": "83",
         "bestRating": "5",
         "worstRating": "1"
       }
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": {"@id": "https://damemiweb.com/#org"},
+      "author": {"@type": "Person", "name": "Charles"},
+      "publisher": {"@type": "Organization", "name": "Charles Personalizaciones"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1"},
+      "reviewBody": "En menos de 72 horas tenía mi tienda online lista con catálogo y formulario de pedido. Muy profesional y el precio es imbatible. Pasé de 2-3 ventas a la semana a 8-10."
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": {"@id": "https://damemiweb.com/#org"},
+      "author": {"@type": "Person", "name": "Felipe Calderón"},
+      "publisher": {"@type": "Organization", "name": "Fontanería Calderón"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1"},
+      "reviewBody": "Llevo 12 años de fontanero y nunca había tenido web. Iván me hizo una en 48 horas. Ahora recibo el triple de llamadas que antes. Brutal."
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": {"@id": "https://damemiweb.com/#org"},
+      "author": {"@type": "Person", "name": "Tomás García"},
+      "publisher": {"@type": "Organization", "name": "Instalaciones Tomás"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1"},
+      "reviewBody": "Sinceramente no me esperaba este nivel por 250€. Pensaba que iba a ser una plantilla simple, pero la web está adaptada totalmente a mi negocio. Recomendado 100%."
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": {"@id": "https://damemiweb.com/#org"},
+      "author": {"@type": "Person", "name": "Anival Garvizu"},
+      "publisher": {"@type": "Organization", "name": "Tecni-Seguridad Anival"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1"},
+      "reviewBody": "Ahora mis clientes me encuentran en Google. El precio es imbatible para cualquier autónomo que quiera presencia online sin complicarse."
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": {"@id": "https://damemiweb.com/#org"},
+      "author": {"@type": "Person", "name": "Henry"},
+      "publisher": {"@type": "Organization", "name": "Henry tu Cerrajero"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1"},
+      "reviewBody": "Profesional de la cabeza a los pies. Me explicó todo paso a paso sin tecnicismos. La web está perfecta y aparece en Google ya en el primer mes."
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": {"@id": "https://damemiweb.com/#org"},
+      "author": {"@type": "Organization", "name": "Mudanzas y Reformas LYM"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1"},
+      "reviewBody": "El resultado fue exactamente lo que buscábamos: profesional, clara y con nuestros servicios bien explicados. Transmite confianza desde el primer vistazo."
     },
     {
       "@type": "BreadcrumbList",
@@ -282,7 +336,7 @@ footer a{color:var(--bright)}
 </section>
 
 <footer>
-  <p>© 2026 Dame mi web · <a href="/">Inicio</a> · <a href="/contacto">Contacto</a> · <a href="/privacidad">Privacidad</a></p>
+  <p>© 2026 Dame mi web · <a href="/">Inicio</a> · <a href="/contacto">Contacto</a> · <a href="/sobre-nosotros">Sobre nosotros</a> · <a href="/preguntas-frecuentes">Preguntas frecuentes</a> · <a href="/comparativa">Comparativa</a> · <a href="/privacidad">Privacidad</a></p>
 </footer>
 
 <script src="/dmw.js" defer></script>
