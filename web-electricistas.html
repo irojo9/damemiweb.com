@@ -22,10 +22,42 @@
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Diseño web para electricistas",
-  "provider": {"@type": "Organization", "name": "Dame mi web", "url": "https://damemiweb.com"},
+  "provider": {
+    "@type": [
+      "Organization",
+      "ProfessionalService"
+    ],
+    "@id": "https://damemiweb.com/#org",
+    "name": "Dame mi web",
+    "url": "https://damemiweb.com",
+    "telephone": "+34662549694",
+    "priceRange": "250€ - 350€",
+    "areaServed": {
+      "@type": "Country",
+      "name": "España"
+    },
+    "sameAs": [
+      "https://www.instagram.com/damemiweb",
+      "https://www.tiktok.com/@damemiweb",
+      "https://www.autoridadgeo.com"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "reviewCount": "83"
+    }
+  },
   "description": "Diseño web profesional para electricistas y empresas de electricidad en España por 250€ + IVA. SEO local, certificaciones visibles, formulario de presupuesto. Online en 72h.",
-  "offers": {"@type": "Offer", "price": "250", "priceCurrency": "EUR"},
-  "areaServed": {"@type": "Country", "name": "España"}
+  "offers": {
+    "@type": "Offer",
+    "price": "250",
+    "priceCurrency": "EUR"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "España"
+  }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -183,13 +215,33 @@ footer p{font-size:12px;font-weight:300;color:rgba(255,255,255,.2);margin-bottom
 </script>
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"¿Puedo mostrar mis certificaciones en la web?","acceptedAnswer":{"@type":"Answer","text":"Sí. Las certificaciones y números de registro son un diferencial clave que destacamos visualmente."}},
-    {"@type":"Question","name":"¿La web funciona para conseguir clientes empresa?","acceptedAnswer":{"@type":"Answer","text":"Sí. Diseñamos la web para captar tanto particulares como empresas o comunidades de vecinos."}},
-    {"@type":"Question","name":"¿Qué incluye el precio de 250€ + IVA?","acceptedAnswer":{"@type":"Answer","text":"Diseño web completo, dominio .com el primer año, SEO básico, formulario de contacto y publicación en 72 horas. Sin mensualidades."}},
-    {"@type":"Question","name":"¿En cuánto tiempo tengo mi web lista?","acceptedAnswer":{"@type":"Answer","text":"En 72 horas desde que nos facilitas la información de tu negocio."}}
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Puedo mostrar mis trabajos anteriores en la web?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, incluimos una sección de portfolio o galería donde puedes mostrar instalaciones realizadas, antes/después y proyectos destacados."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La web funciona para conseguir clientes empresas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Diseñamos la web para captar tanto clientes particulares como empresas o comunidades de vecinos, con secciones diferenciadas para cada perfil."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo añadir mi número de instalador autorizado?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Por supuesto. Las certificaciones y números de registro son un diferencial importante que destacamos en la web."
+      }
+    }
   ]
 }
 </script>

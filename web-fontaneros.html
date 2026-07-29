@@ -22,10 +22,42 @@
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Diseño web para fontaneros",
-  "provider": {"@type": "Organization", "name": "Dame mi web", "url": "https://damemiweb.com"},
+  "provider": {
+    "@type": [
+      "Organization",
+      "ProfessionalService"
+    ],
+    "@id": "https://damemiweb.com/#org",
+    "name": "Dame mi web",
+    "url": "https://damemiweb.com",
+    "telephone": "+34662549694",
+    "priceRange": "250€ - 350€",
+    "areaServed": {
+      "@type": "Country",
+      "name": "España"
+    },
+    "sameAs": [
+      "https://www.instagram.com/damemiweb",
+      "https://www.tiktok.com/@damemiweb",
+      "https://www.autoridadgeo.com"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "reviewCount": "83"
+    }
+  },
   "description": "Diseño web profesional para fontaneros y fontanerías en España por 250€ + IVA. Con SEO local, formulario de urgencias 24h y dominio incluido. Online en 72 horas.",
-  "offers": {"@type": "Offer", "price": "250", "priceCurrency": "EUR"},
-  "areaServed": {"@type": "Country", "name": "España"}
+  "offers": {
+    "@type": "Offer",
+    "price": "250",
+    "priceCurrency": "EUR"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "España"
+  }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -183,13 +215,41 @@ footer p{font-size:12px;font-weight:300;color:rgba(255,255,255,.2);margin-bottom
 </script>
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"¿Necesito fotos de mis trabajos para tener web?","acceptedAnswer":{"@type":"Answer","text":"No es imprescindible. Podemos crear tu web con imágenes de stock profesionales mientras consigues las tuyas propias."}},
-    {"@type":"Question","name":"¿Apareceré en Google cuando busquen fontanero en mi ciudad?","acceptedAnswer":{"@type":"Answer","text":"Tu web estará optimizada con SEO básico desde el primer día. Los resultados mejoran en 2-4 meses."}},
-    {"@type":"Question","name":"¿Puedo añadir mi zona de cobertura en la web?","acceptedAnswer":{"@type":"Answer","text":"Sí. Incluimos las ciudades y barrios donde trabajas para que Google te posicione correctamente en cada zona."}},
-    {"@type":"Question","name":"¿Qué incluye el precio de 250€ + IVA?","acceptedAnswer":{"@type":"Answer","text":"Diseño web completo, dominio .com el primer año, SEO básico, formulario de contacto y publicación en 72 horas. Sin mensualidades."}}
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Necesito fotos de mis trabajos para tener web?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No es imprescindible. Podemos crear tu web con imágenes de stock profesionales de fontanería mientras consigues las tuyas propias. Después puedes subirlas tú o pedírnoslo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Apareceré en Google cuando busquen \"fontanero + mi ciudad\"?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tu web estará optimizada con SEO básico para esa búsqueda desde el primer día. Los resultados en Google mejoran con el tiempo, normalmente en 2-4 meses verás un aumento de visitas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo añadir mi zona de cobertura en la web?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Incluimos una sección con las ciudades, barrios o provincias donde trabajas para que Google te posicione correctamente en cada zona."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si tengo urgencias fuera de horario?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Configuramos un botón de llamada directa y un mensaje automático de WhatsApp para que los clientes te contacten incluso cuando no estás disponible."
+      }
+    }
   ]
 }
 </script>

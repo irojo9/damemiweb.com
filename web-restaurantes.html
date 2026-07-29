@@ -22,10 +22,42 @@
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Diseño web para restaurantes",
-  "provider": {"@type": "Organization", "name": "Dame mi web", "url": "https://damemiweb.com"},
+  "provider": {
+    "@type": [
+      "Organization",
+      "ProfessionalService"
+    ],
+    "@id": "https://damemiweb.com/#org",
+    "name": "Dame mi web",
+    "url": "https://damemiweb.com",
+    "telephone": "+34662549694",
+    "priceRange": "250€ - 350€",
+    "areaServed": {
+      "@type": "Country",
+      "name": "España"
+    },
+    "sameAs": [
+      "https://www.instagram.com/damemiweb",
+      "https://www.tiktok.com/@damemiweb",
+      "https://www.autoridadgeo.com"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "reviewCount": "83"
+    }
+  },
   "description": "Diseño web profesional para restaurantes, bares y cafeterías en España por 250€ + IVA. Con carta online, reservas, horarios y ubicación. Online en 72 horas.",
-  "offers": {"@type": "Offer", "price": "250", "priceCurrency": "EUR"},
-  "areaServed": {"@type": "Country", "name": "España"}
+  "offers": {
+    "@type": "Offer",
+    "price": "250",
+    "priceCurrency": "EUR"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "España"
+  }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -183,13 +215,33 @@ footer p{font-size:12px;font-weight:300;color:rgba(255,255,255,.2);margin-bottom
 </script>
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"¿Puedo actualizar la carta yo mismo?","acceptedAnswer":{"@type":"Answer","text":"Durante los primeros 30 días incluimos cambios sin coste. Después puedes contratar mantenimiento desde 20 euros al mes."}},
-    {"@type":"Question","name":"¿La web sirve también para pedidos a domicilio?","acceptedAnswer":{"@type":"Answer","text":"Podemos integrar un enlace a Glovo, JustEat o Uber Eats, o crear un formulario de pedidos para recogida en local."}},
-    {"@type":"Question","name":"¿Qué incluye el precio de 250€ + IVA?","acceptedAnswer":{"@type":"Answer","text":"Diseño web completo, dominio .com el primer año, carta online, formulario de reserva y publicación en 72 horas. Sin mensualidades."}},
-    {"@type":"Question","name":"¿Incluye integración con Google Maps?","acceptedAnswer":{"@type":"Answer","text":"Sí. Incluimos mapa integrado y ayudamos a optimizar tu ficha de Google Business para aparecer en Maps."}}
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Puedo actualizar la carta yo mismo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Los cambios de carta están incluidos durante los doce primeros meses, sin coste adicional ni cuota mensual. Nos envías la carta nueva por WhatsApp y la actualizamos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La web sirve también para pedidos a domicilio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Podemos integrar un enlace a tu perfil de Glovo, JustEat o Uber Eats, o crear un formulario de pedidos para recogida en local."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Incluye integración con Google Maps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Incluimos mapa integrado y te ayudamos a optimizar tu ficha de Google Business para aparecer en las búsquedas de Maps."
+      }
+    }
   ]
 }
 </script>
@@ -303,7 +355,7 @@ footer p{font-size:12px;font-weight:300;color:rgba(255,255,255,.2);margin-bottom
       <h2>Dudas habituales<br><em>de restaurantes</em></h2>
     </div>
     <div class="faq-list" id="faqs">
-      <div class="fi open"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿Puedo actualizar la carta yo mismo?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Sí. Durante los primeros 30 días incluimos cambios de carta sin coste. Después puedes contratarnos mantenimiento mensual desde 20€/mes.</div></div></div>
+      <div class="fi open"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿Puedo actualizar la carta yo mismo?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Sí. Los cambios de carta están incluidos durante los doce primeros meses, sin coste adicional ni cuota mensual. Nos envías la carta nueva por WhatsApp y la actualizamos.</div></div></div>
       <div class="fi"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿La web sirve también para pedidos a domicilio?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Podemos integrar un enlace a tu perfil de Glovo, JustEat o Uber Eats, o crear un formulario de pedidos para recogida en local.</div></div></div>
       <div class="fi"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿Incluye integración con Google Maps?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Sí. Incluimos mapa integrado y te ayudamos a optimizar tu ficha de Google Business para aparecer en las búsquedas de Maps.</div></div></div>
     </div>

@@ -22,10 +22,42 @@
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Diseño web para empresas de mudanzas",
-  "provider": {"@type": "Organization", "name": "Dame mi web", "url": "https://damemiweb.com"},
+  "provider": {
+    "@type": [
+      "Organization",
+      "ProfessionalService"
+    ],
+    "@id": "https://damemiweb.com/#org",
+    "name": "Dame mi web",
+    "url": "https://damemiweb.com",
+    "telephone": "+34662549694",
+    "priceRange": "250€ - 350€",
+    "areaServed": {
+      "@type": "Country",
+      "name": "España"
+    },
+    "sameAs": [
+      "https://www.instagram.com/damemiweb",
+      "https://www.tiktok.com/@damemiweb",
+      "https://www.autoridadgeo.com"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "reviewCount": "83"
+    }
+  },
   "description": "Diseño web profesional para empresas de mudanzas, portes y transportes en España por 250€ + IVA. Con formulario de presupuesto, zona de cobertura y galería. Online en 72h.",
-  "offers": {"@type": "Offer", "price": "250", "priceCurrency": "EUR"},
-  "areaServed": {"@type": "Country", "name": "España"}
+  "offers": {
+    "@type": "Offer",
+    "price": "250",
+    "priceCurrency": "EUR"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "España"
+  }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -183,13 +215,33 @@ footer p{font-size:12px;font-weight:300;color:rgba(255,255,255,.2);margin-bottom
 </script>
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"¿Puedo mostrar mis rutas habituales en la web?","acceptedAnswer":{"@type":"Answer","text":"Sí. Creamos una sección de rutas frecuentes que también mejora el SEO para esas búsquedas específicas."}},
-    {"@type":"Question","name":"¿El formulario de presupuesto llega a mi móvil?","acceptedAnswer":{"@type":"Answer","text":"Sí. Cada solicitud llega a tu email y puedes configurarlo para recibir también aviso por WhatsApp."}},
-    {"@type":"Question","name":"¿Qué incluye el precio de 250€ + IVA?","acceptedAnswer":{"@type":"Answer","text":"Diseño web completo, dominio .com el primer año, SEO básico, formulario de presupuesto y publicación en 72 horas. Sin mensualidades."}},
-    {"@type":"Question","name":"¿En cuánto tiempo tengo mi web lista?","acceptedAnswer":{"@type":"Answer","text":"En 72 horas desde que nos facilitas la información de tu negocio."}}
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Puedo mostrar mis rutas habituales en la web?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Creamos una sección de rutas frecuentes (Madrid-Barcelona, Madrid-Valencia...) que también ayuda al SEO para esas búsquedas específicas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El formulario de presupuesto llega a mi móvil?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Cada solicitud llega a tu email y puedes configurarlo para que también te avise por WhatsApp."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo añadir opiniones de clientes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Incluimos una sección de testimonios y enlace directo a tus reseñas de Google para reforzar la confianza."
+      }
+    }
   ]
 }
 </script>

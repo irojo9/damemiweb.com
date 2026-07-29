@@ -22,10 +22,42 @@
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Diseño web para peluquerías",
-  "provider": {"@type": "Organization", "name": "Dame mi web", "url": "https://damemiweb.com"},
+  "provider": {
+    "@type": [
+      "Organization",
+      "ProfessionalService"
+    ],
+    "@id": "https://damemiweb.com/#org",
+    "name": "Dame mi web",
+    "url": "https://damemiweb.com",
+    "telephone": "+34662549694",
+    "priceRange": "250€ - 350€",
+    "areaServed": {
+      "@type": "Country",
+      "name": "España"
+    },
+    "sameAs": [
+      "https://www.instagram.com/damemiweb",
+      "https://www.tiktok.com/@damemiweb",
+      "https://www.autoridadgeo.com"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "reviewCount": "83"
+    }
+  },
   "description": "Diseño web profesional para peluquerías, barberías y salones de belleza en España por 250€ + IVA. Con reservas online, lista de servicios y precios. Online en 72 horas.",
-  "offers": {"@type": "Offer", "price": "250", "priceCurrency": "EUR"},
-  "areaServed": {"@type": "Country", "name": "España"}
+  "offers": {
+    "@type": "Offer",
+    "price": "250",
+    "priceCurrency": "EUR"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "España"
+  }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -183,13 +215,33 @@ footer p{font-size:12px;font-weight:300;color:rgba(255,255,255,.2);margin-bottom
 </script>
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"¿Puedo mostrar mis tarifas en la web?","acceptedAnswer":{"@type":"Answer","text":"Sí y te lo recomendamos. Los clientes que conocen los precios antes tienen más decisión de compra."}},
-    {"@type":"Question","name":"¿Las reservas online son difíciles de gestionar?","acceptedAnswer":{"@type":"Answer","text":"No. El formulario llega a tu WhatsApp o email y tú confirmas. No necesitas ningún software especial."}},
-    {"@type":"Question","name":"¿Qué incluye el precio de 250€ + IVA?","acceptedAnswer":{"@type":"Answer","text":"Diseño web completo, dominio .com el primer año, SEO básico, formulario de reserva y publicación en 72 horas. Sin mensualidades."}},
-    {"@type":"Question","name":"¿En cuánto tiempo tengo mi web lista?","acceptedAnswer":{"@type":"Answer","text":"En 72 horas desde que nos facilitas la información de tu negocio."}}
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Puedo mostrar mis tarifas en la web?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, te recomendamos mostrarlo. Los clientes que conocen los precios antes de llamar tienen menos dudas y más decisión de compra."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Las reservas online son difíciles de gestionar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. El formulario de reserva llega a tu WhatsApp o email y tú confirmas. No necesitas ningún software especial."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo actualizar las fotos yo mismo después?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Los cambios y el mantenimiento están incluidos durante los doce primeros meses, sin coste adicional: precios, servicios, horarios o fotos del salón. Nos lo pides por WhatsApp y lo actualizamos."
+      }
+    }
   ]
 }
 </script>
@@ -305,7 +357,7 @@ footer p{font-size:12px;font-weight:300;color:rgba(255,255,255,.2);margin-bottom
     <div class="faq-list" id="faqs">
       <div class="fi open"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿Puedo mostrar mis tarifas en la web?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Sí, te recomendamos mostrarlo. Los clientes que conocen los precios antes de llamar tienen menos dudas y más decisión de compra.</div></div></div>
       <div class="fi"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿Las reservas online son difíciles de gestionar?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">No. El formulario de reserva llega a tu WhatsApp o email y tú confirmas. No necesitas ningún software especial.</div></div></div>
-      <div class="fi"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿Puedo actualizar las fotos yo mismo después?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Sí, durante los primeros 30 días incluimos cambios sin coste. Después puedes contratarnos el mantenimiento o hacerlo tú con acceso al gestor.</div></div></div>
+      <div class="fi"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿Puedo actualizar las fotos yo mismo después?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Sí. Los cambios y el mantenimiento están incluidos durante los doce primeros meses, sin coste adicional: precios, servicios, horarios o fotos del salón. Nos lo pides por WhatsApp y lo actualizamos.</div></div></div>
     </div>
   </div>
 </section>

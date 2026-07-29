@@ -22,10 +22,42 @@
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Diseño web para empresas de reformas",
-  "provider": {"@type": "Organization", "name": "Dame mi web", "url": "https://damemiweb.com"},
+  "provider": {
+    "@type": [
+      "Organization",
+      "ProfessionalService"
+    ],
+    "@id": "https://damemiweb.com/#org",
+    "name": "Dame mi web",
+    "url": "https://damemiweb.com",
+    "telephone": "+34662549694",
+    "priceRange": "250€ - 350€",
+    "areaServed": {
+      "@type": "Country",
+      "name": "España"
+    },
+    "sameAs": [
+      "https://www.instagram.com/damemiweb",
+      "https://www.tiktok.com/@damemiweb",
+      "https://www.autoridadgeo.com"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "reviewCount": "83"
+    }
+  },
   "description": "Diseño web profesional para empresas de reformas, reformas integrales y construcción en España por 250€ + IVA. Con portfolio de obras, presupuestos y SEO local.",
-  "offers": {"@type": "Offer", "price": "250", "priceCurrency": "EUR"},
-  "areaServed": {"@type": "Country", "name": "España"}
+  "offers": {
+    "@type": "Offer",
+    "price": "250",
+    "priceCurrency": "EUR"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "España"
+  }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -183,13 +215,33 @@ footer p{font-size:12px;font-weight:300;color:rgba(255,255,255,.2);margin-bottom
 </script>
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"¿Sin fotos de obras puedo tener web?","acceptedAnswer":{"@type":"Answer","text":"Sí. Podemos usar imágenes de stock profesionales y añadir tus fotos reales cuando las tengas."}},
-    {"@type":"Question","name":"¿Puedo mostrar presupuestos orientativos?","acceptedAnswer":{"@type":"Answer","text":"Sí. Incluir precios orientativos atrae clientes con presupuesto adecuado y reduce llamadas no cualificadas."}},
-    {"@type":"Question","name":"¿Qué incluye el precio de 250€ + IVA?","acceptedAnswer":{"@type":"Answer","text":"Diseño web completo, dominio .com el primer año, SEO básico, portfolio de obras y publicación en 72 horas. Sin mensualidades."}},
-    {"@type":"Question","name":"¿En cuánto tiempo tengo mi web lista?","acceptedAnswer":{"@type":"Answer","text":"En 72 horas desde que nos facilitas la información de tu negocio."}}
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Sin fotos de obras puedo tener web?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Podemos usar imágenes de stock profesionales de reformas y añadir tus fotos reales en cuanto las tengas. Te recomendamos ir sacando fotos de tus trabajos desde ya."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo mostrar presupuestos orientativos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Incluir precios orientativos por tipo de reforma atrae clientes con presupuesto adecuado y reduce llamadas de clientes que no pueden permitírselo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La web ayuda a conseguir clientes fuera de mi ciudad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Optimizamos la web para las ciudades donde trabajas y creamos contenido SEO específico para cada zona."
+      }
+    }
   ]
 }
 </script>

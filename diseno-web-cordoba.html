@@ -27,7 +27,7 @@
   "@context":"https://schema.org",
   "@type":"Service",
   "name":"Diseño web profesional en Córdoba",
-  "provider":{"@type":"Organization","name":"Dame mi web","url":"https://damemiweb.com","telephone":"+34662549694"},
+  "provider":{"@type": ["Organization", "ProfessionalService"], "@id": "https://damemiweb.com/#org", "name": "Dame mi web", "url": "https://damemiweb.com", "telephone": "+34662549694", "priceRange": "250€ - 350€", "areaServed": {"@type": "Country", "name": "España"}, "sameAs": ["https://www.instagram.com/damemiweb", "https://www.tiktok.com/@damemiweb", "https://www.autoridadgeo.com"], "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5", "bestRating": "5", "reviewCount": "83"}},
   "description":"Diseño web profesional para autónomos y negocios en Córdoba por 250€ + IVA. Responsive, SEO local para Córdoba incluido y dominio .com. Online en 72 horas. Sin mensualidades.",
   "areaServed":{"@type":"City","name":"Córdoba","addressCountry":"ES"},
   "offers":{"@type":"Offer","price":"250","priceCurrency":"EUR","description":"Pago único. Sin mensualidades. Dominio .com incluido el primer año."}
@@ -141,14 +141,49 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 </style>
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"¿Hacéis webs para negocios en toda España?","acceptedAnswer":{"@type":"Answer","text":"Sí. Trabajamos con autónomos y negocios de toda España de forma remota. Solo necesitas enviarnos la información por WhatsApp."}},
-    {"@type":"Question","name":"¿Mi web aparecerá en Google en mi ciudad?","acceptedAnswer":{"@type":"Answer","text":"Sí. Optimizamos tu web para búsquedas locales en tu ciudad desde el primer día. Los resultados mejoran en 2-4 meses."}},
-    {"@type":"Question","name":"¿Cuánto tiempo tarda en estar lista mi web?","acceptedAnswer":{"@type":"Answer","text":"72 horas desde que nos facilitas la información. En muchos casos la entregamos antes."}},
-    {"@type":"Question","name":"¿Qué incluye el precio de 250€ + IVA?","acceptedAnswer":{"@type":"Answer","text":"Diseño web completo, dominio .com el primer año, SEO básico, formulario de contacto y publicación. Todo en un pago único, sin mensualidades."}},
-    {"@type":"Question","name":"¿Puedo hacer cambios después de publicarla?","acceptedAnswer":{"@type":"Answer","text":"Sí. Incluimos soporte durante los primeros 30 días sin coste. Mantenimiento continuo desde 20 euros al mes."}}
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Hacéis webs para negocios en Córdoba?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Trabajamos con autónomos y pequeños negocios de toda España, incluyendo Córdoba y su área metropolitana. Todo se gestiona de forma remota — solo necesitas enviarnos la información de tu negocio por WhatsApp o email."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Mi web aparecerá en Google cuando busquen en Córdoba?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Optimizamos tu web para búsquedas locales en Córdoba desde el primer día: título, meta descripción, contenido y datos estructurados mencionan tu ciudad y zona de servicio. Los resultados en Google mejoran con el tiempo, normalmente en 2-4 meses."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tiempo tarda en estar lista?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "72 horas desde que nos facilitas la información de tu negocio. En muchos casos la entregamos antes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Dais servicio en toda Córdoba?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Trabajamos con autónomos y negocios de todo Córdoba: desde Centro y Judería hasta Levante o Poniente, y también en municipios cercanos como Villarrubia, Alcolea o el área metropolitana. Todo de forma remota, sin desplazamientos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué incluye el precio de 250€ + IVA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Diseño web completo y personalizado, adaptado a móviles y tablets, dominio .com o .es el primer año, SEO básico configurado, formulario de contacto y publicación. Todo en un pago único, sin mensualidades."
+      }
+    }
   ]
 }
 </script>
@@ -241,7 +276,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
         <div class="inc-row"><span class="inc-n">02</span><div><h3>Dominio .com incluido</h3><p>Tu dominio .com o .es el primer año sin coste extra. Renovación de 10-15€/año a partir del segundo.</p></div></div>
         <div class="inc-row"><span class="inc-n">03</span><div><h3>SEO básico optimizado</h3><p>Title, meta descriptions, velocidad y datos estructurados configurados para aparecer en Google Córdoba.</p></div></div>
         <div class="inc-row"><span class="inc-n">04</span><div><h3>Formulario de contacto</h3><p>Los clientes te escriben directamente desde la web. Las solicitudes llegan a tu email o WhatsApp.</p></div></div>
-        <div class="inc-row"><span class="inc-n">05</span><div><h3>30 días de soporte</h3><p>Cambios de texto e imágenes sin coste el primer mes. Mantenimiento desde 20€/mes a partir del segundo.</p></div></div>
+        <div class="inc-row"><span class="inc-n">05</span><div><h3>12 meses de soporte</h3><p>Soporte técnico, mantenimiento y cambios de textos e imágenes incluidos durante los doce primeros meses, sin coste adicional ni cuota mensual.</p></div></div>
       </div>
     </div>
     <div>
