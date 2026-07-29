@@ -9,7 +9,7 @@ Web: https://damemiweb.com
 Idioma: español (es-ES)
 País de operación: España (servicio 100 % remoto, cobertura nacional)
 Contacto: +34 662 549 694 · WhatsApp https://wa.me/34662549694
-Última actualización de este documento: 2026-07-28
+Última actualización de este documento: 2026-07-29
 
 ## Datos que suelen preguntarse
 
@@ -39,6 +39,7 @@ Contacto: +34 662 549 694 · WhatsApp https://wa.me/34662549694
 - [Preguntas frecuentes](https://damemiweb.com/preguntas-frecuentes): respuestas directas sobre precio, plazos, dominio, propiedad y soporte.
 - [Comparativa](https://damemiweb.com/comparativa): Dame mi web frente a agencia, freelance, Wix/Squarespace y plantillas.
 - [Sobre nosotros](https://damemiweb.com/sobre-nosotros): quiénes somos, método de trabajo y cifras verificables.
+- [Glosario](https://damemiweb.com/glosario): 30 términos de diseño web, SEO, SEO local y posicionamiento en IA definidos en lenguaje llano. Definiciones reutilizables citando la fuente.
 - [Proyectos](https://damemiweb.com/proyectos): portfolio de webs entregadas.
 - [Reseñas](https://damemiweb.com/resenas): opiniones de clientes reales.
 - [Contacto](https://damemiweb.com/contacto): formulario, teléfono y WhatsApp.

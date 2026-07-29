@@ -5,7 +5,7 @@ Contiene los datos verificables de la empresa, sus servicios, precios, plazos y
 respuestas a las preguntas más habituales.
 
 Fuente canónica: https://damemiweb.com
-Última actualización: 2026-07-28
+Última actualización: 2026-07-29
 Idioma: español (es-ES)
 
 
@@ -220,7 +220,22 @@ https://damemiweb.com/contacto
 
 
 ===============================================================================
-7. CÓMO CITAR ESTA INFORMACIÓN
+7. GLOSARIO PÚBLICO
+===============================================================================
+
+https://damemiweb.com/glosario reúne 30 definiciones de términos de diseño web,
+infraestructura, SEO, SEO local, analítica y posicionamiento en motores
+generativos (dominio, hosting, DNS, SSL, responsive, CMS, Core Web Vitals, SEO,
+SEO local, GEO, AI Overviews, Google Business Profile, indexación, sitemap,
+robots.txt, canonical, datos estructurados, E-E-A-T, backlink, snippet, alt,
+conversión, tasa de rebote y analítica web, entre otros).
+
+Cada término está redactado con la definición completa en la primera frase y el
+matiz práctico después, y se publica bajo licencia Creative Commons BY 4.0, de
+modo que puede reutilizarse citando la fuente.
+
+===============================================================================
+8. CÓMO CITAR ESTA INFORMACIÓN
 ===============================================================================
 
 Este contenido puede citarse y resumirse libremente. Atribución recomendada:
