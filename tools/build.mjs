@@ -171,7 +171,11 @@ function valoresOficiales(html) {
   html = html.replace(/5 sobre 5 con \d+ /g, `5 sobre 5 con ${R.count} `);
 
   // --- Proyectos: la cifra oficial es una sola ---
-  html = html.replace(/\b32\+\s*(?=<)/g, P.display);           // barras de estadísticas
+  // Barras de estadísticas: "32+" y "91+" sueltos pasan al formato oficial "+91".
+  // El patrón exige que el número ocupe el elemento entero para no tocar
+  // cadenas codificadas en base64 (fuentes incrustadas) que contienen "91+".
+  html = html.replace(/>(?:32|91)\+</g, `>${P.display}<`);
+  html = html.replace(/\b32\+\s*(?=<)/g, P.display);
   html = html.replace(/\+32 webs/g, `${P.display} webs`);
   html = html.replace(/\b91\+ (proyectos|clientes|negocios|webs)/g, `${P.display} $1`);
   html = html.replace(/más de 91\b/gi, m => m[0] === 'M' ? `Más de ${P.count}` : `más de ${P.count}`);
@@ -279,12 +283,84 @@ export function contarProyectos() {
   return cuenta;
 }
 
-/** Reescribe los contadores visibles de /proyectos con la cifra real. */
+/** Reescribe los contadores visibles con la cifra real de cada bloque. */
 function contadoresProyectos(html, file) {
-  if (file !== 'proyectos.html') return html;
   const cuenta = contarProyectos();
-  return html.replace(/(<div class="sect-block-title">([^<]+)<\/div>\s*<div class="sect-block-count">)\d+( proyectos<\/div>)/g,
-    (m, a, titulo, c) => a + (cuenta.get(titulo.trim()) ?? 0) + c);
+
+  if (file === 'proyectos.html') {
+    return html.replace(/(<div class="sect-block-title">([^<]+)<\/div>\s*<div class="sect-block-count">)\d+( proyectos<\/div>)/g,
+      (m, a, titulo, c) => a + (cuenta.get(titulo.trim()) ?? 0) + c);
+  }
+
+  if (file === 'index.html') {
+    // Las tarjetas de sector de la home mostraban cifras inventadas
+    // (13, 13, 8, 5, 11, 4). Salen del recuento real de /proyectos.
+    return html.replace(
+      /(<div class="sc-num"[^>]*>)(\d+)(<\/div>\s*<\/div>\s*<div class="sc-name">([^<]+)<\/div>)/g,
+      (m, a, n, resto, nombre) => {
+        const real = cuenta.get(nombre.trim());
+        if (real === undefined) { avisos.push(`index.html: sin recuento para la tarjeta "${nombre.trim()}"`); return m; }
+        return a + real + resto;
+      });
+  }
+  return html;
+}
+
+// ---------------------------------------------------------------------------
+// FASE 1 — Enlaces de sector en las páginas de ciudad
+// ---------------------------------------------------------------------------
+
+/**
+ * En las páginas de ciudad, la lista "Web para tu sector" prometía
+ * "Fontaneros en Madrid" pero enlazaba a la página genérica /web-fontaneros.
+ *
+ * Ahora: si existe /web-[sector]-[ciudad] se enlaza ahí y se mantiene el texto
+ * con ciudad; si no existe, el texto pasa a "Web para [sector]" para no
+ * prometer una página local que no hay.
+ */
+function enlacesSectorCiudad(html, file) {
+  const m = file.match(/^diseno-web-(.+)\.html$/);
+  if (!m) return html;
+  const ciudadSlug = m[1];
+  const ciudad = CIUDADES.find(c => c.slug === 'diseno-web-' + ciudadSlug);
+  if (!ciudad) return html;
+
+  // Se retira el bloque de estilos generado en pasadas anteriores para que el
+  // script sea idempotente.
+  html = html.replace(/<style>\n\.sec-ciudad-row\{[\s\S]*?<\/style>/g, '');
+
+  const marca = '<div style="display:flex;flex-direction:column;gap:8px;margin-top:16px">';
+  const i = html.indexOf(marca);
+  if (i === -1) return html;
+  const fin = bloque(html, 'div', i);
+  if (fin === null) return html;
+
+  // Qué sectores se listaban en esta ciudad (se respeta la selección editorial).
+  // Se compara contra los slugs conocidos, no con un patrón: "web-talleres-
+  // mecanicos-madrid" no debe leerse como el sector "web-talleres".
+  const trozo = html.slice(i, fin);
+  const listados = SECTORES.filter(s =>
+    trozo.includes(`href="/${s.slug}"`) || trozo.includes(`href="/${s.slug}-${ciudadSlug}"`));
+  const sectores = listados.length ? listados : SECTORES.slice(0, 6);
+
+  const filas = sectores.map(s => {
+    const local = fs.existsSync(path.join(ROOT, `${s.slug}-${ciudadSlug}.html`));
+    const href = local ? `/${s.slug}-${ciudadSlug}` : `/${s.slug}`;
+    const texto = local ? `${s.label} en ${ciudad.label}` : `Web para ${s.label.toLowerCase()}`;
+    return `        <a href="${href}" class="sec-ciudad-row">`
+      + `<span class="sec-ciudad-ico">${icon(s.icon, { size: 19 })}</span>`
+      + `<span><span class="sec-ciudad-n">${texto}</span><span class="sec-ciudad-l">Ver página →</span></span></a>`;
+  }).join('\n');
+
+  const css = `<style>
+.sec-ciudad-row{display:flex;align-items:center;gap:12px;padding:14px 18px;background:#0d0d0d;border:1px solid var(--border,#1E1E1E);border-radius:10px;text-decoration:none;transition:border-color .15s}
+.sec-ciudad-row:hover{border-color:#2563EB}
+.sec-ciudad-ico{display:inline-flex;color:#7FA3F5;flex-shrink:0}
+.sec-ciudad-n{display:block;font-size:14px;font-weight:500;color:var(--white,#fff)}
+.sec-ciudad-l{display:block;font-size:11px;color:var(--blue,#2563EB);margin-top:2px}
+</style>`;
+
+  return html.slice(0, i) + css + marca + '\n' + filas + '\n      </div>' + html.slice(fin);
 }
 
 // ---------------------------------------------------------------------------
@@ -401,6 +477,7 @@ function main() {
     html = marca(html);
     html = valoresOficiales(html);
     html = contadoresProyectos(html, file);
+    html = enlacesSectorCiudad(html, file);
     html = inyectarChrome(html, file);
     html = inyectarScriptChrome(html, file);
     html = marcarWhatsApp(html, file);
