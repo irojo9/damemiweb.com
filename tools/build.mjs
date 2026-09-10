@@ -265,9 +265,12 @@ function aMayusculaInicial(texto) {
  * mayúscula solo inicial conservando los nombres propios.
  */
 function titularesSinMayusculas(html, file) {
-  const esCiudad = /^diseno-web-/.test(file)
-    || SECTORES.some(s => new RegExp(`^${s.slug}-[a-z-]+\\.html$`).test(file));
-  if (!esCiudad) return html;
+  // Se aplica a toda la familia de plantillas de ciudad y de sector: varias
+  // paginas de sector usan el mismo maquetado a voces ("TODO PARA TU
+  // ACADEMIA"), y dejarlas en mayusculas las descuadraria de sus propias
+  // paginas de sector x ciudad. El filtro real es el heuristico de abajo:
+  // solo se toca un titular que este de verdad en mayusculas.
+  if (!/^(diseno-)?web-/.test(file)) return html;
 
   return html.replace(/<(h1|h2|h3)\b([^>]*)>([\s\S]*?)<\/\1>/g, (m, tag, attrs, dentro) => {
     const texto = dentro.replace(/<[^>]+>/g, ' ');
