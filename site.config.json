@@ -1,0 +1,125 @@
+{
+  "_comment": "FUENTE ÚNICA DE VERDAD de damemiweb.com. Todas las plantillas, metas y JSON-LD leen de aquí a través de tools/build.mjs. Si cambias un valor, ejecuta `node tools/build.mjs` y commitea el resultado.",
+
+  "site": {
+    "domain": "https://www.damemiweb.com",
+    "domainLegacy": "https://damemiweb.com",
+    "brand": "Dame mi web",
+    "brandAlt": "Damemiweb",
+    "trailingSlash": false,
+    "lastUpdated": "2026-09-10",
+    "ga4": "G-B27EE57BLZ",
+    "robotsIndexable": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+    "phone": "+34662549694",
+    "phoneDisplay": "662 549 694",
+    "instagram": "https://www.instagram.com/damemiweb",
+    "tiktok": "https://www.tiktok.com/@damemiweb"
+  },
+
+  "web": {
+    "priceAmount": "250",
+    "priceCurrency": "EUR",
+    "price": "250€",
+    "priceFull": "250€ + IVA",
+    "priceLong": "250€ + IVA, pago único",
+    "priceNote": "+ IVA · pago único"
+  },
+
+  "proyectos": {
+    "count": 91,
+    "display": "+91",
+    "displayLong": "+91 proyectos"
+  },
+
+  "resenas": {
+    "rating": "5,0",
+    "ratingDecimal": "5.0",
+    "ratingValue": "5",
+    "bestRating": "5",
+    "count": 83,
+    "display": "5,0 en Google · 83 reseñas",
+    "displayShort": "5,0 · 83 reseñas"
+  },
+
+  "entrega": {
+    "hours": 72,
+    "short": "72 h",
+    "display": "Máximo 72 h desde que recibimos la información",
+    "displayLong": "Máximo 72 horas desde que recibimos tu información"
+  },
+
+  "dominio": {
+    "display": ".com incluido el primer año; renovación 10–15€/año",
+    "incluido": "Dominio .com incluido el primer año",
+    "renovacion": "10-15€ al año",
+    "renovacionDisplay": "Renovación del dominio: 10-15€/año a partir del segundo"
+  },
+
+  "soporte": {
+    "meses": 12,
+    "display": "12 meses incluidos (cambios de contenido y mantenimiento)",
+    "displayShort": "12 meses de soporte incluidos",
+    "detalle": "Cambios de contenido y mantenimiento incluidos durante 12 meses. Después no hay mantenimiento obligatorio."
+  },
+
+  "rrss": {
+    "priceAmount": "200",
+    "price": "200€",
+    "priceFull": "200€ + IVA/mes",
+    "display": "200€ + IVA / mes"
+  },
+
+  "campanas": {
+    "priceAmount": "200",
+    "price": "200€",
+    "priceFull": "200€ + IVA/mes",
+    "display": "200€ + IVA / mes de gestión"
+  },
+
+  "packRrssCampanas": {
+    "priceAmount": "270",
+    "price": "270€",
+    "priceFull": "270€ + IVA/mes"
+  },
+
+  "auditoriaSeo": {
+    "priceAmount": "29",
+    "price": "29€",
+    "priceFull": "29€ + IVA"
+  },
+
+  "auditoriaRrss": {
+    "priceAmount": "15",
+    "price": "15€",
+    "priceFull": "15€ + IVA"
+  },
+
+  "home": {
+    "title": "Página web para autónomos 250€ pago único | Dame mi web",
+    "description": "Página web profesional para autónomos y pequeños negocios por 250€ + IVA, pago único y sin cuotas. Dominio, SEO y 12 meses de soporte incluidos. Online en 72h.",
+    "h1": "Página web para autónomos y pequeños negocios: 250€, pago único"
+  },
+
+  "_fase4": [
+    "Dos cambios quedaron PENDIENTES DE DECISIÓN: en el encargo estaban sin",
+    "marcar ([ ] en vez de [x]) y la instrucción era ejecutar solo los marcados.",
+    "Están implementados y desactivados. Para aplicar uno: poner su interruptor",
+    "a true y ejecutar `node tools/build.mjs`. Volver a false lo deshace.",
+    "",
+    "1. eliminarEcosistemaSeo — retira la sección 'Ecosistema de Autoridad SEO'",
+    "   de la home. Motivo del encargo: una red de sitios satélite enlazando al",
+    "   cliente va contra las directrices de enlaces de Google.",
+    "",
+    "2. noindexCiudades — pone 'noindex, follow' en las páginas de ciudad y de",
+    "   sector×ciudad y las saca del sitemap, salvo las de ciudadesIndexables.",
+    "   Motivo del encargo: plantillas casi idénticas, con riesgo de doorway",
+    "   pages. Afectaría a 23 páginas de ciudad y 46 de sector×ciudad.",
+    "   TODO: falta la lista de ciudades exceptuadas. Con ciudadesIndexables",
+    "   vacía, activar el interruptor dejaría las 69 páginas en noindex."
+  ],
+  "fase4": {
+    "eliminarEcosistemaSeo": false,
+    "noindexCiudades": false
+  },
+  "ciudadesIndexables": []
+}
