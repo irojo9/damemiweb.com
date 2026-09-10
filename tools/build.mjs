@@ -541,6 +541,75 @@ function enlacesSectorCiudad(html, file) {
 }
 
 // ---------------------------------------------------------------------------
+// FASE 4 — Cambios pendientes de decisión (desactivados)
+// ---------------------------------------------------------------------------
+//
+// En el encargo estaban sin marcar y la instrucción era ejecutar solo los
+// marcados, así que NO se aplican. Van implementados detrás de los
+// interruptores de site.config.json → fase4: aplicarlos es cambiar un false
+// por un true y volver a ejecutar este script, y volver a false lo deshace.
+// El razonamiento de cada uno está en el bloque "_fase4" de la config.
+
+const ECO_ABRE = '<!--dmw:fase4-ecosistema-desactivado';
+const ECO_CIERRA = 'dmw:fase4-ecosistema-desactivado-->';
+
+/**
+ * Retira la sección "Ecosistema de Autoridad SEO" (red de sitios satélite).
+ * La comenta en lugar de borrarla para que apagar el interruptor la devuelva.
+ */
+function fase4Ecosistema(html) {
+  const activo = !!cfg.fase4?.eliminarEcosistemaSeo;
+  const retirada = html.includes(ECO_ABRE);
+
+  if (!activo) {
+    if (!retirada) return html;
+    return html.replace(new RegExp(`${ECO_ABRE}\\s*([\\s\\S]*?)\\s*${ECO_CIERRA}`), '$1');
+  }
+  if (retirada) return html;
+
+  const ini = html.indexOf('<section id="ecosistema">');
+  if (ini === -1) return html;
+  const fin = bloque(html, 'section', ini);
+  if (fin === null) return html;
+  return html.slice(0, ini) + `${ECO_ABRE}\n${html.slice(ini, fin)}\n${ECO_CIERRA}` + html.slice(fin);
+}
+
+/** ¿Es una plantilla de ciudad o de sector x ciudad? */
+function esPlantillaCiudad(file) {
+  if (/^diseno-web-[a-z-]+\.html$/.test(file)) return true;
+  return ciudadDe(file) !== null;
+}
+
+/** Ciudad de la página (sin el prefijo del slug), o null. */
+function ciudadDe(file) {
+  const m = file.match(/^diseno-web-([a-z-]+)\.html$/);
+  if (m) return m[1];
+  for (const s of SECTORES) {
+    const x = file.match(new RegExp(`^${s.slug}-([a-z-]+)\\.html$`));
+    if (x && CIUDADES.some(c => c.slug === 'diseno-web-' + x[1])) return x[1];
+  }
+  return null;
+}
+
+/** noindex, follow en las plantillas de ciudad salvo las exceptuadas. */
+function fase4NoindexCiudades(html, file) {
+  if (!esPlantillaCiudad(file)) return html;
+  const meta = /<meta name="robots" content="[^"]*"\s*\/?>/i;
+
+  if (!cfg.fase4?.noindexCiudades) {
+    // Apagado: se repone el valor indexable por si quedó un noindex de una
+    // ejecución anterior con el interruptor activo.
+    return html.replace(/<meta name="robots" content="noindex[^"]*"\s*\/?>/i,
+      `<meta name="robots" content="${cfg.site.robotsIndexable}"/>`);
+  }
+  const ciudad = ciudadDe(file);
+  const exceptuada = (cfg.ciudadesIndexables || [])
+    .some(c => c === ciudad || c === 'diseno-web-' + ciudad);
+  return html.replace(meta,
+    `<meta name="robots" content="${exceptuada ? cfg.site.robotsIndexable : 'noindex, follow'}"/>`);
+}
+
+// ---------------------------------------------------------------------------
 // FASE 1 — sitemap.xml y robots.txt
 // ---------------------------------------------------------------------------
 
@@ -665,6 +734,8 @@ function main() {
     html = inyectarChrome(html, file);
     html = inyectarScriptChrome(html, file);
     html = marcarWhatsApp(html, file);
+    html = fase4Ecosistema(html);
+    html = fase4NoindexCiudades(html, file);
 
     escribir(file, html);
     if (esIndexable(file, html)) indexables.push(file);
