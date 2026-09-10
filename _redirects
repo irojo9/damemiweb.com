@@ -20,3 +20,18 @@
 # URL nuevas, es decir, reglas cuyo destino sea DISTINTO del origen.
 # Ejemplo válido:
 #   /pagina-antigua /pagina-nueva 301
+
+# ---------------------------------------------------------------------------
+# Dominio canónico: https://www.damemiweb.com
+#
+# Todas las URL del sitio (canonical, og:url, JSON-LD y sitemap.xml) apuntan a
+# la versión CON www. La redirección 301 de damemiweb.com -> www.damemiweb.com
+# NO se configura en este fichero: Cloudflare Pages no permite condicionar una
+# regla de _redirects por nombre de host. Vive como Redirect Rule del zone de
+# Cloudflare y debe mantenerse activa. Si se desactivara, el sitio quedaría
+# accesible en dos hosts con el mismo contenido.
+#
+# Comprobación rápida:
+#   curl -sI https://www.damemiweb.com/ | grep -i '^location'
+#   -> location: https://www.damemiweb.com/
+# ---------------------------------------------------------------------------

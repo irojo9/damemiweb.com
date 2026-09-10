@@ -354,7 +354,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </div>
         <div class="card" style="background:var(--bg);border:none;margin:0">
           <div style="font-weight:700;font-size:14px;margin-bottom:10px">💬 Contacto directo</div>
-          <a href="https://wa.me/34662549694" target="_blank" class="wa-btn" style="margin-bottom:8px">📱 WhatsApp: 662 549 694</a>
+          <a data-wa-loc="areacliente" href="https://wa.me/34662549694" target="_blank" class="wa-btn" style="margin-bottom:8px">📱 WhatsApp: 662 549 694</a>
           <a href="mailto:info@damemiweb.com" style="display:flex;align-items:center;gap:10px;padding:13px 18px;background:var(--s1);border:1.5px solid var(--bd);border-radius:14px;font-weight:600;font-size:14px;text-decoration:none;color:var(--tx);justify-content:center">📧 info@damemiweb.com</a>
           <div style="padding:12px;background:var(--s1);border-radius:10px;font-size:12px;color:var(--mt);line-height:1.8;margin-top:8px;border:1px solid var(--bd)">⏰ Lunes a Viernes 9:00 – 20:00 · 📍 Madrid, España</div>
         </div>
@@ -504,7 +504,7 @@ async function renderHome() {
       renovHtml = `<div class="renov-card renov-err-card">
         <div style="font-weight:800;font-size:14px;color:var(--err);margin-bottom:4px">⚠️ Servicio vencido hace ${Math.abs(dr)} días</div>
         <div style="font-size:13px;color:#7f1d1d;margin-bottom:12px">Tu servicio de web y hosting está expirado. Renuévalo para evitar la desactivación.</div>
-        <a href="https://wa.me/34662549694?text=${encodeURIComponent('Hola, quiero renovar mi servicio web. ¿Podéis decirme el importe?')}" target="_blank" class="btn-pay">📱 Contactar para renovar</a>
+        <a data-wa-loc="areacliente" href="https://wa.me/34662549694?text=${encodeURIComponent('Hola, quiero renovar mi servicio web. ¿Podéis decirme el importe?')}" target="_blank" class="btn-pay">📱 Contactar para renovar</a>
       </div>`;
     } else if (dr <= 30) {
       renovHtml = `<div class="renov-card renov-warn-card">
@@ -532,7 +532,7 @@ async function renderHome() {
         <span class="iban-val">${ibanFmt}</span>
         <button class="btn-copy" onclick="copiar('${em.iban}','IBAN copiado')">Copiar</button>
       </div>` : ''}
-      <a href="https://wa.me/34662549694?text=${encodeURIComponent('Hola, quiero pagar las facturas pendientes por Bizum. ¿Al 662 549 694?')}" target="_blank" class="btn-pay">
+      <a data-wa-loc="areacliente" href="https://wa.me/34662549694?text=${encodeURIComponent('Hola, quiero pagar las facturas pendientes por Bizum. ¿Al 662 549 694?')}" target="_blank" class="btn-pay">
         📱 Pagar por Bizum al 662 549 694
       </a>
       <button onclick="tab('facturas')" style="width:100%;margin-top:8px;padding:10px;background:none;border:1.5px solid #f59e0b;border-radius:10px;font-size:13px;font-weight:600;color:#78350f;cursor:pointer">Ver facturas →</button>
@@ -572,7 +572,7 @@ async function renderHome() {
     <button class="qa-btn" onclick="tab('tickets');setTimeout(()=>abrirNuevoTicketCliente(),100)">
       <span class="qa-btn-ico">🎫</span><span>Abrir ticket</span>
     </button>
-    <a href="https://wa.me/34662549694" target="_blank" class="qa-btn" style="text-decoration:none">
+    <a data-wa-loc="areacliente" href="https://wa.me/34662549694" target="_blank" class="qa-btn" style="text-decoration:none">
       <span class="qa-btn-ico">💬</span><span>WhatsApp</span>
     </a>
     <button class="qa-btn" onclick="tab('facturas')">
@@ -598,7 +598,7 @@ async function renderHome() {
     <div class="ref-title">Gana 30€ por cada cliente</div>
     <div class="ref-text">¿Conoces a alguien que necesite una web? Tráenoslo y gana <strong>30€ por cada cliente</strong> que nos traigas. <strong>Sin límite.</strong></div>
     <button class="ref-btn" onclick="mostrarReferidoForm()">📲 Quiero traer clientes</button>
-    <a class="ref-more" href="https://wa.me/34662549694" target="_blank" rel="noopener">Más info</a>
+    <a data-wa-loc="areacliente" class="ref-more" href="https://wa.me/34662549694" target="_blank" rel="noopener">Más info</a>
   </div>`;
 
   // Amplía tus servicios (upsell)
@@ -691,7 +691,7 @@ function verFacturaPortal(id) {
         <span class="iban-val" style="font-size:12px">${em.iban}</span>
         <button class="btn-copy" onclick="copiar('${em.iban}','IBAN copiado')">Copiar</button>
       </div>
-      <a href="https://wa.me/34662549694?text=${encodeURIComponent('Hola, quiero pagar la factura '+f.numero+' por Bizum ('+total.toFixed(2)+'€). ¿Es al 662 549 694?')}" target="_blank" class="btn-pay">📱 Pagar por Bizum</a>
+      <a data-wa-loc="areacliente" href="https://wa.me/34662549694?text=${encodeURIComponent('Hola, quiero pagar la factura '+f.numero+' por Bizum ('+total.toFixed(2)+'€). ¿Es al 662 549 694?')}" target="_blank" class="btn-pay">📱 Pagar por Bizum</a>
     </div>` : '';
 
   modal.innerHTML = `
@@ -997,7 +997,7 @@ function mostrarReferidoModal() {
     <div class="toc-title">Gana 30€ por cada cliente</div>
     <div class="toc-text">¿Conoces a alguien que necesite una web? Tráenoslo y gana <strong>30€ por cada cliente</strong> que nos traigas. <strong>Sin límite.</strong></div>
     <button class="toc-btn" onclick="mostrarReferidoForm()">📲 Quiero traer clientes</button>
-    <a class="toc-skip" href="https://wa.me/34662549694" target="_blank" rel="noopener">Más info por WhatsApp</a>
+    <a data-wa-loc="areacliente" class="toc-skip" href="https://wa.me/34662549694" target="_blank" rel="noopener">Más info por WhatsApp</a>
   </div>`;
   m.onclick = e => { if (e.target === m) cerrarModalTour(); };
   document.body.appendChild(m);

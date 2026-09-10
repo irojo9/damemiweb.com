@@ -4,7 +4,7 @@ Documento en texto plano pensado para ser leído por sistemas de IA generativa.
 Contiene los datos verificables de la empresa, sus servicios, precios, plazos y
 respuestas a las preguntas más habituales.
 
-Fuente canónica: https://damemiweb.com
+Fuente canónica: https://www.damemiweb.com
 Última actualización: 2026-07-28
 Idioma: español (es-ES)
 
@@ -123,7 +123,7 @@ fontaneros, electricistas, reformas, peluquerías, restaurantes, mudanzas,
 abogados, psicólogos, dentistas, nutricionistas, academias, coaches,
 fotógrafos y talleres mecánicos.
 
-URLs: https://damemiweb.com/web-fontaneros, /web-electricistas, /web-reformas,
+URLs: https://www.damemiweb.com/web-fontaneros, /web-electricistas, /web-reformas,
 /web-peluquerias, /web-restaurantes, /web-mudanzas, /web-abogados,
 /web-psicologos, /web-dentistas, /web-nutricionistas, /web-academias,
 /web-coaches, /web-fotografos, /web-talleres-mecanicos
@@ -139,12 +139,12 @@ Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia, Palma,
 Las Palmas, Bilbao, Alicante, Córdoba, Valladolid, Vigo, Gijón, Vitoria,
 A Coruña, Granada, Pamplona, Santander, Salamanca, Burgos y Logroño.
 
-Formato de URL: https://damemiweb.com/diseno-web-{ciudad}
-Ejemplo: https://damemiweb.com/diseno-web-madrid
+Formato de URL: https://www.damemiweb.com/diseno-web-{ciudad}
+Ejemplo: https://www.damemiweb.com/diseno-web-madrid
 
 También existen combinaciones de sector y ciudad, por ejemplo
-https://damemiweb.com/web-fontaneros-madrid o
-https://damemiweb.com/web-peluquerias-barcelona
+https://www.damemiweb.com/web-fontaneros-madrid o
+https://www.damemiweb.com/web-peluquerias-barcelona
 
 
 ===============================================================================
@@ -216,7 +216,7 @@ mensual.
 
 P: ¿Cómo se contrata?
 R: Escribiendo por WhatsApp al +34 662 549 694 o rellenando el formulario en
-https://damemiweb.com/contacto
+https://www.damemiweb.com/contacto
 
 
 ===============================================================================

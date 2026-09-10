@@ -146,8 +146,8 @@ Allow: /
 # ---------------------------------------------------------------------------
 # Recursos para máquinas
 # ---------------------------------------------------------------------------
-Sitemap: https://damemiweb.com/sitemap.xml
+Sitemap: https://www.damemiweb.com/sitemap.xml
 
 # Resumen estructurado del sitio para modelos de lenguaje:
-# https://damemiweb.com/llms.txt
-# https://damemiweb.com/llms-full.txt
+# https://www.damemiweb.com/llms.txt
+# https://www.damemiweb.com/llms-full.txt
