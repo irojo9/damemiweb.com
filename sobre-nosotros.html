@@ -296,7 +296,25 @@ footer a{color:var(--bright)}
   <h2 id="quien">Quién está <span class="it">detrás</span></h2>
   <p>Dame mi web es un proyecto pequeño e independiente, no una agencia con veinte personas y una planta de oficinas. Eso es deliberado: es lo que permite que el precio sea 250 € y que quien diseña tu web sea la misma persona con la que hablas por WhatsApp.</p>
   <p>Para los clientes esto tiene una consecuencia práctica que suele salir en las reseñas: no hay comercial que promete una cosa y un equipo técnico que entrega otra. La persona que te atiende es la que hace el trabajo, y la que responde si dentro de ocho meses necesitas cambiar un teléfono en la web.</p>
-  <p>Trabajamos además un segundo proyecto, <a href="https://www.autoridadgeo.com" rel="noopener">AutoridadGEO</a>, dedicado a que los modelos de inteligencia artificial reconozcan y citen a las marcas de nuestros clientes. Es el mismo problema de siempre —que te encuentren— aplicado al sitio donde cada vez más gente pregunta primero.</p>
+  <!-- Ficha de la persona que esta detras del proyecto.
+     Los datos reales todavia no se han facilitado: hasta que lleguen, la ficha
+     se muestra con marcadores explicitos en vez de inventar nombre, foto o
+     biografia. Ver los TODO de abajo. -->
+<div class="autor-card">
+  <div class="autor-foto">
+    <!-- TODO: sustituir por la foto real.
+         <img src="/equipo/<archivo>.jpg" alt="Retrato de <nombre>" width="96" height="96" loading="lazy"/> -->
+    <span class="autor-foto-todo">Foto<br>pendiente</span>
+  </div>
+  <div class="autor-cuerpo">
+    <p class="autor-todo"><b>TODO — nombre</b> Nombre y apellidos de quien diseña las webs y atiende por WhatsApp. Hoy la página habla en plural pero no da ningún nombre propio.</p>
+    <p class="autor-todo"><b>TODO — foto</b> Retrato real, 96×96 como mínimo, en /equipo/. Sin foto, la sección "Quién está detrás" no enseña a nadie.</p>
+    <p class="autor-todo"><b>TODO — bio breve</b> Dos o tres frases: trayectoria, desde cuándo hace webs y por qué monta este servicio. Es lo que da credibilidad a la respuesta de "quién está detrás".</p>
+    <p class="autor-nota">Cuando estos tres datos existan, conviene además añadir al JSON-LD de esta página una entidad <code>Person</code> enlazada como <code>founder</code> de la organización.</p>
+  </div>
+</div>
+
+<p>Trabajamos además un segundo proyecto, <a href="https://www.autoridadgeo.com" rel="noopener">AutoridadGEO</a>, dedicado a que los modelos de inteligencia artificial reconozcan y citen a las marcas de nuestros clientes. Es el mismo problema de siempre —que te encuentren— aplicado al sitio donde cada vez más gente pregunta primero.</p>
 
   <h2 id="como-trabajamos">Cómo <span class="it">trabajamos</span></h2>
   <p>El proceso completo son tres pasos y ningún formulario de veinte páginas.</p>

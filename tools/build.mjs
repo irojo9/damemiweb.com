@@ -185,6 +185,8 @@ function valoresOficiales(html) {
   html = html.replace(/Cambios de texto e imágenes sin coste el primer mes\. Mantenimiento desde 20€\/mes a partir del segundo\./g,
     `Cambios de contenido y mantenimiento incluidos durante ${cfg.soporte.meses} meses. Después no hay mantenimiento obligatorio.`);
   html = html.replace(/Mantenimiento desde 20€\/mes[^<.]*\./g, 'Después no hay mantenimiento obligatorio.');
+  html = html.replace(/(?<!\d)(?:puedes contratarnos )?mantenimiento mensual desde 20€\/mes\./g,
+    `el mantenimiento va incluido durante ${cfg.soporte.meses} meses y después no es obligatorio.`);
 
   // --- Dominio ---
   html = html.replace(/Tu dominio \.com o \.es el primer año sin coste extra\./g,
@@ -203,6 +205,77 @@ function valoresOficiales(html) {
   html = html.replace(/Datos actualizados el <time datetime="[^"]*">[^<]*<\/time>/g,
     `Datos actualizados el <time datetime="${cfg.site.lastUpdated}">${legible}</time>`);
 
+  return html;
+}
+
+// ---------------------------------------------------------------------------
+// FASE 2 — Title, description y H1 de la home desde la config
+// ---------------------------------------------------------------------------
+
+function metasHome(html, file) {
+  if (file !== 'index.html') return html;
+  const { title, description, h1 } = cfg.home;
+
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`);
+  html = html.replace(/(<meta name="description" content=")[^"]*(")/, `$1${description}$2`);
+  html = html.replace(/(<meta property="og:title" content=")[^"]*(")/, `$1${title}$2`);
+  html = html.replace(/(<meta name="twitter:title" content=")[^"]*(")/, `$1${title}$2`);
+
+  // JSON-LD de la WebPage de la home
+  html = html.replace(/("@id":"[^"]*#webpage","url":"[^"]*","name":")[^"]*(","description":")[^"]*(")/,
+    `$1${title}$2${description}$3`);
+
+  // El H1 es estático y sale de la config. Se conserva el resaltado del precio.
+  const precio = `${cfg.web.price}, pago único`;
+  const h1html = h1.endsWith(precio)
+    ? `${h1.slice(0, -precio.length)}<span class="hero-h-price">${precio}</span>`
+    : h1;
+  html = html.replace(/<h1 class="hero-h">[\s\S]*?<\/h1>/, `<h1 class="hero-h">${h1html}</h1>`);
+  return html;
+}
+
+// ---------------------------------------------------------------------------
+// FASE 2 — Coherencia con lo que promete /sobre-nosotros
+// ---------------------------------------------------------------------------
+
+/**
+ * /sobre-nosotros dice, negro sobre blanco, que "no prometemos primeras
+ * posiciones en Google". Las páginas de ciudad decían lo contrario:
+ * posicionamiento local "desde el primer día" y la web apareciendo cuando
+ * alguien del barrio busca. Aquí se alinean las dos.
+ */
+function promesasRealistas(html) {
+  // "Tu web aparece cuando alguien en X, Y o Z busca tu servicio en Google.
+  //  Posicionamiento local en C desde el primer día."
+  html = html.replace(
+    /Tu web aparece cuando alguien en ([^.]+?) busca tu servicio en Google\. Posicionamiento local en ([^.]+?) desde el primer día\./g,
+    (m, zonas, ciudad) => `Preparamos tu web para las búsquedas de ${zonas} y del resto de ${ciudad}: contenido, etiquetas y datos estructurados mencionan tu zona de servicio. El posicionamiento orgánico depende de tu sector y tu competencia, y lleva tiempo.`);
+
+  // "Sin mensualidades, sin renovaciones obligatorias, sin letra pequeña.
+  //  Tu web, tu dominio, para siempre."
+  html = html.replace(
+    /Sin mensualidades, sin renovaciones obligatorias, sin letra pequeña\. Tu web, tu dominio, para siempre\./g,
+    `Sin mensualidades y sin mantenimiento obligatorio. La web y el dominio quedan a tu nombre; a partir del segundo año solo se paga la renovación del dominio, ${cfg.dominio.renovacion}.`);
+
+  // Encabezado de la misma tarjeta
+  html = html.replace(/<h3>SEO local para ([^<]+)<\/h3>/g, '<h3>SEO local para $1</h3>');
+  return html;
+}
+
+/**
+ * Caja de ejemplo de respuesta de ChatGPT.
+ * Era una maqueta estática presentada como si fuese una consulta en vivo, y
+ * describía el servicio como "entrenar a la IA", que no es lo que ocurre.
+ */
+function cajaChatGPT(html) {
+  html = html.replace(/ChatGPT · En tiempo real/g, 'ChatGPT · Ejemplo ilustrativo');
+  html = html.replace(/(<div class="geo-mock-bar">)(<span class="geo-blink"><\/span>)?ChatGPT · Ejemplo ilustrativo(<\/div>)/g,
+    '$1ChatGPT · <span style="display:inline-block;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#EAB308;background:rgba(234,179,8,.12);border:1px solid rgba(234,179,8,.3);border-radius:100px;padding:2px 9px;vertical-align:middle">Ejemplo ilustrativo</span>$3');
+  html = html.replace(
+    /(\d+ (?:propiedades digitales|art[íi]culos)[^.]*?)entrenan a la IA para que cite tu marca/g,
+    '$1publican contenido para que los asistentes de IA con búsqueda encuentren y citen tu marca');
+  html = html.replace(/entrenan a la IA para que cite tu marca/g,
+    'publican contenido para que los asistentes de IA con búsqueda encuentren y citen tu marca');
   return html;
 }
 
@@ -475,6 +548,9 @@ function main() {
     html = canonicalizarDominio(html);
     html = canonicalDePagina(html, file);
     html = marca(html);
+    html = metasHome(html, file);
+    html = promesasRealistas(html);
+    html = cajaChatGPT(html);
     html = valoresOficiales(html);
     html = contadoresProyectos(html, file);
     html = enlacesSectorCiudad(html, file);

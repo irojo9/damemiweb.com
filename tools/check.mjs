@@ -61,8 +61,15 @@ const PROHIBIDO = [
   { re: /DAME MI WEB/g, nombre: 'DAME MI WEB', desc: 'marca en mayúsculas' },
   { re: /dame miweb/gi, nombre: 'dame miweb', desc: 'marca mal escrita' },
   { re: /En tiempo real/g, nombre: 'En tiempo real', desc: 'etiqueta del ejemplo de ChatGPT' },
-  { re: /entrenan a la IA/g, nombre: 'entrenan a la IA', desc: 'afirmación de que se entrena a la IA' },
-  { re: /Ecosistema de<?\s*(<[^>]+>)*\s*Autoridad SEO/g, nombre: 'Ecosistema de Autoridad SEO', desc: 'red de sitios satélite' }
+  { re: /entrenan a la IA/g, nombre: 'entrenan a la IA', desc: 'afirmación de que se entrena a la IA' }
+];
+
+/* Pendientes de decisión del cliente (Fase 4). No hacen fallar la comprobación:
+   la instrucción era ejecutar solo las tareas marcadas con [x] y ninguna lo
+   estaba. Se listan para que no se pierdan de vista. */
+const DIFERIDO = [
+  { re: /Ecosistema de\s*(?:<[^>]+>\s*)*Autoridad SEO/g, nombre: 'Ecosistema de Autoridad SEO',
+    desc: 'red de sitios satélite enlazando al cliente: va contra las directrices de enlaces de Google' }
 ];
 
 /** Una coincidencia dentro de una fuente en base64 no cuenta. */
@@ -84,6 +91,14 @@ for (const { re, nombre, desc } of PROHIBIDO) {
     }
   }
   hits.length ? mal(`"${nombre}" (${desc}): ${hits.length} ficheros`, hits) : ok(`"${nombre}" sin resultados`);
+}
+
+console.log('\n1b. Pendiente de decisión (Fase 4, no marcada con [x])');
+for (const { re, nombre, desc } of DIFERIDO) {
+  const hits = TEXTO.filter(f => re.test(leer(f)) && (re.lastIndex = 0, true));
+  console.log(hits.length
+    ? `  \x1b[33m·\x1b[0m "${nombre}" sigue en ${hits.length} fichero(s): ${desc}`
+    : `  \x1b[32m✓\x1b[0m "${nombre}" ya no aparece`);
 }
 
 // --- 2. Un H1 por página y canonical con www ---------------------------------
