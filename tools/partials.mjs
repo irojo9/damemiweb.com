@@ -35,7 +35,7 @@ export function waLink(cfg, texto, ubicacion, cls = '', extra = '') {
   const tel = cfg.site.phone.replace('+', '');
   const href = `https://wa.me/${tel}?text=${encodeURIComponent(texto)}`;
   const c = cls ? ` class="${cls}"` : '';
-  return `<a href="${href}" target="_blank" rel="noopener" data-wa-loc="${ubicacion}"${c}${extra}>`;
+  return `<a href="${href}" target="_blank" rel="noopener" data-wa-loc="${ubicacion}" data-wa-fixed${c}${extra}>`;
 }
 
 export function headerCSS() {
@@ -71,12 +71,23 @@ export function headerCSS() {
 .dmw-mob-btn svg{transition:transform .2s;flex-shrink:0}
 .dmw-mob-btn[aria-expanded=true] svg{transform:rotate(180deg)}
 .dmw-mob-panel{padding:0 0 12px 4px;display:flex;flex-wrap:wrap;gap:7px}
+/* display:flex/grid gana al [hidden] del navegador: hay que reponerlo. */
+.dmw-mob-panel[hidden],.dmw-dd-panel[hidden],.dmw-mob[hidden]{display:none}
 .dmw-mob-panel a{font-size:14px;color:rgba(255,255,255,.65);text-decoration:none;border:1px solid #262626;border-radius:100px;padding:8px 14px}
 .dmw-mob-panel a.lead{color:#7FA3F5;border-color:#2b3a5c}
 .dmw-mob .dmw-cta{margin-top:22px;width:100%;justify-content:center;padding:15px}
 @media(max-width:1180px){.dmw-nav{display:none}.dmw-burger{display:inline-flex}.dmw-hd-in{gap:10px}.dmw-cta{margin-left:auto}}
-@media(max-width:560px){.dmw-cta span{display:none}.dmw-cta{padding:10px 13px}}
-@media(prefers-reduced-motion:reduce){.dmw-hd *,.dmw-ft *{transition:none!important;animation:none!important}}
+/* En pantallas muy estrechas el CTA de la barra se queda en icono, pero el
+   del menu movil conserva su texto. */
+@media(max-width:560px){.dmw-hd .dmw-cta span{display:none}.dmw-hd .dmw-cta{padding:10px 13px}}
+/* Movimiento reducido, para todo el sitio. Va en la cabecera porque es el
+   unico bloque que esta en las 127 paginas. Las clases .rv y .reveal son
+   revelados al hacer scroll: sin animacion tienen que quedarse visibles. */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto!important}
+  .rv,.reveal,.rv.on{opacity:1!important;transform:none!important}
+}
 </style>`;
 }
 
@@ -130,7 +141,10 @@ export function header(cfg) {
     ${wa}${icon('whatsapp', { size: 17 })}<span>Pedir mi web</span></a>
     <button type="button" class="dmw-burger" id="dmw-burger" aria-expanded="false" aria-controls="dmw-mob" aria-label="Abrir menú">${icon('menu', { size: 22 })}</button>
   </div>
-  <div class="dmw-mob" id="dmw-mob" hidden>
+</header>
+<!-- El panel movil va fuera de <header> a proposito: el backdrop-filter de la
+     cabecera crea un bloque contenedor y recortaria su position:fixed. -->
+<div class="dmw-mob" id="dmw-mob" hidden>
       ${mobDd('serv', 'Servicios', servicios, false)}
       ${mobDd('sect', 'Sectores', sectores, false)}
       ${mobDd('ciu', 'Ciudades', ciudades, false)}
@@ -139,8 +153,7 @@ export function header(cfg) {
       <div class="dmw-mob-sec"><a href="/blog">Blog</a></div>
       <div class="dmw-mob-sec"><a href="/contacto">Contacto</a></div>
       ${waLink(cfg, `Hola, quiero mi web por ${cfg.web.priceFull}.`, 'menu_movil', 'dmw-cta')}${icon('whatsapp', { size: 18 })}<span>Pedir mi web — ${esc(cfg.web.priceFull)}</span></a>
-  </div>
-</header>
+</div>
 <div class="dmw-hd-spacer" id="dmw-main" tabindex="-1"></div>`;
 }
 
@@ -187,7 +200,7 @@ export function footer(cfg) {
           <span class="dmw-ft-brand-t" aria-hidden="true">Dame mi <span>web</span></span>
         </a>
         <p class="dmw-ft-desc">Página web profesional para autónomos y pequeños negocios en toda España. ${esc(cfg.web.priceLong)}, sin cuotas mensuales y con ${esc(cfg.soporte.displayShort.toLowerCase())}.</p>
-        <p class="dmw-ft-meta">${esc(cfg.resenas.display)}<br/>${esc(cfg.proyectos.display)} proyectos entregados<br/><a href="/contacto">Contacto</a> · <a href="tel:${esc(cfg.site.phone)}">${esc(cfg.site.phoneDisplay)}</a></p>
+        <p class="dmw-ft-meta">${esc(cfg.resenas.display)}<br/><a href="/proyectos">${esc(cfg.proyectos.display)} proyectos entregados</a><br/><a href="/contacto">Contacto</a> · <a href="tel:${esc(cfg.site.phone)}">${esc(cfg.site.phoneDisplay)}</a></p>
       </div>
       <div>
         <h2>Servicios</h2>

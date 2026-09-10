@@ -156,12 +156,23 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 .dmw-mob-btn svg{transition:transform .2s;flex-shrink:0}
 .dmw-mob-btn[aria-expanded=true] svg{transform:rotate(180deg)}
 .dmw-mob-panel{padding:0 0 12px 4px;display:flex;flex-wrap:wrap;gap:7px}
+/* display:flex/grid gana al [hidden] del navegador: hay que reponerlo. */
+.dmw-mob-panel[hidden],.dmw-dd-panel[hidden],.dmw-mob[hidden]{display:none}
 .dmw-mob-panel a{font-size:14px;color:rgba(255,255,255,.65);text-decoration:none;border:1px solid #262626;border-radius:100px;padding:8px 14px}
 .dmw-mob-panel a.lead{color:#7FA3F5;border-color:#2b3a5c}
 .dmw-mob .dmw-cta{margin-top:22px;width:100%;justify-content:center;padding:15px}
 @media(max-width:1180px){.dmw-nav{display:none}.dmw-burger{display:inline-flex}.dmw-hd-in{gap:10px}.dmw-cta{margin-left:auto}}
-@media(max-width:560px){.dmw-cta span{display:none}.dmw-cta{padding:10px 13px}}
-@media(prefers-reduced-motion:reduce){.dmw-hd *,.dmw-ft *{transition:none!important;animation:none!important}}
+/* En pantallas muy estrechas el CTA de la barra se queda en icono, pero el
+   del menu movil conserva su texto. */
+@media(max-width:560px){.dmw-hd .dmw-cta span{display:none}.dmw-hd .dmw-cta{padding:10px 13px}}
+/* Movimiento reducido, para todo el sitio. Va en la cabecera porque es el
+   unico bloque que esta en las 127 paginas. Las clases .rv y .reveal son
+   revelados al hacer scroll: sin animacion tienen que quedarse visibles. */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto!important}
+  .rv,.reveal,.rv.on{opacity:1!important;transform:none!important}
+}
 </style>
 <a class="dmw-skip" href="#dmw-main">Saltar al contenido</a>
 <header class="dmw-hd" id="dmw-hd">
@@ -188,10 +199,13 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
       <a href="/blog">Blog</a>
       <a href="/contacto">Contacto</a>
     </div>
-    <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20mi%20web%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" data-wa-loc="header" class="dmw-cta"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 20.5l1.3-4.3A8.2 8.2 0 1 1 8 19.4l-4.5 1.1z"/><path d="M9 9.2c0 3 2.3 5.3 5.2 5.4.6 0 1.1-.4 1.2-1l.1-.6-2-.9-.8 1a4.6 4.6 0 0 1-2-2l1-.8-.9-2-.6.1c-.6.1-1.1.6-1.2 1.2z"/></svg><span>Pedir mi web</span></a>
+    <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20mi%20web%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" data-wa-loc="header" data-wa-fixed class="dmw-cta"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 20.5l1.3-4.3A8.2 8.2 0 1 1 8 19.4l-4.5 1.1z"/><path d="M9 9.2c0 3 2.3 5.3 5.2 5.4.6 0 1.1-.4 1.2-1l.1-.6-2-.9-.8 1a4.6 4.6 0 0 1-2-2l1-.8-.9-2-.6.1c-.6.1-1.1.6-1.2 1.2z"/></svg><span>Pedir mi web</span></a>
     <button type="button" class="dmw-burger" id="dmw-burger" aria-expanded="false" aria-controls="dmw-mob" aria-label="Abrir menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
   </div>
-  <div class="dmw-mob" id="dmw-mob" hidden>
+</header>
+<!-- El panel movil va fuera de <header> a proposito: el backdrop-filter de la
+     cabecera crea un bloque contenedor y recortaria su position:fixed. -->
+<div class="dmw-mob" id="dmw-mob" hidden>
       <div class="dmw-mob-sec">
         <button type="button" class="dmw-mob-btn" aria-expanded="false" aria-controls="dmw-mob-serv">Servicios<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></button>
         <div class="dmw-mob-panel" id="dmw-mob-serv" hidden><a href="/#servicios" class="lead">Servicios — qué incluye</a><a href="/#proceso">Proceso — cómo funciona</a><a href="/precios">Precios</a><a href="/auditorias">Auditorías</a><a href="/marketing">Marketing</a><a href="/comparativa">Comparativa</a></div>
@@ -208,16 +222,15 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
       <div class="dmw-mob-sec"><a href="/resenas">Reseñas</a></div>
       <div class="dmw-mob-sec"><a href="/blog">Blog</a></div>
       <div class="dmw-mob-sec"><a href="/contacto">Contacto</a></div>
-      <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20mi%20web%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" data-wa-loc="menu_movil" class="dmw-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 20.5l1.3-4.3A8.2 8.2 0 1 1 8 19.4l-4.5 1.1z"/><path d="M9 9.2c0 3 2.3 5.3 5.2 5.4.6 0 1.1-.4 1.2-1l.1-.6-2-.9-.8 1a4.6 4.6 0 0 1-2-2l1-.8-.9-2-.6.1c-.6.1-1.1.6-1.2 1.2z"/></svg><span>Pedir mi web — 250€ + IVA</span></a>
-  </div>
-</header>
+      <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20mi%20web%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" data-wa-loc="menu_movil" data-wa-fixed class="dmw-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 20.5l1.3-4.3A8.2 8.2 0 1 1 8 19.4l-4.5 1.1z"/><path d="M9 9.2c0 3 2.3 5.3 5.2 5.4.6 0 1.1-.4 1.2-1l.1-.6-2-.9-.8 1a4.6 4.6 0 0 1-2-2l1-.8-.9-2-.6.1c-.6.1-1.1.6-1.2 1.2z"/></svg><span>Pedir mi web — 250€ + IVA</span></a>
+</div>
 <div class="dmw-hd-spacer" id="dmw-main" tabindex="-1"></div><!--/dmw:header-->
 
 <section class="hero">
   <div class="w"><div class="hi">
     <div>
       <div class="eyebrow">Web para Fontaneros en Zaragoza</div>
-      <h1>WEB PARA<br>FONTANEROS<br><span class="dim">EN ZARAGOZA</span></h1>
+      <h1>Web para<br>fontaneros<br><span class="dim">en Zaragoza</span></h1>
       <p class="hdesc">Diseño web profesional para <strong>fontaneros en Zaragoza</strong>. Apareces en Google cuando te busquen en Centro, Delicias o cualquier zona de Zaragoza. Por <strong>250€ + IVA</strong>, pago único, online en 72 horas.</p>
       <div class="prow"><span class="pbig">250€ + IVA</span><span class="pnote">Pago único · Sin mensualidades · Online en 72h</span></div>
       <div class="ctas">
@@ -230,14 +243,14 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
         <div class="hs"><div class="hsn">5★</div><div class="hsl">Rating</div></div>
       </div>
     </div>
-    <div class="hvis">🔧</div>
+    <div class="hvis"><svg style="vertical-align:middle;flex-shrink:0" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.5 4.5a4.5 4.5 0 0 0-5.9 5.9L4 16l4 4 5.6-5.6a4.5 4.5 0 0 0 5.9-5.9l-2.8 2.8-2.5-2.5z"/></svg></div>
   </div></div>
 </section>
 <!-- DATOS CLAVE (respuesta directa para buscadores y motores generativos) -->
 <section class="sec dc-sec" id="datos-clave" aria-labelledby="dc-t">
   <div class="w">
     <div class="eyebrow">En resumen</div>
-    <h2 id="dc-t" class="dc-h">WEB PARA FONTANEROS EN ZARAGOZA, EN DATOS</h2>
+    <h2 id="dc-t" class="dc-h">Web para fontaneros en Zaragoza, en datos</h2>
     <p class="dc-lead"><strong>Dame mi web</strong> diseña y publica webs profesionales para <strong>fontaneros</strong> de <strong>Zaragoza</strong> por <strong>250€ + IVA en un solo pago</strong>, sin cuotas mensuales, con dominio .com incluido el primer año y publicación en un <strong>máximo de 72 horas</strong>. El servicio es 100% remoto: nos cuentas cómo trabajas y nos encargamos del resto.</p>
     <dl class="dc-grid">
       <div><dt>Servicio</dt><dd>Diseño web profesional para fontaneros</dd></div>
@@ -261,11 +274,11 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 <section class="sec" style="background:#0F0F0F">
   <div class="w">
     <div class="eyebrow">Por qué necesitas web</div>
-    <h2 style="font-family:var(--display);font-size:clamp(36px,5vw,60px);letter-spacing:.02em;line-height:.97;margin-bottom:32px">LO QUE PIERDES SIN WEB<br><span style="color:rgba(255,255,255,.2)">EN ZARAGOZA</span></h2>
+    <h2 style="font-family:var(--display);font-size:clamp(36px,5vw,60px);letter-spacing:.02em;line-height:.97;margin-bottom:32px">Lo que pierdes sin web<br><span style="color:rgba(255,255,255,.2)">en Zaragoza</span></h2>
     <div class="bgrid">
-      <div class="bc"><div class="bc-ico">🔍</div><h3>Invisible en Google</h3><p>El 90% de los clientes busca fontaneros en Zaragoza en Google. Sin web, simplemente no apareces.</p></div>
-      <div class="bc"><div class="bc-ico">📍</div><h3>Fuera del mapa local</h3><p>Sin web propia no puedes optimizar tu ficha de Google Maps para Zaragoza. Tus competidores con web aparecen antes.</p></div>
-      <div class="bc"><div class="bc-ico">💬</div><h3>Sin captación 24h</h3><p>Una web trabaja para ti mientras duermes. Sin ella, solo captas clientes cuando tú coges el teléfono.</p></div>
+      <div class="bc"><div class="bc-ico"><svg style="vertical-align:middle;flex-shrink:0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></div><h3>Invisible en Google</h3><p>El 90% de los clientes busca fontaneros en Zaragoza en Google. Sin web, simplemente no apareces.</p></div>
+      <div class="bc"><div class="bc-ico"><svg style="vertical-align:middle;flex-shrink:0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s6.5-6 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 15 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.5"/></svg></div><h3>Fuera del mapa local</h3><p>Sin web propia no puedes optimizar tu ficha de Google Maps para Zaragoza. Tus competidores con web aparecen antes.</p></div>
+      <div class="bc"><div class="bc-ico"><svg style="vertical-align:middle;flex-shrink:0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5.5h16v11H9l-5 4z"/></svg></div><h3>Sin captación 24h</h3><p>Una web trabaja para ti mientras duermes. Sin ella, solo captas clientes cuando tú coges el teléfono.</p></div>
     </div>
   </div>
 </section>
@@ -273,7 +286,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 <section class="sec" style="background:var(--black)">
   <div class="w" style="text-align:center">
     <div class="eyebrow" style="justify-content:center">FAQ</div>
-    <h2 style="font-family:var(--display);font-size:clamp(36px,5vw,60px);letter-spacing:.02em;line-height:.97;margin-bottom:0">PREGUNTAS<br><span style="color:rgba(255,255,255,.2)">FRECUENTES</span></h2>
+    <h2 style="font-family:var(--display);font-size:clamp(36px,5vw,60px);letter-spacing:.02em;line-height:.97;margin-bottom:0">Preguntas<br><span style="color:rgba(255,255,255,.2)">frecuentes</span></h2>
     <div class="fwrap" id="faqs">
       <div class="fi open"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿Hacéis webs para fontaneros en Zaragoza?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Sí. Creamos webs para fontaneros en Zaragoza y toda España, todo de forma remota. Solo necesitas enviarnos la información de tu negocio por WhatsApp o email y en 72 horas tienes tu web publicada.</div></div></div>
       <div class="fi"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿Apareceré en Google cuando busquen fontaneros en Zaragoza?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Sí. Optimizamos tu web específicamente para las búsquedas de fontaneros en Zaragoza: title tag, meta description, contenido y datos estructurados mencionan tu ciudad. Los resultados en Google mejoran en 2-4 meses.</div></div></div>
@@ -287,11 +300,11 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 <section class="sec" style="background:#0F0F0F">
   <div class="w">
     <div class="eyebrow">Más páginas relacionadas</div>
-    <h2 style="font-family:var(--display);font-size:clamp(32px,4vw,52px);letter-spacing:.02em;line-height:.97;margin-bottom:28px">TAMBIÉN TE<br><span style="color:rgba(255,255,255,.2)">PUEDE INTERESAR</span></h2>
+    <h2 style="font-family:var(--display);font-size:clamp(32px,4vw,52px);letter-spacing:.02em;line-height:.97;margin-bottom:28px">También te<br><span style="color:rgba(255,255,255,.2)">puede interesar</span></h2>
     <div class="rel-grid">
-      <a href="/web-fontaneros" class="rc"><div class="rc-ico">🔧</div><div><div class="rc-name">Web para Fontaneros</div><div class="rc-link">Ver página →</div></div></a>
-      <a href="/diseno-web-zaragoza" class="rc"><div class="rc-ico">🏙️</div><div><div class="rc-name">Diseño web en Zaragoza</div><div class="rc-link">Ver página →</div></div></a>
-      <a href="/" class="rc"><div class="rc-ico">🌐</div><div><div class="rc-name">Dame mi web</div><div class="rc-link">Ver inicio →</div></div></a>
+      <a href="/web-fontaneros" class="rc"><div class="rc-ico"><svg style="vertical-align:middle;flex-shrink:0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.5 4.5a4.5 4.5 0 0 0-5.9 5.9L4 16l4 4 5.6-5.6a4.5 4.5 0 0 0 5.9-5.9l-2.8 2.8-2.5-2.5z"/></svg></div><div><div class="rc-name">Web para Fontaneros</div><div class="rc-link">Ver página →</div></div></a>
+      <a href="/diseno-web-zaragoza" class="rc"><div class="rc-ico"><svg style="vertical-align:middle;flex-shrink:0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s6.5-6 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 15 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.5"/></svg></div><div><div class="rc-name">Diseño web en Zaragoza</div><div class="rc-link">Ver página →</div></div></a>
+      <a href="/" class="rc"><div class="rc-ico"><svg style="vertical-align:middle;flex-shrink:0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a14 14 0 0 1 0 17"/><path d="M12 3.5a14 14 0 0 0 0 17"/></svg></div><div><div class="rc-name">Dame mi web</div><div class="rc-link">Ver inicio →</div></div></a>
     </div>
   </div>
 </section>
@@ -299,7 +312,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 <section class="sec" style="background:var(--black)">
   <div class="w">
     <div class="cta-blk">
-      <h2>FONTANEROS EN ZARAGOZA<br>CON WEB PROPIA</h2>
+      <h2>Fontaneros en Zaragoza<br>con web propia</h2>
       <p>Diseño web profesional por 250€ + IVA. Online en 72 horas. Sin mensualidades.</p>
       <div class="cta-btns">
         <a data-wa-loc="sector_ciudad_datos_clave" href="https://wa.me/34662549694?text=Hola%2C%20quiero%20una%20web%20para%20mi%20fontaner%C3%ADa%20en%20Zaragoza%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="bb">Solicitar mi web →</a>
@@ -313,7 +326,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 <section class="sec" style="background:#0F0F0F;border-top:1px solid var(--border)">
   <div class="w">
     <div class="eyebrow">Zonas donde trabajamos</div>
-    <h2 style="font-family:var(--display);font-size:clamp(32px,4.5vw,56px);letter-spacing:.02em;line-height:.97;margin-bottom:24px">FONTANEROS EN CADA<br><span style="color:rgba(255,255,255,.2)">BARRIO DE ZARAGOZA</span></h2>
+    <h2 style="font-family:var(--display);font-size:clamp(32px,4.5vw,56px);letter-spacing:.02em;line-height:.97;margin-bottom:24px">Fontaneros en cada<br><span style="color:rgba(255,255,255,.2)">barrio de Zaragoza</span></h2>
     <p style="font-size:16px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.8;max-width:740px;margin-bottom:28px">En Zaragoza, con un mercado local concentrado y muy competitivo, la web es lo primero que revisa el cliente antes de contactar. Damos servicio a autónomos de todos los distritos y del entorno metropolitano. Optimizamos tu web para que los fontaneros de Zaragoza aparezcáis en las búsquedas locales de vuestra zona —de Centro a Universidad— y también en municipios cercanos como Utebo, Cuarte de Huerva o La Puebla de Alfindén.</p>
     <div style="display:flex;flex-wrap:wrap;gap:10px">
         <span style="font-size:13px;font-weight:400;color:rgba(255,255,255,.55);padding:8px 16px;border:1px solid var(--border);border-radius:100px">Centro</span>
@@ -392,7 +405,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
           <span class="dmw-ft-brand-t" aria-hidden="true">Dame mi <span>web</span></span>
         </a>
         <p class="dmw-ft-desc">Página web profesional para autónomos y pequeños negocios en toda España. 250€ + IVA, pago único, sin cuotas mensuales y con 12 meses de soporte incluidos.</p>
-        <p class="dmw-ft-meta">5,0 en Google · 83 reseñas<br/>+91 proyectos entregados<br/><a href="/contacto">Contacto</a> · <a href="tel:+34662549694">662 549 694</a></p>
+        <p class="dmw-ft-meta">5,0 en Google · 83 reseñas<br/><a href="/proyectos">+91 proyectos entregados</a><br/><a href="/contacto">Contacto</a> · <a href="tel:+34662549694">662 549 694</a></p>
       </div>
       <div>
         <h2>Servicios</h2>
@@ -416,7 +429,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
       <div class="dmw-ft-soc">
         <a href="https://www.instagram.com/damemiweb" target="_blank" rel="noopener" aria-label="Instagram de Dame mi web"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><path d="M17.2 6.8h.01"/></svg></a>
         <a href="https://www.tiktok.com/@damemiweb" target="_blank" rel="noopener" aria-label="TikTok de Dame mi web"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4v10.2a3.3 3.3 0 1 1-2.6-3.2"/><path d="M14 4c.4 2.3 2 3.8 4.4 4"/></svg></a>
-        <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20mi%20web%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" data-wa-loc="footer" aria-label="WhatsApp"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 20.5l1.3-4.3A8.2 8.2 0 1 1 8 19.4l-4.5 1.1z"/><path d="M9 9.2c0 3 2.3 5.3 5.2 5.4.6 0 1.1-.4 1.2-1l.1-.6-2-.9-.8 1a4.6 4.6 0 0 1-2-2l1-.8-.9-2-.6.1c-.6.1-1.1.6-1.2 1.2z"/></svg></a>
+        <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20mi%20web%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" data-wa-loc="footer" data-wa-fixed aria-label="WhatsApp"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 20.5l1.3-4.3A8.2 8.2 0 1 1 8 19.4l-4.5 1.1z"/><path d="M9 9.2c0 3 2.3 5.3 5.2 5.4.6 0 1.1-.4 1.2-1l.1-.6-2-.9-.8 1a4.6 4.6 0 0 1-2-2l1-.8-.9-2-.6.1c-.6.1-1.1.6-1.2 1.2z"/></svg></a>
       </div>
     </div>
   </div>

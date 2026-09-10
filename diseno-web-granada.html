@@ -187,12 +187,23 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 .dmw-mob-btn svg{transition:transform .2s;flex-shrink:0}
 .dmw-mob-btn[aria-expanded=true] svg{transform:rotate(180deg)}
 .dmw-mob-panel{padding:0 0 12px 4px;display:flex;flex-wrap:wrap;gap:7px}
+/* display:flex/grid gana al [hidden] del navegador: hay que reponerlo. */
+.dmw-mob-panel[hidden],.dmw-dd-panel[hidden],.dmw-mob[hidden]{display:none}
 .dmw-mob-panel a{font-size:14px;color:rgba(255,255,255,.65);text-decoration:none;border:1px solid #262626;border-radius:100px;padding:8px 14px}
 .dmw-mob-panel a.lead{color:#7FA3F5;border-color:#2b3a5c}
 .dmw-mob .dmw-cta{margin-top:22px;width:100%;justify-content:center;padding:15px}
 @media(max-width:1180px){.dmw-nav{display:none}.dmw-burger{display:inline-flex}.dmw-hd-in{gap:10px}.dmw-cta{margin-left:auto}}
-@media(max-width:560px){.dmw-cta span{display:none}.dmw-cta{padding:10px 13px}}
-@media(prefers-reduced-motion:reduce){.dmw-hd *,.dmw-ft *{transition:none!important;animation:none!important}}
+/* En pantallas muy estrechas el CTA de la barra se queda en icono, pero el
+   del menu movil conserva su texto. */
+@media(max-width:560px){.dmw-hd .dmw-cta span{display:none}.dmw-hd .dmw-cta{padding:10px 13px}}
+/* Movimiento reducido, para todo el sitio. Va en la cabecera porque es el
+   unico bloque que esta en las 127 paginas. Las clases .rv y .reveal son
+   revelados al hacer scroll: sin animacion tienen que quedarse visibles. */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto!important}
+  .rv,.reveal,.rv.on{opacity:1!important;transform:none!important}
+}
 </style>
 <a class="dmw-skip" href="#dmw-main">Saltar al contenido</a>
 <header class="dmw-hd" id="dmw-hd">
@@ -219,10 +230,13 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
       <a href="/blog">Blog</a>
       <a href="/contacto">Contacto</a>
     </div>
-    <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20mi%20web%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" data-wa-loc="header" class="dmw-cta"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 20.5l1.3-4.3A8.2 8.2 0 1 1 8 19.4l-4.5 1.1z"/><path d="M9 9.2c0 3 2.3 5.3 5.2 5.4.6 0 1.1-.4 1.2-1l.1-.6-2-.9-.8 1a4.6 4.6 0 0 1-2-2l1-.8-.9-2-.6.1c-.6.1-1.1.6-1.2 1.2z"/></svg><span>Pedir mi web</span></a>
+    <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20mi%20web%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" data-wa-loc="header" data-wa-fixed class="dmw-cta"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 20.5l1.3-4.3A8.2 8.2 0 1 1 8 19.4l-4.5 1.1z"/><path d="M9 9.2c0 3 2.3 5.3 5.2 5.4.6 0 1.1-.4 1.2-1l.1-.6-2-.9-.8 1a4.6 4.6 0 0 1-2-2l1-.8-.9-2-.6.1c-.6.1-1.1.6-1.2 1.2z"/></svg><span>Pedir mi web</span></a>
     <button type="button" class="dmw-burger" id="dmw-burger" aria-expanded="false" aria-controls="dmw-mob" aria-label="Abrir menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
   </div>
-  <div class="dmw-mob" id="dmw-mob" hidden>
+</header>
+<!-- El panel movil va fuera de <header> a proposito: el backdrop-filter de la
+     cabecera crea un bloque contenedor y recortaria su position:fixed. -->
+<div class="dmw-mob" id="dmw-mob" hidden>
       <div class="dmw-mob-sec">
         <button type="button" class="dmw-mob-btn" aria-expanded="false" aria-controls="dmw-mob-serv">Servicios<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></button>
         <div class="dmw-mob-panel" id="dmw-mob-serv" hidden><a href="/#servicios" class="lead">Servicios — qué incluye</a><a href="/#proceso">Proceso — cómo funciona</a><a href="/precios">Precios</a><a href="/auditorias">Auditorías</a><a href="/marketing">Marketing</a><a href="/comparativa">Comparativa</a></div>
@@ -239,9 +253,8 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
       <div class="dmw-mob-sec"><a href="/resenas">Reseñas</a></div>
       <div class="dmw-mob-sec"><a href="/blog">Blog</a></div>
       <div class="dmw-mob-sec"><a href="/contacto">Contacto</a></div>
-      <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20mi%20web%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" data-wa-loc="menu_movil" class="dmw-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 20.5l1.3-4.3A8.2 8.2 0 1 1 8 19.4l-4.5 1.1z"/><path d="M9 9.2c0 3 2.3 5.3 5.2 5.4.6 0 1.1-.4 1.2-1l.1-.6-2-.9-.8 1a4.6 4.6 0 0 1-2-2l1-.8-.9-2-.6.1c-.6.1-1.1.6-1.2 1.2z"/></svg><span>Pedir mi web — 250€ + IVA</span></a>
-  </div>
-</header>
+      <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20mi%20web%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" data-wa-loc="menu_movil" data-wa-fixed class="dmw-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 20.5l1.3-4.3A8.2 8.2 0 1 1 8 19.4l-4.5 1.1z"/><path d="M9 9.2c0 3 2.3 5.3 5.2 5.4.6 0 1.1-.4 1.2-1l.1-.6-2-.9-.8 1a4.6 4.6 0 0 1-2-2l1-.8-.9-2-.6.1c-.6.1-1.1.6-1.2 1.2z"/></svg><span>Pedir mi web — 250€ + IVA</span></a>
+</div>
 <div class="dmw-hd-spacer" id="dmw-main" tabindex="-1"></div><!--/dmw:header-->
 
 <!-- HERO -->
@@ -250,7 +263,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
     <div class="hero-inner">
       <div>
         <div class="eyebrow">Diseño web en Granada · Andalucía</div>
-        <h1>DISEÑO WEB<br><span class="dim">EN GRANADA</span></h1>
+        <h1>Diseño web<br><span class="dim">en Granada</span></h1>
         <p class="hero-desc">Web profesional para autónomos y pequeños negocios en <strong>Granada y su área metropolitana</strong>. Llegamos a Albaicín, Realejo, Centro y toda la ciudad. Responsive, SEO local para Granada y publicada en 72 horas. Sin mensualidades.</p>
         <div class="price-row">
           <span class="price-big">250€ + IVA</span>
@@ -267,7 +280,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
         </div>
       </div>
       <div class="hero-vis">
-        <div class="hero-vis-num">🏔️</div>
+        <div class="hero-vis-num"><svg style="vertical-align:middle;flex-shrink:0" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s6.5-6 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 15 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.5"/></svg></div>
         <div class="hero-vis-txt">Diseño web en Granada</div>
       </div>
     </div>
@@ -277,7 +290,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 <section class="sec dc-sec" id="datos-clave" aria-labelledby="dc-t">
   <div class="w">
     <div class="eyebrow">En resumen</div>
-    <h2 id="dc-t" class="dc-h">DISEÑO WEB EN GRANADA, EN DATOS</h2>
+    <h2 id="dc-t" class="dc-h">Diseño web en Granada, en datos</h2>
     <p class="dc-lead"><strong>Dame mi web</strong> diseña y publica webs profesionales para autónomos y pequeños negocios de <strong>Granada</strong> por <strong>250€ + IVA en un solo pago</strong>, sin cuotas mensuales, con dominio .com incluido el primer año y publicación en un <strong>máximo de 72 horas</strong>. El servicio es 100% remoto, así que no hace falta que te desplaces ni que coincidamos en la misma oficina.</p>
     <dl class="dc-grid">
       <div><dt>Servicio</dt><dd>Diseño web profesional para autónomos y pequeños negocios</dd></div>
@@ -302,11 +315,11 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 <section class="sec sec-gray">
   <div class="w">
     <div class="eyebrow">Por qué nosotros</div>
-    <h2 class="d">LA MEJOR OPCIÓN<br><span class="dim">EN GRANADA</span></h2>
+    <h2 class="d">La mejor opción<br><span class="dim">en Granada</span></h2>
     <div class="benefits-grid">
-      <div class="bc"><div class="bc-ico">⚡</div><h3>Online en 72 horas</h3><p>Desde que nos das la información de tu negocio hasta que tu web está publicada en Granada: menos de 3 días.</p></div>
-      <div class="bc"><div class="bc-ico">📍</div><h3>SEO local para Granada</h3><p>Preparamos tu web para las búsquedas de Albaicín, Realejo o Zaidín y del resto de Granada: contenido, etiquetas y datos estructurados mencionan tu zona de servicio. El posicionamiento orgánico depende de tu sector y tu competencia, y lleva tiempo.</p></div>
-      <div class="bc"><div class="bc-ico">💰</div><h3>Precio único sin sorpresas</h3><p>250€ + IVA pago único. Sin mensualidades y sin mantenimiento obligatorio. La web y el dominio quedan a tu nombre; a partir del segundo año solo se paga la renovación del dominio, 10-15€ al año.</p></div>
+      <div class="bc"><div class="bc-ico"><svg style="vertical-align:middle;flex-shrink:0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 3L5 13.5h5.5L10 21l8.5-10.5H13z"/></svg></div><h3>Online en 72 horas</h3><p>Desde que nos das la información de tu negocio hasta que tu web está publicada en Granada: menos de 3 días.</p></div>
+      <div class="bc"><div class="bc-ico"><svg style="vertical-align:middle;flex-shrink:0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s6.5-6 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 15 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.5"/></svg></div><h3>SEO local para Granada</h3><p>Preparamos tu web para las búsquedas de Albaicín, Realejo o Zaidín y del resto de Granada: contenido, etiquetas y datos estructurados mencionan tu zona de servicio. El posicionamiento orgánico depende de tu sector y tu competencia, y lleva tiempo.</p></div>
+      <div class="bc"><div class="bc-ico"><svg style="vertical-align:middle;flex-shrink:0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17.5 6.5a6.5 6.5 0 1 0 0 11"/><path d="M4.5 10.5h8"/><path d="M4.5 13.5h8"/></svg></div><h3>Precio único sin sorpresas</h3><p>250€ + IVA pago único. Sin mensualidades y sin mantenimiento obligatorio. La web y el dominio quedan a tu nombre; a partir del segundo año solo se paga la renovación del dominio, 10-15€ al año.</p></div>
     </div>
   </div>
 </section>
@@ -316,7 +329,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
   <div class="w" style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start">
     <div>
       <div class="eyebrow">Todo incluido</div>
-      <h2 class="d">QUÉ INCLUYE<br><span class="dim">TU WEB</span></h2>
+      <h2 class="d">Qué incluye<br><span class="dim">tu web</span></h2>
       <div class="inc-list">
         <div class="inc-row"><span class="inc-n">01</span><div><h3>Diseño Responsive</h3><p>Perfecta en móvil, tablet y ordenador. El 70% de tus clientes en Granada visitan webs desde el móvil.</p></div></div>
         <div class="inc-row"><span class="inc-n">02</span><div><h3>Dominio .com incluido</h3><p>Tu dominio .com incluido el primer año sin coste extra. Renovación de 10-15€/año a partir del segundo.</p></div></div>
@@ -327,7 +340,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
     </div>
     <div>
       <div class="eyebrow">Sectores en Granada</div>
-      <h2 class="d">WEB PARA<br><span class="dim">TU SECTOR</span></h2>
+      <h2 class="d">Web para<br><span class="dim">tu sector</span></h2>
       <style>
 .sec-ciudad-row{display:flex;align-items:center;gap:12px;padding:14px 18px;background:#0d0d0d;border:1px solid var(--border,#1E1E1E);border-radius:10px;text-decoration:none;transition:border-color .15s}
 .sec-ciudad-row:hover{border-color:#2563EB}
@@ -351,7 +364,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
   <div class="w-sm">
     <div style="text-align:center">
       <div class="eyebrow" style="justify-content:center">FAQ</div>
-      <h2 class="d" style="color:var(--white);text-align:center">PREGUNTAS<br><span class="dim">FRECUENTES</span></h2>
+      <h2 class="d" style="color:var(--white);text-align:center">Preguntas<br><span class="dim">frecuentes</span></h2>
     </div>
     <div class="faq-wrap" id="faqs">
       <div class="fi open"><button class="fbtn" onclick="faq(this)"><span class="fbq">¿Hacéis webs para negocios en Granada?</span><span class="fbi">+</span></button><div class="fbody"><div class="fbin">Sí. Trabajamos con autónomos y pequeños negocios de toda España, incluyendo Granada y su área metropolitana. Todo se gestiona de forma remota — solo necesitas enviarnos la información de tu negocio por WhatsApp o email.</div></div></div>
@@ -369,7 +382,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
       <div>
         <div class="eyebrow">Siguiente nivel</div>
-        <h2 class="d">¿QUIERES QUE<br><span class="dim">LA IA TE RECOMIENDE?</span></h2>
+        <h2 class="d">¿Quieres que<br><span class="dim">la IA te recomiende?</span></h2>
         <p style="font-size:16px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:24px">Cuando alguien en Granada le pregunta a ChatGPT o Gemini <em>"¿cuál es la mejor empresa de [tu sector]?"</em>, ¿apareces tú? Con AutoridadGEO, sí.</p>
         <p style="font-size:16px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:32px">6 propiedades digitales publicando 24 artículos al mes que publican contenido para que los asistentes de IA con búsqueda encuentren y citen tu marca como referencia en Granada y toda España.</p>
         <a href="https://www.autoridadgeo.com" target="_blank" rel="noopener" class="btn-w">Ver AutoridadGEO →</a>
@@ -397,14 +410,14 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 <section class="sec sec-gray">
   <div class="w">
     <div class="eyebrow">Del blog</div>
-    <h2 class="d">ARTÍCULOS PARA<br><span class="dim">TU NEGOCIO</span></h2>
+    <h2 class="d">Artículos para<br><span class="dim">tu negocio</span></h2>
     <div class="related-links">
-      <a href="/blog/errores-seo-pequenos-negocios" class="rl">🔍 Los 7 errores SEO que hunden tu visibilidad</a>
-      <a href="/blog/google-business-profile-negocios-locales" class="rl">📍 Google Business Profile: guía completa</a>
-      <a href="/blog/cuanto-cuesta-pagina-web-autonomos" class="rl">💰 ¿Cuánto cuesta una web para autónomos?</a>
-      <a href="/blog/como-pedir-resenas-clientes" class="rl">⭐ Cómo pedir reseñas a tus clientes</a>
-      <a href="/blog/instagram-para-negocios-locales" class="rl">📸 Cómo usar Instagram para atraer clientes</a>
-      <a href="/blog/whatsapp-business-negocios" class="rl">💬 WhatsApp Business para negocios</a>
+      <a href="/blog/errores-seo-pequenos-negocios" class="rl"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg> Los 7 errores SEO que hunden tu visibilidad</a>
+      <a href="/blog/google-business-profile-negocios-locales" class="rl"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s6.5-6 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 15 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.5"/></svg> Google Business Profile: guía completa</a>
+      <a href="/blog/cuanto-cuesta-pagina-web-autonomos" class="rl"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17.5 6.5a6.5 6.5 0 1 0 0 11"/><path d="M4.5 10.5h8"/><path d="M4.5 13.5h8"/></svg> ¿Cuánto cuesta una web para autónomos?</a>
+      <a href="/blog/como-pedir-resenas-clientes" class="rl"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg> Cómo pedir reseñas a tus clientes</a>
+      <a href="/blog/instagram-para-negocios-locales" class="rl"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 8h3.5l1.5-2.5h6L16.5 8H20v11H4z"/><circle cx="12" cy="13.2" r="3.5"/></svg> Cómo usar Instagram para atraer clientes</a>
+      <a href="/blog/whatsapp-business-negocios" class="rl"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5.5h16v11H9l-5 4z"/></svg> WhatsApp Business para negocios</a>
     </div>
   </div>
 </section>
@@ -413,7 +426,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 <section class="sec">
   <div class="w">
     <div class="cta-block">
-      <h2>TU NEGOCIO EN GRANADA<br>MERECE UNA WEB</h2>
+      <h2>Tu negocio en Granada<br>merece una web</h2>
       <p>Diseño web profesional por 250€ + IVA. Online en 72 horas. Sin mensualidades.</p>
       <div class="cta-btns">
         <a data-wa-loc="ciudad_datos_clave" href="https://wa.me/34662549694?text=Hola%2C%20quiero%20una%20web%20en%20Granada%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="btn-black">Solicitar mi web →</a>
@@ -427,7 +440,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 <section class="sec" style="background:#0F0F0F;border-top:1px solid var(--border)">
   <div class="w">
     <div class="eyebrow">Zonas donde trabajamos</div>
-    <h2 style="font-family:var(--display);font-size:clamp(32px,4.5vw,56px);letter-spacing:.02em;line-height:.97;margin-bottom:24px">DISEÑO WEB EN TODA<br><span style="color:rgba(255,255,255,.2)">GRANADA</span></h2>
+    <h2 style="font-family:var(--display);font-size:clamp(32px,4.5vw,56px);letter-spacing:.02em;line-height:.97;margin-bottom:24px">Diseño web en toda<br><span style="color:rgba(255,255,255,.2)">Granada</span></h2>
     <p style="font-size:16px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.8;max-width:740px;margin-bottom:28px">Granada combina turismo, vida universitaria y comercio de barrio, un mercado donde estar bien posicionado en Google es clave. Trabajamos con negocios de la ciudad y del cinturón metropolitano. Diseñamos tu web pensando en el cliente que te busca desde el móvil en tu barrio: de Albaicín a Genil, y también en municipios cercanos como Armilla, Maracena, Las Gabias o Ogíjares. Todo optimizado para el SEO local de Granada.</p>
     <div style="display:flex;flex-wrap:wrap;gap:10px">
         <span style="font-size:13px;font-weight:400;color:rgba(255,255,255,.55);padding:8px 16px;border:1px solid var(--border);border-radius:100px">Albaicín</span>
@@ -520,7 +533,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
           <span class="dmw-ft-brand-t" aria-hidden="true">Dame mi <span>web</span></span>
         </a>
         <p class="dmw-ft-desc">Página web profesional para autónomos y pequeños negocios en toda España. 250€ + IVA, pago único, sin cuotas mensuales y con 12 meses de soporte incluidos.</p>
-        <p class="dmw-ft-meta">5,0 en Google · 83 reseñas<br/>+91 proyectos entregados<br/><a href="/contacto">Contacto</a> · <a href="tel:+34662549694">662 549 694</a></p>
+        <p class="dmw-ft-meta">5,0 en Google · 83 reseñas<br/><a href="/proyectos">+91 proyectos entregados</a><br/><a href="/contacto">Contacto</a> · <a href="tel:+34662549694">662 549 694</a></p>
       </div>
       <div>
         <h2>Servicios</h2>
@@ -544,7 +557,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
       <div class="dmw-ft-soc">
         <a href="https://www.instagram.com/damemiweb" target="_blank" rel="noopener" aria-label="Instagram de Dame mi web"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><path d="M17.2 6.8h.01"/></svg></a>
         <a href="https://www.tiktok.com/@damemiweb" target="_blank" rel="noopener" aria-label="TikTok de Dame mi web"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4v10.2a3.3 3.3 0 1 1-2.6-3.2"/><path d="M14 4c.4 2.3 2 3.8 4.4 4"/></svg></a>
-        <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20mi%20web%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" data-wa-loc="footer" aria-label="WhatsApp"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 20.5l1.3-4.3A8.2 8.2 0 1 1 8 19.4l-4.5 1.1z"/><path d="M9 9.2c0 3 2.3 5.3 5.2 5.4.6 0 1.1-.4 1.2-1l.1-.6-2-.9-.8 1a4.6 4.6 0 0 1-2-2l1-.8-.9-2-.6.1c-.6.1-1.1.6-1.2 1.2z"/></svg></a>
+        <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20mi%20web%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" data-wa-loc="footer" data-wa-fixed aria-label="WhatsApp"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 20.5l1.3-4.3A8.2 8.2 0 1 1 8 19.4l-4.5 1.1z"/><path d="M9 9.2c0 3 2.3 5.3 5.2 5.4.6 0 1.1-.4 1.2-1l.1-.6-2-.9-.8 1a4.6 4.6 0 0 1-2-2l1-.8-.9-2-.6.1c-.6.1-1.1.6-1.2 1.2z"/></svg></a>
       </div>
     </div>
   </div>

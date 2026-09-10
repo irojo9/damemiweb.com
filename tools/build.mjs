@@ -18,8 +18,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { header, footer, waLink } from './partials.mjs';
 import { icon } from './icons.mjs';
+import { sustituirEmojiIconos } from './emoji-iconos.mjs';
 import { SECTORES, CIUDADES, CATEGORIAS_PROYECTOS } from './data.mjs';
 import * as nuevas from './paginas-nuevas.mjs';
+import * as portfolio from './portfolio.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHECK = process.argv.includes('--check');
@@ -209,6 +211,86 @@ function valoresOficiales(html) {
 }
 
 // ---------------------------------------------------------------------------
+// FASE 3 — Bloques generados de la home
+// ---------------------------------------------------------------------------
+
+/**
+ * La rejilla de portfolio y la franja "Otros servicios" se generan desde
+ * /proyectos y desde la config. Se delimitan con marcadores para poder
+ * regenerarlas sin tocar el resto de index.html.
+ */
+function bloquesHome(html, file) {
+  if (file !== 'index.html') return html;
+
+  const pon = (nombre, contenido) => {
+    const marca = `<!--dmw:${nombre}-->`, cierre = `<!--/dmw:${nombre}-->`;
+    const envuelto = marca + contenido + cierre;
+    if (html.includes(marca)) {
+      html = html.replace(new RegExp(`${marca}[\\s\\S]*?${cierre}`), envuelto);
+    } else if (html.includes(`@@${nombre.toUpperCase()}@@`)) {
+      html = html.replace(`@@${nombre.toUpperCase()}@@`, envuelto);
+    }
+  };
+
+  pon('portfolio', portfolio.seccion(cfg, ROOT));
+  pon('otros', portfolio.otrosServicios(cfg, icon));
+  return html;
+}
+
+// ---------------------------------------------------------------------------
+// FASE 3 — Fuera las mayúsculas forzadas de los titulares
+// ---------------------------------------------------------------------------
+
+/* Nombres propios que conservan sus mayúsculas al pasar un titular a
+   mayúscula inicial. Las ciudades salen de data.mjs. */
+const PROPIOS = [
+  ...CIUDADES.map(c => c.label),
+  'Madrid', 'Barcelona', 'España', 'Google', 'ChatGPT', 'Gemini', 'WhatsApp',
+  'Instagram', 'TikTok', 'AutoridadGEO', 'Dame mi web', 'Vitoria-Gasteiz',
+  'IVA', 'SEO', 'GEO', 'IA', 'PDF', 'CRM', 'Ads', 'Meta'
+].sort((a, b) => b.length - a.length);
+
+function aMayusculaInicial(texto) {
+  let t = texto.toLocaleLowerCase('es-ES');
+  for (const propio of PROPIOS) {
+    const re = new RegExp(`(?<![\\p{L}])${propio.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\p{L}])`, 'giu');
+    t = t.replace(re, propio);
+  }
+  return t;
+}
+
+/**
+ * Las páginas de ciudad y de sector x ciudad escribían los titulares en
+ * mayúsculas dentro del propio HTML ("DISEÑO WEB EN MADRID"). Se pasan a
+ * mayúscula solo inicial conservando los nombres propios.
+ */
+function titularesSinMayusculas(html, file) {
+  const esCiudad = /^diseno-web-/.test(file)
+    || SECTORES.some(s => new RegExp(`^${s.slug}-[a-z-]+\\.html$`).test(file));
+  if (!esCiudad) return html;
+
+  return html.replace(/<(h1|h2|h3)\b([^>]*)>([\s\S]*?)<\/\1>/g, (m, tag, attrs, dentro) => {
+    const texto = dentro.replace(/<[^>]+>/g, ' ');
+    const mays = (texto.match(/\p{Lu}/gu) || []).length;
+    const mins = (texto.match(/\p{Ll}/gu) || []).length;
+    if (mays < 5 || mins > mays * 0.25) return m;   // no estaba en mayúsculas
+
+    // Solo se tocan los nodos de texto: los atributos de las etiquetas internas
+    // (clases, estilos) se dejan intactos.
+    let primera = true;
+    const nuevo = dentro.replace(/(^|>)([^<]+)/g, (_, pre, txt) => {
+      let t = aMayusculaInicial(txt);
+      if (primera && /\p{L}/u.test(t)) {
+        t = t.replace(/\p{L}/u, c => c.toLocaleUpperCase('es-ES'));
+        primera = false;
+      }
+      return pre + t;
+    });
+    return `<${tag}${attrs}>${nuevo}</${tag}>`;
+  });
+}
+
+// ---------------------------------------------------------------------------
 // FASE 2 — Title, description y H1 de la home desde la config
 // ---------------------------------------------------------------------------
 
@@ -224,6 +306,11 @@ function metasHome(html, file) {
   // JSON-LD de la WebPage de la home
   html = html.replace(/("@id":"[^"]*#webpage","url":"[^"]*","name":")[^"]*(","description":")[^"]*(")/,
     `$1${title}$2${description}$3`);
+
+  // Las auditorías y el marketing mensual ya no viven en anclas de la home:
+  // el JSON-LD apunta a sus páginas.
+  html = html.replace(new RegExp(`"${cfg.site.domain}/#auditorias"`, 'g'), `"${cfg.site.domain}/auditorias"`);
+  html = html.replace(new RegExp(`"${cfg.site.domain}/#rrss"`, 'g'), `"${cfg.site.domain}/marketing"`);
 
   // El H1 es estático y sale de la config. Se conserva el resaltado del precio.
   const precio = `${cfg.web.price}, pago único`;
@@ -283,6 +370,16 @@ function cajaChatGPT(html) {
 // FASE 2 — Marca siempre "Dame mi web"
 // ---------------------------------------------------------------------------
 
+/**
+ * Las auditorías y el marketing mensual salieron de la home a sus propias
+ * páginas: cualquier enlace a las antiguas anclas se redirige.
+ */
+function anclasMovidas(html) {
+  return html
+    .replace(/href="\/?#auditorias"/g, 'href="/auditorias"')
+    .replace(/href="\/?#rrss"/g, 'href="/marketing"');
+}
+
 function marca(html) {
   return html
     .replace(/DAME MI WEB/g, cfg.site.brand)
@@ -328,13 +425,20 @@ function familia(file) {
  */
 function marcarWhatsApp(html, file) {
   const base = familia(file);
+  // Se recalcula siempre: si una seccion cambia de sitio, la ubicacion que se
+  // envia a GA4 tiene que seguirla.
+  html = html.replace(/(<a\b[^>]*href="[^"]*wa\.me[^"]*"[^>]*>)/g,
+    t => /data-wa-fixed/.test(t) ? t : t.replace(/\s*data-wa-loc="[^"]*"/, ''));
   return html.replace(/<a\b[^>]*href="[^"]*wa\.me[^"]*"[^>]*>/g, (tag, pos) => {
-    if (/data-wa-loc=/.test(tag)) return tag;
+    if (/data-wa-fixed/.test(tag)) return tag;
     let loc = base;
-    const antes = html.slice(0, pos);
-    const sec = [...antes.matchAll(/<section[^>]*\bid="([^"]+)"/g)].pop();
-    if (sec) loc = `${base}_${sec[1].replace(/-/g, '_')}`;
-    else if (/class="[^"]*\b(waf|btn-hero|cta)\b/.test(tag)) loc = `${base}_cta`;
+    if (/\bid="waf"/.test(tag)) {
+      loc = `${base}_boton_flotante`;           // burbuja fija de WhatsApp
+    } else {
+      const antes = html.slice(0, pos);
+      const sec = [...antes.matchAll(/<section[^>]*\bid="([^"]+)"/g)].pop();
+      if (sec) loc = `${base}_${sec[1].replace(/-/g, '_')}`;
+    }
     return tag.replace(/<a\b/, `<a data-wa-loc="${loc}"`);
   });
 }
@@ -548,7 +652,11 @@ function main() {
     html = canonicalizarDominio(html);
     html = canonicalDePagina(html, file);
     html = marca(html);
+    html = anclasMovidas(html);
     html = metasHome(html, file);
+    html = bloquesHome(html, file);
+    html = titularesSinMayusculas(html, file);
+    html = sustituirEmojiIconos(html, icon, m => avisos.push(`${file}: ${m}`));
     html = promesasRealistas(html);
     html = cajaChatGPT(html);
     html = valoresOficiales(html);

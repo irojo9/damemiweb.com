@@ -64,6 +64,9 @@ const P = {
   'apple': '<path d="M12 7c-3 0-5.5 2.2-5.5 5.7 0 3.5 2.4 7.8 4.3 7.8.9 0 1.2-.6 2.2-.6s1.3.6 2.2.6c1.9 0 4.3-4.3 4.3-7.8C19.5 9.2 17 7 14 7c-.8 0-1.4.3-2 .3S12.8 7 12 7z"/><path d="M12.5 6.5c0-1.7 1.2-3 2.8-3.2"/>',
   'car': '<path d="M4.5 16v3h3v-3"/><path d="M16.5 16v3h3v-3"/><path d="M3.5 16v-4l2-5h13l2 5v4z"/><path d="M6.5 12.5h2"/><path d="M15.5 12.5h2"/>',
   'store': '<path d="M4 9.5V20h16V9.5"/><path d="M3 9.5L5 4.5h14l2 5a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"/><path d="M10 20v-5.5h4V20"/>',
+  'calendar': '<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4"/><path d="M16 3v4"/><path d="M3.5 10h17"/>',
+  'smartphone': '<rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18.5h3"/>',
+  'handshake': '<path d="M3 12.5l4-4 3 2.5 4-3.5 3 2.5"/><path d="M7 8.5L11 5l6 3.5 4 4-3 3-3-2.5"/><path d="M3 12.5l3 3 3-1.5"/>',
   'briefcase': '<rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M9 7.5V5.5h6v2"/><path d="M3 12.5h18"/>'
 };
 

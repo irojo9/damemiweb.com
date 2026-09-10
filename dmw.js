@@ -35,7 +35,8 @@
     }
 
     var desplegables = [].slice.call(hd.querySelectorAll('.dmw-dd-btn'));
-    var movilBtns = [].slice.call(hd.querySelectorAll('.dmw-mob-btn'));
+    // El panel movil vive fuera de <header>: se busca en el documento.
+    var movilBtns = [].slice.call(document.querySelectorAll('.dmw-mob-btn'));
 
     desplegables.forEach(function (btn) {
       btn.addEventListener('click', function (e) {

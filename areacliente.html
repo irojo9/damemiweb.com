@@ -253,11 +253,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="wrap">
 
     <div class="tabs" id="tabs">
-      <button class="tab active" onclick="tab('inicio')"><span class="tico">🏠</span><span>Inicio</span></button>
-      <button class="tab" onclick="tab('web')"><span class="tico">🌐</span><span>Mi web</span></button>
-      <button class="tab" onclick="tab('facturas')"><span class="tico">🧾</span><span>Facturas</span><span class="tab-badge" id="badge-facturas" style="display:none"></span></button>
-      <button class="tab" onclick="tab('tickets')"><span class="tico">🎫</span><span>Tickets</span><span class="tab-badge" id="badge-tickets" style="display:none"></span></button>
-      <button class="tab" onclick="tab('recursos')"><span class="tico">📚</span><span>Más</span></button>
+      <button class="tab active" onclick="tab('inicio')"><span class="tico"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9.5V20h16V9.5"/><path d="M3 9.5L5 4.5h14l2 5a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"/><path d="M10 20v-5.5h4V20"/></svg></span><span>Inicio</span></button>
+      <button class="tab" onclick="tab('web')"><span class="tico"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a14 14 0 0 1 0 17"/><path d="M12 3.5a14 14 0 0 0 0 17"/></svg></span><span>Mi web</span></button>
+      <button class="tab" onclick="tab('facturas')"><span class="tico"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5z"/><path d="M14 3.5v5h5"/><path d="M8.5 13h7"/><path d="M8.5 16.5h5"/></svg></span><span>Facturas</span><span class="tab-badge" id="badge-facturas" style="display:none"></span></button>
+      <button class="tab" onclick="tab('tickets')"><span class="tico"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5z"/><path d="M14 3.5v5h5"/><path d="M8.5 13h7"/><path d="M8.5 16.5h5"/></svg></span><span>Tickets</span><span class="tab-badge" id="badge-tickets" style="display:none"></span></button>
+      <button class="tab" onclick="tab('recursos')"><span class="tico"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 4.5h10a3 3 0 0 1 3 3v12H7.5a3 3 0 0 1-3-3z"/><path d="M17.5 19.5h2v-15h-2"/></svg></span><span>Más</span></button>
     </div>
 
     <!-- INICIO -->
@@ -271,7 +271,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <!-- FACTURAS -->
     <div id="t-facturas" style="display:none">
       <div class="card">
-        <div class="card-title">🧾 Historial de facturas</div>
+        <div class="card-title"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5z"/><path d="M14 3.5v5h5"/><path d="M8.5 13h7"/><path d="M8.5 16.5h5"/></svg> Historial de facturas</div>
         <div id="fac-list"><div class="skel" style="height:80px"></div></div>
       </div>
     </div>
@@ -280,13 +280,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div id="t-tickets" style="display:none">
       <div class="card">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-          <div class="card-title" style="margin:0">🎫 Mis tickets</div>
+          <div class="card-title" style="margin:0"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5z"/><path d="M14 3.5v5h5"/><path d="M8.5 13h7"/><path d="M8.5 16.5h5"/></svg> Mis tickets</div>
           <button class="btn-prim" onclick="abrirNuevoTicketCliente()" style="padding:8px 14px;font-size:13px">+ Nuevo</button>
         </div>
         <div id="portal-tickets-list"><div class="skel" style="height:80px"></div></div>
       </div>
       <div id="portal-nuevo-ticket" style="display:none" class="card">
-        <div class="card-title">📝 Nuevo ticket</div>
+        <div class="card-title"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20l1-4L16.5 4.5a2 2 0 0 1 3 3L8 19z"/></svg> Nuevo ticket</div>
         <div class="field">
           <label>Tipo de solicitud</label>
           <select id="pt-tipo" style="width:100%;border:2px solid var(--bd);border-radius:12px;padding:13px 14px;font-size:16px;background:var(--s1);color:var(--tx);outline:none">
@@ -315,30 +315,30 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <!-- RECURSOS -->
     <div id="t-recursos" style="display:none">
       <div class="card">
-        <div class="card-title">📚 Recursos exclusivos</div>
+        <div class="card-title"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 4.5h10a3 3 0 0 1 3 3v12H7.5a3 3 0 0 1-3-3z"/><path d="M17.5 19.5h2v-15h-2"/></svg> Recursos exclusivos</div>
         <p style="font-size:13px;color:var(--mt);margin-bottom:16px;line-height:1.6">Recursos y ofertas para ayudarte a crecer.</p>
         <a href="https://www.ligapatria.com" target="_blank" class="rc" style="background:#fef2f2;border-color:#fca5a5">
-          <span class="rc-ico">⚽</span>
+          <span class="rc-ico"><svg style="vertical-align:middle;flex-shrink:0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></span>
           <div class="rc-i"><strong>Liga Patria — Fantasy de tu municipio</strong><span>Reserva tu pueblo, gestiona tu club y gana dinero real</span></div>
           <span class="rc-ar">→</span>
         </a>
         <a href="https://www.hefestocrm.com" target="_blank" class="rc" style="background:#fff7ed;border-color:#fdba74">
-          <span class="rc-ico">🛠️</span>
+          <span class="rc-ico"><svg style="vertical-align:middle;flex-shrink:0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.5 4.5a4.5 4.5 0 0 0-5.9 5.9L4 16l4 4 5.6-5.6a4.5 4.5 0 0 0 5.9-5.9l-2.8 2.8-2.5-2.5z"/></svg></span>
           <div class="rc-i"><strong>Hefesto CRM — Gestiona tu negocio</strong><span>Clientes, proyectos y facturas en un solo sitio</span></div>
           <span class="rc-ar">→</span>
         </a>
         <a href="https://manus.im/invitation/8JWC37JCNVZ1VW?utm_source=invitation&utm_medium=social&utm_campaign=copy_link" target="_blank" class="rc" style="background:#f5f3ff;border-color:#c4b5fd">
-          <span class="rc-ico">🤖</span>
+          <span class="rc-ico"><svg style="vertical-align:middle;flex-shrink:0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5l1.7 4.3 4.3 1.7-4.3 1.7L12 15.5l-1.7-4.3L6 9.5l4.3-1.7z"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
           <div class="rc-i"><strong>Manus IA — 500 créditos gratis</strong><span>El agente IA más potente</span></div>
           <span class="rc-ar">→</span>
         </a>
         <a href="https://revolut.com/referral/?referral-code=irojo9!MAY2-26-AR-RPB-CRY&geo-redirect" target="_blank" class="rc" style="background:#f0fdf4;border-color:#86efac">
-          <span class="rc-ico">💳</span>
+          <span class="rc-ico"><svg style="vertical-align:middle;flex-shrink:0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17.5 6.5a6.5 6.5 0 1 0 0 11"/><path d="M4.5 10.5h8"/><path d="M4.5 13.5h8"/></svg></span>
           <div class="rc-i"><strong>Revolut — Cuenta bancaria gratuita</strong><span>Abre tu cuenta y obtén ventajas exclusivas</span></div>
           <span class="rc-ar">→</span>
         </a>
         <a href="https://whatsapp.com/channel/0029VbBzjl56GcGBaLZDiB0Y" target="_blank" class="rc" style="background:#f0fdf4;border-color:#86efac;margin-bottom:16px">
-          <span class="rc-ico">💬</span>
+          <span class="rc-ico"><svg style="vertical-align:middle;flex-shrink:0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5.5h16v11H9l-5 4z"/></svg></span>
           <div class="rc-i"><strong>Canal WhatsApp — Novedades</strong><span>Únete y recibe recursos y consejos gratis</span></div>
           <span class="rc-ar">→</span>
         </a>
@@ -542,7 +542,7 @@ async function renderHome() {
   // Proyectos resumen
   const ps = data?.proyectos || [];
   const proyHtml = ps.length ? `<div class="card">
-    <div class="card-title">🌐 Tu web</div>
+    <div class="card-title"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a14 14 0 0 1 0 17"/><path d="M12 3.5a14 14 0 0 0 0 17"/></svg> Tu web</div>
     ${ps.map(p => {
       const steps = [
         {k:'pendiente',l:'Briefing recibido'},
@@ -570,16 +570,16 @@ async function renderHome() {
   // Quick actions
   const qaHtml = `<div class="qa-grid">
     <button class="qa-btn" onclick="tab('tickets');setTimeout(()=>abrirNuevoTicketCliente(),100)">
-      <span class="qa-btn-ico">🎫</span><span>Abrir ticket</span>
+      <span class="qa-btn-ico"><svg style="vertical-align:middle;flex-shrink:0" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5z"/><path d="M14 3.5v5h5"/><path d="M8.5 13h7"/><path d="M8.5 16.5h5"/></svg></span><span>Abrir ticket</span>
     </button>
     <a data-wa-loc="areacliente" href="https://wa.me/34662549694" target="_blank" class="qa-btn" style="text-decoration:none">
-      <span class="qa-btn-ico">💬</span><span>WhatsApp</span>
+      <span class="qa-btn-ico"><svg style="vertical-align:middle;flex-shrink:0" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5.5h16v11H9l-5 4z"/></svg></span><span>WhatsApp</span>
     </a>
     <button class="qa-btn" onclick="tab('facturas')">
-      <span class="qa-btn-ico">🧾</span><span>Facturas</span>
+      <span class="qa-btn-ico"><svg style="vertical-align:middle;flex-shrink:0" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5z"/><path d="M14 3.5v5h5"/><path d="M8.5 13h7"/><path d="M8.5 16.5h5"/></svg></span><span>Facturas</span>
     </button>
     <button class="qa-btn" onclick="tab('recursos')">
-      <span class="qa-btn-ico">📚</span><span>Recursos</span>
+      <span class="qa-btn-ico"><svg style="vertical-align:middle;flex-shrink:0" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 4.5h10a3 3 0 0 1 3 3v12H7.5a3 3 0 0 1-3-3z"/><path d="M17.5 19.5h2v-15h-2"/></svg></span><span>Recursos</span>
     </button>
   </div>`;
 
@@ -603,7 +603,7 @@ async function renderHome() {
 
   // Amplía tus servicios (upsell)
   const svcHtml = `<div class="card">
-    <div class="card-title">🚀 Amplía tus servicios</div>
+    <div class="card-title"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5c3.5 2 5.5 5.5 5.5 9.5L12 18l-5.5-5c0-4 2-7.5 5.5-9.5z"/><circle cx="12" cy="10" r="1.8"/><path d="M8.5 17c-1.5.8-2 2.2-2 3.8 1.6 0 3-.5 3.8-2"/></svg> Amplía tus servicios</div>
     <p style="font-size:13px;color:var(--mt);margin-bottom:14px;line-height:1.6">Lleva tu negocio más lejos con estos servicios adicionales.</p>
     ${SERVICIOS.map(s => `<div class="svc">
       <div class="svc-head"><span class="svc-ico">${s.ico}</span><span class="svc-t">${s.t}</span><span class="svc-precio">${s.precio}</span></div>
@@ -614,7 +614,7 @@ async function renderHome() {
 
   // Amplía tus productos (upsell)
   const prodHtml = `<div class="card">
-    <div class="card-title">🛍️ Amplía tus productos</div>
+    <div class="card-title"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9.5V20h16V9.5"/><path d="M3 9.5L5 4.5h14l2 5a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"/><path d="M10 20v-5.5h4V20"/></svg> Amplía tus productos</div>
     <p style="font-size:13px;color:var(--mt);margin-bottom:14px;line-height:1.6">Productos para potenciar tu presencia online.</p>
     ${PRODUCTOS.map(s => `<div class="svc">
       <div class="svc-head"><span class="svc-ico">${s.ico}</span><span class="svc-t">${s.t}</span><span class="svc-precio">${s.precio}</span></div>
@@ -742,7 +742,7 @@ function render() {
     document.getElementById('web-list').innerHTML = ps.map(p=>{
       const stIdx = p.estado==='entregado' ? 4 : p.estado==='en_progreso' ? 2 : 1;
       return `<div class="card">
-        <div class="card-title">🌐 ${esc(p.nombre||'Tu web')} <span class="badge ${EC[p.estado]||'b-m'}">${E[p.estado]||p.estado||'—'}</span></div>
+        <div class="card-title"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a14 14 0 0 1 0 17"/><path d="M12 3.5a14 14 0 0 0 0 17"/></svg> ${esc(p.nombre||'Tu web')} <span class="badge ${EC[p.estado]||'b-m'}">${E[p.estado]||p.estado||'—'}</span></div>
         ${p.dominio?`<div style="margin-bottom:14px"><a href="https://${p.dominio}" target="_blank" style="color:var(--acc);font-weight:600;font-size:13px">${esc(p.dominio)} →</a></div>`:''}
         ${STEPS.map((s,i)=>`
           <div class="proj-step">
@@ -960,7 +960,7 @@ function mostrarTourWelcome() {
   const m = document.createElement('div');
   m.id = 'tour-modal'; m.className = 'tov';
   m.innerHTML = `<div class="toc">
-    <div class="toc-emoji">🎯</div>
+    <div class="toc-emoji"><svg style="vertical-align:middle;flex-shrink:0" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></div>
     <div class="toc-title">¡Bienvenido a tu área!</div>
     <div class="toc-text">Te proponemos ${MISIONES.length} misiones rápidas para conocernos mejor. Cada una se abre en una pestaña nueva, así no pierdes el hilo.</div>
     <div class="toc-prize">
@@ -993,7 +993,7 @@ function mostrarReferidoModal() {
   const m = document.createElement('div');
   m.id = 'tour-modal'; m.className = 'tov';
   m.innerHTML = `<div class="toc">
-    <div class="toc-emoji">🤝</div>
+    <div class="toc-emoji"><svg style="vertical-align:middle;flex-shrink:0" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12.5l4-4 3 2.5 4-3.5 3 2.5"/><path d="M7 8.5L11 5l6 3.5 4 4-3 3-3-2.5"/><path d="M3 12.5l3 3 3-1.5"/></svg></div>
     <div class="toc-title">Gana 30€ por cada cliente</div>
     <div class="toc-text">¿Conoces a alguien que necesite una web? Tráenoslo y gana <strong>30€ por cada cliente</strong> que nos traigas. <strong>Sin límite.</strong></div>
     <button class="toc-btn" onclick="mostrarReferidoForm()">📲 Quiero traer clientes</button>
@@ -1009,7 +1009,7 @@ function mostrarReferidoForm() {
   m.id = 'tour-modal'; m.className = 'tov';
   m.innerHTML = `<div class="toc" style="text-align:left">
     <div style="text-align:center">
-      <div class="toc-emoji">🤝</div>
+      <div class="toc-emoji"><svg style="vertical-align:middle;flex-shrink:0" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12.5l4-4 3 2.5 4-3.5 3 2.5"/><path d="M7 8.5L11 5l6 3.5 4 4-3 3-3-2.5"/><path d="M3 12.5l3 3 3-1.5"/></svg></div>
       <div class="toc-title">Tráenos un cliente</div>
       <div class="toc-text">Déjanos sus datos y nos encargamos. Ganas <strong>30€ por cada cliente</strong> que se dé de alta. Sin límite.</div>
     </div>
@@ -1087,7 +1087,7 @@ function mostrarPremioModal() {
   const m = document.createElement('div');
   m.id = 'tour-modal'; m.className = 'tov';
   m.innerHTML = `<div class="toc">
-    <div class="toc-emoji">🎉</div>
+    <div class="toc-emoji"><svg style="vertical-align:middle;flex-shrink:0" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5l1.7 4.3 4.3 1.7-4.3 1.7L12 15.5l-1.7-4.3L6 9.5l4.3-1.7z"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></div>
     <div class="toc-title">¡Misiones completadas!</div>
     <div class="toc-text">Muchas gracias por apoyarnos. Has desbloqueado tu recompensa.</div>
     <div class="toc-prize">
