@@ -229,6 +229,7 @@ export function footer(cfg) {
         <h2>Recursos y legal</h2>
         <ul>${li([
           ['/blog', 'Blog'],
+          ['/juego_mudanzas', 'Juego: Mudanza Express'],
           ['/preguntas-frecuentes', 'Preguntas frecuentes'],
           ['/sobre-nosotros', 'Sobre nosotros'],
           ['/resenas', 'Reseñas'],
