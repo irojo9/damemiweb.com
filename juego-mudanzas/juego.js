@@ -442,6 +442,23 @@
     var w = h * (im.width / im.height);
     var bote = menosMovimiento.matches ? 0 : Math.sin(this.transcurrido * 15) * h * 0.008;
 
+    // Haz de faros hacia el horizonte. Va debajo del camion: se ve la
+    // carretera iluminada por delante, no un velo sobre la carroceria.
+    if (!menosMovimiento.matches) {
+      var g = x.createLinearGradient(p.x, p.y - h * 1.6, p.x, p.y);
+      g.addColorStop(0, 'rgba(255,241,213,0)');
+      g.addColorStop(1, 'rgba(255,241,213,.09)');
+      x.fillStyle = g;
+      // Ancho junto al camion y estrechandose hacia el horizonte: asi es como
+      // se ve en perspectiva la luz apoyada sobre el asfalto.
+      x.beginPath();
+      x.moveTo(p.x - w * 1.05, p.y);
+      x.lineTo(p.x + w * 1.05, p.y);
+      x.lineTo(p.x + w * 0.26, p.y - h * 1.5);
+      x.lineTo(p.x - w * 0.26, p.y - h * 1.5);
+      x.closePath(); x.fill();
+    }
+
     this.sombra(p.x, p.y + bote, w * 0.42);
     x.save();
     x.translate(p.x, p.y + bote);
@@ -450,18 +467,16 @@
     x.drawImage(im, -w / 2, -h, w, h);
     x.restore();
 
-    // Estela de faros sobre el asfalto
+    // Resplandor de los pilotos traseros: refuerza que el camion se aleja
     if (!menosMovimiento.matches) {
-      var g = x.createLinearGradient(p.x, p.y - h, p.x, p.y + h * 0.2);
-      g.addColorStop(0, 'rgba(255,241,213,0)');
-      g.addColorStop(1, 'rgba(255,241,213,.07)');
-      x.fillStyle = g;
-      x.beginPath();
-      x.moveTo(p.x - w * 0.3, p.y);
-      x.lineTo(p.x + w * 0.3, p.y);
-      x.lineTo(p.x + w * 1.5, p.y - h * 1.6);
-      x.lineTo(p.x - w * 1.5, p.y - h * 1.6);
-      x.closePath(); x.fill();
+      var py = p.y + bote - h * 0.17;
+      [-w * 0.34, w * 0.34].forEach(function (dx) {
+        var rg = x.createRadialGradient(p.x + dx, py, 0, p.x + dx, py, w * 0.17);
+        rg.addColorStop(0, 'rgba(255,70,50,.5)');
+        rg.addColorStop(1, 'rgba(255,70,50,0)');
+        x.fillStyle = rg;
+        x.beginPath(); x.arc(p.x + dx, py, w * 0.17, 0, Math.PI * 2); x.fill();
+      });
     }
   };
 
