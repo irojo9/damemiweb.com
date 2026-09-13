@@ -43,13 +43,15 @@
 # /juego-mudanzas/ (guion). Las dos grafias se confunden con facilidad, asi que
 # la variante con guion y el atajo /juego redirigen a la pagina real.
 #
-# Estas reglas son de las validas: el destino es DISTINTO del origen, asi que
-# no disparan el bucle 308 descrito arriba. Y como no llevan comodin, no tocan
-# /juego-mudanzas/juego.js ni los sprites, que se siguen sirviendo del
-# directorio.
+# Estas dos reglas son de las validas: el destino es DISTINTO del origen, asi
+# que no disparan el bucle 308 descrito arriba. Y como no llevan comodin, no
+# tocan /juego-mudanzas/juego.js ni los sprites.
+#
+# NO anadir aqui variantes que se parezcan a /juego_mudanzas (por ejemplo
+# /juego_mudanza en singular). La documentacion de Pages avisa de que "los
+# redirects se aplican SIEMPRE, coincida o no un fichero con la peticion": una
+# regla parecida a la ruta real puede impedir que la pagina llegue a servirse.
 # ---------------------------------------------------------------------------
 /juego-mudanzas   /juego_mudanzas   301
 /juego            /juego_mudanzas   301
-/juego-mudanza    /juego_mudanzas   301
-/juego_mudanza    /juego_mudanzas   301
 
