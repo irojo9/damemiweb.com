@@ -35,3 +35,21 @@
 #   curl -sI https://www.damemiweb.com/ | grep -i '^location'
 #   -> location: https://www.damemiweb.com/
 # ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Juego "Mudanza Express"
+#
+# La pagina es /juego_mudanzas (guion BAJO) y sus recursos viven en
+# /juego-mudanzas/ (guion). Las dos grafias se confunden con facilidad, asi que
+# la variante con guion y el atajo /juego redirigen a la pagina real.
+#
+# Estas reglas son de las validas: el destino es DISTINTO del origen, asi que
+# no disparan el bucle 308 descrito arriba. Y como no llevan comodin, no tocan
+# /juego-mudanzas/juego.js ni los sprites, que se siguen sirviendo del
+# directorio.
+# ---------------------------------------------------------------------------
+/juego-mudanzas   /juego_mudanzas   301
+/juego            /juego_mudanzas   301
+/juego-mudanza    /juego_mudanzas   301
+/juego_mudanza    /juego_mudanzas   301
+
