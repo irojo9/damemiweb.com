@@ -90,6 +90,56 @@ curl -sI https://damemiweb.com/ | grep -i '^location'
 
 ---
 
+## El Worker `multi-web` no debe tocar este dominio
+
+La zona `damemiweb.com` de Cloudflare aloja dos cosas distintas:
+
+1. **Este sitio**, servido por Cloudflare Pages desde `main`.
+2. **La plataforma multi-web**: el Worker `multi-web`, que sirve las webs de
+   clientes desde el bucket R2 `clientes-web`, usando como carpeta el nombre
+   del host sin `www.` (`fontanero.com` → `clientes-web/fontanero.com/...`).
+   Las webs de cliente se suben ahí desde `irojo9/multiweb-deploy`, y cada
+   repositorio de cliente se llama igual que su dominio.
+
+`damemiweb.com` **no vive en R2**: no existe la carpeta `clientes-web/damemiweb.com/`
+y no debe existir. Por eso, si una ruta del Worker llega a capturar
+`www.damemiweb.com`, el sitio entero devuelve este texto plano:
+
+```
+Archivo no encontrado
+
+Dominio: www.damemiweb.com
+Carpeta: damemiweb.com
+Archivo: index.html
+R2 Key: damemiweb.com/index.html
+```
+
+Es exactamente lo que pasa con una ruta comodín del tipo `*.damemiweb.com/*`
+(la que se añade para los subdominios de previsualización, por ejemplo
+`cliente.damemiweb.com`): el comodín no coincide con el ápice `damemiweb.com`,
+pero sí con `www.damemiweb.com`. Y como el ápice redirige 301 a `www`, el sitio
+público se cae por completo aunque el ápice "funcione".
+
+Reglas para no repetirlo:
+
+- **Nada de rutas comodín sobre esta zona.** Cada subdominio de
+  previsualización lleva su propia ruta exacta
+  (`cliente.damemiweb.com/*` → Worker `multi-web`).
+- Si por lo que sea hace falta el comodín, hay que añadir además las rutas
+  `damemiweb.com/*` y `www.damemiweb.com/*` con **Worker: None**: en Cloudflare
+  la ruta más específica gana, y así el sitio corporativo vuelve a Pages.
+
+Comprobación (debe devolver el HTML del sitio, no el texto de arriba):
+
+```sh
+curl -s https://www.damemiweb.com/ | head -1
+# <!DOCTYPE html>
+```
+
+Dónde se mira: **Workers & Pages → `multi-web` → Settings → Domains & Routes**.
+
+---
+
 ## Cambios pendientes de decisión
 
 `site.config.json` → `fase4` guarda dos cambios **implementados y apagados**,
