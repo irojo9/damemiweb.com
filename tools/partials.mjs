@@ -81,7 +81,7 @@ export function headerCSS() {
    del menu movil conserva su texto. */
 @media(max-width:560px){.dmw-hd .dmw-cta span{display:none}.dmw-hd .dmw-cta{padding:10px 13px}}
 /* Movimiento reducido, para todo el sitio. Va en la cabecera porque es el
-   unico bloque que esta en las 127 paginas. Las clases .rv y .reveal son
+   unico bloque que esta en todas las paginas. Las clases .rv y .reveal son
    revelados al hacer scroll: sin animacion tienen que quedarse visibles. */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}

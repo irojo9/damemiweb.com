@@ -30,16 +30,18 @@ node tools/check.mjs      # comprobaciones antes de publicar
 | Quiero cambiar… | Toco… | Y luego |
 |---|---|---|
 | El precio, los proyectos, las reseñas, el plazo, el soporte… | `site.config.json` | `node tools/build.mjs` |
-| La cabecera o el pie (los comparten las 127 páginas) | `tools/partials.mjs` | `node tools/build.mjs` |
+| La cabecera o el pie (los comparten todas las páginas) | `tools/partials.mjs` | `node tools/build.mjs` |
 | Un icono | `tools/icons.mjs` | `node tools/build.mjs` |
 | La lista de sectores o ciudades | `tools/data.mjs` | `node tools/build.mjs` |
+| Las webs del portfolio (`/proyectos`), por sector | `tools/proyectos-data.mjs` y `proyectos.count` en `site.config.json` | `node tools/build.mjs` |
+| Las landings de sector generadas (cerrajeros, climatización, pintores…) | `tools/sectores-nuevos.mjs` | `node tools/build.mjs` |
 | `/sectores`, `/auditorias`, `/marketing`, `/aviso-legal` | `tools/paginas-nuevas.mjs` | `node tools/build.mjs` |
 | El portfolio de la home o la franja "Otros servicios" | `tools/portfolio.mjs` | `node tools/build.mjs` |
 | El texto propio de una página concreta | ese `.html` | `node tools/build.mjs` |
 
 Los ficheros **generados por completo** (no editar a mano): `sitemap.xml`, la
 línea `Sitemap:` de `robots.txt`, `sectores.html`, `auditorias.html`,
-`marketing.html`, `aviso-legal.html`, y dentro de `dmw.js` los bloques
+`marketing.html`, `aviso-legal.html`, las landings de `tools/sectores-nuevos.mjs`, y dentro de `dmw.js` los bloques
 `dmw:config` y `dmw:icons`.
 
 Dentro de las páginas, lo que hay entre marcadores también es generado:
@@ -49,6 +51,7 @@ Dentro de las páginas, lo que hay entre marcadores también es generado:
 <!--dmw:footer--> … <!--/dmw:footer-->
 <!--dmw:portfolio--> … <!--/dmw:portfolio-->   (solo en la home)
 <!--dmw:otros--> … <!--/dmw:otros-->           (solo en la home)
+<!--dmw:proyectos--> … <!--/dmw:proyectos-->   (solo en /proyectos)
 ```
 
 ---

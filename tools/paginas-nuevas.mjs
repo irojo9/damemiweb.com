@@ -1,6 +1,6 @@
 /**
  * Páginas generadas desde la config y los datos del sitio:
- *   /sectores      índice de las 14 páginas de sector
+ *   /sectores      índice de las páginas de sector
  *   /auditorias    auditorías SEO y de redes (salen de la home)
  *   /marketing     gestión de RRSS y campañas de pago (salen de la home)
  *   /aviso-legal   información legal exigida por la LSSI
