@@ -306,7 +306,7 @@ export const LANDINGS = [
       ['¿Dónde pongo mi número de colegiado?', 'En la página principal y en el pie, junto a tus datos: es obligatorio y además da confianza.'],
       ['¿Cuánto tarda?', 'Un máximo de 72 horas desde que recibimos tu información.']
     ],
-    ejemplos: ['administradoresdefincasmadridsw'],
+    ejemplos: ['administradoresdefincasmadridws'],
     relacionados: ['web-abogados', 'web-inmobiliarias', 'web-reformas']
   }
 ];

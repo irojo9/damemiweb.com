@@ -152,7 +152,7 @@ export const PORTFOLIO = [
         ['https://vivecasarapa.com', 'Vive Casa Rapa']
       ] },
       { nombre: 'Administradores de fincas', landing: 'web-administradores-de-fincas', webs: [
-        ['https://administradoresdefincasmadridsw.com', 'Administradores de Fincas Madrid']
+        ['https://administradoresdefincasmadridws.com', 'Administradores de Fincas Madrid']
       ] }
     ]
   },
