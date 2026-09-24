@@ -18,7 +18,22 @@ export const SECTORES = [
   { slug: 'web-fotografos',         label: 'Fotógrafos',        singular: 'estudio',         icon: 'camera'    },
   { slug: 'web-coaches',            label: 'Coaches',           singular: 'consultoría',     icon: 'target'    },
   { slug: 'web-nutricionistas',     label: 'Nutricionistas',    singular: 'consulta',        icon: 'apple'     },
-  { slug: 'web-talleres-mecanicos', label: 'Talleres mecánicos',singular: 'taller',          icon: 'car'       }
+  { slug: 'web-talleres-mecanicos', label: 'Talleres mecánicos',singular: 'taller',          icon: 'car'       },
+  // Sectores con landing generada por tools/sectores-nuevos.mjs
+  { slug: 'web-cerrajeros',         label: 'Cerrajeros',        singular: 'cerrajería',      icon: 'key'       },
+  { slug: 'web-climatizacion',      label: 'Climatización y calderas', singular: 'empresa de climatización', icon: 'flame' },
+  { slug: 'web-pintores',           label: 'Pintores',          singular: 'empresa de pintura', icon: 'paint-roller' },
+  { slug: 'web-tejados',            label: 'Tejados',           singular: 'empresa de tejados', icon: 'roof'   },
+  { slug: 'web-reparaciones',       label: 'Reparaciones y servicio técnico', singular: 'servicio técnico', icon: 'cog' },
+  { slug: 'web-jardineria',         label: 'Jardinería',        singular: 'empresa de jardinería', icon: 'leaf' },
+  { slug: 'web-control-de-plagas',  label: 'Control de plagas', singular: 'empresa de control de plagas', icon: 'bug' },
+  { slug: 'web-vaciados',           label: 'Vaciados de pisos', singular: 'empresa de vaciados', icon: 'box'    },
+  { slug: 'web-portes',             label: 'Portes y transporte', singular: 'empresa de portes', icon: 'truck'  },
+  { slug: 'web-taxis',              label: 'Taxis',             singular: 'servicio de taxi', icon: 'car'       },
+  { slug: 'web-estetica',           label: 'Centros de estética', singular: 'centro de estética', icon: 'sparkles' },
+  { slug: 'web-tiendas',            label: 'Tiendas',           singular: 'tienda',          icon: 'bag'       },
+  { slug: 'web-inmobiliarias',      label: 'Inmobiliarias',     singular: 'inmobiliaria',    icon: 'building'  },
+  { slug: 'web-administradores-de-fincas', label: 'Administradores de fincas', singular: 'administración de fincas', icon: 'briefcase' }
 ];
 
 export const CIUDADES = [

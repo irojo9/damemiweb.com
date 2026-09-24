@@ -22,6 +22,8 @@ import { sustituirEmojiIconos } from './emoji-iconos.mjs';
 import { SECTORES, CIUDADES, CATEGORIAS_PROYECTOS } from './data.mjs';
 import * as nuevas from './paginas-nuevas.mjs';
 import * as portfolio from './portfolio.mjs';
+import * as nuevosSectores from './sectores-nuevos.mjs';
+import { PORTFOLIO, todasLasWebs } from './proyectos-data.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHECK = process.argv.includes('--check');
@@ -181,6 +183,18 @@ function valoresOficiales(html) {
   html = html.replace(/\+32 webs/g, `${P.display} webs`);
   html = html.replace(/\b91\+ (proyectos|clientes|negocios|webs)/g, `${P.display} $1`);
   html = html.replace(/más de 91\b/gi, m => m[0] === 'M' ? `Más de ${P.count}` : `más de ${P.count}`);
+
+  // Cifra de proyectos en cualquier texto: al cambiar proyectos.count en la
+  // config, todas las frases que la citan se actualizan. Los patrones exigen
+  // el contexto ("webs", "proyectos", "negocios", "clientes", celdas de
+  // estadística) para no tocar otras cifras.
+  const N = P.count, VIEJO = `(?!${N}\\b)\\d{2,3}`;
+  const r = (re, f) => { html = html.replace(re, f); };
+  r(new RegExp(`\\+${VIEJO}(\\s+(?:webs|Webs|proyectos|negocios|clientes))`, 'g'), `${P.display}$1`);
+  r(new RegExp(`([Mm]ás de )${VIEJO}(\\s+(?:webs|proyectos|negocios|páginas))`, 'g'), `$1${N}$2`);
+  r(new RegExp(`(?<![\\d+])${VIEJO}(\\s+(?:webs publicadas|webs entregadas|proyectos entregados|proyectos →|negocios en España))`, 'g'), `${N}$1`);
+  r(new RegExp(`(class="(?:hsn|hs-n|stat-n|m-n)">)\\+${VIEJO}(<)`, 'g'), `$1${P.display}$2`);
+  r(new RegExp(`(Ver los )${VIEJO}( proyectos)`, 'g'), `$1${N}$2`);
 
   // --- Soporte: 12 meses incluidos, sin mantenimiento obligatorio ---
   html = html.replace(/30 días de soporte/g, cfg.soporte.displayShort);
@@ -450,17 +464,9 @@ function marcarWhatsApp(html, file) {
 // FASE 1 — Contadores de proyectos calculados desde /proyectos
 // ---------------------------------------------------------------------------
 
-/** Cuenta las tarjetas reales de cada bloque de proyectos.html. */
+/** Webs por categoría, desde proyectos-data.mjs (la fuente de /proyectos). */
 export function contarProyectos() {
-  const html = fs.readFileSync(path.join(ROOT, 'proyectos.html'), 'utf8');
-  const cuenta = new Map();
-  const bloques = html.split('<div class="sect-block">').slice(1);
-  for (const b of bloques) {
-    const t = b.match(/<div class="sect-block-title">([^<]+)<\/div>/);
-    if (!t) continue;
-    cuenta.set(t[1].trim(), (b.match(/class="pcard"/g) || []).length);
-  }
-  return cuenta;
+  return new Map(PORTFOLIO.map(c => [c.key, c.subs.reduce((n, s) => n + s.webs.length, 0)]));
 }
 
 /** Reescribe los contadores visibles con la cifra real de cada bloque. */
@@ -468,6 +474,10 @@ function contadoresProyectos(html, file) {
   const cuenta = contarProyectos();
 
   if (file === 'proyectos.html') {
+    html = html.replace(/<!--dmw:proyectos-->[\s\S]*?<!--\/dmw:proyectos-->/,
+      () => `<!--dmw:proyectos-->${portfolio.listadoProyectos(PORTFOLIO)}<!--/dmw:proyectos-->`);
+    const subsectores = PORTFOLIO.reduce((n, c) => n + c.subs.length, 0);
+    html = html.replace(/(<div class="stat-n">)\d+(<\/div><div class="stat-l">Sectores distintos)/, `$1${subsectores}$2`);
     return html.replace(/(<div class="sect-block-title">([^<]+)<\/div>\s*<div class="sect-block-count">)\d+( proyectos<\/div>)/g,
       (m, a, titulo, c) => a + (cuenta.get(titulo.trim()) ?? 0) + c);
   }
@@ -703,6 +713,7 @@ function generarPaginas() {
   escribir('auditorias.html', nuevas.auditorias(cfg));
   escribir('marketing.html', nuevas.marketing(cfg));
   escribir('aviso-legal.html', nuevas.avisoLegal(cfg));
+  for (const L of nuevosSectores.LANDINGS) escribir(`${L.slug}.html`, nuevosSectores.landing(cfg, L));
   // Se escriben ya para que el bucle principal las procese como una más.
   // En --check no se toca el disco: basta con que `cambios` las delate.
   if (!CHECK) for (const [rel, c] of pendientes) fs.writeFileSync(path.join(ROOT, rel), c);
@@ -713,6 +724,10 @@ function generarPaginas() {
 // ---------------------------------------------------------------------------
 
 function main() {
+  const total = todasLasWebs().length;
+  if (total !== cfg.proyectos.count) {
+    avisos.push(`site.config.json dice ${cfg.proyectos.count} proyectos y proyectos-data.mjs tiene ${total}: actualiza proyectos.count/display/displayLong`);
+  }
   generarPaginas();
   const ficheros = listarHtml();
   const indexables = [];
@@ -750,7 +765,10 @@ function main() {
 
   for (const rel of ['llms.txt', 'llms-full.txt', '_headers', '_redirects']) {
     const abs = path.join(ROOT, rel);
-    if (fs.existsSync(abs)) escribir(rel, canonicalizarDominio(fs.readFileSync(abs, 'utf8')));
+    if (!fs.existsSync(abs)) continue;
+    let txt = canonicalizarDominio(fs.readFileSync(abs, 'utf8'));
+    if (rel.startsWith('llms')) txt = valoresOficiales(txt);
+    escribir(rel, txt);
   }
 
   if (CHECK) {

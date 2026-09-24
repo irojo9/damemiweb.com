@@ -2,7 +2,7 @@
    + favicon, barra CTA móvil y modal de salida (conversión) */
 (function () {
   /* dmw:config — generado por tools/build.mjs desde site.config.json. No editar a mano. */
-  var CFG = {"ga4":"G-B27EE57BLZ","phone":"+34662549694","price":"250€","priceFull":"250€ + IVA","entregaHoras":72,"proyectos":91,"resenas":83};
+  var CFG = {"ga4":"G-B27EE57BLZ","phone":"+34662549694","price":"250€","priceFull":"250€ + IVA","entregaHoras":72,"proyectos":111,"resenas":83};
   /* /dmw:config */
 
   var GA_ID = CFG.ga4;

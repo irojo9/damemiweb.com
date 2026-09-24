@@ -1,7 +1,7 @@
 /**
  * FASE 3 — Rejilla de portfolio de la home (id="portfolio").
  *
- * Las webs salen de /proyectos: son clientes reales, con su nombre y su URL
+ * Las webs salen de proyectos-data.mjs (lo mismo que /proyectos): son clientes reales, con su nombre y su URL
  * tal y como figuran allí. No se inventa ninguna.
  *
  * Capturas: el repositorio no tiene ninguna todavía. Mientras el fichero
@@ -12,6 +12,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { PORTFOLIO } from './proyectos-data.mjs';
 
 export const DIR_CAPTURAS = 'proyectos-capturas';
 export const ANCHO = 640;
@@ -19,15 +20,12 @@ export const ALTO = 400;
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-/** Lee los bloques de /proyectos: [{ sector, proyectos:[{nombre,url}] }] */
-export function leerProyectos(root) {
-  const html = fs.readFileSync(path.join(root, 'proyectos.html'), 'utf8');
-  return html.split('<div class="sect-block">').slice(1).map(b => {
-    const sector = (b.match(/<div class="sect-block-title">([^<]+)<\/div>/) || [])[1];
-    const proyectos = [...b.matchAll(/<a href="(https?:\/\/[^"]+)"[^>]*class="pcard"><span class="pcard-name">([^<]+)<\/span>/g)]
-      .map(m => ({ url: m[1], nombre: m[2] }));
-    return { sector: sector?.trim(), proyectos };
-  }).filter(x => x.sector);
+/** Bloques de /proyectos: [{ sector, proyectos:[{nombre,url}] }], desde proyectos-data.mjs */
+export function leerProyectos() {
+  return PORTFOLIO.map(c => ({
+    sector: c.key,
+    proyectos: c.subs.flatMap(s => s.webs.map(([url, nombre]) => ({ url, nombre })))
+  }));
 }
 
 /** Selección estable: las primeras de cada bloque, repartidas hasta llegar a n. */
@@ -72,8 +70,8 @@ export function tarjetas(root, items) {
 }
 
 export function seccion(cfg, root) {
-  const items = seleccion(leerProyectos(root), 9);
-  const total = leerProyectos(root).reduce((n, b) => n + b.proyectos.length, 0);
+  const items = seleccion(leerProyectos(), 9);
+  const total = leerProyectos().reduce((n, b) => n + b.proyectos.length, 0);
   return `<!-- PORTFOLIO — WEBS DE CLIENTES -->
 <style>
 #portfolio{padding:84px 0}
@@ -135,6 +133,66 @@ ${item('/auditorias', 'search', 'Auditorías', `Auditoría SEO por ${cfg.auditor
 ${item('/marketing', 'chart', 'Marketing mensual', `Gestión de redes desde ${cfg.rrss.priceFull} y campañas de pago desde ${cfg.campanas.priceFull} de gestión. Sin permanencia.`)}
 ${item('https://www.autoridadgeo.com', 'sparkles', 'AutoridadGEO', 'Nuestro servicio hermano para que los asistentes de IA con búsqueda encuentren y citen tu marca.', true)}
     </div>
+  </div>
+</section>`;
+}
+
+/**
+ * Listado completo de /proyectos, generado desde proyectos-data.mjs.
+ * Conserva el marcado de siempre:
+ * <div class="sect-block"> por categoría y <a class="pcard"> por web.
+ */
+export function listadoProyectos(PORTFOLIO) {
+  const slug = t => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const subs = PORTFOLIO.flatMap(c => c.subs);
+  const saltos = subs.map(s => `<a href="#${slug(s.nombre)}" class="filter-btn">${esc(s.nombre)} <span class="jump-n">${s.webs.length}</span></a>`).join('\n      ');
+  const bloques = PORTFOLIO.map(c => {
+    const total = c.subs.reduce((n, s) => n + s.webs.length, 0);
+    const grupos = c.subs.map(s => `      <div class="sub-block" id="${slug(s.nombre)}">
+        <div class="sub-head">
+          <h2 class="sub-title">${esc(s.nombre)}</h2>
+          <span class="sub-count">${s.webs.length} ${s.webs.length === 1 ? 'web' : 'webs'}</span>${s.landing ? `
+          <a href="/${s.landing}" class="sub-link">Web para tu negocio →</a>` : ''}
+        </div>
+        <div class="proj-grid">
+${s.webs.map(([url, nombre]) => `          <a href="${url}" target="_blank" rel="noopener" class="pcard"><span class="pcard-name">${esc(nombre)}</span><span class="pcard-arrow">↗</span></a>`).join('\n')}
+        </div>
+      </div>`).join('\n');
+    return `    <!-- ${c.key.toUpperCase()} -->
+    <div class="sect-block">
+      <div class="sect-block-head">
+        <div class="sect-dot" style="background:${c.color}"></div>
+        <div class="sect-block-title">${esc(c.key)}</div>
+        <div class="sect-block-count">${total} proyectos</div>
+      </div>
+${grupos}
+    </div>`;
+  }).join('\n\n');
+
+  return `
+<style>
+.jump{padding:36px 0 0}
+.jump .filters{padding:0;justify-content:flex-start}
+.jump-n{font-size:11px;opacity:.6;margin-left:3px}
+.sub-block{margin:0 0 28px;scroll-margin-top:90px}
+.sub-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 14px;margin:0 0 12px}
+.sub-title{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);letter-spacing:.01em}
+.sub-count{font-size:12px;color:var(--mist)}
+.sub-link{font-size:12px;font-weight:500;color:#1347CC;margin-left:auto}
+.sub-link:hover{text-decoration:underline}
+</style>
+<div class="jump">
+  <div class="w">
+    <div class="filters" role="navigation" aria-label="Sectores del portfolio">
+      ${saltos}
+    </div>
+  </div>
+</div>
+<section>
+  <div class="w">
+
+${bloques}
+
   </div>
 </section>`;
 }

@@ -67,7 +67,17 @@ const P = {
   'calendar': '<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4"/><path d="M16 3v4"/><path d="M3.5 10h17"/>',
   'smartphone': '<rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18.5h3"/>',
   'handshake': '<path d="M3 12.5l4-4 3 2.5 4-3.5 3 2.5"/><path d="M7 8.5L11 5l6 3.5 4 4-3 3-3-2.5"/><path d="M3 12.5l3 3 3-1.5"/>',
-  'briefcase': '<rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M9 7.5V5.5h6v2"/><path d="M3 12.5h18"/>'
+  'briefcase': '<rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M9 7.5V5.5h6v2"/><path d="M3 12.5h18"/>',
+  'key': '<circle cx="8" cy="15" r="4"/><path d="M10.8 12.2L20 3"/><path d="M17 6l3 3"/><path d="M14.5 8.5l2.5 2.5"/>',
+  'flame': '<path d="M12 21a6 6 0 0 0 6-6c0-4-3-6-4-10-2 2-3 4-3 6-1-1-1.5-2-1.5-3C7 10 6 12.5 6 15a6 6 0 0 0 6 6z"/>',
+  'paint-roller': '<rect x="4" y="3.5" width="14" height="5" rx="1.5"/><path d="M18 6h2v5h-8v3"/><path d="M11 14h2v6.5h-2z"/>',
+  'roof': '<path d="M2.5 12L12 4l9.5 8"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/>',
+  'cog': '<circle cx="12" cy="12" r="3"/><path d="M12 3.5v2.5"/><path d="M12 18v2.5"/><path d="M3.5 12H6"/><path d="M18 12h2.5"/><path d="M6 6l1.8 1.8"/><path d="M16.2 16.2L18 18"/><path d="M6 18l1.8-1.8"/><path d="M16.2 7.8L18 6"/>',
+  'box': '<path d="M3.5 7.5L12 3.5l8.5 4v9L12 20.5l-8.5-4z"/><path d="M3.5 7.5L12 11.5l8.5-4"/><path d="M12 11.5v9"/>',
+  'leaf': '<path d="M5 19c0-8 5-13.5 15-14.5C19 14.5 13.5 19 5 19z"/><path d="M5 19l7-7"/>',
+  'bug': '<rect x="7.5" y="8" width="9" height="12" rx="4.5"/><path d="M9.5 8a2.5 2.5 0 0 1 5 0"/><path d="M12 12v8"/><path d="M4 13h3.5"/><path d="M16.5 13H20"/><path d="M5 8.5l2.8 1.8"/><path d="M19 8.5l-2.8 1.8"/><path d="M5 18.5l2.8-1.5"/><path d="M19 18.5l-2.8-1.5"/>',
+  'building': '<rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M9 7.5h1.5"/><path d="M13.5 7.5H15"/><path d="M9 11.5h1.5"/><path d="M13.5 11.5H15"/><path d="M10.5 20.5v-4h3v4"/>',
+  'bag': '<path d="M5 8h14l-1 12.5H6z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/>'
 };
 
 export function icon(name, opts = {}) {

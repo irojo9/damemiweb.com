@@ -3,7 +3,7 @@
 > Estudio español de diseño web para autónomos y pequeños negocios. Web
 > profesional completa por **250 € + IVA en pago único**, sin cuotas mensuales,
 > con dominio .com incluido el primer año y **publicación en un máximo de
-> 72 horas**. Más de 91 proyectos entregados en toda España.
+> 72 horas**. Más de 111 proyectos entregados en toda España.
 
 Web: https://www.damemiweb.com
 Idioma: español (es-ES)
@@ -59,7 +59,21 @@ Páginas específicas con contenido propio para cada gremio:
 [academias](https://www.damemiweb.com/web-academias),
 [coaches](https://www.damemiweb.com/web-coaches),
 [fotógrafos](https://www.damemiweb.com/web-fotografos),
-[talleres mecánicos](https://www.damemiweb.com/web-talleres-mecanicos).
+[talleres mecánicos](https://www.damemiweb.com/web-talleres-mecanicos),
+[cerrajeros](https://www.damemiweb.com/web-cerrajeros),
+[climatización y calderas](https://www.damemiweb.com/web-climatizacion),
+[pintores](https://www.damemiweb.com/web-pintores),
+[tejados](https://www.damemiweb.com/web-tejados),
+[reparaciones y servicio técnico](https://www.damemiweb.com/web-reparaciones),
+[jardinería](https://www.damemiweb.com/web-jardineria),
+[control de plagas](https://www.damemiweb.com/web-control-de-plagas),
+[vaciados de pisos](https://www.damemiweb.com/web-vaciados),
+[portes y transporte](https://www.damemiweb.com/web-portes),
+[taxis](https://www.damemiweb.com/web-taxis),
+[centros de estética](https://www.damemiweb.com/web-estetica),
+[tiendas](https://www.damemiweb.com/web-tiendas),
+[inmobiliarias](https://www.damemiweb.com/web-inmobiliarias),
+[administradores de fincas](https://www.damemiweb.com/web-administradores-de-fincas).
 
 ## Webs por ciudad
 

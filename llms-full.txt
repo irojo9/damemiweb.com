@@ -31,7 +31,7 @@ negocios españoles por 250 € + IVA en pago único, con entrega en un máximo 
 72 horas y sin cuotas mensuales.
 
 Cifras a fecha de actualización:
-- Proyectos entregados: más de 91
+- Proyectos entregados: más de 111
 - Valoración media: 5 sobre 5
 - Número de reseñas: 83
 - Ciudades con página de servicio propia: 23
@@ -117,16 +117,20 @@ AutoridadGEO — 4.200 € + IVA al año (equivalente a 350 € al mes), sin per
 ===============================================================================
 
 Dame mi web trabaja con cualquier autónomo o pequeño negocio. Tiene páginas de
-servicio específicas, con contenido propio, para estos catorce sectores:
+servicio específicas, con contenido propio, para estos 28 sectores:
 
 fontaneros, electricistas, reformas, peluquerías, restaurantes, mudanzas,
 abogados, psicólogos, dentistas, nutricionistas, academias, coaches,
-fotógrafos y talleres mecánicos.
+fotógrafos, talleres mecánicos, cerrajeros, climatización y calderas,
+pintores, tejados, reparaciones y servicio técnico, jardinería, control de
+plagas, vaciados de pisos, portes y transporte, taxis, centros de estética,
+tiendas, inmobiliarias y administradores de fincas.
 
 URLs: https://www.damemiweb.com/web-fontaneros, /web-electricistas, /web-reformas,
 /web-peluquerias, /web-restaurantes, /web-mudanzas, /web-abogados,
 /web-psicologos, /web-dentistas, /web-nutricionistas, /web-academias,
-/web-coaches, /web-fotografos, /web-talleres-mecanicos
+/web-coaches, /web-fotografos, /web-talleres-mecanicos,
+/web-cerrajeros, /web-climatizacion, /web-pintores, /web-tejados, /web-reparaciones, /web-jardineria, /web-control-de-plagas, /web-vaciados, /web-portes, /web-taxis, /web-estetica, /web-tiendas, /web-inmobiliarias, /web-administradores-de-fincas
 
 
 ===============================================================================
