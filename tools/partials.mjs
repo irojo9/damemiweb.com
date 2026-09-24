@@ -31,6 +31,20 @@ function logo(size) {
     + '<polygon points="84,26 92,22 88,32" fill="#7FA3F5"/></svg>';
 }
 
+/**
+ * Arranque de Google Analytics con el Modo de consentimiento v2 de Google.
+ * Todo empieza en "denied" salvo que el visitante ya aceptara las cookies
+ * (dmw.js guarda su decisión en localStorage 'cookie-consent'). Con "denied"
+ * no se escriben cookies de Google; se envían pings sin cookies que Google Ads
+ * usa para modelar conversiones. Al aceptar, dmw.js hace el 'update'.
+ */
+export function gtagSnippet(cfg) {
+  return `<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}`
+    + `(function(){var v='denied';try{if(localStorage.getItem('cookie-consent')==='accepted')v='granted'}catch(e){}`
+    + `gtag('consent','default',{ad_storage:v,ad_user_data:v,ad_personalization:v,analytics_storage:v,wait_for_update:500});})();`
+    + `gtag('set','ads_data_redaction',true);gtag('js',new Date());gtag('config','${cfg.site.ga4}');</script>`;
+}
+
 export function waLink(cfg, texto, ubicacion, cls = '', extra = '') {
   const tel = cfg.site.phone.replace('+', '');
   const href = `https://wa.me/${tel}?text=${encodeURIComponent(texto)}`;

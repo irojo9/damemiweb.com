@@ -5,7 +5,6 @@
   var CFG = {"ga4":"G-B27EE57BLZ","phone":"+34662549694","price":"250€","priceFull":"250€ + IVA","entregaHoras":72,"proyectos":111,"resenas":83};
   /* /dmw:config */
 
-  var GA_ID = CFG.ga4;
   var WA_URL = 'https://wa.me/' + CFG.phone.replace('+', '') + '?text=' + encodeURIComponent('Hola, quiero mi web por ' + CFG.priceFull + '.');
   var TEL_URL = 'tel:' + CFG.phone;
 
@@ -96,12 +95,30 @@
     });
   }
 
-  /* 1. Respetar rechazo previo de cookies */
-  try {
-    if (localStorage.getItem('cookie-consent') === 'rejected') {
-      window['ga-disable-' + GA_ID] = true;
+  /* 1. Consentimiento (Modo de consentimiento v2 de Google).
+     El valor por defecto lo fija el <script> de gtag de cada página: "denied"
+     hasta que el visitante acepta. Aquí solo se actualiza al decidir. */
+  function consentir(ok) {
+    var v = ok ? 'granted' : 'denied';
+    try { localStorage.setItem('cookie-consent', ok ? 'accepted' : 'rejected'); } catch (e) {}
+    if (typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', { ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v });
     }
-  } catch (e) {}
+  }
+
+  /* Botón "Cambiar preferencias de cookies" de /cookies: borra la decisión
+     y vuelve a enseñar el aviso. */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-cookie-reset]');
+    if (!b) return;
+    e.preventDefault();
+    try { localStorage.removeItem('cookie-consent'); } catch (err) {}
+    if (typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+    }
+    var bar = document.getElementById('dmw-cookie-banner');
+    if (bar) bar.classList.add('show'); else initCookieBanner();
+  });
 
   /* 2. Inyectar banner de cookies si no existe en la página */
   function initCookieBanner() {
@@ -126,17 +143,16 @@
 
     var bar = document.createElement('div');
     bar.id = 'dmw-cookie-banner';
-    bar.innerHTML = '<p class="cb-t">Usamos cookies propias y de terceros (Google Analytics) para analizar el tráfico. <a href="/cookies">Política de cookies</a></p>'
+    bar.innerHTML = '<p class="cb-t">Usamos cookies propias y de terceros (Google Analytics y Google Ads) para analizar el tráfico y medir la eficacia de nuestros anuncios. <a href="/cookies">Política de cookies</a></p>'
       + '<div class="cb-btns"><button class="cb-r">Rechazar</button><button class="cb-a">Aceptar</button></div>';
     document.body.appendChild(bar);
 
     bar.querySelector('.cb-a').addEventListener('click', function () {
-      try { localStorage.setItem('cookie-consent', 'accepted'); } catch (e) {}
+      consentir(true);
       bar.classList.remove('show');
     });
     bar.querySelector('.cb-r').addEventListener('click', function () {
-      try { localStorage.setItem('cookie-consent', 'rejected'); } catch (e) {}
-      window['ga-disable-' + GA_ID] = true;
+      consentir(false);
       bar.classList.remove('show');
     });
 

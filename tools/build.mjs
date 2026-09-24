@@ -16,7 +16,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { header, footer, waLink } from './partials.mjs';
+import { header, footer, waLink, gtagSnippet } from './partials.mjs';
 import { icon } from './icons.mjs';
 import { sustituirEmojiIconos } from './emoji-iconos.mjs';
 import { SECTORES, CIUDADES, CATEGORIAS_PROYECTOS } from './data.mjs';
@@ -125,6 +125,16 @@ function inyectarScriptChrome(html, file) {
     html = html.replace(/<\/body>/i, '<script src="/dmw.js" defer></script>\n</body>');
   }
   return html;
+}
+
+// ---------------------------------------------------------------------------
+// Google Ads — Modo de consentimiento v2 en el arranque de gtag
+// ---------------------------------------------------------------------------
+
+function consentimiento(html) {
+  return html.replace(
+    /<script>window\.dataLayer=window\.dataLayer\|\|\[\];function gtag\(\)\{dataLayer\.push\(arguments\);\}[\s\S]*?gtag\('config','G-[A-Z0-9]+'\);<\/script>/g,
+    () => gtagSnippet(cfg));
 }
 
 // ---------------------------------------------------------------------------
@@ -737,6 +747,7 @@ function main() {
     let html = fs.readFileSync(abs, 'utf8');
 
     html = canonicalizarDominio(html);
+    html = consentimiento(html);
     html = canonicalDePagina(html, file);
     html = marca(html);
     html = anclasMovidas(html);
