@@ -11,3 +11,8 @@
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
   Access-Control-Allow-Origin: *
+
+# Documentacion interna (plan de Google Ads): se publica con el repo, pero
+# que no la indexe nadie.
+/docs/*
+  X-Robots-Tag: noindex, nofollow

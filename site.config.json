@@ -16,6 +16,20 @@
     "tiktok": "https://www.tiktok.com/@damemiweb"
   },
 
+  "_googleAds": [
+    "Cuenta de Google Ads. Mientras id esté vacío no se carga nada de Ads.",
+    "id: el ID de la etiqueta (AW-XXXXXXXXXX), en Google Ads → Objetivos →",
+    "Conversiones → la conversión → Configuración de la etiqueta.",
+    "conversionWhatsapp: la ETIQUETA de conversión de esa acción (lo que va",
+    "después de la barra en send_to 'AW-XXXXXXXXXX/abcDEF123'). Con los dos",
+    "puestos, cada clic en un enlace de WhatsApp cuenta como conversión.",
+    "El plan de la campaña está en docs/google-ads/."
+  ],
+  "googleAds": {
+    "id": "",
+    "conversionWhatsapp": ""
+  },
+
   "web": {
     "priceAmount": "250",
     "priceCurrency": "EUR",

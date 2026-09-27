@@ -2,7 +2,7 @@
    + favicon, barra CTA móvil y modal de salida (conversión) */
 (function () {
   /* dmw:config — generado por tools/build.mjs desde site.config.json. No editar a mano. */
-  var CFG = {"ga4":"G-B27EE57BLZ","phone":"+34662549694","price":"250€","priceFull":"250€ + IVA","entregaHoras":72,"proyectos":111,"resenas":83};
+  var CFG = {"ga4":"G-B27EE57BLZ","adsWa":"","phone":"+34662549694","price":"250€","priceFull":"250€ + IVA","entregaHoras":72,"proyectos":111,"resenas":83};
   /* /dmw:config */
 
   var GA_ID = CFG.ga4;
@@ -126,12 +126,16 @@
 
     var bar = document.createElement('div');
     bar.id = 'dmw-cookie-banner';
-    bar.innerHTML = '<p class="cb-t">Usamos cookies propias y de terceros (Google Analytics) para analizar el tráfico. <a href="/cookies">Política de cookies</a></p>'
+    bar.innerHTML = '<p class="cb-t">Usamos cookies propias y de terceros (Google Analytics y Google Ads) para analizar el tráfico y medir nuestros anuncios. <a href="/cookies">Política de cookies</a></p>'
       + '<div class="cb-btns"><button class="cb-r">Rechazar</button><button class="cb-a">Aceptar</button></div>';
     document.body.appendChild(bar);
 
     bar.querySelector('.cb-a').addEventListener('click', function () {
       try { localStorage.setItem('cookie-consent', 'accepted'); } catch (e) {}
+      /* Consent Mode v2: el default (denegado) lo pone la etiqueta del <head> */
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+      }
       bar.classList.remove('show');
     });
     bar.querySelector('.cb-r').addEventListener('click', function () {
@@ -147,6 +151,32 @@
   function track(name, params) {
     if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
   }
+  /* Visitas que llegan desde un anuncio de Google (gclid / gbraid / wbraid o
+     utm de cpc): se recuerda durante la sesión para que el WhatsApp diga que
+     viene de Google y se pueda saber qué conversaciones trajo la campaña. */
+  var ORIGEN_ADS = false;
+  try {
+    var q = location.search;
+    if (/[?&](gclid|gbraid|wbraid)=/.test(q) || (/[?&]utm_source=google\b/.test(q) && /[?&]utm_medium=(cpc|ppc|paid)\b/.test(q))) {
+      sessionStorage.setItem('dmw-ads', '1');
+    }
+    ORIGEN_ADS = sessionStorage.getItem('dmw-ads') === '1';
+  } catch (e) {}
+
+  function marcarOrigenAds(a) {
+    if (!ORIGEN_ADS || a.getAttribute('data-ads-ok')) return;
+    try {
+      var u = new URL(a.href);
+      var txt = u.searchParams.get('text') || '';
+      u.searchParams.delete('text');
+      var resto = u.searchParams.toString();
+      /* encodeURIComponent y no URLSearchParams: este pone los espacios como "+" */
+      a.href = u.origin + u.pathname + '?' + (resto ? resto + '&' : '')
+        + 'text=' + encodeURIComponent((txt ? txt + ' ' : '') + 'Te encontré en Google.');
+      a.setAttribute('data-ads-ok', '1');
+    } catch (e) {}
+  }
+
   function initTracking() {
     document.addEventListener('click', function (e) {
       var a = e.target.closest && e.target.closest('a');
@@ -161,6 +191,9 @@
           page: location.pathname
         });
         track('whatsapp_click', { link_url: href, page: location.pathname });
+        /* Conversión de Google Ads (site.config.json → googleAds) */
+        if (CFG.adsWa) track('conversion', { send_to: CFG.adsWa });
+        marcarOrigenAds(a);
       } else if (href.indexOf('tel:') === 0) {
         track('phone_click', { page: location.pathname });
       } else if (href.indexOf('mailto:') === 0) {

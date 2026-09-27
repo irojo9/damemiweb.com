@@ -7,6 +7,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { header, footer } from './partials.mjs';
+import { etiquetaGoogle } from './gtag.mjs';
 
 const FONTS = fs.readFileSync(
   path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'partials', 'fonts.css'), 'utf8');
@@ -94,8 +95,7 @@ export function pagina(cfg, { titulo, descripcion, ruta, robots, jsonld, cuerpo 
 <meta property="og:image:height" content="630"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="${og}"/>
-<script async src="https://www.googletagmanager.com/gtag/js?id=${cfg.site.ga4}"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${cfg.site.ga4}');</script>${ld}
+${etiquetaGoogle(cfg)}${ld}
 <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-normal-latin.woff2" crossorigin/>
 <link rel="preload" as="font" type="font/woff2" href="/fonts/dmsans-normal-latin.woff2" crossorigin/>
 <style>${FONTS}</style>

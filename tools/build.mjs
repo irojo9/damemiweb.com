@@ -18,6 +18,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { header, footer, waLink } from './partials.mjs';
 import { icon } from './icons.mjs';
+import { etiquetaGoogle, ETIQUETA_RE } from './gtag.mjs';
 import { sustituirEmojiIconos } from './emoji-iconos.mjs';
 import { SECTORES, CIUDADES, CATEGORIAS_PROYECTOS } from './data.mjs';
 import * as nuevas from './paginas-nuevas.mjs';
@@ -672,6 +673,8 @@ function actualizarDmwJs() {
 
   const conf = {
     ga4: cfg.site.ga4,
+    adsWa: cfg.googleAds?.id && cfg.googleAds?.conversionWhatsapp
+      ? `${cfg.googleAds.id}/${cfg.googleAds.conversionWhatsapp}` : '',
     phone: cfg.site.phone,
     price: cfg.web.price,
     priceFull: cfg.web.priceFull,
@@ -752,6 +755,7 @@ function main() {
     html = inyectarChrome(html, file);
     html = inyectarScriptChrome(html, file);
     html = marcarWhatsApp(html, file);
+    html = html.replace(ETIQUETA_RE, etiquetaGoogle(cfg));
     html = fase4Ecosistema(html);
     html = fase4NoindexCiudades(html, file);
 
