@@ -1,0 +1,51 @@
+name: Capturas del portfolio
+
+# Hace las capturas de las webs de clientes de la home y las commitea.
+# Se lanza a mano (Actions → Capturas del portfolio → Run workflow), cuando
+# cambia el portfolio y una vez al mes para mantenerlas al día.
+on:
+  workflow_dispatch:
+    inputs:
+      forzar:
+        description: 'Rehacer también las que ya existen'
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - 'tools/proyectos-data.mjs'
+      - 'tools/portfolio.mjs'
+  schedule:
+    - cron: '17 6 1 * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: capturas
+  cancel-in-progress: false
+
+jobs:
+  capturas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Instalar Playwright
+        run: |
+          npm i --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Hacer capturas
+        run: node tools/capturas.mjs ${{ (github.event_name == 'schedule' || inputs.forzar) && '--forzar' || '' }}
+      - name: Commitear si hay cambios
+        run: |
+          rm -rf node_modules
+          git add proyectos-capturas index.html
+          if git diff --cached --quiet; then echo "Sin cambios"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Portfolio: capturas de las webs de clientes"
+          git push

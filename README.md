@@ -36,7 +36,8 @@ node tools/check.mjs      # comprobaciones antes de publicar
 | Las webs del portfolio (`/proyectos`), por sector | `tools/proyectos-data.mjs` y `proyectos.count` en `site.config.json` | `node tools/build.mjs` |
 | Las landings de sector generadas (cerrajeros, climatización, pintores…) | `tools/sectores-nuevos.mjs` | `node tools/build.mjs` |
 | `/sectores`, `/auditorias`, `/marketing`, `/aviso-legal` | `tools/paginas-nuevas.mjs` | `node tools/build.mjs` |
-| El portfolio de la home o la franja "Otros servicios" | `tools/portfolio.mjs` | `node tools/build.mjs` |
+| El portfolio de la home o la franja "Otros servicios" (y `DESTACADAS`, las webs fijas de la home) | `tools/portfolio.mjs` | `node tools/build.mjs` |
+| Las capturas del portfolio de la home | nada: las hace el workflow *Capturas del portfolio* (o `node tools/capturas.mjs` en local, con Playwright) | se commitean solas |
 | El texto propio de una página concreta | ese `.html` | `node tools/build.mjs` |
 
 Los ficheros **generados por completo** (no editar a mano): `sitemap.xml`, la

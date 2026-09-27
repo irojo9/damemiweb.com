@@ -779,9 +779,15 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
 .pf-card:hover{border-color:var(--bright);transform:translateY(-3px)}
 .pf-shot{display:block;aspect-ratio:640/400;background:#111;overflow:hidden;max-width:100%}
 .pf-shot img{width:100%;height:100%;object-fit:cover;object-position:top center}
-.pf-todo{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;height:100%;border-bottom:1px dashed #3a3a3a;background:repeating-linear-gradient(135deg,#141414,#141414 10px,#171717 10px,#171717 20px)}
-.pf-todo span{font-size:14px;font-weight:500;color:rgba(255,255,255,.72);word-break:break-all;padding:0 14px;text-align:center}
-.pf-todo small{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#EAB308}
+.pf-prev{display:flex;flex-direction:column;width:100%;height:100%;background:radial-gradient(120% 90% at 85% 0%,color-mix(in srgb,var(--c) 32%,transparent),transparent 60%),linear-gradient(160deg,#16181d,#0f1013)}
+.pf-bar{display:flex;align-items:center;gap:6px;padding:10px 12px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.06)}
+.pf-bar i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18)}
+.pf-url{flex:1;min-width:0;margin-left:8px;padding:3px 10px;border-radius:999px;background:rgba(255,255,255,.06);font-size:11px;color:rgba(255,255,255,.6);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pf-mock{flex:1;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:0 26px}
+.pf-mock-n{font-family:var(--serif);font-size:clamp(20px,2.4vw,26px);line-height:1.15;color:#fff;letter-spacing:-.01em}
+.pf-mock-l{display:block;height:7px;width:72%;border-radius:4px;background:rgba(255,255,255,.12)}
+.pf-mock-l.s{width:48%}
+.pf-mock-b{display:block;margin-top:6px;height:26px;width:112px;border-radius:8px;background:var(--c);opacity:.9}
 .pf-body{display:block;padding:16px 18px 4px}
 .pf-name{display:block;font-family:var(--serif);font-size:17px;font-weight:400;color:var(--white);letter-spacing:-.01em}
 .pf-sector{display:block;margin-top:4px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mist)}
@@ -798,9 +804,22 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
       <a href="/proyectos" class="pf-all rv">Ver los 111 proyectos →</a>
     </div>
     <div class="pf-grid rv">
+      <a href="https://fide13formacion.com" target="_blank" rel="noopener" class="pf-card">
+        <span class="pf-shot"><span class="pf-prev" role="img" aria-label="Vista previa de la web de Fide13 Formación" style="--c:#7FA3F5">
+            <span class="pf-bar" aria-hidden="true"><i></i><i></i><i></i><span class="pf-url">fide13formacion.com</span></span>
+            <span class="pf-mock" aria-hidden="true"><span class="pf-mock-n">Fide13 Formación</span><span class="pf-mock-l"></span><span class="pf-mock-l s"></span><span class="pf-mock-b"></span></span>
+          </span></span>
+        <span class="pf-body">
+          <span class="pf-name">Fide13 Formación</span>
+          <span class="pf-sector">Formación y Tech</span>
+        </span>
+        <span class="pf-go">Ver web <span aria-hidden="true">↗</span></span>
+      </a>
       <a href="https://elfontanerodemadrid.com" target="_blank" rel="noopener" class="pf-card">
-        <span class="pf-shot"><!-- TODO: falta la captura de elfontanerodemadrid.com. Subir /proyectos-capturas/elfontanerodemadrid.com.jpg (640x400) y ejecutar `node tools/build.mjs`: la tarjeta pasara a mostrar <img loading="lazy" width="640" height="400" alt="Captura de la página web de El Fontanero de Madrid, hogar y servicios"> automaticamente. -->
-          <div class="pf-todo" role="img" aria-label="Pendiente de captura de la web de El Fontanero de Madrid"><span>elfontanerodemadrid.com</span><small>Captura pendiente</small></div></span>
+        <span class="pf-shot"><span class="pf-prev" role="img" aria-label="Vista previa de la web de El Fontanero de Madrid" style="--c:#22c55e">
+            <span class="pf-bar" aria-hidden="true"><i></i><i></i><i></i><span class="pf-url">elfontanerodemadrid.com</span></span>
+            <span class="pf-mock" aria-hidden="true"><span class="pf-mock-n">El Fontanero de Madrid</span><span class="pf-mock-l"></span><span class="pf-mock-l s"></span><span class="pf-mock-b"></span></span>
+          </span></span>
         <span class="pf-body">
           <span class="pf-name">El Fontanero de Madrid</span>
           <span class="pf-sector">Hogar y Servicios</span>
@@ -808,8 +827,10 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
         <span class="pf-go">Ver web <span aria-hidden="true">↗</span></span>
       </a>
       <a href="https://construccioneskraft.com" target="_blank" rel="noopener" class="pf-card">
-        <span class="pf-shot"><!-- TODO: falta la captura de construccioneskraft.com. Subir /proyectos-capturas/construccioneskraft.com.jpg (640x400) y ejecutar `node tools/build.mjs`: la tarjeta pasara a mostrar <img loading="lazy" width="640" height="400" alt="Captura de la página web de Construcciones Kraft, reformas y construcción"> automaticamente. -->
-          <div class="pf-todo" role="img" aria-label="Pendiente de captura de la web de Construcciones Kraft"><span>construccioneskraft.com</span><small>Captura pendiente</small></div></span>
+        <span class="pf-shot"><span class="pf-prev" role="img" aria-label="Vista previa de la web de Construcciones Kraft" style="--c:#f59e0b">
+            <span class="pf-bar" aria-hidden="true"><i></i><i></i><i></i><span class="pf-url">construccioneskraft.com</span></span>
+            <span class="pf-mock" aria-hidden="true"><span class="pf-mock-n">Construcciones Kraft</span><span class="pf-mock-l"></span><span class="pf-mock-l s"></span><span class="pf-mock-b"></span></span>
+          </span></span>
         <span class="pf-body">
           <span class="pf-name">Construcciones Kraft</span>
           <span class="pf-sector">Reformas y Construcción</span>
@@ -817,8 +838,10 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
         <span class="pf-go">Ver web <span aria-hidden="true">↗</span></span>
       </a>
       <a href="https://mamudanzas.com" target="_blank" rel="noopener" class="pf-card">
-        <span class="pf-shot"><!-- TODO: falta la captura de mamudanzas.com. Subir /proyectos-capturas/mamudanzas.com.jpg (640x400) y ejecutar `node tools/build.mjs`: la tarjeta pasara a mostrar <img loading="lazy" width="640" height="400" alt="Captura de la página web de MA Mudanzas, transporte y mudanzas"> automaticamente. -->
-          <div class="pf-todo" role="img" aria-label="Pendiente de captura de la web de MA Mudanzas"><span>mamudanzas.com</span><small>Captura pendiente</small></div></span>
+        <span class="pf-shot"><span class="pf-prev" role="img" aria-label="Vista previa de la web de MA Mudanzas" style="--c:#3b82f6">
+            <span class="pf-bar" aria-hidden="true"><i></i><i></i><i></i><span class="pf-url">mamudanzas.com</span></span>
+            <span class="pf-mock" aria-hidden="true"><span class="pf-mock-n">MA Mudanzas</span><span class="pf-mock-l"></span><span class="pf-mock-l s"></span><span class="pf-mock-b"></span></span>
+          </span></span>
         <span class="pf-body">
           <span class="pf-name">MA Mudanzas</span>
           <span class="pf-sector">Transporte y Mudanzas</span>
@@ -826,8 +849,10 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
         <span class="pf-go">Ver web <span aria-hidden="true">↗</span></span>
       </a>
       <a href="https://www.adrianoterosalondebelleza.com" target="_blank" rel="noopener" class="pf-card">
-        <span class="pf-shot"><!-- TODO: falta la captura de adrianoterosalondebelleza.com. Subir /proyectos-capturas/adrianoterosalondebelleza.com.jpg (640x400) y ejecutar `node tools/build.mjs`: la tarjeta pasara a mostrar <img loading="lazy" width="640" height="400" alt="Captura de la página web de Adriano Tero Salón de Belleza, comercio y tiendas"> automaticamente. -->
-          <div class="pf-todo" role="img" aria-label="Pendiente de captura de la web de Adriano Tero Salón de Belleza"><span>adrianoterosalondebelleza.com</span><small>Captura pendiente</small></div></span>
+        <span class="pf-shot"><span class="pf-prev" role="img" aria-label="Vista previa de la web de Adriano Tero Salón de Belleza" style="--c:#a855f7">
+            <span class="pf-bar" aria-hidden="true"><i></i><i></i><i></i><span class="pf-url">adrianoterosalondebelleza.com</span></span>
+            <span class="pf-mock" aria-hidden="true"><span class="pf-mock-n">Adriano Tero Salón de Belleza</span><span class="pf-mock-l"></span><span class="pf-mock-l s"></span><span class="pf-mock-b"></span></span>
+          </span></span>
         <span class="pf-body">
           <span class="pf-name">Adriano Tero Salón de Belleza</span>
           <span class="pf-sector">Comercio y Tiendas</span>
@@ -835,8 +860,10 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
         <span class="pf-go">Ver web <span aria-hidden="true">↗</span></span>
       </a>
       <a href="https://aulaformacion10.com" target="_blank" rel="noopener" class="pf-card">
-        <span class="pf-shot"><!-- TODO: falta la captura de aulaformacion10.com. Subir /proyectos-capturas/aulaformacion10.com.jpg (640x400) y ejecutar `node tools/build.mjs`: la tarjeta pasara a mostrar <img loading="lazy" width="640" height="400" alt="Captura de la página web de Aula Formación 10, formación y tech"> automaticamente. -->
-          <div class="pf-todo" role="img" aria-label="Pendiente de captura de la web de Aula Formación 10"><span>aulaformacion10.com</span><small>Captura pendiente</small></div></span>
+        <span class="pf-shot"><span class="pf-prev" role="img" aria-label="Vista previa de la web de Aula Formación 10" style="--c:#7FA3F5">
+            <span class="pf-bar" aria-hidden="true"><i></i><i></i><i></i><span class="pf-url">aulaformacion10.com</span></span>
+            <span class="pf-mock" aria-hidden="true"><span class="pf-mock-n">Aula Formación 10</span><span class="pf-mock-l"></span><span class="pf-mock-l s"></span><span class="pf-mock-b"></span></span>
+          </span></span>
         <span class="pf-body">
           <span class="pf-name">Aula Formación 10</span>
           <span class="pf-sector">Formación y Tech</span>
@@ -844,8 +871,10 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
         <span class="pf-go">Ver web <span aria-hidden="true">↗</span></span>
       </a>
       <a href="https://cuentosdeloasis.com" target="_blank" rel="noopener" class="pf-card">
-        <span class="pf-shot"><!-- TODO: falta la captura de cuentosdeloasis.com. Subir /proyectos-capturas/cuentosdeloasis.com.jpg (640x400) y ejecutar `node tools/build.mjs`: la tarjeta pasara a mostrar <img loading="lazy" width="640" height="400" alt="Captura de la página web de Cuentos de Loasis, otros sectores"> automaticamente. -->
-          <div class="pf-todo" role="img" aria-label="Pendiente de captura de la web de Cuentos de Loasis"><span>cuentosdeloasis.com</span><small>Captura pendiente</small></div></span>
+        <span class="pf-shot"><span class="pf-prev" role="img" aria-label="Vista previa de la web de Cuentos de Loasis" style="--c:#ef4444">
+            <span class="pf-bar" aria-hidden="true"><i></i><i></i><i></i><span class="pf-url">cuentosdeloasis.com</span></span>
+            <span class="pf-mock" aria-hidden="true"><span class="pf-mock-n">Cuentos de Loasis</span><span class="pf-mock-l"></span><span class="pf-mock-l s"></span><span class="pf-mock-b"></span></span>
+          </span></span>
         <span class="pf-body">
           <span class="pf-name">Cuentos de Loasis</span>
           <span class="pf-sector">Otros sectores</span>
@@ -853,8 +882,10 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
         <span class="pf-go">Ver web <span aria-hidden="true">↗</span></span>
       </a>
       <a href="https://fontaneriacalderon.com" target="_blank" rel="noopener" class="pf-card">
-        <span class="pf-shot"><!-- TODO: falta la captura de fontaneriacalderon.com. Subir /proyectos-capturas/fontaneriacalderon.com.jpg (640x400) y ejecutar `node tools/build.mjs`: la tarjeta pasara a mostrar <img loading="lazy" width="640" height="400" alt="Captura de la página web de Fontanería Calderón, hogar y servicios"> automaticamente. -->
-          <div class="pf-todo" role="img" aria-label="Pendiente de captura de la web de Fontanería Calderón"><span>fontaneriacalderon.com</span><small>Captura pendiente</small></div></span>
+        <span class="pf-shot"><span class="pf-prev" role="img" aria-label="Vista previa de la web de Fontanería Calderón" style="--c:#22c55e">
+            <span class="pf-bar" aria-hidden="true"><i></i><i></i><i></i><span class="pf-url">fontaneriacalderon.com</span></span>
+            <span class="pf-mock" aria-hidden="true"><span class="pf-mock-n">Fontanería Calderón</span><span class="pf-mock-l"></span><span class="pf-mock-l s"></span><span class="pf-mock-b"></span></span>
+          </span></span>
         <span class="pf-body">
           <span class="pf-name">Fontanería Calderón</span>
           <span class="pf-sector">Hogar y Servicios</span>
@@ -862,20 +893,13 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
         <span class="pf-go">Ver web <span aria-hidden="true">↗</span></span>
       </a>
       <a href="https://construccionesloal.com" target="_blank" rel="noopener" class="pf-card">
-        <span class="pf-shot"><!-- TODO: falta la captura de construccionesloal.com. Subir /proyectos-capturas/construccionesloal.com.jpg (640x400) y ejecutar `node tools/build.mjs`: la tarjeta pasara a mostrar <img loading="lazy" width="640" height="400" alt="Captura de la página web de Construcciones Loal, reformas y construcción"> automaticamente. -->
-          <div class="pf-todo" role="img" aria-label="Pendiente de captura de la web de Construcciones Loal"><span>construccionesloal.com</span><small>Captura pendiente</small></div></span>
+        <span class="pf-shot"><span class="pf-prev" role="img" aria-label="Vista previa de la web de Construcciones Loal" style="--c:#f59e0b">
+            <span class="pf-bar" aria-hidden="true"><i></i><i></i><i></i><span class="pf-url">construccionesloal.com</span></span>
+            <span class="pf-mock" aria-hidden="true"><span class="pf-mock-n">Construcciones Loal</span><span class="pf-mock-l"></span><span class="pf-mock-l s"></span><span class="pf-mock-b"></span></span>
+          </span></span>
         <span class="pf-body">
           <span class="pf-name">Construcciones Loal</span>
           <span class="pf-sector">Reformas y Construcción</span>
-        </span>
-        <span class="pf-go">Ver web <span aria-hidden="true">↗</span></span>
-      </a>
-      <a href="https://montajesymudanzas.com" target="_blank" rel="noopener" class="pf-card">
-        <span class="pf-shot"><!-- TODO: falta la captura de montajesymudanzas.com. Subir /proyectos-capturas/montajesymudanzas.com.jpg (640x400) y ejecutar `node tools/build.mjs`: la tarjeta pasara a mostrar <img loading="lazy" width="640" height="400" alt="Captura de la página web de Montajes y Mudanzas, transporte y mudanzas"> automaticamente. -->
-          <div class="pf-todo" role="img" aria-label="Pendiente de captura de la web de Montajes y Mudanzas"><span>montajesymudanzas.com</span><small>Captura pendiente</small></div></span>
-        <span class="pf-body">
-          <span class="pf-name">Montajes y Mudanzas</span>
-          <span class="pf-sector">Transporte y Mudanzas</span>
         </span>
         <span class="pf-go">Ver web <span aria-hidden="true">↗</span></span>
       </a>

@@ -4,11 +4,12 @@
  * Las webs salen de proyectos-data.mjs (lo mismo que /proyectos): son clientes reales, con su nombre y su URL
  * tal y como figuran allí. No se inventa ninguna.
  *
- * Capturas: el repositorio no tiene ninguna todavía. Mientras el fichero
- * /proyectos-capturas/<dominio>.jpg no exista, cada tarjeta enseña un marcador
- * con el dominio y deja un TODO. En cuanto la captura se suba a esa carpeta y
- * se ejecute `node tools/build.mjs`, la tarjeta pasa a mostrar la imagen con
- * loading="lazy", width, height y alt descriptivo.
+ * Capturas: las genera `node tools/capturas.mjs` (Playwright) en
+ * /proyectos-capturas/<dominio>.jpg, y el workflow .github/workflows/capturas.yml
+ * lo hace solo en GitHub. Si una captura aún no existe, la tarjeta enseña una
+ * vista previa diseñada (barra de navegador + nombre del cliente en el color de
+ * su sector), nunca un aviso de "pendiente". En cuanto la imagen existe y se
+ * ejecuta `node tools/build.mjs`, la tarjeta pasa a mostrarla.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -18,36 +19,47 @@ export const DIR_CAPTURAS = 'proyectos-capturas';
 export const ANCHO = 640;
 export const ALTO = 400;
 
+/** Webs que salen siempre en la home, en este orden, antes del reparto por sector. */
+export const DESTACADAS = ['fide13formacion.com'];
+
+export const dominio = url => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 /** Bloques de /proyectos: [{ sector, proyectos:[{nombre,url}] }], desde proyectos-data.mjs */
 export function leerProyectos() {
   return PORTFOLIO.map(c => ({
     sector: c.key,
+    color: c.color,
     proyectos: c.subs.flatMap(s => s.webs.map(([url, nombre]) => ({ url, nombre })))
   }));
 }
 
 /** Selección estable: las primeras de cada bloque, repartidas hasta llegar a n. */
-export function seleccion(bloques, n = 9) {
+export function seleccion(bloques, n = 9, destacadas = DESTACADAS) {
   const fuera = /autoridadgeo/i;             // marca propia, no es cliente
-  const colas = bloques.map(b => ({ sector: b.sector, resto: b.proyectos.filter(p => !fuera.test(p.url)) }));
   const out = [];
+  for (const d of destacadas) {
+    for (const b of bloques) {
+      const p = b.proyectos.find(x => dominio(x.url) === d);
+      if (p && out.length < n) out.push({ ...p, sector: b.sector, color: b.color });
+    }
+  }
+  const ya = new Set(out.map(p => p.url));
+  const colas = bloques.map(b => ({ sector: b.sector, color: b.color, resto: b.proyectos.filter(p => !fuera.test(p.url) && !ya.has(p.url)) }));
   for (let ronda = 0; out.length < n; ronda++) {
     let algo = false;
     for (const c of colas) {
       if (out.length >= n) break;
       const p = c.resto[ronda];
       if (!p) continue;
-      out.push({ ...p, sector: c.sector });
+      out.push({ ...p, sector: c.sector, color: c.color });
       algo = true;
     }
     if (!algo) break;
   }
   return out;
 }
-
-const dominio = url => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
 
 export function tarjetas(root, items) {
   return items.map(p => {
@@ -56,8 +68,10 @@ export function tarjetas(root, items) {
     const alt = `Captura de la página web de ${p.nombre}, ${p.sector.toLowerCase()}`;
     const medio = fs.existsSync(captura)
       ? `<img src="/${DIR_CAPTURAS}/${dom}.jpg" alt="${esc(alt)}" width="${ANCHO}" height="${ALTO}" loading="lazy" decoding="async"/>`
-      : `<!-- TODO: falta la captura de ${dom}. Subir /${DIR_CAPTURAS}/${dom}.jpg (${ANCHO}x${ALTO}) y ejecutar \`node tools/build.mjs\`: la tarjeta pasara a mostrar <img loading="lazy" width="${ANCHO}" height="${ALTO}" alt="${esc(alt)}"> automaticamente. -->
-          <div class="pf-todo" role="img" aria-label="${esc(`Pendiente de captura de la web de ${p.nombre}`)}"><span>${esc(dom)}</span><small>Captura pendiente</small></div>`;
+      : `<span class="pf-prev" role="img" aria-label="${esc(`Vista previa de la web de ${p.nombre}`)}" style="--c:${p.color || '#7FA3F5'}">
+            <span class="pf-bar" aria-hidden="true"><i></i><i></i><i></i><span class="pf-url">${esc(dom)}</span></span>
+            <span class="pf-mock" aria-hidden="true"><span class="pf-mock-n">${esc(p.nombre)}</span><span class="pf-mock-l"></span><span class="pf-mock-l s"></span><span class="pf-mock-b"></span></span>
+          </span>`;
     return `      <a href="${p.url}" target="_blank" rel="noopener" class="pf-card">
         <span class="pf-shot">${medio}</span>
         <span class="pf-body">
@@ -82,9 +96,15 @@ export function seccion(cfg, root) {
 .pf-card:hover{border-color:var(--bright);transform:translateY(-3px)}
 .pf-shot{display:block;aspect-ratio:${ANCHO}/${ALTO};background:#111;overflow:hidden;max-width:100%}
 .pf-shot img{width:100%;height:100%;object-fit:cover;object-position:top center}
-.pf-todo{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;height:100%;border-bottom:1px dashed #3a3a3a;background:repeating-linear-gradient(135deg,#141414,#141414 10px,#171717 10px,#171717 20px)}
-.pf-todo span{font-size:14px;font-weight:500;color:rgba(255,255,255,.72);word-break:break-all;padding:0 14px;text-align:center}
-.pf-todo small{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#EAB308}
+.pf-prev{display:flex;flex-direction:column;width:100%;height:100%;background:radial-gradient(120% 90% at 85% 0%,color-mix(in srgb,var(--c) 32%,transparent),transparent 60%),linear-gradient(160deg,#16181d,#0f1013)}
+.pf-bar{display:flex;align-items:center;gap:6px;padding:10px 12px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.06)}
+.pf-bar i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18)}
+.pf-url{flex:1;min-width:0;margin-left:8px;padding:3px 10px;border-radius:999px;background:rgba(255,255,255,.06);font-size:11px;color:rgba(255,255,255,.6);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pf-mock{flex:1;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:0 26px}
+.pf-mock-n{font-family:var(--serif);font-size:clamp(20px,2.4vw,26px);line-height:1.15;color:#fff;letter-spacing:-.01em}
+.pf-mock-l{display:block;height:7px;width:72%;border-radius:4px;background:rgba(255,255,255,.12)}
+.pf-mock-l.s{width:48%}
+.pf-mock-b{display:block;margin-top:6px;height:26px;width:112px;border-radius:8px;background:var(--c);opacity:.9}
 .pf-body{display:block;padding:16px 18px 4px}
 .pf-name{display:block;font-family:var(--serif);font-size:17px;font-weight:400;color:var(--white);letter-spacing:-.01em}
 .pf-sector{display:block;margin-top:4px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mist)}
