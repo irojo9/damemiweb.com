@@ -18,17 +18,13 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 
 
 /**
- * Marca de "Dame mi web" en SVG inline.
- * El PNG del repositorio es una silueta negra sobre fondo transparente y
- * desaparece sobre la cabecera oscura, así que la marca va vectorial.
- * Lleva nombre accesible propio: equivale al alt="Dame mi web" de una imagen.
+ * Marca real de "Dame mi web" (la "DW" con la flecha), recortada del logo
+ * original sobre fondo transparente. logo-dw.png va a 2x (120x68) para que
+ * se vea nítida en pantallas retina; el alt hace de nombre accesible.
  */
 function logo(size) {
-  return `<svg class="dmw-logo" width="${size}" height="${size}" viewBox="0 0 100 100" role="img" aria-label="Dame mi web">`
-    + '<rect width="100" height="100" rx="16" fill="#1C1C1C"/>'
-    + '<path d="M 18 26 L 18 74 L 40 74 C 56 74 64 64 64 50 C 64 36 56 26 40 26 Z M 30 36 L 40 36 C 48 36 52 42 52 50 C 52 58 48 64 40 64 L 30 64 Z" fill="#FFFFFF"/>'
-    + '<path d="M 58 70 L 68 50 L 74 60 L 84 32 L 90 36 L 86 26 L 78 32 L 82 22 L 70 32 L 66 24 L 62 32 Z" fill="#7FA3F5"/>'
-    + '<polygon points="84,26 92,22 88,32" fill="#7FA3F5"/></svg>';
+  const w = Math.round(size * 120 / 68);
+  return `<img class="dmw-logo" src="/logo-dw.png" width="${w}" height="${size}" alt="Dame mi web" decoding="async"/>`;
 }
 
 export function waLink(cfg, texto, ubicacion, cls = '', extra = '') {
@@ -80,7 +76,7 @@ export function headerCSS() {
 .dmw-hd *,.dmw-ft *{box-sizing:border-box}
 .dmw-hd-in{max-width:1400px;margin:0 auto;height:100%;padding:0 24px;display:flex;align-items:center;gap:16px}
 .dmw-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
-.dmw-brand .dmw-logo{width:34px;height:34px;display:block;flex-shrink:0}
+.dmw-brand .dmw-logo{width:60px;height:34px;display:block;flex-shrink:0}
 .dmw-brand-t{font-family:'Fraunces',Georgia,serif;font-size:16px;font-weight:600;letter-spacing:-.015em;color:#fff;white-space:nowrap}
 .dmw-brand-t span{color:#7FA3F5}
 .dmw-nav{display:flex;align-items:center;gap:2px;margin-left:auto}
@@ -235,7 +231,7 @@ export function footerCSS() {
 .dmw-ft-in{max-width:1240px;margin:0 auto}
 .dmw-ft-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
 .dmw-ft-brand{display:flex;align-items:center;gap:10px;margin-bottom:16px;text-decoration:none}
-.dmw-ft-brand .dmw-logo{width:34px;height:34px;display:block;flex-shrink:0}
+.dmw-ft-brand .dmw-logo{width:60px;height:34px;display:block;flex-shrink:0}
 .dmw-ft-brand-t{font-family:'Fraunces',Georgia,serif;font-size:16px;font-weight:600;color:#fff;letter-spacing:-.015em}
 .dmw-ft-brand-t span{color:#7FA3F5}
 .dmw-ft-desc{font-size:14px;font-weight:300;line-height:1.7;color:rgba(255,255,255,.5);max-width:320px;margin:0 0 20px}
