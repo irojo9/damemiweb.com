@@ -6,7 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { header, footer } from './partials.mjs';
+import { header, footer, cabeza } from './partials.mjs';
 
 const FONTS = fs.readFileSync(
   path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'partials', 'fonts.css'), 'utf8');
@@ -73,7 +73,7 @@ export function pagina(cfg, { titulo, descripcion, ruta, robots, jsonld, cuerpo 
   const url = cfg.site.domain + ruta;
   const og = cfg.site.domain + '/og-image.jpg';
   const ld = jsonld ? `\n<script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : '';
-  return `<!DOCTYPE html>
+  return cabeza(`<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8"/>
@@ -108,5 +108,5 @@ ${cuerpo}
 <script src="/dmw.js" defer></script>
 </body>
 </html>
-`;
+`);
 }

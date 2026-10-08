@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<link rel="icon" type="image/png" href="/logo_damemiweb_icon.png"/>
-<link rel="apple-touch-icon" href="/logo_damemiweb_icon.png"/>
+<meta name="theme-color" content="#0E0E0E"/>
+<link rel="manifest" href="/site.webmanifest"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <title>Diseño Web en Palma de Mallorca — 250€ + IVA</title>
 <meta name="description" content="Diseño web profesional para autónomos y negocios en Palma de Mallorca por 250€ + IVA. Responsive, SEO local para Palma incluido y dominio .com. Online en 72 horas. Sin mensualidades."/>
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
@@ -12,6 +14,7 @@
 <meta property="og:title" content="Diseño Web Profesional en Palma de Mallorca — 250€ + IVA | Dame mi web"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta property="og:description" content="Diseño web profesional para autónomos y negocios en Palma de Mallorca por 250€ + IVA. Responsive, SEO local para Palma incluido y dominio .com. Online en 72 horas. Sin mensualidades."/>
+<meta property="og:site_name" content="Dame mi web"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.damemiweb.com/diseno-web-palma"/>
 <meta property="og:image" content="https://www.damemiweb.com/og-image.jpg"/>
@@ -20,7 +23,7 @@
 <meta name="twitter:image" content="https://www.damemiweb.com/og-image.jpg"/>
 <meta property="og:locale" content="es_ES"/>
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B27EE57BLZ"></script>
+<script>addEventListener('load',function(){(window.requestIdleCallback||setTimeout)(function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-B27EE57BLZ';document.head.appendChild(s)})})</script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B27EE57BLZ');</script>
 <script type="application/ld+json">
 {
@@ -178,8 +181,9 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 .dmw-dd-panel a{display:block;padding:9px 12px;border-radius:8px;font-size:14px;color:rgba(255,255,255,.75);text-decoration:none;break-inside:avoid;white-space:nowrap}
 .dmw-dd-panel a:hover{background:rgba(255,255,255,.08);color:#fff}
 .dmw-dd-panel a.lead{color:#7FA3F5;font-weight:500}
-.dmw-cta{display:inline-flex;align-items:center;gap:7px;flex-shrink:0;background:#25D366;color:#fff!important;padding:10px 17px;border-radius:9px;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;transition:opacity .15s}
-.dmw-cta:hover{opacity:.88}
+.dmw-cta{position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;gap:7px;flex-shrink:0;background:#25D366;color:#fff!important;padding:10px 17px;border-radius:9px;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;transition:background .2s,transform .2s,box-shadow .2s}
+.dmw-cta:hover{background:#1EBE5A;transform:translateY(-1px);box-shadow:0 8px 24px rgba(37,211,102,.28)}
+.dmw-cta::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);pointer-events:none}
 .dmw-burger{display:none;align-items:center;justify-content:center;width:42px;height:42px;border-radius:9px;border:1px solid #2A2A2A;background:none;color:#fff;cursor:pointer;flex-shrink:0}
 .dmw-mob{position:fixed;top:68px;left:0;right:0;bottom:0;z-index:299;background:#0E0E0E;overflow-y:auto;padding:16px 20px 48px;-webkit-overflow-scrolling:touch}
 .dmw-mob-sec{border-bottom:1px solid #1F1F1F;padding:4px 0}
@@ -196,6 +200,43 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 /* En pantallas muy estrechas el CTA de la barra se queda en icono, pero el
    del menu movil conserva su texto. */
 @media(max-width:560px){.dmw-hd .dmw-cta span{display:none}.dmw-hd .dmw-cta{padding:10px 13px}}
+/* Barra de progreso de lectura bajo la cabecera (CSS puro, scroll-driven). */
+.dmw-progress{position:absolute;left:0;right:0;bottom:-1px;height:2px;overflow:hidden;pointer-events:none}
+.dmw-progress::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#1347CC,#7FA3F5 55%,#25D366);transform-origin:0 50%;transform:scaleX(0)}
+/* Movimiento del sitio. Todo lo vistoso vive aqui dentro, de modo que quien
+   pide movimiento reducido no recibe nada de ello. */
+@media(prefers-reduced-motion:no-preference){
+  /* Transicion entre paginas (View Transitions entre documentos): la pagina
+     saliente se desvanece hacia arriba y la entrante sube desenfocada. La
+     cabecera lleva nombre propio para quedarse quieta durante el cambio. */
+  @view-transition{navigation:auto}
+  ::view-transition-old(root){animation:dmw-vt-out .26s cubic-bezier(.4,0,1,1) both}
+  ::view-transition-new(root){animation:dmw-vt-in .55s cubic-bezier(.16,1,.3,1) both}
+  .dmw-hd{view-transition-name:dmw-hd}
+  ::view-transition-group(dmw-hd){animation-duration:0s}
+  @keyframes dmw-vt-out{to{opacity:0;transform:translateY(-14px) scale(.985);filter:blur(4px)}}
+  @keyframes dmw-vt-in{from{opacity:0;transform:translateY(26px) scale(1.01);filter:blur(6px)}}
+  @supports(animation-timeline:scroll()){
+    .dmw-progress::before{animation:dmw-prog linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes dmw-prog{to{transform:scaleX(1)}}
+  .dmw-dd-panel:not([hidden]){animation:dmw-pop .24s cubic-bezier(.16,1,.3,1) both;transform-origin:top left}
+  @keyframes dmw-pop{from{opacity:0;transform:translateY(-8px) scale(.97)}}
+  .dmw-mob:not([hidden]){animation:dmw-fade .25s ease both}
+  .dmw-mob:not([hidden])>*{animation:dmw-rise .5s cubic-bezier(.16,1,.3,1) both}
+  .dmw-mob>:nth-child(2){animation-delay:.03s}.dmw-mob>:nth-child(3){animation-delay:.06s}.dmw-mob>:nth-child(4){animation-delay:.09s}
+  .dmw-mob>:nth-child(5){animation-delay:.12s}.dmw-mob>:nth-child(6){animation-delay:.15s}.dmw-mob>:nth-child(7){animation-delay:.18s}.dmw-mob>:nth-child(8){animation-delay:.21s}
+  .dmw-mob-panel:not([hidden]) a{animation:dmw-rise .4s cubic-bezier(.16,1,.3,1) both}
+  @keyframes dmw-fade{from{opacity:0}}
+  @keyframes dmw-rise{from{opacity:0;transform:translateY(14px)}}
+  /* Destello periodico en el boton de WhatsApp */
+  .dmw-cta::after{animation:dmw-shine 6s ease-in-out 2.5s infinite}
+  @keyframes dmw-shine{0%,72%{transform:translateX(-120%)}88%,100%{transform:translateX(120%)}}
+  /* Revelado al hacer scroll que dmw.js aplica a las paginas sin animacion
+     propia. Sin JS la clase no existe y todo queda visible. */
+  .dmw-rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);transition-delay:var(--dmw-d,0s)}
+  .dmw-rv.dmw-on{opacity:1;transform:none}
+}
 /* Movimiento reducido, para todo el sitio. Va en la cabecera porque es el
    unico bloque que esta en todas las paginas. Las clases .rv y .reveal son
    revelados al hacer scroll: sin animacion tienen que quedarse visibles. */
@@ -233,6 +274,7 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
     <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20mi%20web%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" data-wa-loc="header" data-wa-fixed class="dmw-cta"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 20.5l1.3-4.3A8.2 8.2 0 1 1 8 19.4l-4.5 1.1z"/><path d="M9 9.2c0 3 2.3 5.3 5.2 5.4.6 0 1.1-.4 1.2-1l.1-.6-2-.9-.8 1a4.6 4.6 0 0 1-2-2l1-.8-.9-2-.6.1c-.6.1-1.1.6-1.2 1.2z"/></svg><span>Pedir mi web</span></a>
     <button type="button" class="dmw-burger" id="dmw-burger" aria-expanded="false" aria-controls="dmw-mob" aria-label="Abrir menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
   </div>
+  <span class="dmw-progress" aria-hidden="true"></span>
 </header>
 <!-- El panel movil va fuera de <header> a proposito: el backdrop-filter de la
      cabecera crea un bloque contenedor y recortaria su position:fixed. -->

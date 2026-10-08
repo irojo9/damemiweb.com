@@ -38,6 +38,39 @@ export function waLink(cfg, texto, ubicacion, cls = '', extra = '') {
   return `<a href="${href}" target="_blank" rel="noopener" data-wa-loc="${ubicacion}" data-wa-fixed${c}${extra}>`;
 }
 
+/**
+ * Ajustes de <head> comunes a todas las páginas (rendimiento y SEO). Es
+ * idempotente: tools/build.mjs lo aplica a cada .html y tools/pagina.mjs a las
+ * páginas que genera, de modo que ambos caminos producen lo mismo.
+ *
+ *  - Iconos reales (SVG + PNG). El antiguo logo_damemiweb_icon.png es un JPEG
+ *    negro de 1248 px: pesaba y se veía como un cuadrado negro.
+ *  - theme-color, manifest y og:site_name.
+ *  - Google Analytics se descarga cuando la página ya ha cargado, sin competir
+ *    con el pintado inicial. La cola dataLayer conserva todo lo anterior.
+ */
+export function cabeza(html) {
+  const ICONOS = '<link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png"/>';
+  html = html.replace(/<link rel="icon" type="image\/png" href="(?:\/logo_damemiweb_icon\.png|data:image\/png;base64,[^"]*)"\/>/, ICONOS);
+  html = html.replace(/<link rel="apple-touch-icon" href="\/logo_damemiweb_icon\.png"\/>/, '<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>');
+  html = html.replace(/https:\/\/www\.damemiweb\.com\/logo_damemiweb_icon\.png/g, 'https://www.damemiweb.com/icon-512.png');
+
+  const viewport = /<meta name="viewport"[^>]*>/;
+  if (!html.includes('name="theme-color"') && viewport.test(html)) {
+    html = html.replace(viewport, m => `${m}\n<meta name="theme-color" content="#0E0E0E"/>`);
+  }
+  if (!html.includes('rel="manifest"') && html.includes('name="theme-color"')) {
+    html = html.replace(/<meta name="theme-color"[^>]*>/, m => `${m}\n<link rel="manifest" href="/site.webmanifest"/>`);
+  }
+  if (!html.includes('og:site_name')) {
+    html = html.replace(/<meta property="og:type"[^>]*>/, m => `<meta property="og:site_name" content="Dame mi web"/>\n${m}`);
+  }
+
+  html = html.replace(/<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=([A-Z0-9-]+)"><\/script>/,
+    (_, id) => `<script>addEventListener('load',function(){(window.requestIdleCallback||setTimeout)(function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${id}';document.head.appendChild(s)})})</script>`);
+  return html;
+}
+
 export function headerCSS() {
   return `<style>
 .dmw-skip{position:absolute;left:-9999px;top:0;z-index:1000;background:#1347CC;color:#fff;padding:10px 18px;border-radius:0 0 8px 0;font:500 14px/1 system-ui,sans-serif;text-decoration:none}
@@ -62,8 +95,9 @@ export function headerCSS() {
 .dmw-dd-panel a{display:block;padding:9px 12px;border-radius:8px;font-size:14px;color:rgba(255,255,255,.75);text-decoration:none;break-inside:avoid;white-space:nowrap}
 .dmw-dd-panel a:hover{background:rgba(255,255,255,.08);color:#fff}
 .dmw-dd-panel a.lead{color:#7FA3F5;font-weight:500}
-.dmw-cta{display:inline-flex;align-items:center;gap:7px;flex-shrink:0;background:#25D366;color:#fff!important;padding:10px 17px;border-radius:9px;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;transition:opacity .15s}
-.dmw-cta:hover{opacity:.88}
+.dmw-cta{position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;gap:7px;flex-shrink:0;background:#25D366;color:#fff!important;padding:10px 17px;border-radius:9px;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;transition:background .2s,transform .2s,box-shadow .2s}
+.dmw-cta:hover{background:#1EBE5A;transform:translateY(-1px);box-shadow:0 8px 24px rgba(37,211,102,.28)}
+.dmw-cta::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);pointer-events:none}
 .dmw-burger{display:none;align-items:center;justify-content:center;width:42px;height:42px;border-radius:9px;border:1px solid #2A2A2A;background:none;color:#fff;cursor:pointer;flex-shrink:0}
 .dmw-mob{position:fixed;top:68px;left:0;right:0;bottom:0;z-index:299;background:#0E0E0E;overflow-y:auto;padding:16px 20px 48px;-webkit-overflow-scrolling:touch}
 .dmw-mob-sec{border-bottom:1px solid #1F1F1F;padding:4px 0}
@@ -80,6 +114,43 @@ export function headerCSS() {
 /* En pantallas muy estrechas el CTA de la barra se queda en icono, pero el
    del menu movil conserva su texto. */
 @media(max-width:560px){.dmw-hd .dmw-cta span{display:none}.dmw-hd .dmw-cta{padding:10px 13px}}
+/* Barra de progreso de lectura bajo la cabecera (CSS puro, scroll-driven). */
+.dmw-progress{position:absolute;left:0;right:0;bottom:-1px;height:2px;overflow:hidden;pointer-events:none}
+.dmw-progress::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#1347CC,#7FA3F5 55%,#25D366);transform-origin:0 50%;transform:scaleX(0)}
+/* Movimiento del sitio. Todo lo vistoso vive aqui dentro, de modo que quien
+   pide movimiento reducido no recibe nada de ello. */
+@media(prefers-reduced-motion:no-preference){
+  /* Transicion entre paginas (View Transitions entre documentos): la pagina
+     saliente se desvanece hacia arriba y la entrante sube desenfocada. La
+     cabecera lleva nombre propio para quedarse quieta durante el cambio. */
+  @view-transition{navigation:auto}
+  ::view-transition-old(root){animation:dmw-vt-out .26s cubic-bezier(.4,0,1,1) both}
+  ::view-transition-new(root){animation:dmw-vt-in .55s cubic-bezier(.16,1,.3,1) both}
+  .dmw-hd{view-transition-name:dmw-hd}
+  ::view-transition-group(dmw-hd){animation-duration:0s}
+  @keyframes dmw-vt-out{to{opacity:0;transform:translateY(-14px) scale(.985);filter:blur(4px)}}
+  @keyframes dmw-vt-in{from{opacity:0;transform:translateY(26px) scale(1.01);filter:blur(6px)}}
+  @supports(animation-timeline:scroll()){
+    .dmw-progress::before{animation:dmw-prog linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes dmw-prog{to{transform:scaleX(1)}}
+  .dmw-dd-panel:not([hidden]){animation:dmw-pop .24s cubic-bezier(.16,1,.3,1) both;transform-origin:top left}
+  @keyframes dmw-pop{from{opacity:0;transform:translateY(-8px) scale(.97)}}
+  .dmw-mob:not([hidden]){animation:dmw-fade .25s ease both}
+  .dmw-mob:not([hidden])>*{animation:dmw-rise .5s cubic-bezier(.16,1,.3,1) both}
+  .dmw-mob>:nth-child(2){animation-delay:.03s}.dmw-mob>:nth-child(3){animation-delay:.06s}.dmw-mob>:nth-child(4){animation-delay:.09s}
+  .dmw-mob>:nth-child(5){animation-delay:.12s}.dmw-mob>:nth-child(6){animation-delay:.15s}.dmw-mob>:nth-child(7){animation-delay:.18s}.dmw-mob>:nth-child(8){animation-delay:.21s}
+  .dmw-mob-panel:not([hidden]) a{animation:dmw-rise .4s cubic-bezier(.16,1,.3,1) both}
+  @keyframes dmw-fade{from{opacity:0}}
+  @keyframes dmw-rise{from{opacity:0;transform:translateY(14px)}}
+  /* Destello periodico en el boton de WhatsApp */
+  .dmw-cta::after{animation:dmw-shine 6s ease-in-out 2.5s infinite}
+  @keyframes dmw-shine{0%,72%{transform:translateX(-120%)}88%,100%{transform:translateX(120%)}}
+  /* Revelado al hacer scroll que dmw.js aplica a las paginas sin animacion
+     propia. Sin JS la clase no existe y todo queda visible. */
+  .dmw-rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);transition-delay:var(--dmw-d,0s)}
+  .dmw-rv.dmw-on{opacity:1;transform:none}
+}
 /* Movimiento reducido, para todo el sitio. Va en la cabecera porque es el
    unico bloque que esta en todas las paginas. Las clases .rv y .reveal son
    revelados al hacer scroll: sin animacion tienen que quedarse visibles. */
@@ -141,6 +212,7 @@ export function header(cfg) {
     ${wa}${icon('whatsapp', { size: 17 })}<span>Pedir mi web</span></a>
     <button type="button" class="dmw-burger" id="dmw-burger" aria-expanded="false" aria-controls="dmw-mob" aria-label="Abrir menú">${icon('menu', { size: 22 })}</button>
   </div>
+  <span class="dmw-progress" aria-hidden="true"></span>
 </header>
 <!-- El panel movil va fuera de <header> a proposito: el backdrop-filter de la
      cabecera crea un bloque contenedor y recortaria su position:fixed. -->

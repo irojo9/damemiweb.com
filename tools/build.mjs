@@ -16,7 +16,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { header, footer, waLink } from './partials.mjs';
+import { header, footer, waLink, cabeza } from './partials.mjs';
 import { icon } from './icons.mjs';
 import { sustituirEmojiIconos } from './emoji-iconos.mjs';
 import { SECTORES, CIUDADES, CATEGORIAS_PROYECTOS } from './data.mjs';
@@ -754,6 +754,7 @@ function main() {
     html = marcarWhatsApp(html, file);
     html = fase4Ecosistema(html);
     html = fase4NoindexCiudades(html, file);
+    html = cabeza(html);
 
     escribir(file, html);
     if (esIndexable(file, html)) indexables.push(file);

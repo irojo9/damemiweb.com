@@ -1,0 +1,16 @@
+{
+  "name": "Dame mi web — Diseño web para autónomos",
+  "short_name": "Dame mi web",
+  "description": "Página web profesional para autónomos y pequeños negocios, con pago único y sin cuotas.",
+  "lang": "es-ES",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#0E0E0E",
+  "theme_color": "#0E0E0E",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
