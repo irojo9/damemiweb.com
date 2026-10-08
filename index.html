@@ -430,7 +430,7 @@ h2.s-title.light .dk{color:rgba(14,14,14,.2)}
 
 /* CONTACTO */
 #contacto{background:var(--off)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.contact-grid{display:grid;grid-template-columns:1fr;gap:72px;align-items:start;max-width:640px}
 .contact-left .s-label{color:var(--blue)}
 .contact-left .s-label::before{background:var(--blue)}
 .contact-left p{font-size:17px;font-weight:300;color:rgba(14,14,14,.5);line-height:1.7;margin-bottom:36px;max-width:440px}
@@ -442,25 +442,6 @@ h2.s-title.light .dk{color:rgba(14,14,14,.2)}
 .cway-v{font-size:15px;font-weight:500;color:var(--navy);margin-top:2px}
 .cway-arr{margin-left:auto;color:rgba(14,14,14,.25);font-size:18px;transition:all .2s}
 .cway:hover .cway-arr{color:var(--blue);transform:translateX(3px)}
-.cform{background:var(--white);border:2px solid var(--line-lt);border-radius:20px;padding:44px}
-.cform h3{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--navy);letter-spacing:-.015em;margin-bottom:6px}
-.cform .sub{font-size:13px;font-weight:400;color:rgba(14,14,14,.4);margin-bottom:28px;letter-spacing:.03em}
-.fld{margin-bottom:16px}
-.fld label{display:block;font-size:11px;font-weight:600;color:rgba(14,14,14,.5);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
-.fld input,.fld select,.fld textarea{width:100%;padding:13px 16px;border:2px solid var(--line-lt);border-radius:10px;font-family:var(--sans);font-size:14px;font-weight:400;color:var(--navy);background:var(--off);outline:none;transition:border-color .2s}
-.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--blue);background:#fff}
-.fld textarea{resize:none;line-height:1.55}
-.fsend{width:100%;padding:15px;border-radius:10px;background:var(--navy);color:#fff;font-family:var(--sans);font-size:14px;font-weight:500;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
-.fsend:hover:not(:disabled){background:var(--blue);transform:translateY(-1px)}
-.fsend:disabled{opacity:.45;cursor:not-allowed}
-.fsend::after{content:'→';transition:transform .2s}
-.fsend:hover::after{transform:translateX(3px)}
-.flegal{font-size:11px;font-weight:400;color:rgba(14,14,14,.35);text-align:center;margin-top:10px}
-.flegal a{color:var(--blue)}
-.fok{text-align:center;padding:48px 0}
-.fok-i{width:60px;height:60px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 16px}
-.fok h4{font-family:var(--serif);font-size:19px;font-weight:500;color:var(--navy);margin-bottom:8px}
-.fok p{font-size:14px;font-weight:300;color:rgba(14,14,14,.45)}
 
 /* SECTORES LINKS */
 #sectores-links{background:var(--navy2)}
@@ -1080,7 +1061,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
 <section id="contacto">
   <div class="w">
     <div class="contact-grid">
-      <div>
+      <div class="contact-left">
         <div class="s-label rv" style="color:var(--blue)">Hablemos</div>
         <h2 class="s-title light rv">¿Listo para <span class="it">empezar?</span></h2>
         <p class="rv">La forma más rápida es por WhatsApp. Te respondemos en menos de 2 horas.</p>
@@ -1089,19 +1070,6 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
           <a href="https://www.instagram.com/damemiweb" target="_blank" rel="noopener" class="cway rv d1"><div class="cway-ico"><svg style="vertical-align:middle;flex-shrink:0" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 8h3.5l1.5-2.5h6L16.5 8H20v11H4z"/><circle cx="12" cy="13.2" r="3.5"/></svg></div><div><div class="cway-l">Instagram</div><div class="cway-v">@damemiweb</div></div><span class="cway-arr">→</span></a>
           <a href="https://www.tiktok.com/@damemiweb" target="_blank" rel="noopener" class="cway rv d2"><div class="cway-ico"><svg style="vertical-align:middle;flex-shrink:0" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4v10.2a3.3 3.3 0 1 1-2.6-3.2"/><path d="M14 4c.4 2.3 2 3.8 4.4 4"/></svg></div><div><div class="cway-l">TikTok</div><div class="cway-v">@damemiweb</div></div><span class="cway-arr">→</span></a>
         </div>
-      </div>
-      <div class="cform rv d1">
-        <h3>Escríbenos</h3>
-        <p class="sub">Respondemos en menos de 24 horas</p>
-        <div id="cf-form">
-          <div class="fld"><label>Nombre *</label><input type="text" id="fn" placeholder="Tu nombre" required/></div>
-          <div class="fld"><label>Email *</label><input type="email" id="fe" placeholder="tu@email.com" required/></div>
-          <div class="fld"><label>Tipo de negocio *</label><select id="fne" required><option value="">Selecciona tu sector</option><option>Fontanería</option><option>Electricidad</option><option>Peluquería</option><option>Restaurante / Bar</option><option>Tienda</option><option>Mudanzas</option><option>Reformas</option><option>Abogado / Asesoría</option><option>Salud / Clínica</option><option>Formación / Academia</option><option>Otro</option></select></div>
-          <div class="fld"><label>Mensaje</label><textarea id="fm" rows="3" placeholder="Cuéntanos brevemente..."></textarea></div>
-          <button class="fsend" id="fsb" onclick="send()">Enviar mensaje</button>
-          <p class="flegal">Al enviar aceptas la <a href="/privacidad">política de privacidad</a>.</p>
-        </div>
-        <div id="cf-ok" style="display:none"><div class="fok"><div class="fok-i">✓</div><h4>Mensaje recibido</h4><p>Te contactamos en menos de 24 horas.</p></div></div>
       </div>
     </div>
   </div>
@@ -1490,19 +1458,6 @@ function faq(btn){
   if(!was){item.classList.add('open');body.style.height=inner.scrollHeight+'px'}
 }
 (()=>{const f=document.querySelector('.fi.open');if(f){const b=f.querySelector('.fbody'),i=f.querySelector('.fbin');b.style.height=i.scrollHeight+'px'}})();
-
-// Contact form
-async function send(){
-  const n=document.getElementById('fn').value.trim(),e=document.getElementById('fe').value.trim(),ne=document.getElementById('fne').value,m=document.getElementById('fm').value.trim();
-  if(!n||!e||!ne){alert('Por favor rellena los campos obligatorios.');return}
-  const btn=document.getElementById('fsb');btn.disabled=true;btn.textContent='Enviando...';
-  try{
-    const r=await fetch('https://formspree.io/f/xpwzgvqp',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({nombre:n,email:e,negocio:ne,mensaje:m})});
-    if(r.ok){if(typeof gtag==='function')gtag('event','generate_lead',{method:'formulario'});document.getElementById('cf-form').style.display='none';document.getElementById('cf-ok').style.display='block'}
-    else fb(n,ne,e,m);
-  }catch{fb(n,ne,e,m)}
-}
-function fb(n,ne,e,m){if(typeof gtag==='function')gtag('event','generate_lead',{method:'whatsapp_fallback'});window.open('https://wa.me/34662549694?text='+encodeURIComponent('Hola, me llamo '+n+'. Negocio: '+ne+'. Email: '+e+'. '+m),'_blank');var ok=document.getElementById('cf-ok');ok.querySelector('h4').textContent='Te redirigimos a WhatsApp';ok.querySelector('p').textContent='Pulsa enviar en WhatsApp para que recibamos tu mensaje.';document.getElementById('cf-form').style.display='none';ok.style.display='block';}
 
 // Foco del hero e inclinacion 3D del portfolio: solo con raton y con movimiento
 (function(){

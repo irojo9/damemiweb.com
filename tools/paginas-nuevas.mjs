@@ -288,7 +288,7 @@ export function avisoLegal(cfg) {
     ${todo('Domicilio social o dirección a efectos de notificaciones', 'no facilitado.')}
     ${todo('Correo electrónico de contacto', 'no facilitado. El sitio solo publica hoy el teléfono de WhatsApp.')}
     ${todo('Datos registrales', 'si el titular es una sociedad mercantil, debe indicarse el registro mercantil, tomo, folio y hoja de inscripción.')}
-    <p>Mientras tanto, el canal de contacto operativo es el teléfono <a href="tel:${esc(cfg.site.phone)}">${esc(cfg.site.phoneDisplay)}</a> y el <a href="/contacto">formulario de contacto</a>.</p>
+    <p>Mientras tanto, el canal de contacto operativo es el teléfono <a href="tel:${esc(cfg.site.phone)}">${esc(cfg.site.phoneDisplay)}</a> y <a href="/contacto">WhatsApp</a>.</p>
 
     <h2>Objeto</h2>
     <p>Este sitio web ofrece servicios de diseño y desarrollo web para autónomos y pequeños negocios en España, así como servicios complementarios de auditoría y marketing digital. Las condiciones concretas de contratación figuran en los <a href="/terminos">términos y condiciones</a>.</p>

@@ -124,24 +124,16 @@ h1 em{font-style:italic;font-weight:300;color:var(--muted)}
 .info-card-val{font-size:15px;font-weight:500;color:var(--ink)}
 .info-card-sub{font-size:12px;font-weight:300;color:var(--muted);margin-top:2px}
 
-/* FORM */
+/* TARJETA DE WHATSAPP */
+.form-card .fsend{background:#25D366;text-decoration:none}
+.form-card .fsend:hover{opacity:1;background:#1EBE5A}
 .form-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:36px}
 .form-card h2{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:-.3px}
 .form-card .sub{font-size:14px;font-weight:300;color:var(--muted);margin-bottom:28px}
-.field{margin-bottom:14px}
-.field label{display:block;font-size:12px;font-weight:500;color:var(--ink);letter-spacing:.02em;margin-bottom:6px}
-.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:9px;font-family:var(--sans);font-size:14px;font-weight:300;color:var(--ink);background:var(--white);outline:none;transition:border-color .15s}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ink)}
-.field textarea{resize:none;line-height:1.6}
 .fsend{width:100%;padding:14px;border-radius:9px;background:var(--ink);color:var(--white);font-family:var(--sans);font-size:14px;font-weight:500;border:none;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:7px}
 .fsend:hover:not(:disabled){opacity:.83;transform:translateY(-1px)}
-.fsend:disabled{opacity:.45;cursor:not-allowed}
 .flegal{font-size:11px;color:var(--muted);text-align:center;margin-top:9px}
 .flegal a{color:var(--blue)}
-.fok{text-align:center;padding:40px 0}
-.fok-ico{font-size:44px;margin-bottom:14px}
-.fok h3{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--ink);margin-bottom:8px}
-.fok p{font-size:14px;font-weight:300;color:var(--muted)}
 
 /* SECTORS */
 .sectors-section{background:var(--bg);padding:72px 0}
@@ -401,40 +393,17 @@ footer p{font-size:12px;font-weight:300;color:rgba(255,255,255,.2);margin-bottom
 
       <div class="form-card">
         <h2>Escríbenos</h2>
-        <p class="sub">Déjanos tus datos y te contactamos en menos de 24 horas.</p>
+        <p class="sub">Cuéntanos qué negocio tienes y qué necesitas: te respondemos en menos de 2 horas.</p>
         <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;margin-bottom:24px;border-radius:10px;background:#fff;border:1px solid var(--border)">
           <span style="color:#FFC107;font-size:15px;letter-spacing:1px">★★★★★</span>
           <span style="font-size:13px;font-weight:500;color:var(--ink)">5,0 sobre 5</span>
           <span style="font-size:13px;font-weight:300;color:var(--muted)">· +111 negocios ya confían en nosotros</span>
         </div>
-        <div id="cf">
-          <div class="field"><label>Nombre *</label><input type="text" id="fn" placeholder="Tu nombre" required/></div>
-          <div class="field"><label>Email *</label><input type="email" id="fe" placeholder="tu@email.com" required/></div>
-          <div class="field"><label>Teléfono</label><input type="tel" id="ft" placeholder="+34 600 000 000"/></div>
-          <div class="field">
-            <label>Tipo de negocio *</label>
-            <select id="fne" required>
-              <option value="">Selecciona tu sector</option>
-              <option>Fontanería</option><option>Electricidad</option><option>Cerrajería</option>
-              <option>Peluquería / Estética</option><option>Restaurante / Bar</option>
-              <option>Mudanzas / Transportes</option><option>Reformas / Construcción</option>
-              <option>Tienda / Comercio</option><option>Formación / Academia</option><option>Otro</option>
-            </select>
-          </div>
-          <div class="field"><label>Mensaje</label><textarea id="fm" rows="4" placeholder="Cuéntanos brevemente tu negocio y qué necesitas..."></textarea></div>
-          <button class="fsend" id="fsb" onclick="send()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
-            Enviar mensaje
-          </button>
-          <p class="flegal">Al enviar aceptas nuestra <a href="/privacidad">política de privacidad</a>.</p>
-        </div>
-        <div id="cf-ok" style="display:none">
-          <div class="fok">
-            <div class="fok-ico">✓</div>
-            <h3>Mensaje recibido</h3>
-            <p>Te contactamos en menos de 24 horas. Para más rapidez escríbenos por WhatsApp.</p>
-          </div>
-        </div>
+        <a data-wa-loc="contacto" href="https://wa.me/34662549694?text=Hola%2C%20quiero%20mi%20web%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" class="fsend">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 20.5l1.3-4.3A8.2 8.2 0 1 1 8 19.4l-4.5 1.1z"/></svg>
+          Escribir por WhatsApp
+        </a>
+        <p class="flegal">O llámanos al <a href="tel:+34662549694">662 549 694</a>.</p>
       </div>
 
     </div>
@@ -520,26 +489,6 @@ footer p{font-size:12px;font-weight:300;color:rgba(255,255,255,.2);margin-bottom
   </div>
 </div><!--/dmw:footer-->
 
-<script>
-async function send(){
-  const n=document.getElementById('fn').value.trim(),e=document.getElementById('fe').value.trim(),
-    t=document.getElementById('ft').value.trim(),ne=document.getElementById('fne').value,
-    m=document.getElementById('fm').value.trim();
-  if(!n||!e||!ne){alert('Por favor rellena los campos obligatorios.');return}
-  const btn=document.getElementById('fsb');btn.disabled=true;btn.textContent='Enviando...';
-  try{
-    const r=await fetch('https://formspree.io/f/xpwzgvqp',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({nombre:n,email:e,telefono:t,negocio:ne,mensaje:m})});
-    if(r.ok){if(typeof gtag==='function')gtag('event','generate_lead',{method:'formulario'});document.getElementById('cf').style.display='none';document.getElementById('cf-ok').style.display='block'}
-    else fb(n,ne,e,m);
-  }catch{fb(n,ne,e,m)}
-}
-function fb(n,ne,e,m){
-  if(typeof gtag==='function')gtag('event','generate_lead',{method:'whatsapp_fallback'});
-  window.open(`https://wa.me/34662549694?text=${encodeURIComponent(`Hola, me llamo ${n}. Negocio: ${ne}. Email: ${e}. ${m}`)}`,'_blank');
-  var ok=document.getElementById('cf-ok');ok.querySelector('h3').textContent='Te redirigimos a WhatsApp';ok.querySelector('p').textContent='Pulsa enviar en WhatsApp para que recibamos tu mensaje.';
-  document.getElementById('cf').style.display='none';ok.style.display='block';
-}
-</script>
 <script src="/dmw.js" defer></script>
 </body>
 </html>
