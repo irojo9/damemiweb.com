@@ -180,15 +180,10 @@
   /* 4. Favicon: la mayoría de páginas no declaran ninguno */
   function initFavicon() {
     if (document.querySelector('link[rel~="icon"]')) return;
-    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">'
-      + '<rect width="100" height="100" rx="18" fill="%231C1C1C"/>'
-      + '<path d="M 18 26 L 18 74 L 40 74 C 56 74 64 64 64 50 C 64 36 56 26 40 26 Z M 30 36 L 40 36 C 48 36 52 42 52 50 C 52 58 48 64 40 64 L 30 64 Z" fill="%23FFFFFF"/>'
-      + '<path d="M 58 70 L 68 50 L 74 60 L 84 32 L 90 36 L 86 26 L 78 32 L 82 22 L 70 32 L 66 24 L 62 32 Z" fill="%237FA3F5"/>'
-      + '<polygon points="84,26 92,22 88,32" fill="%237FA3F5"/></svg>';
     var link = document.createElement('link');
     link.rel = 'icon';
     link.type = 'image/svg+xml';
-    link.href = 'data:image/svg+xml,' + svg;
+    link.href = '/favicon.svg';
     document.head.appendChild(link);
   }
 
