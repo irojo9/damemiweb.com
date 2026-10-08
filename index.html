@@ -3,13 +3,16 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<link rel="icon" type="image/png" href="/logo_damemiweb_icon.png"/>
-<link rel="apple-touch-icon" href="/logo_damemiweb_icon.png"/>
+<meta name="theme-color" content="#0E0E0E"/>
+<link rel="manifest" href="/site.webmanifest"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <title>Página web para autónomos 250€ pago único | Dame mi web</title>
 <meta name="description" content="Página web profesional para autónomos y pequeños negocios por 250€ + IVA, pago único y sin cuotas. Dominio, SEO y 12 meses de soporte incluidos. Online en 72h."/>
 <link rel="canonical" href="https://www.damemiweb.com/"/>
 <meta property="og:title" content="Página web para autónomos 250€ pago único | Dame mi web"/>
 <meta property="og:description" content="Página web profesional en 72 horas por 250€ + IVA. Pago único, sin cuotas. +111 proyectos en España."/>
+<meta property="og:site_name" content="Dame mi web"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.damemiweb.com/"/>
 <meta property="og:locale" content="es_ES"/>
@@ -20,14 +23,14 @@
 <meta name="twitter:title" content="Página web para autónomos 250€ pago único | Dame mi web"/>
 <meta name="twitter:description" content="Página web profesional en 72 horas por 250€ + IVA. Pago único, sin cuotas."/>
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B27EE57BLZ"></script>
+<script>addEventListener('load',function(){(window.requestIdleCallback||setTimeout)(function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-B27EE57BLZ';document.head.appendChild(s)})})</script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B27EE57BLZ');</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 
 {"@type":["Organization","ProfessionalService"],"@id":"https://www.damemiweb.com/#org",
 "name":"Dame mi web","alternateName":"Damemiweb","url":"https://www.damemiweb.com",
-"logo":{"@type":"ImageObject","url":"https://www.damemiweb.com/logo_damemiweb_icon.png","width":512,"height":512},
+"logo":{"@type":"ImageObject","url":"https://www.damemiweb.com/icon-512.png","width":512,"height":512},
 "image":"https://www.damemiweb.com/og-image.jpg",
 "description":"Dame mi web es un estudio español de diseño web para autónomos y pequeños negocios. Entrega una web profesional completa por 250€ + IVA en pago único, sin mensualidades, con dominio .com incluido el primer año y publicación en un máximo de 72 horas.",
 "slogan":"Tu web profesional en 72 horas, sin mensualidades",
@@ -148,11 +151,30 @@ nav.s{background:rgba(14,14,14,.95);backdrop-filter:blur(20px);border-color:var(
 /* HERO */
 #hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 32px 80px;position:relative;overflow:hidden}
 @media(max-width:768px){#hero{min-height:auto;padding:80px 24px 60px}}
-.hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg::before{content:'';position:absolute;top:-40%;left:-20%;width:80%;height:80%;background:radial-gradient(circle,rgba(64,128,255,.18) 0%,transparent 65%);animation:pulse 6s ease-in-out infinite}
-.hero-bg::after{content:'';position:absolute;bottom:-20%;right:-10%;width:60%;height:60%;background:radial-gradient(circle,rgba(19,71,204,.14) 0%,transparent 65%);animation:pulse 8s ease-in-out infinite .5s}
-@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:.7}}
-.hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(ellipse at center,black 0%,transparent 70%)}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+/* Aurora: tres manchas de luz que derivan despacio (solo transform: barato). */
+.hero-bg::before,.hero-bg::after,.hero-aurora{content:'';position:absolute;border-radius:50%;will-change:transform;pointer-events:none}
+.hero-bg::before{top:-30%;left:-15%;width:75%;height:85%;background:radial-gradient(closest-side,rgba(64,128,255,.26),transparent);animation:drift1 18s ease-in-out infinite alternate}
+.hero-bg::after{bottom:-35%;right:-15%;width:70%;height:80%;background:radial-gradient(closest-side,rgba(19,71,204,.24),transparent);animation:drift2 22s ease-in-out infinite alternate}
+.hero-aurora{top:20%;left:35%;width:45%;height:55%;background:radial-gradient(closest-side,rgba(37,211,102,.055),transparent);animation:drift3 26s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(18%,14%) scale(1.15)}}
+@keyframes drift2{to{transform:translate(-16%,-12%) scale(1.2)}}
+@keyframes drift3{0%{transform:translate(-30%,10%) scale(.9)}100%{transform:translate(25%,-15%) scale(1.25)}}
+/* Foco de luz que sigue al puntero (variables --mx/--my desde JS). */
+.hero-spot{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .6s;background:radial-gradient(520px circle at var(--mx,50%) var(--my,40%),rgba(127,163,245,.13),transparent 65%)}
+#hero:hover .hero-spot{opacity:1}
+.hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.07) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(ellipse at center,black 0%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,black 0%,transparent 70%);animation:dotsPan 40s linear infinite}
+@keyframes dotsPan{to{background-position:40px 80px}}
+/* Entrada escalonada del hero. El h1 no anima la opacidad para no retrasar
+   el LCP: solo sube y se enfoca. */
+@media(prefers-reduced-motion:no-preference){
+  .hero-content>*{animation:heroIn .9s cubic-bezier(.16,1,.3,1) both}
+  .hero-content>.hero-h{animation-name:heroInH}
+  .hero-content>:nth-child(1){animation-delay:.05s}.hero-content>:nth-child(2){animation-delay:.12s}.hero-content>:nth-child(3){animation-delay:.24s}
+  .hero-content>:nth-child(4){animation-delay:.34s}.hero-content>:nth-child(5){animation-delay:.44s}.hero-content>:nth-child(6){animation-delay:.54s}
+}
+@keyframes heroIn{from{opacity:0;transform:translateY(28px);filter:blur(8px)}}
+@keyframes heroInH{from{transform:translateY(22px);filter:blur(6px)}}
 .hero-content{position:relative;z-index:1;max-width:900px;margin:0 auto;width:100%}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(127,163,245,.12);border:1px solid rgba(127,163,245,.3);color:rgba(255,255,255,.75);font-size:12px;font-weight:500;padding:7px 16px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:36px}
 .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#7FA3F5;animation:blink 2s ease-in-out infinite}
@@ -168,6 +190,10 @@ nav.s{background:rgba(14,14,14,.95);backdrop-filter:blur(20px);border-color:var(
 .hero-rot .dynamic-word.active{visibility:visible;animation:wordIn .5s cubic-bezier(.16,1,.3,1) both}
 h1.hero-h{font-family:var(--serif);font-size:clamp(33px,4.9vw,62px);font-weight:300;line-height:1.06;letter-spacing:-.02em;margin:0 auto 26px;color:var(--white);max-width:17ch}
 h1.hero-h .hero-h-price{font-style:italic;color:#7FA3F5;white-space:nowrap}
+@supports((-webkit-background-clip:text) or (background-clip:text)){
+  h1.hero-h .hero-h-price{background:linear-gradient(100deg,#7FA3F5 0%,#7FA3F5 38%,#DCE6FF 50%,#7FA3F5 62%,#7FA3F5 100%);background-size:250% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 5s ease-in-out 1.2s infinite}
+}
+@keyframes shimmer{0%{background-position:100% 0}45%,100%{background-position:0 0}}
 @media(prefers-reduced-motion:reduce){.hero-rot .dynamic-word.active{animation:none}}
 @keyframes wordIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .hero-sub{font-size:clamp(17px,2.2vw,22px);font-weight:300;color:rgba(255,255,255,.55);line-height:1.6;max-width:560px;margin:0 auto 48px}
@@ -176,7 +202,10 @@ h1.hero-h .hero-h-price{font-style:italic;color:#7FA3F5;white-space:nowrap}
 .hero-price{display:flex;align-items:baseline;gap:10px}
 .hero-price .amt{font-family:var(--serif);font-size:35px;font-weight:300;letter-spacing:-.015em;color:var(--white);line-height:1}
 .hero-price .meta{font-size:14px;font-weight:400;color:var(--mist)}
-.btn-hero{display:inline-flex;align-items:center;gap:10px;background:var(--bright);color:#fff;font-size:16px;font-weight:500;padding:18px 44px;border-radius:12px;transition:all .25s;box-shadow:0 0 0 0 rgba(64,128,255,.4)}
+.btn-hero{position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;gap:10px;background:var(--bright);color:#fff;font-size:16px;font-weight:500;padding:18px 44px;border-radius:12px;transition:all .25s;box-shadow:0 0 0 0 rgba(64,128,255,.4);animation:halo 2.8s ease-out 1.6s infinite}
+.btn-hero::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);transform:translateX(-120%);animation:btnShine 4.5s ease-in-out 2s infinite}
+@keyframes halo{0%{box-shadow:0 0 0 0 rgba(127,163,245,.45)}70%,100%{box-shadow:0 0 0 18px rgba(127,163,245,0)}}
+@keyframes btnShine{0%,65%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
 .btn-hero:hover{background:#5590FF;transform:translateY(-2px);box-shadow:0 12px 40px rgba(64,128,255,.35)}
 .btn-hero svg{transition:transform .2s}
 .btn-hero:hover svg{transform:translateX(3px)}
@@ -523,8 +552,30 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
 }
 
 /* REVEAL */
-.rv{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-.rv.on{opacity:1;transform:translateY(0)}
+.rv{opacity:0;transform:translateY(32px);filter:blur(6px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1),filter .8s cubic-bezier(.16,1,.3,1)}
+.rv.on{opacity:1;transform:translateY(0);filter:none}
+
+/* PORTFOLIO — tarjetas con inclinacion 3D y reflejo que sigue al puntero
+   (--rx/--ry/--gx/--gy desde JS, solo con raton). */
+#portfolio .pf-grid{perspective:1200px}
+#portfolio .pf-card{position:relative;transform-style:preserve-3d;transition:border-color .25s,transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+#portfolio .pf-card:hover{transform:translateY(-6px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px rgba(127,163,245,.25)}
+#portfolio .pf-card.tilt{transition:border-color .25s,transform .12s linear,box-shadow .5s}
+#portfolio .pf-card::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(420px circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.12),transparent 55%)}
+#portfolio .pf-card:hover::after{opacity:1}
+#portfolio .pf-shot img{transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+#portfolio .pf-card:hover .pf-shot img{transform:scale(1.06)}
+#portfolio .pf-grid.rv>*{transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+#portfolio .pf-grid.rv:not(.on)>*{opacity:0;transform:translateY(40px) scale(.96)}
+#portfolio .pf-grid>:nth-child(2){transition-delay:.06s}#portfolio .pf-grid>:nth-child(3){transition-delay:.12s}#portfolio .pf-grid>:nth-child(4){transition-delay:.18s}#portfolio .pf-grid>:nth-child(5){transition-delay:.24s}#portfolio .pf-grid>:nth-child(6){transition-delay:.3s}#portfolio .pf-grid>:nth-child(7){transition-delay:.36s}#portfolio .pf-grid>:nth-child(8){transition-delay:.42s}#portfolio .pf-grid>:nth-child(9){transition-delay:.48s}
+#portfolio .pf-grid.on>*:hover{transition-delay:0s}
+@media(prefers-reduced-motion:reduce){
+  .hero-bg::before,.hero-bg::after,.hero-aurora,.hero-dots,.btn-hero,.btn-hero::before{animation:none!important}
+  h1.hero-h .hero-h-price{animation:none!important;background-position:0 0}
+  .rv{filter:none!important}
+  #portfolio .pf-card:hover{transform:none}
+  #portfolio .pf-grid.rv:not(.on)>*{opacity:1;transform:none}
+}
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
 
 /* RESPONSIVE */
@@ -600,8 +651,9 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
 .dmw-dd-panel a{display:block;padding:9px 12px;border-radius:8px;font-size:14px;color:rgba(255,255,255,.75);text-decoration:none;break-inside:avoid;white-space:nowrap}
 .dmw-dd-panel a:hover{background:rgba(255,255,255,.08);color:#fff}
 .dmw-dd-panel a.lead{color:#7FA3F5;font-weight:500}
-.dmw-cta{display:inline-flex;align-items:center;gap:7px;flex-shrink:0;background:#25D366;color:#fff!important;padding:10px 17px;border-radius:9px;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;transition:opacity .15s}
-.dmw-cta:hover{opacity:.88}
+.dmw-cta{position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;gap:7px;flex-shrink:0;background:#25D366;color:#fff!important;padding:10px 17px;border-radius:9px;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;transition:background .2s,transform .2s,box-shadow .2s}
+.dmw-cta:hover{background:#1EBE5A;transform:translateY(-1px);box-shadow:0 8px 24px rgba(37,211,102,.28)}
+.dmw-cta::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);pointer-events:none}
 .dmw-burger{display:none;align-items:center;justify-content:center;width:42px;height:42px;border-radius:9px;border:1px solid #2A2A2A;background:none;color:#fff;cursor:pointer;flex-shrink:0}
 .dmw-mob{position:fixed;top:68px;left:0;right:0;bottom:0;z-index:299;background:#0E0E0E;overflow-y:auto;padding:16px 20px 48px;-webkit-overflow-scrolling:touch}
 .dmw-mob-sec{border-bottom:1px solid #1F1F1F;padding:4px 0}
@@ -618,6 +670,43 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
 /* En pantallas muy estrechas el CTA de la barra se queda en icono, pero el
    del menu movil conserva su texto. */
 @media(max-width:560px){.dmw-hd .dmw-cta span{display:none}.dmw-hd .dmw-cta{padding:10px 13px}}
+/* Barra de progreso de lectura bajo la cabecera (CSS puro, scroll-driven). */
+.dmw-progress{position:absolute;left:0;right:0;bottom:-1px;height:2px;overflow:hidden;pointer-events:none}
+.dmw-progress::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#1347CC,#7FA3F5 55%,#25D366);transform-origin:0 50%;transform:scaleX(0)}
+/* Movimiento del sitio. Todo lo vistoso vive aqui dentro, de modo que quien
+   pide movimiento reducido no recibe nada de ello. */
+@media(prefers-reduced-motion:no-preference){
+  /* Transicion entre paginas (View Transitions entre documentos): la pagina
+     saliente se desvanece hacia arriba y la entrante sube desenfocada. La
+     cabecera lleva nombre propio para quedarse quieta durante el cambio. */
+  @view-transition{navigation:auto}
+  ::view-transition-old(root){animation:dmw-vt-out .26s cubic-bezier(.4,0,1,1) both}
+  ::view-transition-new(root){animation:dmw-vt-in .55s cubic-bezier(.16,1,.3,1) both}
+  .dmw-hd{view-transition-name:dmw-hd}
+  ::view-transition-group(dmw-hd){animation-duration:0s}
+  @keyframes dmw-vt-out{to{opacity:0;transform:translateY(-14px) scale(.985);filter:blur(4px)}}
+  @keyframes dmw-vt-in{from{opacity:0;transform:translateY(26px) scale(1.01);filter:blur(6px)}}
+  @supports(animation-timeline:scroll()){
+    .dmw-progress::before{animation:dmw-prog linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes dmw-prog{to{transform:scaleX(1)}}
+  .dmw-dd-panel:not([hidden]){animation:dmw-pop .24s cubic-bezier(.16,1,.3,1) both;transform-origin:top left}
+  @keyframes dmw-pop{from{opacity:0;transform:translateY(-8px) scale(.97)}}
+  .dmw-mob:not([hidden]){animation:dmw-fade .25s ease both}
+  .dmw-mob:not([hidden])>*{animation:dmw-rise .5s cubic-bezier(.16,1,.3,1) both}
+  .dmw-mob>:nth-child(2){animation-delay:.03s}.dmw-mob>:nth-child(3){animation-delay:.06s}.dmw-mob>:nth-child(4){animation-delay:.09s}
+  .dmw-mob>:nth-child(5){animation-delay:.12s}.dmw-mob>:nth-child(6){animation-delay:.15s}.dmw-mob>:nth-child(7){animation-delay:.18s}.dmw-mob>:nth-child(8){animation-delay:.21s}
+  .dmw-mob-panel:not([hidden]) a{animation:dmw-rise .4s cubic-bezier(.16,1,.3,1) both}
+  @keyframes dmw-fade{from{opacity:0}}
+  @keyframes dmw-rise{from{opacity:0;transform:translateY(14px)}}
+  /* Destello periodico en el boton de WhatsApp */
+  .dmw-cta::after{animation:dmw-shine 6s ease-in-out 2.5s infinite}
+  @keyframes dmw-shine{0%,72%{transform:translateX(-120%)}88%,100%{transform:translateX(120%)}}
+  /* Revelado al hacer scroll que dmw.js aplica a las paginas sin animacion
+     propia. Sin JS la clase no existe y todo queda visible. */
+  .dmw-rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);transition-delay:var(--dmw-d,0s)}
+  .dmw-rv.dmw-on{opacity:1;transform:none}
+}
 /* Movimiento reducido, para todo el sitio. Va en la cabecera porque es el
    unico bloque que esta en todas las paginas. Las clases .rv y .reveal son
    revelados al hacer scroll: sin animacion tienen que quedarse visibles. */
@@ -655,6 +744,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
     <a href="https://wa.me/34662549694?text=Hola%2C%20quiero%20mi%20web%20por%20250%E2%82%AC%20%2B%20IVA." target="_blank" rel="noopener" data-wa-loc="header" data-wa-fixed class="dmw-cta"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 20.5l1.3-4.3A8.2 8.2 0 1 1 8 19.4l-4.5 1.1z"/><path d="M9 9.2c0 3 2.3 5.3 5.2 5.4.6 0 1.1-.4 1.2-1l.1-.6-2-.9-.8 1a4.6 4.6 0 0 1-2-2l1-.8-.9-2-.6.1c-.6.1-1.1.6-1.2 1.2z"/></svg><span>Pedir mi web</span></a>
     <button type="button" class="dmw-burger" id="dmw-burger" aria-expanded="false" aria-controls="dmw-mob" aria-label="Abrir menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
   </div>
+  <span class="dmw-progress" aria-hidden="true"></span>
 </header>
 <!-- El panel movil va fuera de <header> a proposito: el backdrop-filter de la
      cabecera crea un bloque contenedor y recortaria su position:fixed. -->
@@ -681,8 +771,9 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-dots"></div>
+  <div class="hero-bg" aria-hidden="true"><span class="hero-aurora"></span></div>
+  <div class="hero-dots" aria-hidden="true"></div>
+  <div class="hero-spot" aria-hidden="true"></div>
   <div class="hero-content">
     <!-- Frase decorativa. Solo la palabra visible queda en el arbol accesible;
          las demas van con aria-hidden para que un lector de pantalla lea
@@ -737,9 +828,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
   </div>
   <div style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.5;animation:bounce 2s ease-in-out infinite">
     <span style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.6)">Descubre más</span>
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </div>
-  </div>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </div>
 </section>
 
@@ -1414,6 +1503,17 @@ async function send(){
   }catch{fb(n,ne,e,m)}
 }
 function fb(n,ne,e,m){if(typeof gtag==='function')gtag('event','generate_lead',{method:'whatsapp_fallback'});window.open('https://wa.me/34662549694?text='+encodeURIComponent('Hola, me llamo '+n+'. Negocio: '+ne+'. Email: '+e+'. '+m),'_blank');var ok=document.getElementById('cf-ok');ok.querySelector('h4').textContent='Te redirigimos a WhatsApp';ok.querySelector('p').textContent='Pulsa enviar en WhatsApp para que recibamos tu mensaje.';document.getElementById('cf-form').style.display='none';ok.style.display='block';}
+
+// Foco del hero e inclinacion 3D del portfolio: solo con raton y con movimiento
+(function(){
+  if(!matchMedia('(pointer:fine)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const hero=document.getElementById('hero');
+  if(hero){let raf=0;hero.addEventListener('pointermove',e=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;const r=hero.getBoundingClientRect();hero.style.setProperty('--mx',(e.clientX-r.left)+'px');hero.style.setProperty('--my',(e.clientY-r.top)+'px')})})}
+  document.querySelectorAll('#portfolio .pf-card').forEach(c=>{
+    c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.classList.add('tilt');c.style.setProperty('--ry',((x-.5)*10).toFixed(2)+'deg');c.style.setProperty('--rx',((.5-y)*8).toFixed(2)+'deg');c.style.setProperty('--gx',(x*100).toFixed(1)+'%');c.style.setProperty('--gy',(y*100).toFixed(1)+'%')});
+    c.addEventListener('pointerleave',()=>{c.classList.remove('tilt');c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')});
+  });
+})();
 
 // Reveal on scroll
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});

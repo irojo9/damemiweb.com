@@ -39,6 +39,8 @@ node tools/check.mjs      # comprobaciones antes de publicar
 | El portfolio de la home o la franja "Otros servicios" (y `DESTACADAS`, las webs fijas de la home) | `tools/portfolio.mjs` | `node tools/build.mjs` |
 | Las capturas del portfolio de la home | nada: las hace el workflow *Capturas del portfolio* (o `node tools/capturas.mjs` en local, con Playwright) | se commitean solas |
 | El texto propio de una página concreta | ese `.html` | `node tools/build.mjs` |
+| Iconos, `theme-color`, manifest, `og:site_name` y la carga diferida de Analytics (el `<head>` común) | `cabeza()` en `tools/partials.mjs` | `node tools/build.mjs` |
+| Animaciones comunes (transición entre páginas, barra de progreso, revelados, contadores) | CSS en `headerCSS()` de `tools/partials.mjs` y `initReveal`/`initContadores` en `dmw.js` | `node tools/build.mjs` |
 
 Los ficheros **generados por completo** (no editar a mano): `sitemap.xml`, la
 línea `Sitemap:` de `robots.txt`, `sectores.html`, `auditorias.html`,
