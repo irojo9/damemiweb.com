@@ -43,7 +43,7 @@ export function waLink(cfg, texto, ubicacion, cls = '', extra = '') {
  * idempotente: tools/build.mjs lo aplica a cada .html y tools/pagina.mjs a las
  * páginas que genera, de modo que ambos caminos producen lo mismo.
  *
- *  - Iconos reales (SVG + PNG). El antiguo logo_damemiweb_icon.png es un JPEG
+ *  - Iconos reales (SVG + PNG). El antiguo logo_damemiweb_icon.png (ya borrado) era un JPEG
  *    negro de 1248 px: pesaba y se veía como un cuadrado negro.
  *  - theme-color, manifest y og:site_name.
  *  - Google Analytics se descarga cuando la página ya ha cargado, sin competir

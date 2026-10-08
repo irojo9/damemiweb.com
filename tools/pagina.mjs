@@ -78,8 +78,8 @@ export function pagina(cfg, { titulo, descripcion, ruta, robots, jsonld, cuerpo 
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<link rel="icon" type="image/png" href="/logo_damemiweb_icon.png"/>
-<link rel="apple-touch-icon" href="/logo_damemiweb_icon.png"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <title>${esc(titulo)}</title>
 <meta name="description" content="${esc(descripcion)}"/>
 <meta name="robots" content="${robots || 'index, follow, max-snippet:-1, max-image-preview:large'}"/>
