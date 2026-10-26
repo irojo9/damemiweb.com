@@ -379,6 +379,7 @@ export function footer(cfg) {
           ['/preguntas-frecuentes', 'Preguntas frecuentes'],
           ['/sobre-nosotros', 'Sobre nosotros'],
           ['/resenas', 'Reseñas'],
+          [cfg.site.googleBusiness, 'Ficha de Google', true],
           ['/aviso-legal', 'Aviso legal'],
           ['/privacidad', 'Privacidad'],
           ['/terminos', 'Términos'],
