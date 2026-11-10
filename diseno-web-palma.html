@@ -156,18 +156,27 @@ footer{background:#050505;padding:48px 40px 24px;border-top:1px solid var(--bord
 }
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.damemiweb.com/"},{"@type":"ListItem","position":2,"name":"Diseño Web en Palma de Mallorca"}]}</script>
+<script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
 </head>
 <body>
 <!--dmw:header--><style>
 #dmw-intro{display:none}
 html.dmw-intro-on{overflow:hidden}
-html.dmw-intro-on #dmw-intro{display:flex}
+/* .go mantiene el overlay visible aunque la clase del html caiga antes de
+   tiempo; el nodo desaparece del todo cuando el script lo retira. */
+html.dmw-intro-on #dmw-intro,#dmw-intro.go{display:flex}
 html.dmw-intro-on .dmw-brand .dmw-logo{opacity:0}
-#dmw-intro{position:fixed;inset:0;z-index:10000;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,3.5vh,30px);background:#03050D;cursor:pointer;overflow:hidden;font-family:'Fraunces',Georgia,serif;color:#fff;-webkit-tap-highlight-color:transparent;transition:background-color .7s cubic-bezier(.4,0,.2,1),opacity .3s}
-#dmw-intro .bg{position:absolute;inset:-10%;background:radial-gradient(closest-side at 50% 46%,rgba(19,71,204,.55),rgba(19,71,204,.12) 55%,transparent);opacity:0;transform:scale(.5)}
-#dmw-intro .mkw{position:relative;width:min(74vw,460px);aspect-ratio:640/363;transform-origin:0 0;transition:transform .8s cubic-bezier(.65,0,.35,1)}
+.dmw-brand .dmw-logo{transition:opacity .25s ease}
+#dmw-intro{position:fixed;inset:0;z-index:10000;flex-direction:column;align-items:center;justify-content:center;gap:clamp(16px,3vh,28px);cursor:pointer;overflow:hidden;font-family:'Fraunces',Georgia,serif;color:#fff;-webkit-tap-highlight-color:transparent;transition:opacity .3s}
+#dmw-intro .veil{position:absolute;inset:0;background:#03050D}
+#dmw-intro .bg{position:absolute;inset:-10%;background:radial-gradient(closest-side at 50% 44%,rgba(19,71,204,.52),rgba(19,71,204,.12) 55%,transparent 72%),radial-gradient(closest-side at 50% 118%,rgba(127,163,245,.14),transparent 62%);opacity:0;transform:scale(.6)}
+/* El tope en vh evita que la marca desborde en pantallas apaisadas bajas. */
+#dmw-intro .mkw{position:relative;width:min(74vw,460px,calc(44vh*640/363));aspect-ratio:640/363;transform-origin:0 0;transition:transform .75s cubic-bezier(.77,0,.175,1),opacity .25s ease}
+#dmw-intro .gl,#dmw-intro .sh{position:absolute;inset:0;-webkit-mask:url(/logo-intro.webp) 0 0/100% 100% no-repeat;mask:url(/logo-intro.webp) 0 0/100% 100% no-repeat}
+#dmw-intro .gl{background:#19C6FF;filter:blur(16px);opacity:0}
 #dmw-intro .mk{position:absolute;inset:0;width:100%;height:100%;display:block;clip-path:polygon(0 100%,0 100%,0 100%)}
-#dmw-intro .sh{position:absolute;inset:0;opacity:0;background:linear-gradient(120deg,transparent 38%,rgba(255,255,255,.95) 50%,transparent 62%) no-repeat;background-size:250% 100%;background-position:100% 0;-webkit-mask:url(/logo-intro.webp) 0 0/100% 100% no-repeat;mask:url(/logo-intro.webp) 0 0/100% 100% no-repeat}
+#dmw-intro .sh{overflow:hidden;opacity:0}
+#dmw-intro .sh::before{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.9) 50%,transparent 60%);transform:translateX(-80%)}
 #dmw-intro .ring,#dmw-intro .sp i{position:absolute;left:87.6%;top:8.3%;border-radius:50%;opacity:0;pointer-events:none}
 #dmw-intro .ring{width:24px;height:24px;margin:-12px;border:2px solid #6FE3FF;box-shadow:0 0 18px #19C6FF,inset 0 0 12px #19C6FF}
 #dmw-intro .sp i{width:6px;height:6px;margin:-3px;background:#D4F7FF;box-shadow:0 0 10px 2px #3FD4FF}
@@ -176,30 +185,35 @@ html.dmw-intro-on .dmw-brand .dmw-logo{opacity:0}
 #dmw-intro .tt .w{color:#7FA3F5}
 #dmw-intro .tg{font:600 clamp(10px,1.6vw,13px)/1 'DM Sans',system-ui,sans-serif;text-transform:uppercase;letter-spacing:.42em;margin-right:-.42em;color:rgba(255,255,255,.55);opacity:0}
 #dmw-intro .sk{position:absolute;bottom:max(22px,env(safe-area-inset-bottom));font:400 12px/1 'DM Sans',system-ui,sans-serif;color:rgba(255,255,255,.3);opacity:0}
-#dmw-intro.go .bg{animation:dmwi-bg 1.6s cubic-bezier(.16,1,.3,1) both}
-#dmw-intro.go .mk{animation:dmwi-wipe .95s cubic-bezier(.65,0,.35,1) .15s both,dmwi-glow 1.7s ease-out .95s both}
-#dmw-intro.go .sh{animation:dmwi-sh .85s cubic-bezier(.4,0,.2,1) .95s forwards}
-#dmw-intro.go .ring{animation:dmwi-ring 1s cubic-bezier(.16,1,.3,1) 1.02s forwards}
-#dmw-intro.go .sp i{animation:dmwi-sp var(--t,.9s) cubic-bezier(.1,.8,.3,1) var(--d,1.02s) forwards}
-#dmw-intro.go .tt b{animation:dmwi-ch .7s cubic-bezier(.16,1,.3,1) calc(1.1s + var(--i) * 40ms) both}
-#dmw-intro.go .tg{animation:dmwi-tg 1s cubic-bezier(.16,1,.3,1) 1.45s both}
-#dmw-intro.go .sk{animation:dmwi-fade .6s ease 1.2s both}
-#dmw-intro.out{background-color:rgba(3,5,13,0);pointer-events:none}
-#dmw-intro.out .bg,#dmw-intro.out .tt,#dmw-intro.out .tg,#dmw-intro.out .sk,#dmw-intro.out .sp,#dmw-intro.out .ring{opacity:0!important;transition:opacity .35s;animation-play-state:paused}
-#dmw-intro.out .tt,#dmw-intro.out .tg{transform:translateY(-10px);transition:opacity .35s,transform .35s}
+#dmw-intro.go .bg{animation:dmwi-bg 1.5s cubic-bezier(.16,1,.3,1) both}
+#dmw-intro.go .mk{animation:dmwi-wipe .85s cubic-bezier(.77,0,.175,1) .1s both,dmwi-settle .85s cubic-bezier(.23,1,.32,1) .1s both}
+#dmw-intro.go .gl{animation:dmwi-gl 1.6s ease-out .8s both}
+#dmw-intro.go .sh{opacity:1}
+#dmw-intro.go .sh::before{animation:dmwi-shx .7s cubic-bezier(.4,0,.2,1) .85s both}
+#dmw-intro.go .ring{animation:dmwi-ring 1s cubic-bezier(.16,1,.3,1) .92s forwards}
+#dmw-intro.go .sp i{animation:dmwi-sp var(--t,.9s) cubic-bezier(.1,.8,.3,1) var(--d,.92s) forwards}
+#dmw-intro.go .tt b{animation:dmwi-ch .55s cubic-bezier(.23,1,.32,1) calc(1s + var(--i) * 38ms) both}
+#dmw-intro.go .tg{animation:dmwi-tg .8s cubic-bezier(.23,1,.32,1) 1.3s both}
+#dmw-intro.go .sk{animation:dmwi-fade .6s ease 1.15s both}
+#dmw-intro.out{pointer-events:none}
+#dmw-intro.out .veil{opacity:0;transition:opacity .6s cubic-bezier(.4,0,.2,1)}
+#dmw-intro.out .bg,#dmw-intro.out .tt,#dmw-intro.out .tg,#dmw-intro.out .sk,#dmw-intro.out .sp,#dmw-intro.out .ring{opacity:0!important;transition:opacity .3s;animation-play-state:paused}
+#dmw-intro.out .tt,#dmw-intro.out .tg{transform:translateY(-10px);transition:opacity .3s,transform .3s}
 @keyframes dmwi-bg{to{opacity:1;transform:none}}
 @keyframes dmwi-wipe{from{clip-path:polygon(0 100%,0 100%,0 100%)}to{clip-path:polygon(-30% -220%,-30% 140%,320% 140%)}}
-@keyframes dmwi-glow{0%{filter:drop-shadow(0 0 0 rgba(25,198,255,0))}22%{filter:drop-shadow(0 0 26px rgba(25,198,255,.8)) brightness(1.2)}100%{filter:drop-shadow(0 0 10px rgba(25,198,255,.3))}}
-@keyframes dmwi-sh{0%{opacity:1;background-position:100% 0}100%{opacity:1;background-position:0 0}}
+@keyframes dmwi-settle{from{transform:scale(.94)}to{transform:none}}
+@keyframes dmwi-gl{0%{opacity:0}30%{opacity:.5}100%{opacity:.16}}
+@keyframes dmwi-shx{from{transform:translateX(-80%)}to{transform:translateX(80%)}}
 @keyframes dmwi-ring{0%{opacity:1;transform:scale(.2)}100%{opacity:0;transform:scale(12)}}
 @keyframes dmwi-sp{0%{opacity:1;transform:translate(0,0) scale(1.2)}100%{opacity:0;transform:translate(var(--x),var(--y)) scale(.2)}}
-@keyframes dmwi-ch{from{opacity:0;transform:translateY(.55em) rotate(4deg);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
-@keyframes dmwi-tg{from{opacity:0;letter-spacing:1.1em}to{opacity:1;letter-spacing:.42em}}
+@keyframes dmwi-ch{from{opacity:0;transform:translateY(.5em) scale(.92) rotate(3deg)}to{opacity:1;transform:none}}
+@keyframes dmwi-tg{from{opacity:0;transform:scaleX(1.3) translateY(8px)}to{opacity:1;transform:none}}
 @keyframes dmwi-fade{to{opacity:1}}
 </style>
 <div id="dmw-intro" aria-hidden="true">
+  <div class="veil"></div>
   <div class="bg"></div>
-  <div class="mkw"><img class="mk" alt="" width="640" height="363" decoding="async"/><div class="sh"></div><div class="ring"></div><div class="sp"></div></div>
+  <div class="mkw"><div class="gl"></div><img class="mk" alt="" width="640" height="363" decoding="async"/><div class="sh"></div><div class="ring"></div><div class="sp"></div></div>
   <div class="tt"><b style="--i:0">D</b><b style="--i:1">a</b><b style="--i:2">m</b><b style="--i:3">e</b><b style="--i:4">&nbsp;</b><b style="--i:5">m</b><b style="--i:6">i</b><b style="--i:7">&nbsp;</b><b style="--i:8" class="w">w</b><b style="--i:9" class="w">e</b><b style="--i:10" class="w">b</b></div>
   <div class="tg">Diseño web profesional</div>
   <div class="sk">Pulsa para saltar</div>
@@ -207,15 +221,16 @@ html.dmw-intro-on .dmw-brand .dmw-logo{opacity:0}
 <script>(function(){var d=document.getElementById('dmw-intro'),h=document.documentElement,K='dmw-intro';
 try{if(sessionStorage.getItem(K)||matchMedia('(prefers-reduced-motion: reduce)').matches||navigator.webdriver||/bot|crawl|spider|lighthouse|headless|preview/i.test(navigator.userAgent)){d.remove();return}sessionStorage.setItem(K,'1')}catch(e){d.remove();return}
 h.classList.add('dmw-intro-on');
-var sp=d.querySelector('.sp'),f='';for(var i=0;i<18;i++){var a=-Math.PI*(.05+Math.random()*1.25),r=60+Math.random()*130;f+='<i style="--x:'+(Math.cos(a)*r).toFixed(0)+'px;--y:'+(Math.sin(a)*r).toFixed(0)+'px;--d:'+(1.02+Math.random()*.12).toFixed(2)+'s;--t:'+(.7+Math.random()*.5).toFixed(2)+'s"></i>'}sp.innerHTML=f;
+var sp=d.querySelector('.sp'),f='';for(var i=0;i<18;i++){var a=-Math.PI*(.05+Math.random()*1.25),r=60+Math.random()*130;f+='<i style="--x:'+(Math.cos(a)*r).toFixed(0)+'px;--y:'+(Math.sin(a)*r).toFixed(0)+'px;--d:'+(.92+Math.random()*.12).toFixed(2)+'s;--t:'+(.7+Math.random()*.5).toFixed(2)+'s"></i>'}sp.innerHTML=f;
 var done=0,ts=[];function T(fn,ms){ts.push(setTimeout(fn,ms))}
 function fin(){if(done)return;done=1;ts.forEach(clearTimeout);h.classList.remove('dmw-intro-on');d.remove();['click','keydown','wheel','touchstart'].forEach(function(e){removeEventListener(e,skip,true)})}
 function skip(){if(done)return;ts.forEach(clearTimeout);d.style.opacity='0';T(fin,300)}
 function fly(){var m=d.querySelector('.mkw'),t=document.querySelector('.dmw-brand .dmw-logo'),a=m.getBoundingClientRect(),b=t&&t.getBoundingClientRect();
-if(b&&b.width){m.style.transform='translate('+(b.left-a.left)+'px,'+(b.top-a.top)+'px) scale('+(b.width/a.width)+')'}else{m.style.opacity='0';m.style.transition='opacity .5s'}
+if(b&&b.width){m.style.transform='translate('+(b.left-a.left).toFixed(1)+'px,'+(b.top-a.top).toFixed(1)+'px) scale('+(b.width/a.width).toFixed(4)+')';
+T(function(){t.style.opacity='1';m.style.opacity='0'},550)}else{m.style.opacity='0'}
 d.classList.add('out');T(fin,850)}
 var img=d.querySelector('.mk');var ab=setTimeout(skip,1200);ts.push(ab);
-img.onload=function(){if(done)return;clearTimeout(ab);d.classList.add('go');T(fly,2300)};img.onerror=skip;img.src='/logo-intro.webp';
+img.onload=function(){if(done)return;clearTimeout(ab);d.classList.add('go');T(fly,2050)};img.onerror=skip;img.fetchPriority='high';img.src='/logo-intro.webp';
 ['click','keydown','wheel','touchstart'].forEach(function(e){addEventListener(e,skip,{capture:true,passive:true})})})()</script>
 <style>
 .dmw-skip{position:absolute;left:-9999px;top:0;z-index:1000;background:#1347CC;color:#fff;padding:10px 18px;border-radius:0 0 8px 0;font:500 14px/1 system-ui,sans-serif;text-decoration:none}
