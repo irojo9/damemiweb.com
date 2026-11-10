@@ -33,6 +33,9 @@
 /*.jpg
   Cache-Control: public, max-age=604800, stale-while-revalidate=2592000
 
+/*.webp
+  Cache-Control: public, max-age=604800, stale-while-revalidate=2592000
+
 /favicon.svg
   Cache-Control: public, max-age=604800, stale-while-revalidate=2592000
 

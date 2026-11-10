@@ -164,6 +164,15 @@ export function cabeza(html) {
 
   html = html.replace(/<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=([A-Z0-9-]+)"><\/script>/,
     (_, id) => `<script>addEventListener('load',function(){(window.requestIdleCallback||setTimeout)(function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${id}';document.head.appendChild(s)})})</script>`);
+
+  // Prefetch especulativo: al apuntar a un enlace interno el navegador trae el
+  // HTML a la caché y la navegación es casi instantánea. Solo prefetch, nunca
+  // prerender: un prerender ejecutaría el JS de la página (analítica incluida)
+  // en visitas que quizá no ocurren. Los navegadores sin soporte lo ignoran.
+  if (!html.includes('type="speculationrules"')) {
+    html = html.replace(/<\/head>/i,
+      '<script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>\n</head>');
+  }
   return html;
 }
 
