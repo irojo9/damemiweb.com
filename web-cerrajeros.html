@@ -160,9 +160,21 @@ var img=d.querySelector('.mk');var ab=setTimeout(skip,1200);ts.push(ab);
 img.onload=function(){if(done)return;clearTimeout(ab);d.classList.add('go');T(fly,2050)};img.onerror=skip;img.fetchPriority='high';img.src='/logo-intro.webp';
 ['click','keydown','wheel','touchstart'].forEach(function(e){addEventListener(e,skip,{capture:true,passive:true})})})()</script>
 <style>
+/* Barra de scroll acorde al tema en todo el sitio */
+html{scrollbar-color:#2E2E2E #0B0B0B}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:#0B0B0B}
+::-webkit-scrollbar-thumb{background:#2E2E2E;border-radius:7px;border:3px solid #0B0B0B}
+::-webkit-scrollbar-thumb:hover{background:#7FA3F5}
 .dmw-skip{position:absolute;left:-9999px;top:0;z-index:1000;background:#1347CC;color:#fff;padding:10px 18px;border-radius:0 0 8px 0;font:500 14px/1 system-ui,sans-serif;text-decoration:none}
 .dmw-skip:focus{left:0}
-.dmw-hd{position:fixed;top:0;left:0;right:0;z-index:300;height:68px;background:rgba(14,14,14,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid #242424;font-family:'DM Sans',system-ui,-apple-system,sans-serif;color:#fff}
+.dmw-hd{position:fixed;top:0;left:0;right:0;z-index:300;height:68px;background:rgba(14,14,14,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid #242424;font-family:'DM Sans',system-ui,-apple-system,sans-serif;color:#fff;transition:background .35s,box-shadow .35s}
+/* dmw.js añade .dmw-sc al bajar: la cabecera se "despega" con sombra propia */
+.dmw-hd.dmw-sc{background:rgba(10,10,12,.86);box-shadow:0 14px 44px rgba(0,0,0,.45)}
+/* Opacidad del halo de las tarjetas .dmw-fx: registrada como numero para que
+   la transicion del brillo sea suave (fuera de @media: @property no puede
+   anidarse). */
+@property --dmw-sa{syntax:"<number>";inherits:false;initial-value:0}
 .dmw-hd-spacer{height:68px}
 .dmw-hd *,.dmw-ft *{box-sizing:border-box}
 .dmw-hd-in{max-width:1400px;margin:0 auto;height:100%;padding:0 24px;display:flex;align-items:center;gap:16px}
@@ -234,9 +246,15 @@ img.onload=function(){if(done)return;clearTimeout(ab);d.classList.add('go');T(fl
   .dmw-cta::after{animation:dmw-shine 6s ease-in-out 2.5s infinite}
   @keyframes dmw-shine{0%,72%{transform:translateX(-120%)}88%,100%{transform:translateX(120%)}}
   /* Revelado al hacer scroll que dmw.js aplica a las paginas sin animacion
-     propia. Sin JS la clase no existe y todo queda visible. */
-  .dmw-rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);transition-delay:var(--dmw-d,0s)}
-  .dmw-rv.dmw-on{opacity:1;transform:none}
+     propia. Sin JS la clase no existe y todo queda visible. Ademas de subir,
+     el bloque entra desenfocado y un punto mas pequeño: mas cine, mismo coste. */
+  .dmw-rv{opacity:0;transform:translateY(34px) scale(.985);filter:blur(6px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1),filter .9s cubic-bezier(.16,1,.3,1);transition-delay:var(--dmw-d,0s)}
+  .dmw-rv.dmw-on{opacity:1;transform:none;filter:none}
+  /* Tarjetas con brillo que sigue al puntero (dmw.js marca .dmw-fx y pone
+     --dmw-gx/--dmw-gy). El halo va en background-image: se suma al color de
+     fondo de la tarjeta sin tocar sus pseudoelementos ni su DOM. */
+  .dmw-fx{--dmw-sa:0;background-image:radial-gradient(480px circle at var(--dmw-gx,50%) var(--dmw-gy,-30%),rgba(127,163,245,calc(var(--dmw-sa)*.13)),transparent 62%);transition:--dmw-sa .45s ease,box-shadow .45s ease,transform .3s cubic-bezier(.16,1,.3,1),border-color .3s ease,background-color .3s ease,color .2s ease,opacity .3s ease}
+  .dmw-fx:hover{--dmw-sa:1;box-shadow:0 22px 54px rgba(0,0,0,.35),0 0 0 1px rgba(127,163,245,.22),0 0 48px -14px rgba(127,163,245,.35)}
 }
 /* Movimiento reducido, para todo el sitio. Va en la cabecera porque es el
    unico bloque que esta en todas las paginas. Las clases .rv y .reveal son
@@ -443,8 +461,8 @@ img.onload=function(){if(done)return;clearTimeout(ab);d.classList.add('go');T(fl
 .dmw-ft-meta a:hover{color:#7FA3F5}
 .dmw-ft h2{font-family:inherit;font-size:12px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:#fff;margin:0 0 16px}
 .dmw-ft ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.dmw-ft ul a{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);text-decoration:none;transition:color .15s}
-.dmw-ft ul a:hover{color:#fff}
+.dmw-ft ul a{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);text-decoration:none;background:linear-gradient(currentColor,currentColor) left calc(100% - 1px)/0 1px no-repeat;transition:color .2s,background-size .35s cubic-bezier(.16,1,.3,1)}
+.dmw-ft ul a:hover{color:#fff;background-size:100% 1px}
 .dmw-ft-bot{border-top:1px solid #1F1F1F;padding-top:22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .dmw-ft-bot p{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);margin:0}
 .dmw-ft-soc{display:flex;gap:8px}

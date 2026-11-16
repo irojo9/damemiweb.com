@@ -156,7 +156,23 @@ nav.s{background:rgba(14,14,14,.95);backdrop-filter:blur(20px);border-color:var(
 .hero-bg::before,.hero-bg::after,.hero-aurora{content:'';position:absolute;border-radius:50%;will-change:transform;pointer-events:none}
 .hero-bg::before{top:-30%;left:-15%;width:75%;height:85%;background:radial-gradient(closest-side,rgba(64,128,255,.26),transparent);animation:drift1 18s ease-in-out infinite alternate}
 .hero-bg::after{bottom:-35%;right:-15%;width:70%;height:80%;background:radial-gradient(closest-side,rgba(19,71,204,.24),transparent);animation:drift2 22s ease-in-out infinite alternate}
-.hero-aurora{top:20%;left:35%;width:45%;height:55%;background:radial-gradient(closest-side,rgba(37,211,102,.055),transparent);animation:drift3 26s ease-in-out infinite alternate}
+.hero-aurora{top:20%;left:35%;width:45%;height:55%;background:radial-gradient(closest-side,rgba(148,118,255,.1),transparent);animation:drift3 26s ease-in-out infinite alternate}
+/* Haces de luz verticales que barren el hero muy de vez en cuando */
+.hero-beam{position:absolute;top:-20%;width:1px;height:140%;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(127,163,245,.55),transparent);opacity:0;animation:beam 9s ease-in-out infinite}
+.hero-beam.b2{background:linear-gradient(180deg,transparent,rgba(255,255,255,.35),transparent);animation-delay:4.5s}
+@keyframes beam{0%,100%{opacity:0;transform:translateY(-10%)}50%{opacity:.7;transform:translateY(8%)}}
+/* Al hacer scroll el fondo del hero se queda atras y el contenido se despide
+   suavemente (solo navegadores con animaciones ligadas al scroll). */
+@supports(animation-timeline:scroll()){
+  @media(prefers-reduced-motion:no-preference){
+    .hero-bg{animation:heroPar 1s linear both;animation-timeline:scroll(root block);animation-range:0px 90vh}
+    .hero-dots{animation:dotsPan 40s linear infinite,heroParDots 1s linear both;animation-timeline:auto,scroll(root block);animation-range:normal,0px 90vh}
+    .hero-content{animation:heroAway 1s linear both;animation-timeline:scroll(root block);animation-range:0px 80vh}
+  }
+}
+@keyframes heroPar{to{transform:translateY(16%)}}
+@keyframes heroParDots{to{transform:translateY(22%);opacity:.3}}
+@keyframes heroAway{to{transform:translateY(-54px);opacity:.15}}
 @keyframes drift1{to{transform:translate(18%,14%) scale(1.15)}}
 @keyframes drift2{to{transform:translate(-16%,-12%) scale(1.2)}}
 @keyframes drift3{0%{transform:translate(-30%,10%) scale(.9)}100%{transform:translate(25%,-15%) scale(1.25)}}
@@ -188,7 +204,7 @@ nav.s{background:rgba(14,14,14,.95);backdrop-filter:blur(20px);border-color:var(
 .hero-rot .dynamic-wrap{display:inline-grid;vertical-align:baseline;text-align:center}
 .hero-rot .dynamic-word{grid-area:1/1;visibility:hidden;font-style:italic;color:#7FA3F5;white-space:nowrap}
 .hero-rot .dynamic-word.active{visibility:visible;animation:wordIn .5s cubic-bezier(.16,1,.3,1) both}
-h1.hero-h{font-family:var(--serif);font-size:clamp(33px,4.9vw,62px);font-weight:300;line-height:1.06;letter-spacing:-.02em;margin:0 auto 26px;color:var(--white);max-width:17ch}
+h1.hero-h{font-family:var(--serif);font-size:clamp(34px,5.5vw,71px);font-weight:300;line-height:1.04;letter-spacing:-.025em;margin:0 auto 26px;color:var(--white);max-width:17ch;text-wrap:balance}
 h1.hero-h .hero-h-price{font-style:italic;color:#7FA3F5;white-space:nowrap}
 @supports((-webkit-background-clip:text) or (background-clip:text)){
   h1.hero-h .hero-h-price{background:linear-gradient(100deg,#7FA3F5 0%,#7FA3F5 38%,#DCE6FF 50%,#7FA3F5 62%,#7FA3F5 100%);background-size:250% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 5s ease-in-out 1.2s infinite}
@@ -202,25 +218,27 @@ h1.hero-h .hero-h-price{font-style:italic;color:#7FA3F5;white-space:nowrap}
 .hero-price{display:flex;align-items:baseline;gap:10px}
 .hero-price .amt{font-family:var(--serif);font-size:35px;font-weight:300;letter-spacing:-.015em;color:var(--white);line-height:1}
 .hero-price .meta{font-size:14px;font-weight:400;color:var(--mist)}
-.btn-hero{position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;gap:10px;background:var(--bright);color:#fff;font-size:16px;font-weight:500;padding:18px 44px;border-radius:12px;transition:all .25s;box-shadow:0 0 0 0 rgba(64,128,255,.4);animation:halo 2.8s ease-out 1.6s infinite}
+.btn-hero{position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#3E74E8,#7FA3F5);color:#fff;font-size:16px;font-weight:500;padding:18px 44px;border-radius:12px;transition:all .25s;box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 0 0 0 rgba(64,128,255,.4);animation:halo 2.8s ease-out 1.6s infinite}
 .btn-hero::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);transform:translateX(-120%);animation:btnShine 4.5s ease-in-out 2s infinite}
 @keyframes halo{0%{box-shadow:0 0 0 0 rgba(127,163,245,.45)}70%,100%{box-shadow:0 0 0 18px rgba(127,163,245,0)}}
 @keyframes btnShine{0%,65%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
-.btn-hero:hover{background:#5590FF;transform:translateY(-2px);box-shadow:0 12px 40px rgba(64,128,255,.35)}
+.btn-hero:hover{filter:brightness(1.12);transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 12px 40px rgba(64,128,255,.4)}
 .btn-hero svg{transition:transform .2s}
 .btn-hero:hover svg{transform:translateX(3px)}
 .hero-trust{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
 .ht{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:400;color:rgba(255,255,255,.45)}
 .ht-icon{font-size:16px}
 .hero-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);position:relative;z-index:1;max-width:800px;margin:0 auto;width:100%}
-.hs{padding:28px 20px;text-align:center;border-right:1px solid var(--line)}
+.hs{padding:28px 20px;text-align:center;border-right:1px solid var(--line);transition:background .35s}
 .hs:last-child{border-right:none}
-.hs-n{font-family:var(--serif);font-size:29px;font-weight:300;letter-spacing:-.015em;color:var(--white);line-height:1;margin-bottom:4px}
+.hs:hover{background:rgba(127,163,245,.05)}
+.hs-n{font-family:var(--serif);font-size:31px;font-weight:300;letter-spacing:-.015em;color:var(--white);line-height:1;margin-bottom:4px;background:linear-gradient(180deg,#fff 30%,rgba(255,255,255,.55));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hs-l{font-size:11px;font-weight:400;color:var(--mist);text-transform:uppercase;letter-spacing:.1em}
 
 /* TICKER */
-.ticker{background:#1C1C1C;overflow:hidden;white-space:nowrap;padding:16px 0}
+.ticker{background:#1C1C1C;overflow:hidden;white-space:nowrap;padding:16px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
 .ticker-track{display:inline-flex;animation:tick 28s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
 .ti{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:0 32px;letter-spacing:.02em;display:inline-flex;align-items:center;gap:32px}
 .ti::after{content:'✦';opacity:.6;font-size:10px;color:#7FA3F5}
 @keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
@@ -467,15 +485,18 @@ h2.s-title.light .dk{color:rgba(14,14,14,.2)}
 
 /* CTA FINAL */
 #cta-final{background:linear-gradient(135deg,var(--navy2) 0%,var(--navy3) 100%);padding:120px 48px;text-align:center;position:relative;overflow:hidden}
-#cta-final::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(64,128,255,.12) 0%,transparent 65%);pointer-events:none}
+#cta-final::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(64,128,255,.14) 0%,transparent 65%);pointer-events:none}
+/* Aspa de luz conica que gira muy despacio detras del CTA final */
+#cta-final::after{content:'';position:absolute;top:50%;left:50%;width:160vmax;height:160vmax;margin:-80vmax 0 0 -80vmax;background:conic-gradient(from 0deg,transparent 0 68%,rgba(127,163,245,.07) 76%,transparent 84%,transparent 90%,rgba(148,118,255,.05) 95%,transparent 100%);animation:ctaSpin 26s linear infinite;pointer-events:none}
+@keyframes ctaSpin{to{transform:rotate(1turn)}}
 .cta-inner{position:relative;z-index:1;max-width:760px;margin:0 auto}
 .cta-inner .s-label{justify-content:center}
 .cta-inner h2{font-family:var(--serif);font-size:clamp(33px,4.76vw,61px);font-weight:300;letter-spacing:-.015em;line-height:1.04;color:var(--white);margin:20px 0 24px}
 .cta-inner h2 .it{font-style:italic;color:var(--bright)}
 .cta-inner p{font-size:18px;font-weight:300;color:rgba(255,255,255,.55);max-width:480px;margin:0 auto 48px;line-height:1.65}
 .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn-main{display:inline-flex;align-items:center;gap:10px;background:var(--bright);color:#fff;font-size:16px;font-weight:500;padding:18px 40px;border-radius:12px;transition:all .25s}
-.btn-main:hover{background:#5590FF;transform:translateY(-2px);box-shadow:0 12px 40px rgba(64,128,255,.35)}
+.btn-main{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#3E74E8,#7FA3F5);color:#fff;font-size:16px;font-weight:500;padding:18px 40px;border-radius:12px;transition:all .25s;box-shadow:inset 0 1px 0 rgba(255,255,255,.28)}
+.btn-main:hover{filter:brightness(1.12);transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 12px 40px rgba(64,128,255,.4)}
 .btn-main::after{content:'→';transition:transform .2s}
 .btn-main:hover::after{transform:translateX(3px)}
 .btn-ghost{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.55);border:1.5px solid rgba(255,255,255,.2);padding:18px 32px;border-radius:12px;font-size:15px;transition:all .25s}
@@ -551,7 +572,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
 #portfolio .pf-grid>:nth-child(2){transition-delay:.06s}#portfolio .pf-grid>:nth-child(3){transition-delay:.12s}#portfolio .pf-grid>:nth-child(4){transition-delay:.18s}#portfolio .pf-grid>:nth-child(5){transition-delay:.24s}#portfolio .pf-grid>:nth-child(6){transition-delay:.3s}#portfolio .pf-grid>:nth-child(7){transition-delay:.36s}#portfolio .pf-grid>:nth-child(8){transition-delay:.42s}#portfolio .pf-grid>:nth-child(9){transition-delay:.48s}
 #portfolio .pf-grid.on>*:hover{transition-delay:0s}
 @media(prefers-reduced-motion:reduce){
-  .hero-bg::before,.hero-bg::after,.hero-aurora,.hero-dots,.btn-hero,.btn-hero::before{animation:none!important}
+  .hero-bg::before,.hero-bg::after,.hero-aurora,.hero-dots,.hero-beam,#cta-final::after,.btn-hero,.btn-hero::before{animation:none!important}
   h1.hero-h .hero-h-price{animation:none!important;background-position:0 0}
   .rv{filter:none!important}
   #portfolio .pf-card:hover{transform:none}
@@ -567,7 +588,7 @@ footer{background:#050E1E;padding:72px 48px 32px;border-top:1px solid var(--line
   nav{padding:0 24px}
   .n-links{display:none}.ham{display:flex}
   section{padding:72px 24px}
-  h1.hero-h{font-size:clamp(30px,7.6vw,44px);max-width:none}
+  h1.hero-h{font-size:clamp(31px,8.2vw,48px);max-width:none}
   .hero-rot{font-size:clamp(17px,4.4vw,22px)}
   .hero-strip{grid-template-columns:repeat(2,1fr)}
   .svc-grid{grid-template-columns:1fr}
@@ -684,9 +705,21 @@ var img=d.querySelector('.mk');var ab=setTimeout(skip,1200);ts.push(ab);
 img.onload=function(){if(done)return;clearTimeout(ab);d.classList.add('go');T(fly,2050)};img.onerror=skip;img.fetchPriority='high';img.src='/logo-intro.webp';
 ['click','keydown','wheel','touchstart'].forEach(function(e){addEventListener(e,skip,{capture:true,passive:true})})})()</script>
 <style>
+/* Barra de scroll acorde al tema en todo el sitio */
+html{scrollbar-color:#2E2E2E #0B0B0B}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:#0B0B0B}
+::-webkit-scrollbar-thumb{background:#2E2E2E;border-radius:7px;border:3px solid #0B0B0B}
+::-webkit-scrollbar-thumb:hover{background:#7FA3F5}
 .dmw-skip{position:absolute;left:-9999px;top:0;z-index:1000;background:#1347CC;color:#fff;padding:10px 18px;border-radius:0 0 8px 0;font:500 14px/1 system-ui,sans-serif;text-decoration:none}
 .dmw-skip:focus{left:0}
-.dmw-hd{position:fixed;top:0;left:0;right:0;z-index:300;height:68px;background:rgba(14,14,14,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid #242424;font-family:'DM Sans',system-ui,-apple-system,sans-serif;color:#fff}
+.dmw-hd{position:fixed;top:0;left:0;right:0;z-index:300;height:68px;background:rgba(14,14,14,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid #242424;font-family:'DM Sans',system-ui,-apple-system,sans-serif;color:#fff;transition:background .35s,box-shadow .35s}
+/* dmw.js añade .dmw-sc al bajar: la cabecera se "despega" con sombra propia */
+.dmw-hd.dmw-sc{background:rgba(10,10,12,.86);box-shadow:0 14px 44px rgba(0,0,0,.45)}
+/* Opacidad del halo de las tarjetas .dmw-fx: registrada como numero para que
+   la transicion del brillo sea suave (fuera de @media: @property no puede
+   anidarse). */
+@property --dmw-sa{syntax:"<number>";inherits:false;initial-value:0}
 .dmw-hd-spacer{height:68px}
 .dmw-hd *,.dmw-ft *{box-sizing:border-box}
 .dmw-hd-in{max-width:1400px;margin:0 auto;height:100%;padding:0 24px;display:flex;align-items:center;gap:16px}
@@ -758,9 +791,15 @@ img.onload=function(){if(done)return;clearTimeout(ab);d.classList.add('go');T(fl
   .dmw-cta::after{animation:dmw-shine 6s ease-in-out 2.5s infinite}
   @keyframes dmw-shine{0%,72%{transform:translateX(-120%)}88%,100%{transform:translateX(120%)}}
   /* Revelado al hacer scroll que dmw.js aplica a las paginas sin animacion
-     propia. Sin JS la clase no existe y todo queda visible. */
-  .dmw-rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);transition-delay:var(--dmw-d,0s)}
-  .dmw-rv.dmw-on{opacity:1;transform:none}
+     propia. Sin JS la clase no existe y todo queda visible. Ademas de subir,
+     el bloque entra desenfocado y un punto mas pequeño: mas cine, mismo coste. */
+  .dmw-rv{opacity:0;transform:translateY(34px) scale(.985);filter:blur(6px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1),filter .9s cubic-bezier(.16,1,.3,1);transition-delay:var(--dmw-d,0s)}
+  .dmw-rv.dmw-on{opacity:1;transform:none;filter:none}
+  /* Tarjetas con brillo que sigue al puntero (dmw.js marca .dmw-fx y pone
+     --dmw-gx/--dmw-gy). El halo va en background-image: se suma al color de
+     fondo de la tarjeta sin tocar sus pseudoelementos ni su DOM. */
+  .dmw-fx{--dmw-sa:0;background-image:radial-gradient(480px circle at var(--dmw-gx,50%) var(--dmw-gy,-30%),rgba(127,163,245,calc(var(--dmw-sa)*.13)),transparent 62%);transition:--dmw-sa .45s ease,box-shadow .45s ease,transform .3s cubic-bezier(.16,1,.3,1),border-color .3s ease,background-color .3s ease,color .2s ease,opacity .3s ease}
+  .dmw-fx:hover{--dmw-sa:1;box-shadow:0 22px 54px rgba(0,0,0,.35),0 0 0 1px rgba(127,163,245,.22),0 0 48px -14px rgba(127,163,245,.35)}
 }
 /* Movimiento reducido, para todo el sitio. Va en la cabecera porque es el
    unico bloque que esta en todas las paginas. Las clases .rv y .reveal son
@@ -826,7 +865,7 @@ img.onload=function(){if(done)return;clearTimeout(ab);d.classList.add('go');T(fl
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg" aria-hidden="true"><span class="hero-aurora"></span></div>
+  <div class="hero-bg" aria-hidden="true"><span class="hero-aurora"></span><span class="hero-beam" style="left:16%"></span><span class="hero-beam b2" style="left:83%"></span></div>
   <div class="hero-dots" aria-hidden="true"></div>
   <div class="hero-spot" aria-hidden="true"></div>
   <div class="hero-content">
@@ -1448,8 +1487,8 @@ img.onload=function(){if(done)return;clearTimeout(ab);d.classList.add('go');T(fl
 .dmw-ft-meta a:hover{color:#7FA3F5}
 .dmw-ft h2{font-family:inherit;font-size:12px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:#fff;margin:0 0 16px}
 .dmw-ft ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.dmw-ft ul a{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);text-decoration:none;transition:color .15s}
-.dmw-ft ul a:hover{color:#fff}
+.dmw-ft ul a{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);text-decoration:none;background:linear-gradient(currentColor,currentColor) left calc(100% - 1px)/0 1px no-repeat;transition:color .2s,background-size .35s cubic-bezier(.16,1,.3,1)}
+.dmw-ft ul a:hover{color:#fff;background-size:100% 1px}
 .dmw-ft-bot{border-top:1px solid #1F1F1F;padding-top:22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .dmw-ft-bot p{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);margin:0}
 .dmw-ft-soc{display:flex;gap:8px}

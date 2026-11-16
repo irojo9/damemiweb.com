@@ -296,8 +296,15 @@
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
-        e.target.classList.add('dmw-on');
-        io.unobserve(e.target);
+        var el = e.target;
+        el.classList.add('dmw-on');
+        io.unobserve(el);
+        /* Terminada la entrada, las clases de revelado se retiran para que la
+           transicion del efecto de tarjetas (.dmw-fx) tome el relevo. */
+        setTimeout(function () {
+          el.classList.remove('dmw-rv', 'dmw-on');
+          el.style.removeProperty('--dmw-d');
+        }, 1500);
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
@@ -368,7 +375,107 @@
     }
   }
 
-  function init() { initHeader(); initResponsiveFix(); initFavicon(); initCookieBanner(); initTracking(); initMobileBar(); initExitIntent(); initReveal(); initContadores(); }
+  /* 9. Cabecera "despegada": al bajar mas de 10px gana sombra y mas opacidad.
+     Aplica a la cabecera comun (#dmw-hd); los estilos van en partials.mjs. */
+  function initHeaderScroll() {
+    var hd = document.getElementById('dmw-hd');
+    if (!hd) return;
+    var on = false;
+    function paso() {
+      var s = window.scrollY > 10;
+      if (s !== on) { on = s; hd.classList.toggle('dmw-sc', s); }
+    }
+    window.addEventListener('scroll', paso, { passive: true });
+    paso();
+  }
+
+  /* 10. Grano de pelicula: textura fija muy sutil sobre toda la pagina que da
+     acabado "editorial" a los degradados. Solo con puntero fino (escritorio)
+     para no gastar GPU en moviles; con movimiento, el grano vibra como en cine. */
+  function initGrain() {
+    if (document.getElementById('dmw-grain')) return;
+    if (!window.matchMedia('(pointer:fine)').matches) return;
+    var noise = "url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27180%27 height=%27180%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.9%27 numOctaves=%272%27 stitchTiles=%27stitch%27/%3E%3CfeColorMatrix type=%27saturate%27 values=%270%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27/%3E%3C/svg%3E')";
+    var style = document.createElement('style');
+    style.textContent = '#dmw-grain{position:fixed;inset:-120px;z-index:890;pointer-events:none;opacity:.045;mix-blend-mode:overlay;background-image:' + noise + ';background-size:180px 180px}'
+      + '@media(prefers-reduced-motion:no-preference){#dmw-grain{animation:dmw-grain .9s steps(9) infinite}}'
+      + '@keyframes dmw-grain{0%{transform:translate(0,0)}11%{transform:translate(-40px,-25px)}22%{transform:translate(30px,-60px)}33%{transform:translate(-55px,20px)}44%{transform:translate(45px,45px)}55%{transform:translate(-20px,60px)}66%{transform:translate(60px,-15px)}77%{transform:translate(-35px,-50px)}88%{transform:translate(20px,35px)}100%{transform:translate(0,0)}}';
+    document.head.appendChild(style);
+    var g = document.createElement('div');
+    g.id = 'dmw-grain';
+    g.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(g);
+  }
+
+  /* 11. Tarjetas con brillo que sigue al puntero + halo al pasar por encima.
+     Se detectan igual que las rejillas del revelado (grid/flex de 3 a 16
+     hijos) y solo se marcan los hijos con pinta de tarjeta: esquina
+     redondeada y fondo o borde propios. Sin DOM nuevo: solo la clase .dmw-fx
+     y las variables --dmw-gx/--dmw-gy (estilos en partials.mjs). */
+  function initCardFX() {
+    if (!MOVIMIENTO || !window.matchMedia('(pointer:fine)').matches) return;
+    var secciones = document.querySelectorAll('section, .dmw-ft, main, article');
+    var vistos = [];
+    for (var i = 0; i < secciones.length; i++) {
+      var sec = secciones[i];
+      if (sec.closest('.dmw-mob') || sec.closest('.dmw-hd')) continue;
+      var cajas = sec.querySelectorAll('*');
+      for (var j = 0; j < cajas.length; j++) {
+        var caja = cajas[j];
+        if (vistos.indexOf(caja) !== -1) continue;
+        var n = caja.children.length;
+        if (n < 3 || n > 16) continue;
+        var d = getComputedStyle(caja).display;
+        if (d !== 'grid' && d !== 'flex') continue;
+        vistos.push(caja);
+        marcarTarjetas(caja);
+      }
+    }
+    function marcarTarjetas(caja) {
+      var hijos = caja.children, tarjetas = [];
+      for (var k = 0; k < hijos.length; k++) {
+        var h = hijos[k];
+        if (/^(STYLE|SCRIPT|TEMPLATE)$/.test(h.tagName)) continue;
+        var cs = getComputedStyle(h);
+        var radio = parseFloat(cs.borderTopLeftRadius) || 0;
+        var conFondo = cs.backgroundColor !== 'rgba(0, 0, 0, 0)' && cs.backgroundColor !== 'transparent';
+        var conBorde = parseFloat(cs.borderTopWidth) > 0;
+        var r = h.getBoundingClientRect();
+        if (radio >= 8 && (conFondo || conBorde) && r.width >= 180 && r.height >= 90) tarjetas.push(h);
+      }
+      if (tarjetas.length < 3) return;
+      tarjetas.forEach(function (t) { t.classList.add('dmw-fx'); });
+      caja.addEventListener('pointermove', function (e) {
+        var t = e.target.closest && e.target.closest('.dmw-fx');
+        if (!t || !caja.contains(t)) return;
+        var r = t.getBoundingClientRect();
+        t.style.setProperty('--dmw-gx', (((e.clientX - r.left) / r.width) * 100).toFixed(1) + '%');
+        t.style.setProperty('--dmw-gy', (((e.clientY - r.top) / r.height) * 100).toFixed(1) + '%');
+      });
+    }
+  }
+
+  /* 12. Botones magneticos: los CTA principales se inclinan unos pixeles hacia
+     el puntero y vuelven con suavidad. Solo escritorio y con movimiento. */
+  function initMagnet() {
+    if (!MOVIMIENTO || !window.matchMedia('(pointer:fine)').matches) return;
+    var els = document.querySelectorAll('.dmw-cta,.btn-hero,.btn-main,.eco-cta,.geo-cta,.rc-btn,.ac-btn');
+    els.forEach(function (el) {
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        var dx = ((e.clientX - r.left) / r.width - 0.5) * 7;
+        var dy = ((e.clientY - r.top) / r.height - 0.5) * 5;
+        el.style.transition = 'transform .18s ease-out';
+        el.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + (dy - 1).toFixed(1) + 'px) scale(1.02)';
+      });
+      el.addEventListener('pointerleave', function () {
+        el.style.transition = 'transform .45s cubic-bezier(.16,1,.3,1)';
+        el.style.transform = '';
+      });
+    });
+  }
+
+  function init() { initHeader(); initResponsiveFix(); initFavicon(); initCookieBanner(); initTracking(); initMobileBar(); initExitIntent(); initReveal(); initContadores(); initHeaderScroll(); initGrain(); initCardFX(); initMagnet(); }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
