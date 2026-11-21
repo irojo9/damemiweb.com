@@ -60,7 +60,7 @@ ${tarjetas}
 <section class="pg-sec">
   <div class="w">
     <h2>Diseño web <em>por ciudad</em></h2>
-    <p class="pg-sub">El servicio es 100% remoto y llega a toda España. Estas son las ciudades con página propia.</p>
+    <p class="pg-sub">El servicio se presta en remoto y llega a toda España. Estas son las ciudades con página propia.</p>
     <div class="chips">${CIUDADES.map(c => `<a href="/${c.slug}" class="chip">${esc(c.label)}</a>`).join('')}</div>
   </div>
 </section>

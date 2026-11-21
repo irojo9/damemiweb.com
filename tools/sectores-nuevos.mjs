@@ -184,7 +184,7 @@ export const LANDINGS = [
     faqs: [
       ['¿Puedo combinar vaciados y mudanzas en la misma web?', 'Sí. Organizamos los dos servicios por separado para que cada uno salga en su búsqueda.'],
       ['¿Se puede pedir presupuesto con fotos?', 'Sí. El botón de WhatsApp lleva un mensaje preparado para que el cliente mande fotos o vídeo.'],
-      ['¿Trabajáis con empresas de otras ciudades?', 'Sí. El servicio es 100% remoto y hacemos webs para toda España.']
+      ['¿Trabajáis con empresas de otras ciudades?', 'Sí. El servicio se presta en remoto y hacemos webs para toda España.']
     ],
     ejemplos: ['vaciadosnelo', 'mudanzasyvaciadoscerca'],
     relacionados: ['web-mudanzas', 'web-portes', 'web-inmobiliarias']
