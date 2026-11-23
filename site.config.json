@@ -16,6 +16,13 @@
     "tiktok": "https://www.tiktok.com/@damemiweb"
   },
 
+  "googleAds": {
+    "_comment": "id = AW-XXXXXXXXX de la cuenta de Google Ads; conversionWhatsapp / conversionTelefono = la etiqueta (la parte tras la barra en send_to) de cada acción de conversión. Vacío = no se envía nada a Google Ads.",
+    "id": "",
+    "conversionWhatsapp": "",
+    "conversionTelefono": ""
+  },
+
   "web": {
     "priceAmount": "250",
     "priceCurrency": "EUR",

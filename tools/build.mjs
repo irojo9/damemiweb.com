@@ -677,7 +677,10 @@ function actualizarDmwJs() {
     priceFull: cfg.web.priceFull,
     entregaHoras: cfg.entrega.hours,
     proyectos: cfg.proyectos.count,
-    resenas: cfg.resenas.count
+    resenas: cfg.resenas.count,
+    adsId: (cfg.googleAds && cfg.googleAds.id) || '',
+    adsWhatsapp: (cfg.googleAds && cfg.googleAds.conversionWhatsapp) || '',
+    adsTelefono: (cfg.googleAds && cfg.googleAds.conversionTelefono) || ''
   };
   const iconos = {};
   for (const n of ['menu', 'close', 'phone', 'whatsapp']) iconos[n] = icon(n, { size: 17 });

@@ -2,11 +2,30 @@
    + favicon, barra CTA móvil y modal de salida (conversión) */
 (function () {
   /* dmw:config — generado por tools/build.mjs desde site.config.json. No editar a mano. */
-  var CFG = {"ga4":"G-B27EE57BLZ","phone":"+34662549694","price":"250€","priceFull":"250€ + IVA","entregaHoras":72,"proyectos":111,"resenas":83};
+  var CFG = {"ga4":"G-B27EE57BLZ","phone":"+34662549694","price":"250€","priceFull":"250€ + IVA","entregaHoras":72,"proyectos":111,"resenas":83,"adsId":"","adsWhatsapp":"","adsTelefono":""};
   /* /dmw:config */
 
   var GA_ID = CFG.ga4;
-  var WA_URL = 'https://wa.me/' + CFG.phone.replace('+', '') + '?text=' + encodeURIComponent('Hola, quiero mi web por ' + CFG.priceFull + '.');
+  /* Google Ads: id de cuenta (AW-...) y etiquetas de conversion, desde site.config.json.
+     Si estan vacios no se envia nada a Google Ads. */
+  var ADS_ID = CFG.adsId || '';
+
+  /* Visitas que llegan desde un anuncio de Google (gclid/gbraid/wbraid o utm_source=google
+     con medio de pago). Se recuerda durante la sesion para que, aunque naveguen por otras
+     paginas, el WhatsApp llegue con "vengo de Google" y se sepa que el chat viene de Ads. */
+  var DESDE_GOOGLE = false;
+  try {
+    var qs = new URLSearchParams(location.search);
+    var medio = (qs.get('utm_medium') || '').toLowerCase();
+    var fuente = (qs.get('utm_source') || '').toLowerCase();
+    if (qs.get('gclid') || qs.get('gbraid') || qs.get('wbraid') ||
+        ((fuente === 'google' || fuente === 'googleads') && /cpc|ppc|paid|ads/.test(medio))) {
+      sessionStorage.setItem('dmw-origen', 'google-ads');
+    }
+    DESDE_GOOGLE = sessionStorage.getItem('dmw-origen') === 'google-ads';
+  } catch (e) {}
+  var WA_TEXTO = (DESDE_GOOGLE ? 'Hola, vengo de Google, quiero mi web por ' : 'Hola, quiero mi web por ') + CFG.priceFull + '.';
+  var WA_URL = 'https://wa.me/' + CFG.phone.replace('+', '') + '?text=' + encodeURIComponent(WA_TEXTO);
   var TEL_URL = 'tel:' + CFG.phone;
 
   /* dmw:icons — generado por tools/build.mjs desde tools/icons.mjs. No editar a mano. */
@@ -100,8 +119,12 @@
   try {
     if (localStorage.getItem('cookie-consent') === 'rejected') {
       window['ga-disable-' + GA_ID] = true;
+      if (ADS_ID) window['ga-disable-' + ADS_ID] = true;
     }
   } catch (e) {}
+
+  /* 1b. Etiqueta de Google Ads: usa el mismo gtag.js que Analytics */
+  if (ADS_ID && typeof window.gtag === 'function') window.gtag('config', ADS_ID);
 
   /* 2. Inyectar banner de cookies si no existe en la página */
   function initCookieBanner() {
@@ -126,7 +149,7 @@
 
     var bar = document.createElement('div');
     bar.id = 'dmw-cookie-banner';
-    bar.innerHTML = '<p class="cb-t">Usamos cookies propias y de terceros (Google Analytics) para analizar el tráfico. <a href="/cookies">Política de cookies</a></p>'
+    bar.innerHTML = '<p class="cb-t">Usamos cookies propias y de terceros (Google Analytics y Google Ads) para analizar el tráfico y medir nuestros anuncios. <a href="/cookies">Política de cookies</a></p>'
       + '<div class="cb-btns"><button class="cb-r">Rechazar</button><button class="cb-a">Aceptar</button></div>';
     document.body.appendChild(bar);
 
@@ -137,6 +160,7 @@
     bar.querySelector('.cb-r').addEventListener('click', function () {
       try { localStorage.setItem('cookie-consent', 'rejected'); } catch (e) {}
       window['ga-disable-' + GA_ID] = true;
+      if (ADS_ID) window['ga-disable-' + ADS_ID] = true;
       bar.classList.remove('show');
     });
 
@@ -161,8 +185,10 @@
           page: location.pathname
         });
         track('whatsapp_click', { link_url: href, page: location.pathname });
+        if (ADS_ID && CFG.adsWhatsapp) track('conversion', { send_to: ADS_ID + '/' + CFG.adsWhatsapp });
       } else if (href.indexOf('tel:') === 0) {
         track('phone_click', { page: location.pathname });
+        if (ADS_ID && CFG.adsTelefono) track('conversion', { send_to: ADS_ID + '/' + CFG.adsTelefono });
       } else if (href.indexOf('mailto:') === 0) {
         track('email_click', { page: location.pathname });
       }
@@ -368,7 +394,22 @@
     }
   }
 
-  function init() { initHeader(); initResponsiveFix(); initFavicon(); initCookieBanner(); initTracking(); initMobileBar(); initExitIntent(); initReveal(); initContadores(); }
+  /* 3c. Si la visita viene de un anuncio de Google, los enlaces de WhatsApp fijos del HTML
+     cambian su mensaje a "Hola, vengo de Google, ..." */
+  function initOrigenGoogle() {
+    if (!DESDE_GOOGLE) return;
+    [].slice.call(document.querySelectorAll('a[href*="wa.me"]')).forEach(function (a) {
+      try {
+        var u = new URL(a.href);
+        var t = u.searchParams.get('text') || '';
+        if (/vengo de Google/i.test(t)) return;
+        t = /^Hola,?\s*/i.test(t) ? t.replace(/^Hola,?\s*/i, 'Hola, vengo de Google, ') : 'Hola, vengo de Google. ' + t;
+        a.href = u.origin + u.pathname + '?text=' + encodeURIComponent(t);
+      } catch (e) {}
+    });
+  }
+
+  function init() { initOrigenGoogle(); initHeader(); initResponsiveFix(); initFavicon(); initCookieBanner(); initTracking(); initMobileBar(); initExitIntent(); initReveal(); initContadores(); }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
